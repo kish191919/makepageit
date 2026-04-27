@@ -15,6 +15,7 @@ export const site = {
     youtube: "https://youtube.com/@makepage",
   },
   nav: [
+    { label: "홈페이지", href: "/" },
     { label: "포트폴리오", href: "/portfolio" },
     { label: "가격안내", href: "/pricing" },
     { label: "문의하기", href: "/contact" },

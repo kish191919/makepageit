@@ -64,7 +64,7 @@ export default function ContactPage() {
               <ul className="mt-4 space-y-2 text-sm text-ink-200">
                 <li>• 처음 사이트를 만드시는 사장님</li>
                 <li>• 기존 사이트가 오래되어 리뉴얼이 필요한 경우</li>
-                <li>• 광고비는 쓰는데 전환이 안 나오는 경우</li>
+                <li>• 포트폴리오·작품을 깔끔하게 보여주고 싶은 경우</li>
                 <li>• 운영까지 한 팀에 맡기고 싶은 경우</li>
               </ul>
             </div>

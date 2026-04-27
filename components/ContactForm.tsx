@@ -13,26 +13,45 @@ const services = [
 ];
 
 const budgets = [
-  "100만원 이하",
-  "100~300만원",
-  "300~500만원",
-  "500~1,000만원",
-  "1,000만원 이상",
+  "$300 미만",
+  "$300 – $500",
+  "$500 – $1,000",
+  "$1,000 – $2,500",
+  "$2,500 이상",
   "협의 가능",
 ];
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
-    // 데모: 실제 운영시 API 라우트(/api/contact) 또는 Formspree·Resend 연동으로 교체
-    setTimeout(() => {
-      setSubmitting(false);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+      }
+
       setSubmitted(true);
-    }, 700);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "전송 중 오류가 발생했습니다.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -106,6 +125,12 @@ export default function ContactForm() {
           개인정보 수집·이용에 동의합니다. (수집 항목: 이름, 연락처, 이메일 / 보유기간: 상담 종료 후 1년)
         </span>
       </label>
+
+      {error && (
+        <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}
+        </div>
+      )}
 
       <button
         type="submit"

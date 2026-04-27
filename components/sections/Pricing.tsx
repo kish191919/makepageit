@@ -4,8 +4,11 @@ import { plans } from "@/lib/data";
 
 export default function Pricing() {
   return (
-    <section className="section bg-white">
-      <div className="container-custom">
+    <section className="section relative overflow-hidden bg-gradient-to-b from-ink-50 to-white">
+      <div className="pointer-events-none absolute -right-32 top-24 hidden h-[400px] w-[400px] rounded-full bg-accent-400 opacity-20 blur-3xl md:block" />
+      <div className="pointer-events-none absolute -left-32 bottom-16 hidden h-[420px] w-[420px] rounded-full bg-brand-200 opacity-30 blur-3xl md:block" />
+
+      <div className="container-custom relative z-10">
         <SectionHeading
           align="center"
           eyebrow="가격 안내"
@@ -156,57 +159,6 @@ export default function Pricing() {
               </Link>
             </article>
           ))}
-        </div>
-
-        <div className="mx-auto mt-16 max-w-4xl">
-          <div className="text-center">
-            <p className="eyebrow">추가 옵션</p>
-            <h3 className="mt-3 text-2xl font-bold text-ink-900 sm:text-3xl">
-              필요한 만큼만 더하세요
-            </h3>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl border border-ink-200 bg-white p-6 transition hover:border-brand-600 hover:shadow-lg">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-xl">
-                📄
-              </div>
-              <p className="mt-4 text-sm font-semibold text-ink-900">추가 페이지</p>
-              <p className="mt-1 text-2xl font-extrabold text-brand-600">
-                $50
-                <span className="ml-1 text-sm font-medium text-ink-500">/ 페이지</span>
-              </p>
-              <p className="mt-2 text-xs text-ink-500">기본 패키지에 포함된 페이지 외 추가 시</p>
-            </div>
-
-            <div className="rounded-2xl border border-ink-200 bg-white p-6 transition hover:border-brand-600 hover:shadow-lg">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-xl">
-                📅
-              </div>
-              <p className="mt-4 text-sm font-semibold text-ink-900">예약 시스템 연동</p>
-              <p className="mt-1 text-2xl font-extrabold text-brand-600">
-                +$100
-                <span className="ml-1 text-sm font-medium text-ink-500">/ 일회성</span>
-              </p>
-              <p className="mt-2 text-xs text-ink-500">캘린더·예약 폼·자동 알림 연동</p>
-            </div>
-
-            <div className="rounded-2xl border border-ink-200 bg-white p-6 transition hover:border-brand-600 hover:shadow-lg">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-xl">
-                💳
-              </div>
-              <p className="mt-4 text-sm font-semibold text-ink-900">결제 시스템 연동</p>
-              <p className="mt-1 text-2xl font-extrabold text-brand-600">
-                +$100
-                <span className="ml-1 text-sm font-medium text-ink-500">/ 일회성</span>
-              </p>
-              <p className="mt-2 text-xs text-ink-500">Stripe·Toss 등 결제 게이트웨이 연동</p>
-            </div>
-          </div>
-
-          <p className="mt-6 text-center text-sm text-ink-500">
-            정확한 견적은 무료 상담 후 안내해드려요.
-          </p>
         </div>
       </div>
     </section>
