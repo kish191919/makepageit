@@ -13,15 +13,22 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   const item = getPortfolios("ko").find((p) => p.id === params.id);
   const dict = getDict("ko");
   if (!item) return { title: dict.notFoundTemplate };
+  const tagLine = item.tags.length ? ` 주요 키워드: ${item.tags.join(", ")}.` : "";
   return {
-    title: `${item.client} — 템플릿 미리보기`,
-    description: item.description,
+    title: `${item.client} (${item.category}) | 메이크페이지 홈페이지 제작 사례`,
+    description: `${item.client}의 ${item.category} 홈페이지 제작 사례. ${item.description}${tagLine}`,
     alternates: {
       languages: {
         en: `/portfolio/${item.id}`,
         ko: `/ko/portfolio/${item.id}`,
         "x-default": `/portfolio/${item.id}`,
       },
+    },
+    openGraph: {
+      title: `${item.client} — ${item.category}`,
+      description: item.description,
+      images: [item.image],
+      type: "article",
     },
   };
 }

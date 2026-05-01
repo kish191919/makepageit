@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/site";
 import { detectLangFromPath, getDict } from "@/lib/i18n";
+import { jsonLdScriptProps, organizationSchema, websiteSchema } from "@/lib/jsonld";
 
 export async function generateMetadata(): Promise<Metadata> {
   const lang = detectLangFromPath(headers().get("x-pathname"));
@@ -34,6 +35,12 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: dict.rootMetadata.locale,
       siteName: site.name,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${site.name} — ${dict.rootMetadata.siteTitle}`,
+      description: dict.rootMetadata.description,
+      images: ["/og-default.png"],
+    },
     robots: { index: true, follow: true },
     verification: {
       google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
@@ -50,6 +57,8 @@ export default function RootLayout({
   return (
     <html lang={lang}>
       <body className="bg-white text-ink-900 antialiased">
+        <script {...jsonLdScriptProps(organizationSchema())} />
+        <script {...jsonLdScriptProps(websiteSchema())} />
         <Header />
         <main>{children}</main>
         <Footer />

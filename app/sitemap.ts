@@ -11,9 +11,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/", changeFrequency: "weekly", priority: 1.0 },
     { path: "/services", changeFrequency: "monthly", priority: 0.9 },
     { path: "/portfolio", changeFrequency: "weekly", priority: 0.9 },
-    { path: "/pricing", changeFrequency: "monthly", priority: 0.9 },
+    { path: "/pricing", changeFrequency: "monthly", priority: 0.8 },
     { path: "/reviews", changeFrequency: "monthly", priority: 0.7 },
-    { path: "/about", changeFrequency: "monthly", priority: 0.6 },
+    { path: "/about", changeFrequency: "monthly", priority: 0.7 },
     { path: "/contact", changeFrequency: "monthly", priority: 0.7 },
     { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
     { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
@@ -53,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/ko/blog`,
       lastModified: now,
       changeFrequency: "weekly",
-      priority: 0.7,
+      priority: 0.8,
     },
   ];
 
@@ -61,7 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${BASE_URL}/ko/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly",
-    priority: 0.6,
+    priority: 0.7,
   }));
 
   // Portfolio detail pages — both locales
@@ -80,14 +80,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: enUrl,
         lastModified: now,
         changeFrequency: "monthly",
-        priority: 0.6,
+        priority: 0.7,
         alternates,
       },
       {
         url: koUrl,
         lastModified: now,
         changeFrequency: "monthly",
-        priority: 0.6,
+        priority: 0.7,
         alternates,
       },
     ];

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { posts } from "@/lib/posts";
 import CTA from "@/components/sections/CTA";
+import { blogArticleSchema, breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 type Props = { params: { slug: string } };
 
@@ -67,9 +68,18 @@ export default function BlogPostPage({ params }: Props) {
   if (!post) return notFound();
 
   const others = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const ldData = [
+    blogArticleSchema(post),
+    breadcrumbSchema([
+      { name: "Home", path: "/ko" },
+      { name: "Blog", path: "/ko/blog" },
+      { name: post.title, path: `/ko/blog/${post.slug}` },
+    ]),
+  ];
 
   return (
     <>
+      <script {...jsonLdScriptProps(ldData)} />
       <article className="bg-white pb-16">
         <header className="border-b border-ink-200 bg-ink-50 py-16 sm:py-20">
           <div className="container-custom max-w-3xl">
