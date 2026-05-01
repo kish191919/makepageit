@@ -32,7 +32,7 @@ export default function CTA({ lang }: { lang: Lang }) {
               href={localePath(lang, "/contact")}
               className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-ink-900 transition hover:bg-accent-500 hover:text-white sm:text-base"
             >
-              {dict.cta.quote} →
+              {dict.cta.quote}
             </Link>
             <a
               href={`tel:${site.phoneIntl}`}

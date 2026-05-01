@@ -61,13 +61,13 @@ export default function Hero({ lang }: { lang: Lang }) {
             )}
           </h1>
 
-          <p className="mt-7 text-base leading-relaxed text-ink-500 sm:text-lg">
+          <p className="mt-7 whitespace-pre-line text-base leading-relaxed text-ink-500 sm:text-lg">
             {dict.hero.body}
           </p>
 
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Link href={localePath(lang, "/contact")} className="btn-primary">
-              {dict.cta.quote} →
+              {dict.cta.quote}
             </Link>
             <Link href={localePath(lang, "/portfolio")} className="btn-outline">
               {dict.cta.viewPortfolio}

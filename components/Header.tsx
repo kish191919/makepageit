@@ -20,9 +20,6 @@ export default function Header() {
     { label: dict.nav.contact, href: localePath(lang, "/contact") },
   ];
 
-  const otherLang: Lang = lang === "en" ? "ko" : "en";
-  const otherPath = swapLocaleInPath(pathname ?? "/", lang, otherLang);
-
   return (
     <header className="sticky top-0 z-50 border-b border-ink-200/60 bg-white/80 backdrop-blur-md">
       <div className="container-custom flex h-16 items-center justify-between sm:h-20">
@@ -47,13 +44,36 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          <Link
-            href={otherPath}
+          <div
+            role="group"
             aria-label={dict.langSwitch.label}
-            className="hidden lg:inline-flex items-center gap-1 rounded-full border border-ink-200 px-3 py-1.5 text-xs font-semibold text-ink-700 transition hover:border-ink-900 hover:text-ink-900"
+            className="hidden lg:inline-flex items-center gap-0.5 rounded-full border border-ink-200/80 bg-ink-50/60 p-0.5 text-xs font-bold tracking-wide shadow-sm backdrop-blur"
           >
-            {otherLang === "en" ? "EN" : "KO"}
-          </Link>
+            <Link
+              href={lang === "ko" ? pathname ?? "/ko" : swapLocaleInPath(pathname ?? "/", "en", "ko")}
+              aria-label={dict.langSwitch.ko}
+              aria-current={lang === "ko" ? "page" : undefined}
+              className={`relative inline-flex items-center justify-center rounded-full px-3 py-1 transition ${
+                lang === "ko"
+                  ? "bg-ink-900 text-white shadow-[0_2px_8px_rgba(0,0,0,0.18)]"
+                  : "text-ink-500 hover:text-ink-900"
+              }`}
+            >
+              KO
+            </Link>
+            <Link
+              href={lang === "en" ? pathname ?? "/" : swapLocaleInPath(pathname ?? "/", "ko", "en")}
+              aria-label={dict.langSwitch.en}
+              aria-current={lang === "en" ? "page" : undefined}
+              className={`relative inline-flex items-center justify-center rounded-full px-3 py-1 transition ${
+                lang === "en"
+                  ? "bg-ink-900 text-white shadow-[0_2px_8px_rgba(0,0,0,0.18)]"
+                  : "text-ink-500 hover:text-ink-900"
+              }`}
+            >
+              EN
+            </Link>
+          </div>
           <Link
             href={localePath(lang, "/contact")}
             className="hidden btn-primary lg:inline-flex"
@@ -92,13 +112,36 @@ export default function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href={otherPath}
-              onClick={() => setOpen(false)}
-              className="py-3 text-base font-semibold text-ink-500"
+            <div
+              role="group"
+              aria-label={dict.langSwitch.label}
+              className="my-3 inline-flex items-center gap-0.5 self-start rounded-full border border-ink-200/80 bg-ink-50/60 p-0.5 text-sm font-bold tracking-wide"
             >
-              {otherLang === "en" ? dict.langSwitch.en : dict.langSwitch.ko}
-            </Link>
+              <Link
+                href={lang === "ko" ? pathname ?? "/ko" : swapLocaleInPath(pathname ?? "/", "en", "ko")}
+                onClick={() => setOpen(false)}
+                aria-current={lang === "ko" ? "page" : undefined}
+                className={`inline-flex items-center justify-center rounded-full px-4 py-1.5 transition ${
+                  lang === "ko"
+                    ? "bg-ink-900 text-white shadow-[0_2px_8px_rgba(0,0,0,0.18)]"
+                    : "text-ink-500"
+                }`}
+              >
+                KO
+              </Link>
+              <Link
+                href={lang === "en" ? pathname ?? "/" : swapLocaleInPath(pathname ?? "/", "ko", "en")}
+                onClick={() => setOpen(false)}
+                aria-current={lang === "en" ? "page" : undefined}
+                className={`inline-flex items-center justify-center rounded-full px-4 py-1.5 transition ${
+                  lang === "en"
+                    ? "bg-ink-900 text-white shadow-[0_2px_8px_rgba(0,0,0,0.18)]"
+                    : "text-ink-500"
+                }`}
+              >
+                EN
+              </Link>
+            </div>
             <Link
               href={localePath(lang, "/contact")}
               onClick={() => setOpen(false)}

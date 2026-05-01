@@ -44,7 +44,7 @@ type Dict = {
     eyebrow: string;
     title: string;
     description: string;
-    steps: { n: string; icon: string; title: string; subtitle: string; body: string }[];
+    steps: { n: string; title: string; subtitle: string; body: string; meta: [string, string] }[];
   };
   portfolio: {
     eyebrow: string;
@@ -220,23 +220,23 @@ const en: Dict = {
     titleB: "the website that",
     titleBrandWord: "wins customers.",
     titleC: "",
-    body: "Strategy, design, development, and ongoing care from one team. Most sites go live in under two weeks. Free 30-minute consult, no pressure.",
+    body: "Strategy, design, development, and ongoing care from one team. Most sites go live in under two weeks.\nFree 30-minute consult, no pressure.",
   },
   process: {
     eyebrow: "How it works",
     title: "Four clear steps.\nYou always know what's next.",
     description: "We tell you exactly what we'll show you at each meeting and when each payment is due.\nNo surprises.",
     steps: [
-      { n: "01", icon: "📞", title: "Free consult", subtitle: "30-minute call", body: "We learn your goals, audience, and budget — then recommend the right package." },
-      { n: "02", icon: "✏️", title: "Design", subtitle: "Approve as we go", body: "Sitemap, wireframes, and visual designs reviewed step by step." },
-      { n: "03", icon: "🚀", title: "Launch", subtitle: "Test → Live", body: "Domain, SSL, and search engine setup are handled end to end." },
-      { n: "04", icon: "🛟", title: "Ongoing care", subtitle: "Dedicated manager", body: "Content updates, new features, and performance checks every month." },
+      { n: "01", title: "Free consult", subtitle: "30-minute call", body: "We learn your goals, audience, and budget — then recommend the right package.", meta: ["30 min", "Free"] },
+      { n: "02", title: "Design", subtitle: "Approve as we go", body: "Sitemap, wireframes, and visual designs reviewed step by step.", meta: ["Step-by-step", "You sign off"] },
+      { n: "03", title: "Launch", subtitle: "Test → Live", body: "Domain, SSL, and search engine setup are handled end to end.", meta: ["Domain + SSL", "SEO ready"] },
+      { n: "04", title: "Ongoing care", subtitle: "Dedicated manager", body: "Content updates, new features, and performance checks every month.", meta: ["Monthly report", "Same-day fixes"] },
     ],
   },
   portfolio: {
     eyebrow: "Our work",
     title: "Find a style you love. We'll build it for you.",
-    description: "Browse the work below. Tell us what catches your eye and we'll tailor the design and features to your business.",
+    description: "Browse the work below.\nTell us what catches your eye and we'll tailor the design and features to your business.",
     seeAll: "View all work",
     viewTemplate: "Preview design",
     filterAll: "All",
@@ -490,23 +490,23 @@ const ko: Dict = {
     titleB: " 하세요.\n홈페이지는 ",
     titleBrandWord: "메이크페이지",
     titleC: "가 만듭니다.",
-    body: "기획·디자인·개발·운영을 한 팀에서. 평균 2주 안에 사장님 비즈니스에 꼭 맞는 홈페이지를 오픈해드립니다. 무료 상담은 언제나 환영입니다.",
+    body: "기획·디자인·개발·운영을 한 팀에서. 평균 2주 안에 사장님 비즈니스에 꼭 맞는 홈페이지를 오픈해드립니다.\n무료 상담은 언제나 환영입니다.",
   },
   process: {
     eyebrow: "프로세스",
     title: "투명한 4단계,\n어디까지 진행됐는지 항상 보입니다",
     description: "다음 회의 때 무엇을 보여드릴지, 다음 결제는 언제인지 —\n모든 일정이 명확합니다.",
     steps: [
-      { n: "01", icon: "📞", title: "무료 상담 · 견적", subtitle: "30분 무료 통화", body: "목적·타겟·예산 파악 후 패키지 추천" },
-      { n: "02", icon: "✏️", title: "기획 · 디자인", subtitle: "단계별 컨펌", body: "사이트맵·와이어프레임·시안 순차 확인" },
-      { n: "03", icon: "🚀", title: "검수 · 오픈", subtitle: "테스트 → 정식 오픈", body: "도메인·SSL·검색엔진 등록까지 일괄" },
-      { n: "04", icon: "🛟", title: "운영 · 유지보수", subtitle: "전담 매니저 케어", body: "콘텐츠·기능 추가·성능 점검 지원" },
+      { n: "01", title: "무료 상담 · 견적", subtitle: "30분 무료 통화", body: "목적·타겟·예산 파악 후 패키지 추천", meta: ["30분", "무료"] },
+      { n: "02", title: "기획 · 디자인", subtitle: "단계별 컨펌", body: "사이트맵·와이어프레임·시안 순차 확인", meta: ["단계별 컨펌", "사장님 결정"] },
+      { n: "03", title: "검수 · 오픈", subtitle: "테스트 → 정식 오픈", body: "도메인·SSL·검색엔진 등록까지 일괄", meta: ["도메인+SSL", "검색등록"] },
+      { n: "04", title: "운영 · 유지보수", subtitle: "전담 매니저 케어", body: "콘텐츠·기능 추가·성능 점검 지원", meta: ["월간 리포트", "당일 대응"] },
     ],
   },
   portfolio: {
     eyebrow: "포트폴리오",
     title: "원하시는 스타일, 그대로 만들어 드립니다.",
-    description: "아래 사례 중 마음에 드는 스타일이 있다면 말씀해 주세요. 비즈니스에 꼭 맞는 디자인과 기능으로 새롭게 구현해 드립니다.",
+    description: "아래 사례 중 마음에 드는 스타일이 있다면 말씀해 주세요.\n비즈니스에 꼭 맞는 디자인과 기능으로 새롭게 구현해 드립니다.",
     seeAll: "전체 포트폴리오",
     viewTemplate: "템플릿 보기 →",
     filterAll: "전체",
