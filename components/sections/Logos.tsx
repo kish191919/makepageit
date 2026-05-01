@@ -1,20 +1,15 @@
-const clients = [
-  "노블 커피",
-  "루미에르",
-  "아뜰리에 22",
-  "하루 영어",
-  "모아 필라테스",
-  "그린 법률",
-  "서울 베이커리",
-  "노바 스튜디오",
-];
+import { getLogos } from "@/lib/data";
+import { getDict, type Lang } from "@/lib/i18n";
 
-export default function Logos() {
+export default function Logos({ lang }: { lang: Lang }) {
+  const dict = getDict(lang);
+  const clients = getLogos(lang);
+
   return (
     <section className="border-y border-ink-200 bg-white py-10">
       <div className="container-custom">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.3em] text-ink-400">
-          이런 사장님들이 메이크페이지를 선택했습니다
+          {dict.logos.eyebrow}
         </p>
         <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-4 lg:grid-cols-8">
           {clients.map((c) => (

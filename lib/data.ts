@@ -1,3 +1,5 @@
+import type { Lang } from "@/lib/i18n";
+
 export type Service = {
   id: string;
   title: string;
@@ -6,7 +8,97 @@ export type Service = {
   icon: string;
 };
 
-export const services: Service[] = [
+export type Portfolio = {
+  id: string;
+  client: string;
+  category: string;
+  description: string;
+  image: string;
+  tags: string[];
+  year: string;
+};
+
+export type Plan = {
+  id: string;
+  name: string;
+  best?: boolean;
+  badge?: string;
+  audience: string;
+  pricing: {
+    oneTime: string;
+    oneTimeNote: string;
+    monthly: string;
+    monthlyNote: string;
+    annual: string;
+    annualNote: string;
+    yearTotal: string;
+    yearlyAfter: string;
+  };
+  description: string;
+  features: string[];
+  cta: string;
+};
+
+export type Review = {
+  id: string;
+  client: string;
+  industry: string;
+  rating: number;
+  title: string;
+  body: string;
+  avatar: string;
+};
+
+export type FAQ = { q: string; a: string };
+
+export type Stat = { value: string; label: string };
+
+const servicesEn: Service[] = [
+  {
+    id: "branding-site",
+    title: "Brand site",
+    summary: "Make a strong first impression. Translate your brand into design that customers trust at a glance.",
+    bullets: ["Mobile-responsive design", "On-page SEO", "Easy admin panel", "Domain & hosting setup"],
+    icon: "✦",
+  },
+  {
+    id: "shopping-mall",
+    title: "E-commerce",
+    summary: "Payments, members, shipping, reporting — a real online store, ready to take orders on day one.",
+    bullets: ["Stripe / Square checkout", "Customers & tiers", "Coupons / loyalty", "Inventory & orders"],
+    icon: "▲",
+  },
+  {
+    id: "landing",
+    title: "Landing page",
+    summary: "Built for conversions. Sharp copy, fast load, ready to test the moment your ads go live.",
+    bullets: ["A/B test ready", "Pixel & GA installed", "Lead capture forms", "Live within a week"],
+    icon: "●",
+  },
+  {
+    id: "renewal",
+    title: "Redesign · Maintenance",
+    summary: "Old site, slow site, broken on mobile? We rebuild it from the ground up.",
+    bullets: ["Performance overhaul", "Visual refresh", "Hands-off operations", "Monthly content updates"],
+    icon: "◆",
+  },
+  {
+    id: "booking",
+    title: "Booking · Membership",
+    summary: "Clinics, studios, salons, gyms — one place to book, pay, and stay in touch with members.",
+    bullets: ["Calendar bookings", "No-show prevention", "Recurring billing", "Automated reminders"],
+    icon: "◇",
+  },
+  {
+    id: "marketing",
+    title: "Marketing operations",
+    summary: "Launch isn't the finish line. SEO, content, and ads — handled by the same team that built the site.",
+    bullets: ["SEO consulting", "Blog content", "Google / Meta ads", "Monthly reports"],
+    icon: "◉",
+  },
+];
+
+const servicesKo: Service[] = [
   {
     id: "branding-site",
     title: "브랜딩 사이트",
@@ -51,24 +143,196 @@ export const services: Service[] = [
   },
 ];
 
-export type Portfolio = {
-  id: string;
-  client: string;
-  category: string;
-  description: string;
-  image: string;
-  tags: string[];
-  year: string;
-};
+const portfoliosEn: Portfolio[] = [
+  {
+    id: "noble-coffee",
+    client: "Noble Coffee Roasters",
+    category: "Brand site",
+    description: "Specialty roaster with a quietly confident, minimalist site.",
+    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Branding", "F&B", "Responsive"],
+    year: "2025",
+  },
+  {
+    id: "lumiere-clinic",
+    client: "Lumière Skin Clinic",
+    category: "Booking",
+    description: "Booking, payments, and reviews for a high-end dermatology practice.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Healthcare", "Booking", "Payments"],
+    year: "2025",
+  },
+  {
+    id: "atelier-shop",
+    client: "Atelier 22",
+    category: "E-commerce",
+    description: "Storytelling-first commerce for a handmade apparel brand.",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=80&auto=format&fit=crop",
+    tags: ["E-commerce", "Fashion", "Storytelling"],
+    year: "2024",
+  },
+  {
+    id: "haru-academy",
+    client: "Haru Language School",
+    category: "Landing page",
+    description: "Landing page that 3.2x'd ad-driven sign-ups.",
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Conversion", "Education", "Ads"],
+    year: "2024",
+  },
+  {
+    id: "moa-pilates",
+    client: "Moa Pilates Studio",
+    category: "Booking",
+    description: "Members, bookings, and recurring billing for a boutique pilates studio.",
+    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Membership", "Booking", "Wellness"],
+    year: "2025",
+  },
+  {
+    id: "green-law",
+    client: "Greene Law Group",
+    category: "Brand site",
+    description: "A trustworthy, no-nonsense site for a boutique law firm.",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Legal", "Trust", "B2B"],
+    year: "2024",
+  },
+  {
+    id: "seoul-bakery",
+    client: "Seoul Bakery NYC",
+    category: "E-commerce",
+    description: "Same-day delivery storefront for a neighborhood bakery.",
+    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80&auto=format&fit=crop",
+    tags: ["E-commerce", "F&B", "Delivery"],
+    year: "2025",
+  },
+  {
+    id: "nova-studio",
+    client: "Nova Studio",
+    category: "Portfolio",
+    description: "Photographer portfolio + booking flow.",
+    image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Portfolio", "Photography", "Booking"],
+    year: "2024",
+  },
+  {
+    id: "nexus-lab",
+    client: "Nexus Labs",
+    category: "Brand site",
+    description: "Dark-mode brand site that signals technical depth for B2B SaaS.",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format&fit=crop",
+    tags: ["SaaS", "Dark mode", "B2B"],
+    year: "2025",
+  },
+  {
+    id: "arco-atelier",
+    client: "Arco Architects",
+    category: "Brand site",
+    description: "Brutalist typography and oversized imagery for an architecture firm.",
+    image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Architecture", "Brutalist", "Mono"],
+    year: "2024",
+  },
+  {
+    id: "moai-hotel",
+    client: "Moai Hotel & Resort",
+    category: "Brand site",
+    description: "Gold-accented luxury site for a boutique hotel chain.",
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Hospitality", "Luxury", "Dark"],
+    year: "2025",
+  },
+  {
+    id: "bloom-cosmetics",
+    client: "Bloom Cosmetics",
+    category: "E-commerce",
+    description: "Pastel-soft minimal storefront for an indie beauty brand.",
+    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Beauty", "Pastel", "Minimal"],
+    year: "2025",
+  },
+  {
+    id: "wood-and-stone",
+    client: "Wood & Stone Co.",
+    category: "E-commerce",
+    description: "Earthy, warm commerce experience for a furniture and home goods brand.",
+    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Furniture", "Home", "Natural"],
+    year: "2024",
+  },
+  {
+    id: "vin-secret",
+    client: "Vin Secret",
+    category: "E-commerce",
+    description: "Deep-wine palette for a classic wine subscription club.",
+    image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Wine", "Subscription", "Classic"],
+    year: "2025",
+  },
+  {
+    id: "halo-fitness",
+    client: "Halo Fitness",
+    category: "Landing page",
+    description: "Bold gradients and motion for a fitness app launch page.",
+    image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1200&q=80&auto=format&fit=crop",
+    tags: ["App", "Fitness", "Gradient"],
+    year: "2025",
+  },
+  {
+    id: "dr-slim-clinic",
+    client: "Dr. Slim Wellness",
+    category: "Landing page",
+    description: "Before/after social proof and testimonial badges drove conversions on this weight-loss landing.",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Conversion", "Wellness", "Testimonials"],
+    year: "2024",
+  },
+  {
+    id: "villa-toscana",
+    client: "Villa Toscana",
+    category: "Booking",
+    description: "Editorial magazine mood for a fine-dining reservation flow.",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Dining", "Booking", "Editorial"],
+    year: "2025",
+  },
+  {
+    id: "muni-hair",
+    client: "Muni Hair Studio",
+    category: "Booking",
+    description: "Y2K chrome aesthetic for a trend-forward salon's booking site.",
+    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Salon", "Y2K", "Booking"],
+    year: "2025",
+  },
+  {
+    id: "kitt-works",
+    client: "Kitt Works",
+    category: "Portfolio",
+    description: "Swiss-style grid for an independent UX designer's portfolio.",
+    image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1200&q=80&auto=format&fit=crop",
+    tags: ["UX", "Grid", "Minimal"],
+    year: "2024",
+  },
+  {
+    id: "jini-illustration",
+    client: "Jini Illustrations",
+    category: "Portfolio",
+    description: "Paper textures and hand-drawn warmth for an illustrator's portfolio.",
+    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Illustration", "Hand-drawn", "Colorful"],
+    year: "2024",
+  },
+];
 
-export const portfolios: Portfolio[] = [
+const portfoliosKo: Portfolio[] = [
   {
     id: "noble-coffee",
     client: "노블 커피로스터스",
     category: "브랜딩 사이트",
     description: "스페셜티 로스터리 브랜드의 감성을 살린 미니멀 사이트.",
-    image:
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=80&auto=format&fit=crop",
     tags: ["브랜딩", "F&B", "반응형"],
     year: "2025",
   },
@@ -77,8 +341,7 @@ export const portfolios: Portfolio[] = [
     client: "루미에르 피부과",
     category: "예약 시스템",
     description: "온라인 예약·결제·후기 통합 의료 사이트.",
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop",
     tags: ["의료", "예약", "결제"],
     year: "2025",
   },
@@ -87,8 +350,7 @@ export const portfolios: Portfolio[] = [
     client: "아뜰리에 22",
     category: "쇼핑몰",
     description: "수공예 의류 브랜드의 스토리텔링 커머스.",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1200&q=80&auto=format&fit=crop",
     tags: ["쇼핑몰", "패션", "스토리텔링"],
     year: "2024",
   },
@@ -97,8 +359,7 @@ export const portfolios: Portfolio[] = [
     client: "하루 영어학원",
     category: "랜딩페이지",
     description: "광고 전환율 3.2배를 만든 영어학원 랜딩.",
-    image:
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80&auto=format&fit=crop",
     tags: ["랜딩", "교육", "광고"],
     year: "2024",
   },
@@ -107,8 +368,7 @@ export const portfolios: Portfolio[] = [
     client: "모아 필라테스",
     category: "예약 시스템",
     description: "회원·예약·정기결제 일체형 필라테스 스튜디오 사이트.",
-    image:
-      "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop",
     tags: ["멤버십", "예약", "공간"],
     year: "2025",
   },
@@ -117,8 +377,7 @@ export const portfolios: Portfolio[] = [
     client: "그린 법률사무소",
     category: "브랜딩 사이트",
     description: "신뢰감을 강조한 법률 전문 브랜딩 사이트.",
-    image:
-      "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80&auto=format&fit=crop",
     tags: ["법률", "신뢰", "B2B"],
     year: "2024",
   },
@@ -127,8 +386,7 @@ export const portfolios: Portfolio[] = [
     client: "서울 베이커리",
     category: "쇼핑몰",
     description: "당일배송 전용 베이커리 주문 사이트.",
-    image:
-      "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80&auto=format&fit=crop",
     tags: ["쇼핑몰", "F&B", "배송"],
     year: "2025",
   },
@@ -137,8 +395,7 @@ export const portfolios: Portfolio[] = [
     client: "노바 스튜디오",
     category: "포트폴리오",
     description: "포토그래퍼 개인 포트폴리오 + 예약.",
-    image:
-      "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1200&q=80&auto=format&fit=crop",
     tags: ["포트폴리오", "사진", "예약"],
     year: "2024",
   },
@@ -147,8 +404,7 @@ export const portfolios: Portfolio[] = [
     client: "넥서스랩",
     category: "브랜딩 사이트",
     description: "B2B SaaS의 기술 신뢰감을 살린 다크모드 브랜딩.",
-    image:
-      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80&auto=format&fit=crop",
     tags: ["SaaS", "다크모드", "B2B"],
     year: "2025",
   },
@@ -157,8 +413,7 @@ export const portfolios: Portfolio[] = [
     client: "아르코 건축사사무소",
     category: "브랜딩 사이트",
     description: "거대한 타이포로 압도감을 살린 건축 브루탈리스트 사이트.",
-    image:
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=1200&q=80&auto=format&fit=crop",
     tags: ["건축", "브루탈리즘", "흑백"],
     year: "2024",
   },
@@ -167,8 +422,7 @@ export const portfolios: Portfolio[] = [
     client: "모아이 호텔 & 리조트",
     category: "브랜딩 사이트",
     description: "골드 악센트로 럭셔리 무드를 강조한 부티크 호텔.",
-    image:
-      "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80&auto=format&fit=crop",
     tags: ["호텔", "럭셔리", "다크"],
     year: "2025",
   },
@@ -177,8 +431,7 @@ export const portfolios: Portfolio[] = [
     client: "블룸 코스메틱",
     category: "쇼핑몰",
     description: "파스텔 핑크로 풀어낸 K-뷰티 미니멀 쇼핑몰.",
-    image:
-      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1200&q=80&auto=format&fit=crop",
     tags: ["뷰티", "파스텔", "미니멀"],
     year: "2025",
   },
@@ -187,8 +440,7 @@ export const portfolios: Portfolio[] = [
     client: "우드앤스톤",
     category: "쇼핑몰",
     description: "어얼시 톤의 따뜻한 가구·홈 데코 커머스.",
-    image:
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1200&q=80&auto=format&fit=crop",
     tags: ["가구", "홈", "내추럴"],
     year: "2024",
   },
@@ -197,8 +449,7 @@ export const portfolios: Portfolio[] = [
     client: "뱅 시크릿",
     category: "쇼핑몰",
     description: "딥 와인 컬러의 클래식 와인 정기구독몰.",
-    image:
-      "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=80&auto=format&fit=crop",
     tags: ["와인", "구독", "클래식"],
     year: "2025",
   },
@@ -207,8 +458,7 @@ export const portfolios: Portfolio[] = [
     client: "헤일로 피트니스",
     category: "랜딩페이지",
     description: "볼드 그라디언트로 시선을 끄는 피트니스 앱 랜딩.",
-    image:
-      "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=1200&q=80&auto=format&fit=crop",
     tags: ["앱", "피트니스", "그라디언트"],
     year: "2025",
   },
@@ -217,8 +467,7 @@ export const portfolios: Portfolio[] = [
     client: "닥터슬림 다이어트",
     category: "랜딩페이지",
     description: "Before&After와 후기 뱃지로 전환을 끌어올린 다이어트 랜딩.",
-    image:
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
     tags: ["전환형", "다이어트", "후기"],
     year: "2024",
   },
@@ -227,8 +476,7 @@ export const portfolios: Portfolio[] = [
     client: "빌라 토스카나",
     category: "예약 시스템",
     description: "에디토리얼 매거진 무드의 파인다이닝 예약.",
-    image:
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80&auto=format&fit=crop",
     tags: ["파인다이닝", "예약", "에디토리얼"],
     year: "2025",
   },
@@ -237,8 +485,7 @@ export const portfolios: Portfolio[] = [
     client: "무니 헤어",
     category: "예약 시스템",
     description: "Y2K 크롬 무드로 풀어낸 트렌디 헤어살롱 예약.",
-    image:
-      "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80&auto=format&fit=crop",
     tags: ["헤어", "Y2K", "예약"],
     year: "2025",
   },
@@ -247,8 +494,7 @@ export const portfolios: Portfolio[] = [
     client: "키트 웍스",
     category: "포트폴리오",
     description: "그리드 기반 스위스 미니멀 디자이너 포트폴리오.",
-    image:
-      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1200&q=80&auto=format&fit=crop",
     tags: ["UX", "그리드", "미니멀"],
     year: "2024",
   },
@@ -257,35 +503,65 @@ export const portfolios: Portfolio[] = [
     client: "지니 일러스트",
     category: "포트폴리오",
     description: "페이퍼 텍스처와 컬러풀한 핸드드로운 일러스트 포트폴리오.",
-    image:
-      "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80&auto=format&fit=crop",
     tags: ["일러스트", "핸드드로잉", "컬러풀"],
     year: "2024",
   },
 ];
 
-export type Plan = {
-  id: string;
-  name: string;
-  best?: boolean;
-  badge?: string;
-  audience: string;
-  pricing: {
-    oneTime: string;
-    oneTimeNote: string;
-    monthly: string;
-    monthlyNote: string;
-    annual: string;
-    annualNote: string;
-    yearTotal: string;
-    yearlyAfter: string;
-  };
-  description: string;
-  features: string[];
-  cta: string;
-};
+const plansEn: Plan[] = [
+  {
+    id: "portfolio-lite",
+    name: "PORTFOLIO LITE",
+    audience: "Personal portfolios · students · creatives",
+    pricing: {
+      oneTime: "$299",
+      oneTimeNote: "one-time (3 pages)",
+      monthly: "$15",
+      monthlyNote: "monthly maintenance",
+      annual: "$15",
+      annualNote: "domain (annual)",
+      yearTotal: "$494",
+      yearlyAfter: "$195",
+    },
+    description: "A clean, professional starting point for non-commercial portfolios.",
+    features: [
+      "3-page core layout",
+      "Template design + mobile-responsive",
+      "Basic SEO setup",
+      "Free hosting (non-commercial)",
+      "Free database (non-commercial)",
+    ],
+    cta: "Get a quote",
+  },
+  {
+    id: "portfolio-pro",
+    name: "PORTFOLIO PRO",
+    audience: "Freelancers · consultants · solopreneurs",
+    pricing: {
+      oneTime: "$449",
+      oneTimeNote: "one-time (5 pages)",
+      monthly: "$65",
+      monthlyNote: "hosting + DB + maintenance",
+      annual: "$15",
+      annualNote: "domain (annual)",
+      yearTotal: "$1,244",
+      yearlyAfter: "$795",
+    },
+    description: "Everything you need to run a real business website.",
+    features: [
+      "5-page core layout",
+      "Template design + mobile-responsive",
+      "Basic SEO setup",
+      "Hosting (server) at $20/mo",
+      "Database at $25/mo",
+      "Two free add-ons (login, blog, gallery)",
+    ],
+    cta: "Get a quote",
+  },
+];
 
-export const plans: Plan[] = [
+const plansKo: Plan[] = [
   {
     id: "portfolio-lite",
     name: "PORTFOLIO LITE",
@@ -337,17 +613,70 @@ export const plans: Plan[] = [
   },
 ];
 
-export type Review = {
-  id: string;
-  client: string;
-  industry: string;
-  rating: number;
-  title: string;
-  body: string;
-  avatar: string;
-};
+const reviewsEn: Review[] = [
+  {
+    id: "r1",
+    client: "Mike R.",
+    industry: "Noble Coffee Roasters",
+    rating: 5,
+    title: "Foot traffic doubled within a month of going live.",
+    body:
+      "Where other shops gave us 100 mockups, MAKEPAGE actually translated my intent into the design. New customers walking in literally doubled in the first month.",
+    avatar: "https://i.pravatar.cc/120?img=12",
+  },
+  {
+    id: "r2",
+    client: "Dr. Lee",
+    industry: "Lumière Skin Clinic",
+    rating: 5,
+    title: "No-show rate dropped by half.",
+    body:
+      "Booking confirmations and reminders are fully automated, so the front desk is freed up. We're handing them our second location too.",
+    avatar: "https://i.pravatar.cc/120?img=32",
+  },
+  {
+    id: "r3",
+    client: "Sara P.",
+    industry: "Atelier 22",
+    rating: 5,
+    title: "We were profitable in our first month online.",
+    body:
+      "The win wasn't a 'pretty site' — it was that they helped us design the path from visit to purchase. Right down to the copy on each button.",
+    avatar: "https://i.pravatar.cc/120?img=47",
+  },
+  {
+    id: "r4",
+    client: "Jess C.",
+    industry: "Haru Language School",
+    rating: 5,
+    title: "Ad ROI improved 3x after the new landing.",
+    body:
+      "Same ad spend, three times the consults. The page was clearly built for conversion from the very first frame.",
+    avatar: "https://i.pravatar.cc/120?img=58",
+  },
+  {
+    id: "r5",
+    client: "Hannah K.",
+    industry: "Moa Pilates Studio",
+    rating: 5,
+    title: "Cut 70% of our admin time on member management.",
+    body:
+      "Bookings, payments, attendance — all in one place. Our staff aren't stuck behind the counter anymore. ROI was clear within weeks.",
+    avatar: "https://i.pravatar.cc/120?img=23",
+  },
+  {
+    id: "r6",
+    client: "Andrew W.",
+    industry: "Greene Law Group",
+    rating: 5,
+    title: "Trustworthy without being stiff. Exactly what we needed.",
+    body:
+      "Professional services sites can feel dated and rigid. They struck the perfect balance — and the quality of inbound leads improved noticeably.",
+    avatar: "https://i.pravatar.cc/120?img=68",
+  },
+];
 
-export const reviews: Review[] = [
+const reviewsKo: Review[] = [
   {
     id: "r1",
     client: "김 대표",
@@ -410,9 +739,34 @@ export const reviews: Review[] = [
   },
 ];
 
-export type FAQ = { q: string; a: string };
+const faqsEn: FAQ[] = [
+  {
+    q: "How long does it take?",
+    a: "Most sites launch in about two weeks. PORTFOLIO LITE (3 pages) is roughly 2 weeks; PORTFOLIO PRO (5 pages) is 3–4 weeks. Adding extra pages, booking, or payment integration may extend the timeline. You'll see your first design within a week of kickoff.",
+  },
+  {
+    q: "Do you handle the domain and hosting?",
+    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $15/year; hosting + DB + maintenance is $15/month for PORTFOLIO LITE and $65/month for PORTFOLIO PRO. Hosting and DB are free for non-commercial personal portfolios.",
+  },
+  {
+    q: "Can I edit the site myself afterward?",
+    a: "We don't open up design editing on the client side, but we cover up to 2 rounds of post-launch revisions for free. After that, you can subscribe to maintenance and we'll handle copy, image, and content updates quickly on your behalf.",
+  },
+  {
+    q: "What if I don't like the design?",
+    a: "We share a free concept mockup before any contract, then check in at every stage of build. The waterfall-of-surprise problem you might've had elsewhere doesn't really happen here, because each phase is signed off jointly.",
+  },
+  {
+    q: "Can individuals (not registered businesses) hire you?",
+    a: "Of course. PORTFOLIO LITE is built specifically for personal, non-commercial portfolios — students, artists, etc. — with hosting and DB included free. We've also delivered plenty of personal-brand and freelancer sites.",
+  },
+  {
+    q: "Can you also handle ongoing operations?",
+    a: "Yes — monthly maintenance covers content updates, feature checks, performance monitoring, and basic SEO ($15/mo on LITE, $20/mo built into PRO). We don't run paid ads or blog content as part of these plans, but we'll scope that separately during the consult.",
+  },
+];
 
-export const faqs: FAQ[] = [
+const faqsKo: FAQ[] = [
   {
     q: "제작 기간은 얼마나 걸리나요?",
     a: "평균 2주 안에 오픈을 목표로 진행해드립니다. PORTFOLIO LITE(3페이지)는 약 2주, PORTFOLIO PRO(5페이지)는 약 3~4주 정도이며, 추가 페이지나 예약·결제 연동을 추가하시면 일정이 늘어날 수 있어요. 첫 시안은 의뢰 후 평균 1주 안에 보여드립니다.",
@@ -439,11 +793,74 @@ export const faqs: FAQ[] = [
   },
 ];
 
-export type Stat = { value: string; label: string };
+const statsEn: Stat[] = [
+  { value: "320+", label: "Sites delivered" },
+  { value: "4.9 / 5", label: "Average rating" },
+  { value: "98%", label: "Repeat / referral rate" },
+  { value: "1 week", label: "First design avg." },
+];
 
-export const stats: Stat[] = [
+const statsKo: Stat[] = [
   { value: "320+", label: "누적 제작 사이트" },
   { value: "4.9 / 5", label: "평균 고객 만족도" },
   { value: "98%", label: "재의뢰·추천율" },
   { value: "1주", label: "평균 첫 시안까지" },
 ];
+
+const logosEn = [
+  "Noble Coffee",
+  "Lumière",
+  "Atelier 22",
+  "Haru Lang.",
+  "Moa Pilates",
+  "Greene Law",
+  "Seoul Bakery",
+  "Nova Studio",
+];
+
+const logosKo = [
+  "노블 커피",
+  "루미에르",
+  "아뜰리에 22",
+  "하루 영어",
+  "모아 필라테스",
+  "그린 법률",
+  "서울 베이커리",
+  "노바 스튜디오",
+];
+
+export function getServices(lang: Lang): Service[] {
+  return lang === "en" ? servicesEn : servicesKo;
+}
+
+export function getPortfolios(lang: Lang): Portfolio[] {
+  return lang === "en" ? portfoliosEn : portfoliosKo;
+}
+
+export function getPlans(lang: Lang): Plan[] {
+  return lang === "en" ? plansEn : plansKo;
+}
+
+export function getReviews(lang: Lang): Review[] {
+  return lang === "en" ? reviewsEn : reviewsKo;
+}
+
+export function getFaqs(lang: Lang): FAQ[] {
+  return lang === "en" ? faqsEn : faqsKo;
+}
+
+export function getStats(lang: Lang): Stat[] {
+  return lang === "en" ? statsEn : statsKo;
+}
+
+export function getLogos(lang: Lang): string[] {
+  return lang === "en" ? logosEn : logosKo;
+}
+
+// Backwards-compatible exports (used by /ko routes that still rely on legacy names).
+export const portfolios = portfoliosKo;
+export const services = servicesKo;
+export const plans = plansKo;
+export const reviews = reviewsKo;
+export const faqs = faqsKo;
+export const stats = statsKo;

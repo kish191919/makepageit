@@ -1,47 +1,54 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/site";
+import { detectLangFromPath, getDict } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://makepageit.com"),
-  title: {
-    default: `${site.name} — ${site.tagline}`,
-    template: `%s | ${site.name}`,
-  },
-  description: site.description,
-  keywords: [
-    "홈페이지 제작",
-    "홈페이지 제작 회사",
-    "반응형 웹 디자인",
-    "쇼핑몰 제작",
-    "랜딩페이지 제작",
-    "웹사이트 제작",
-    "메이크페이지",
-  ],
-  openGraph: {
-    title: `${site.name} — ${site.tagline}`,
-    description: site.description,
-    url: "https://makepageit.com",
-    type: "website",
-    locale: "ko_KR",
-    siteName: site.name,
-  },
-  robots: { index: true, follow: true },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const lang = detectLangFromPath(headers().get("x-pathname"));
+  const dict = getDict(lang);
+
+  return {
+    metadataBase: new URL("https://makepageit.com"),
+    title: {
+      default: `${site.name} — ${dict.rootMetadata.siteTitle}`,
+      template: `%s | ${site.name}`,
+    },
+    description: dict.rootMetadata.description,
+    keywords: dict.rootMetadata.keywords,
+    alternates: {
+      languages: {
+        en: "/",
+        ko: "/ko",
+        "x-default": "/",
+      },
+    },
+    openGraph: {
+      title: `${site.name} — ${dict.rootMetadata.siteTitle}`,
+      description: dict.rootMetadata.description,
+      url: lang === "ko" ? "https://makepageit.com/ko" : "https://makepageit.com",
+      type: "website",
+      locale: dict.rootMetadata.locale,
+      siteName: site.name,
+    },
+    robots: { index: true, follow: true },
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
+    },
+  };
+}
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const lang = detectLangFromPath(headers().get("x-pathname"));
   return (
-    <html lang="ko">
+    <html lang={lang}>
       <body className="bg-white text-ink-900 antialiased">
         <Header />
         <main>{children}</main>

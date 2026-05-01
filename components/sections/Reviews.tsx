@@ -1,21 +1,24 @@
 import Link from "next/link";
 import Image from "next/image";
 import SectionHeading from "@/components/SectionHeading";
-import { reviews } from "@/lib/data";
+import { getReviews } from "@/lib/data";
+import { getDict, localePath, type Lang } from "@/lib/i18n";
 
-export default function Reviews({ limit = 3 }: { limit?: number }) {
-  const items = reviews.slice(0, limit);
+export default function Reviews({ lang, limit = 3 }: { lang: Lang; limit?: number }) {
+  const dict = getDict(lang);
+  const items = getReviews(lang).slice(0, limit);
+
   return (
     <section className="section bg-ink-50">
       <div className="container-custom">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
-            eyebrow="제작 후기"
-            title="결과로 증명합니다"
-            description="설문 평균 4.9 / 5. 사장님들이 직접 들려주신 이야기."
+            eyebrow={dict.reviews.eyebrow}
+            title={dict.reviews.title}
+            description={dict.reviews.description}
           />
-          <Link href="/reviews" className="btn-outline self-start lg:self-auto">
-            모든 후기 보기
+          <Link href={localePath(lang, "/reviews")} className="btn-outline self-start lg:self-auto">
+            {dict.reviews.seeAll}
           </Link>
         </div>
 

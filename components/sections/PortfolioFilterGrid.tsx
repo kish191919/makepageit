@@ -4,17 +4,21 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Portfolio } from "@/lib/data";
+import { getDict, localePath, type Lang } from "@/lib/i18n";
 
 type Props = {
+  lang: Lang;
   portfolios: Portfolio[];
   categories: string[];
 };
 
-export default function PortfolioFilterGrid({ portfolios, categories }: Props) {
-  const [selected, setSelected] = useState<string>("전체");
+export default function PortfolioFilterGrid({ lang, portfolios, categories }: Props) {
+  const dict = getDict(lang);
+  const allLabel = categories[0];
+  const [selected, setSelected] = useState<string>(allLabel);
 
   const filtered =
-    selected === "전체"
+    selected === allLabel
       ? portfolios
       : portfolios.filter((p) => p.category === selected);
 
@@ -44,7 +48,7 @@ export default function PortfolioFilterGrid({ portfolios, categories }: Props) {
         {filtered.map((p) => (
           <Link
             key={p.id}
-            href={`/portfolio/${p.id}`}
+            href={localePath(lang, `/portfolio/${p.id}`)}
             className="group block overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-ink-200 transition hover:-translate-y-1 hover:shadow-xl"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-ink-100">
@@ -57,7 +61,7 @@ export default function PortfolioFilterGrid({ portfolios, categories }: Props) {
               />
               <div className="absolute inset-0 flex items-center justify-center bg-ink-900/0 opacity-0 transition group-hover:bg-ink-900/40 group-hover:opacity-100">
                 <span className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-ink-900 shadow-lg">
-                  템플릿 보기 →
+                  {dict.portfolio.viewTemplate}
                 </span>
               </div>
             </div>
@@ -85,9 +89,7 @@ export default function PortfolioFilterGrid({ portfolios, categories }: Props) {
         ))}
       </div>
 
-      <p className="mt-12 text-center text-sm text-ink-500">
-        * 이 페이지에는 일부 사례만 노출되며, 비공개 NDA 프로젝트는 별도 상담 시 안내해드립니다.
-      </p>
+      <p className="mt-12 text-center text-sm text-ink-500">{dict.portfolio.nondisclosed}</p>
     </>
   );
 }

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "블로그",
   description:
     "사장님께 도움 되는 홈페이지·SEO·디지털 마케팅 인사이트. 메이크페이지가 정리한 실전 가이드.",
+  alternates: { languages: { ko: "/ko/blog" } },
 };
 
 const categories = ["전체", "비즈니스", "기획", "SEO", "사례", "가이드", "운영"];
@@ -42,7 +43,7 @@ export default function BlogPage() {
 
           {feature && (
             <Link
-              href={`/blog/${feature.slug}`}
+              href={`/ko/blog/${feature.slug}`}
               className="mt-12 grid overflow-hidden rounded-[32px] border border-ink-200 bg-white transition hover:border-brand-600 lg:grid-cols-2"
             >
               <div className="relative aspect-[16/10] lg:aspect-auto">
@@ -75,7 +76,7 @@ export default function BlogPage() {
             {rest.map((p) => (
               <Link
                 key={p.slug}
-                href={`/blog/${p.slug}`}
+                href={`/ko/blog/${p.slug}`}
                 className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-ink-200 transition hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-ink-100">

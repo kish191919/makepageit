@@ -3,17 +3,30 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { site } from "@/lib/site";
+import { detectLangFromPath, getDict, localePath, type Lang } from "@/lib/i18n";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  if (/^\/portfolio\/[^/]+$/.test(pathname ?? "")) return null;
+  const lang: Lang = detectLangFromPath(pathname);
+  const dict = getDict(lang);
+
+  if (/^\/(?:ko\/)?portfolio\/[^/]+$/.test(pathname ?? "")) return null;
+
+  const nav = [
+    { label: dict.nav.home, href: localePath(lang, "/") },
+    { label: dict.nav.portfolio, href: localePath(lang, "/portfolio") },
+    { label: dict.nav.pricing, href: localePath(lang, "/pricing") },
+    { label: dict.nav.contact, href: localePath(lang, "/contact") },
+  ];
+
+  const otherLang: Lang = lang === "en" ? "ko" : "en";
+  const otherPath = swapLocaleInPath(pathname ?? "/", lang, otherLang);
 
   return (
     <header className="sticky top-0 z-50 border-b border-ink-200/60 bg-white/80 backdrop-blur-md">
       <div className="container-custom flex h-16 items-center justify-between sm:h-20">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href={localePath(lang, "/")} className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-900 text-white">
             <span className="text-sm font-black">M</span>
           </span>
@@ -24,7 +37,7 @@ export default function Header() {
 
         <div className="flex items-center gap-3 lg:gap-7">
           <nav className="hidden items-center gap-7 lg:flex">
-            {site.nav.slice(0, -1).map((item) => (
+            {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -34,16 +47,26 @@ export default function Header() {
               </Link>
             ))}
           </nav>
-          <Link href="/contact" className="hidden btn-primary lg:inline-flex">
-            무료 견적받기
+          <Link
+            href={otherPath}
+            aria-label={dict.langSwitch.label}
+            className="hidden lg:inline-flex items-center gap-1 rounded-full border border-ink-200 px-3 py-1.5 text-xs font-semibold text-ink-700 transition hover:border-ink-900 hover:text-ink-900"
+          >
+            {otherLang === "en" ? "EN" : "KO"}
+          </Link>
+          <Link
+            href={localePath(lang, "/contact")}
+            className="hidden btn-primary lg:inline-flex"
+          >
+            {dict.cta.quote}
           </Link>
           <button
             type="button"
-            aria-label="메뉴 열기"
+            aria-label={dict.langSwitch.label}
             onClick={() => setOpen((v) => !v)}
             className="lg:hidden flex h-10 w-10 items-center justify-center rounded-lg border border-ink-200"
           >
-            <span className="sr-only">메뉴</span>
+            <span className="sr-only">menu</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
                 d="M3 6h14M3 10h14M3 14h14"
@@ -59,7 +82,7 @@ export default function Header() {
       {open && (
         <div className="border-t border-ink-200 bg-white lg:hidden">
           <div className="container-custom flex flex-col py-4">
-            {site.nav.map((item) => (
+            {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -70,15 +93,34 @@ export default function Header() {
               </Link>
             ))}
             <Link
-              href="/contact"
+              href={otherPath}
+              onClick={() => setOpen(false)}
+              className="py-3 text-base font-semibold text-ink-500"
+            >
+              {otherLang === "en" ? dict.langSwitch.en : dict.langSwitch.ko}
+            </Link>
+            <Link
+              href={localePath(lang, "/contact")}
               onClick={() => setOpen(false)}
               className="btn-primary mt-3"
             >
-              무료 견적받기
+              {dict.cta.quote}
             </Link>
           </div>
         </div>
       )}
     </header>
   );
+}
+
+function swapLocaleInPath(pathname: string, from: Lang, to: Lang): string {
+  if (from === to) return pathname;
+  if (from === "ko") {
+    if (pathname === "/ko") return "/";
+    if (pathname.startsWith("/ko/")) return pathname.slice(3);
+    return pathname;
+  }
+  // from === "en", to === "ko"
+  if (pathname === "/") return "/ko";
+  return `/ko${pathname}`;
 }

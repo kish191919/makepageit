@@ -1,27 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { site } from "@/lib/site";
+import { getDict, type Lang } from "@/lib/i18n";
 
-const services = [
-  "브랜딩 사이트",
-  "쇼핑몰 / 커머스",
-  "랜딩페이지",
-  "리뉴얼 / 유지보수",
-  "예약 / 멤버십",
-  "마케팅 운영",
-  "잘 모르겠어요 (상담 필요)",
-];
-
-const budgets = [
-  "$300 미만",
-  "$300 – $500",
-  "$500 – $1,000",
-  "$1,000 – $2,500",
-  "$2,500 이상",
-  "협의 가능",
-];
-
-export default function ContactForm() {
+export default function ContactForm({ lang }: { lang: Lang }) {
+  const dict = getDict(lang);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +16,7 @@ export default function ContactForm() {
     setError(null);
 
     const formData = new FormData(e.currentTarget);
-    const payload = Object.fromEntries(formData.entries());
+    const payload = { ...Object.fromEntries(formData.entries()), lang };
 
     try {
       const res = await fetch("/api/contact", {
@@ -43,12 +27,12 @@ export default function ContactForm() {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+        throw new Error(data.error || dict.contact.form.errorGeneric);
       }
 
       setSubmitted(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "전송 중 오류가 발생했습니다.");
+      setError(err instanceof Error ? err.message : dict.contact.form.errorGeneric);
     } finally {
       setSubmitting(false);
     }
@@ -61,12 +45,10 @@ export default function ContactForm() {
           ✓
         </div>
         <h3 className="mt-5 text-2xl font-bold text-ink-900">
-          문의가 접수되었습니다
+          {dict.contact.form.successTitle}
         </h3>
         <p className="mt-3 text-base text-ink-500">
-          영업일 기준 24시간 이내에 담당 매니저가 연락드립니다.
-          <br />
-          급하신 경우 205-734-9654로 전화 주세요.
+          {dict.contact.form.successBody(site.phone)}
         </p>
       </div>
     );
@@ -78,52 +60,75 @@ export default function ContactForm() {
       className="space-y-6 rounded-3xl border border-ink-200 bg-white p-6 sm:p-10"
     >
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field label="이름 / 회사" name="name" placeholder="홍길동 / 메이크페이지" required />
         <Field
-          label="연락 가능한 번호"
+          label={dict.contact.form.labels.name}
+          name="name"
+          placeholder={dict.contact.form.placeholders.name}
+          required
+        />
+        <Field
+          label={dict.contact.form.labels.phone}
           name="phone"
           type="tel"
-          placeholder="010-0000-0000"
+          placeholder={dict.contact.form.placeholders.phone}
           required
         />
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2">
         <Field
-          label="이메일"
+          label={dict.contact.form.labels.email}
           name="email"
           type="email"
-          placeholder="hello@example.com"
+          placeholder={dict.contact.form.placeholders.email}
           required
         />
-        <Field label="업종" name="industry" placeholder="예: 카페, 학원, 쇼핑몰" />
+        <Field
+          label={dict.contact.form.labels.industry}
+          name="industry"
+          placeholder={dict.contact.form.placeholders.industry}
+        />
       </div>
 
-      <Select label="문의 유형" name="service" options={services} required />
-      <Select label="예상 예산" name="budget" options={budgets} required />
+      <Select
+        label={dict.contact.form.labels.service}
+        name="service"
+        options={dict.contact.form.services}
+        required
+        prompt={dict.contact.form.selectPrompt}
+      />
+      <Select
+        label={dict.contact.form.labels.budget}
+        name="budget"
+        options={dict.contact.form.budgets}
+        required
+        prompt={dict.contact.form.selectPrompt}
+      />
 
       <div>
         <label
           htmlFor="message"
           className="block text-sm font-semibold text-ink-700"
         >
-          요청사항
+          {dict.contact.form.labels.message}
         </label>
         <textarea
           id="message"
           name="message"
           rows={5}
           required
-          placeholder="만들고자 하는 사이트의 목적, 참고 사이트, 일정 등을 자유롭게 적어주세요."
+          placeholder={dict.contact.form.placeholders.message}
           className="mt-2 w-full rounded-2xl border border-ink-200 bg-white px-4 py-3 text-sm leading-relaxed text-ink-900 placeholder:text-ink-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
         />
       </div>
 
       <label className="flex items-start gap-3 text-sm text-ink-500">
-        <input type="checkbox" required className="mt-1 h-4 w-4 rounded border-ink-200 text-brand-600 focus:ring-brand-600" />
-        <span>
-          개인정보 수집·이용에 동의합니다. (수집 항목: 이름, 연락처, 이메일 / 보유기간: 상담 종료 후 1년)
-        </span>
+        <input
+          type="checkbox"
+          required
+          className="mt-1 h-4 w-4 rounded border-ink-200 text-brand-600 focus:ring-brand-600"
+        />
+        <span>{dict.contact.form.consent}</span>
       </label>
 
       {error && (
@@ -137,7 +142,7 @@ export default function ContactForm() {
         disabled={submitting}
         className="btn-primary w-full disabled:cursor-wait disabled:opacity-60"
       >
-        {submitting ? "접수 중..." : "무료 견적 요청하기 →"}
+        {submitting ? dict.contact.form.submitting : dict.contact.form.submit}
       </button>
     </form>
   );
@@ -179,11 +184,13 @@ function Select({
   name,
   options,
   required,
+  prompt,
 }: {
   label: string;
   name: string;
   options: string[];
   required?: boolean;
+  prompt: string;
 }) {
   return (
     <div>
@@ -199,7 +206,7 @@ function Select({
         className="mt-2 w-full rounded-2xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
       >
         <option value="" disabled>
-          선택해주세요
+          {prompt}
         </option>
         {options.map((o) => (
           <option key={o} value={o}>

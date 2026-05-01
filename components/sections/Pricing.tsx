@@ -1,8 +1,14 @@
 import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
-import { plans } from "@/lib/data";
+import { getPlans } from "@/lib/data";
+import { getDict, localePath, type Lang } from "@/lib/i18n";
 
-export default function Pricing() {
+export default function Pricing({ lang }: { lang: Lang }) {
+  const dict = getDict(lang);
+  const plans = getPlans(lang);
+  const monthlyLabel = lang === "en" ? " / mo" : " / 월";
+  const yearlyLabel = lang === "en" ? " / yr" : " / 년";
+
   return (
     <section className="section relative overflow-hidden bg-gradient-to-b from-ink-50 to-white">
       <div className="pointer-events-none absolute -right-32 top-24 hidden h-[400px] w-[400px] rounded-full bg-accent-400 opacity-20 blur-3xl md:block" />
@@ -11,19 +17,19 @@ export default function Pricing() {
       <div className="container-custom relative z-10">
         <SectionHeading
           align="center"
-          eyebrow="가격 안내"
+          eyebrow={dict.pricing.eyebrow}
           title={
             <>
-              명확한 일회성 + 월 구독,
+              {dict.pricing.title.line1}
               <br />
-              1년 비용까지 한눈에
+              {dict.pricing.title.line2}
             </>
           }
           description={
             <>
-              모든 패키지는 도메인·호스팅·기본 SEO·SSL·모바일 반응형을 포함합니다.
+              {dict.pricing.description.line1}
               <br />
-              비상업 개인은 호스팅·DB가 무료입니다.
+              {dict.pricing.description.line2}
             </>
           }
         />
@@ -80,13 +86,13 @@ export default function Pricing() {
                   }`}
                 >
                   <p>
-                    <span className="font-semibold">+ {p.pricing.monthly} / 월</span>
+                    <span className="font-semibold">+ {p.pricing.monthly}{monthlyLabel}</span>
                     <span className={p.best ? "text-ink-300" : "text-ink-500"}>
                       {" "}· {p.pricing.monthlyNote}
                     </span>
                   </p>
                   <p>
-                    <span className="font-semibold">+ {p.pricing.annual} / 년</span>
+                    <span className="font-semibold">+ {p.pricing.annual}{yearlyLabel}</span>
                     <span className={p.best ? "text-ink-300" : "text-ink-500"}>
                       {" "}· {p.pricing.annualNote}
                     </span>
@@ -102,7 +108,7 @@ export default function Pricing() {
                 }`}
               >
                 <span className={p.best ? "text-ink-200" : "text-ink-600"}>
-                  📊 1년 총 예상비용
+                  {dict.pricing.yearTotal}
                 </span>
                 <span
                   className={`text-lg font-extrabold ${
@@ -120,7 +126,7 @@ export default function Pricing() {
                     : "bg-brand-50/60 text-ink-600 ring-1 ring-brand-100/70"
                 }`}
               >
-                <span>📈 2년차부터 매년 예상비용</span>
+                <span>{dict.pricing.yearAfter}</span>
                 <span
                   className={`text-base font-bold ${
                     p.best ? "text-accent-400" : "text-brand-600"
@@ -148,7 +154,7 @@ export default function Pricing() {
               </ul>
 
               <Link
-                href="/contact"
+                href={localePath(lang, "/contact")}
                 className={`mt-9 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition ${
                   p.best
                     ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"

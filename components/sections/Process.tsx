@@ -1,37 +1,10 @@
 import SectionHeading from "@/components/SectionHeading";
+import { getDict, type Lang } from "@/lib/i18n";
 
-const steps = [
-  {
-    n: "01",
-    icon: "📞",
-    title: "무료 상담 · 견적",
-    subtitle: "30분 무료 통화",
-    body: "목적·타겟·예산 파악 후 패키지 추천",
-  },
-  {
-    n: "02",
-    icon: "✏️",
-    title: "기획 · 디자인",
-    subtitle: "단계별 컨펌",
-    body: "사이트맵·와이어프레임·시안 순차 확인",
-  },
-  {
-    n: "03",
-    icon: "🚀",
-    title: "검수 · 오픈",
-    subtitle: "테스트 → 정식 오픈",
-    body: "도메인·SSL·검색엔진 등록까지 일괄",
-  },
-  {
-    n: "04",
-    icon: "🛟",
-    title: "운영 · 유지보수",
-    subtitle: "전담 매니저 케어",
-    body: "콘텐츠·기능 추가·성능 점검 지원",
-  },
-];
+export default function Process({ lang }: { lang: Lang }) {
+  const dict = getDict(lang);
+  const steps = dict.process.steps;
 
-export default function Process() {
   return (
     <section className="section relative overflow-hidden bg-white">
       <div className="pointer-events-none absolute -left-32 top-20 hidden h-[420px] w-[420px] rounded-full bg-brand-200 opacity-30 blur-3xl lg:block" />
@@ -40,9 +13,9 @@ export default function Process() {
       <div className="container-custom relative z-10">
         <SectionHeading
           align="center"
-          eyebrow="프로세스"
-          title="투명한 4단계, 어디까지 진행됐는지 항상 보입니다"
-          description="다음 회의 때 무엇을 보여드릴지, 다음 결제는 언제인지 — 모든 일정이 명확합니다."
+          eyebrow={dict.process.eyebrow}
+          title={dict.process.title}
+          description={dict.process.description}
         />
 
         <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">

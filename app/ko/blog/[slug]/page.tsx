@@ -74,7 +74,7 @@ export default function BlogPostPage({ params }: Props) {
         <header className="border-b border-ink-200 bg-ink-50 py-16 sm:py-20">
           <div className="container-custom max-w-3xl">
             <Link
-              href="/blog"
+              href="/ko/blog"
               className="text-sm font-semibold text-brand-600 hover:underline"
             >
               ← 블로그 목록
@@ -116,7 +116,7 @@ export default function BlogPostPage({ params }: Props) {
             {others.map((p) => (
               <Link
                 key={p.slug}
-                href={`/blog/${p.slug}`}
+                href={`/ko/blog/${p.slug}`}
                 className="group flex flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-ink-200 transition hover:-translate-y-1 hover:shadow-xl"
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-ink-100">
@@ -143,7 +143,7 @@ export default function BlogPostPage({ params }: Props) {
         </div>
       </section>
 
-      <CTA />
+      <CTA lang="ko" />
     </>
   );
 }

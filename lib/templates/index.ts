@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import type { Lang } from "@/lib/i18n";
 import NobleCoffee from "./NobleCoffee";
 import LumiereClinic from "./LumiereClinic";
 import AtelierShop from "./AtelierShop";
@@ -20,7 +21,7 @@ import MuniHair from "./MuniHair";
 import KittWorks from "./KittWorks";
 import JiniIllustration from "./JiniIllustration";
 
-export const templates: Record<string, ComponentType> = {
+export const templates: Record<string, ComponentType<{ lang: Lang }>> = {
   "noble-coffee": NobleCoffee,
   "lumiere-clinic": LumiereClinic,
   "atelier-shop": AtelierShop,

@@ -1,19 +1,23 @@
 import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
-import { services } from "@/lib/data";
+import { getServices } from "@/lib/data";
+import { getDict, localePath, type Lang } from "@/lib/i18n";
 
-export default function Services() {
+export default function Services({ lang }: { lang: Lang }) {
+  const dict = getDict(lang);
+  const services = getServices(lang);
+
   return (
     <section className="section bg-ink-50">
       <div className="container-custom">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
-            eyebrow="서비스"
-            title="사장님 사업의 단계마다, 필요한 사이트를 만듭니다"
-            description="작은 랜딩페이지부터 쇼핑몰까지. 320개 사이트를 만들며 쌓은 경험으로 가장 효율적인 구조를 제안합니다."
+            eyebrow={dict.services.eyebrow}
+            title={dict.services.title}
+            description={dict.services.description}
           />
-          <Link href="/services" className="btn-outline self-start lg:self-auto">
-            전체 서비스 보기
+          <Link href={localePath(lang, "/services")} className="btn-outline self-start lg:self-auto">
+            {dict.services.seeAll}
           </Link>
         </div>
 

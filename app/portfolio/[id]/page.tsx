@@ -1,33 +1,31 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import BackToPortfolio from "@/components/template/BackToPortfolio";
-import { portfolios } from "@/lib/data";
-import { templates } from "@/lib/templates";
+import PortfolioTemplateView from "@/components/views/PortfolioTemplateView";
+import { getPortfolios } from "@/lib/data";
+import { getDict } from "@/lib/i18n";
 
 type Params = { id: string };
 
 export function generateStaticParams(): Params[] {
-  return portfolios.map((p) => ({ id: p.id }));
+  return getPortfolios("en").map((p) => ({ id: p.id }));
 }
 
 export function generateMetadata({ params }: { params: Params }): Metadata {
-  const item = portfolios.find((p) => p.id === params.id);
-  if (!item) return { title: "포트폴리오 템플릿" };
+  const item = getPortfolios("en").find((p) => p.id === params.id);
+  const dict = getDict("en");
+  if (!item) return { title: dict.notFoundTemplate };
   return {
-    title: `${item.client} — 템플릿 미리보기`,
+    title: `${item.client} — Template preview`,
     description: item.description,
+    alternates: {
+      languages: {
+        en: `/portfolio/${item.id}`,
+        ko: `/ko/portfolio/${item.id}`,
+        "x-default": `/portfolio/${item.id}`,
+      },
+    },
   };
 }
 
 export default function PortfolioTemplatePage({ params }: { params: Params }) {
-  const item = portfolios.find((p) => p.id === params.id);
-  const Template = templates[params.id];
-  if (!item || !Template) notFound();
-
-  return (
-    <>
-      <BackToPortfolio />
-      <Template />
-    </>
-  );
+  return <PortfolioTemplateView lang="en" id={params.id} />;
 }

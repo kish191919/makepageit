@@ -3,10 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
-import { faqs } from "@/lib/data";
+import { getFaqs } from "@/lib/data";
+import { getDict, localePath, type Lang } from "@/lib/i18n";
 
-export default function FAQ() {
+export default function FAQ({ lang }: { lang: Lang }) {
   const [open, setOpen] = useState<number | null>(0);
+  const dict = getDict(lang);
+  const faqs = getFaqs(lang);
+
   return (
     <section className="section relative overflow-hidden bg-gradient-to-b from-white to-brand-50/40">
       <div className="pointer-events-none absolute -right-40 bottom-0 hidden h-[500px] w-[500px] rounded-full bg-brand-200 opacity-25 blur-3xl lg:block" />
@@ -16,21 +20,21 @@ export default function FAQ() {
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading
               align="left"
-              eyebrow="자주 묻는 질문"
-              title="궁금하신 점, 미리 답해드릴게요"
-              description="가장 많이 받은 질문을 모았어요. 더 자세한 내용은 무료 상담에서 알려드려요."
+              eyebrow={dict.faq.eyebrow}
+              title={dict.faq.title}
+              description={dict.faq.description}
             />
 
             <div className="mt-8 rounded-2xl bg-brand-600 p-6 text-white shadow-lg">
-              <p className="text-base font-bold">더 궁금한 점이 있나요?</p>
+              <p className="text-base font-bold">{dict.faq.moreQuestions.title}</p>
               <p className="mt-1 text-sm text-brand-50/90">
-                30분 무료 상담으로 부담 없이 물어보세요.
+                {dict.faq.moreQuestions.body}
               </p>
               <Link
-                href="/contact"
+                href={localePath(lang, "/contact")}
                 className="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-brand-700 transition hover:bg-accent-500 hover:text-white"
               >
-                무료 상담 신청 →
+                {dict.faq.moreQuestions.cta}
               </Link>
             </div>
           </div>
