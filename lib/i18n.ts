@@ -224,8 +224,8 @@ const en: Dict = {
   },
   process: {
     eyebrow: "How it works",
-    title: "Four clear steps. You always know what's next.",
-    description: "We tell you exactly what we'll show you at each meeting and when each payment is due. No surprises.",
+    title: "Four clear steps.\nYou always know what's next.",
+    description: "We tell you exactly what we'll show you at each meeting and when each payment is due.\nNo surprises.",
     steps: [
       { n: "01", icon: "📞", title: "Free consult", subtitle: "30-minute call", body: "We learn your goals, audience, and budget — then recommend the right package." },
       { n: "02", icon: "✏️", title: "Design", subtitle: "Approve as we go", body: "Sitemap, wireframes, and visual designs reviewed step by step." },
@@ -494,8 +494,8 @@ const ko: Dict = {
   },
   process: {
     eyebrow: "프로세스",
-    title: "투명한 4단계, 어디까지 진행됐는지 항상 보입니다",
-    description: "다음 회의 때 무엇을 보여드릴지, 다음 결제는 언제인지 — 모든 일정이 명확합니다.",
+    title: "투명한 4단계,\n어디까지 진행됐는지 항상 보입니다",
+    description: "다음 회의 때 무엇을 보여드릴지, 다음 결제는 언제인지 —\n모든 일정이 명확합니다.",
     steps: [
       { n: "01", icon: "📞", title: "무료 상담 · 견적", subtitle: "30분 무료 통화", body: "목적·타겟·예산 파악 후 패키지 추천" },
       { n: "02", icon: "✏️", title: "기획 · 디자인", subtitle: "단계별 컨펌", body: "사이트맵·와이어프레임·시안 순차 확인" },

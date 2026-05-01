@@ -17,8 +17,8 @@ export default function SectionHeading({
   return (
     <div className={`max-w-3xl ${alignment}`}>
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      <h2 className="mt-3 h-section break-keep">{title}</h2>
-      {description && <p className="mt-5 lead break-keep">{description}</p>}
+      <h2 className="mt-3 h-section break-keep whitespace-pre-line">{title}</h2>
+      {description && <p className="mt-5 lead break-keep whitespace-pre-line">{description}</p>}
     </div>
   );
 }

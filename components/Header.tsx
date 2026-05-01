@@ -15,10 +15,8 @@ export default function Header() {
 
   const nav = [
     { label: dict.nav.home, href: localePath(lang, "/") },
-    { label: dict.nav.services, href: localePath(lang, "/services") },
     { label: dict.nav.portfolio, href: localePath(lang, "/portfolio") },
     { label: dict.nav.pricing, href: localePath(lang, "/pricing") },
-    { label: dict.nav.about, href: localePath(lang, "/about") },
     { label: dict.nav.contact, href: localePath(lang, "/contact") },
   ];
 

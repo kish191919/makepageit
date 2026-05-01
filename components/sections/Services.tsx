@@ -1,7 +1,6 @@
-import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
 import { getServices } from "@/lib/data";
-import { getDict, localePath, type Lang } from "@/lib/i18n";
+import { getDict, type Lang } from "@/lib/i18n";
 
 export default function Services({ lang }: { lang: Lang }) {
   const dict = getDict(lang);
@@ -10,16 +9,11 @@ export default function Services({ lang }: { lang: Lang }) {
   return (
     <section className="section bg-ink-50">
       <div className="container-custom">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <SectionHeading
-            eyebrow={dict.services.eyebrow}
-            title={dict.services.title}
-            description={dict.services.description}
-          />
-          <Link href={localePath(lang, "/services")} className="btn-outline self-start lg:self-auto">
-            {dict.services.seeAll}
-          </Link>
-        </div>
+        <SectionHeading
+          eyebrow={dict.services.eyebrow}
+          title={dict.services.title}
+          description={dict.services.description}
+        />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s) => (
