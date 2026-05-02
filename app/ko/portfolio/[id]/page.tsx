@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PortfolioTemplateView from "@/components/views/PortfolioTemplateView";
 import { getPortfolios } from "@/lib/data";
 import { getDict } from "@/lib/i18n";
+import { breadcrumbSchema, jsonLdScriptProps, portfolioCaseSchema } from "@/lib/jsonld";
 
 type Params = { id: string };
 
@@ -34,5 +35,24 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
 }
 
 export default function PortfolioTemplatePageKo({ params }: { params: Params }) {
-  return <PortfolioTemplateView lang="ko" id={params.id} />;
+  const item = getPortfolios("ko").find((p) => p.id === params.id);
+  return (
+    <>
+      {item && (
+        <>
+          <script {...jsonLdScriptProps(portfolioCaseSchema(item, "ko"))} />
+          <script
+            {...jsonLdScriptProps(
+              breadcrumbSchema([
+                { name: "홈", path: "/ko" },
+                { name: "포트폴리오", path: "/ko/portfolio" },
+                { name: item.client, path: `/ko/portfolio/${item.id}` },
+              ])
+            )}
+          />
+        </>
+      )}
+      <PortfolioTemplateView lang="ko" id={params.id} />
+    </>
+  );
 }

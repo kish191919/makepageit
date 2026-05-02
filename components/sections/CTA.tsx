@@ -2,6 +2,21 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 import { getDict, localePath, type Lang } from "@/lib/i18n";
 
+function renderSegments(value: string | string[]) {
+  if (typeof value === "string") return value;
+  return value.map((s, i) => (
+    <span key={i}>
+      {i > 0 && (
+        <>
+          <br className="sm:hidden" />
+          <span className="hidden sm:inline"> </span>
+        </>
+      )}
+      {s}
+    </span>
+  ));
+}
+
 export default function CTA({ lang }: { lang: Lang }) {
   const dict = getDict(lang);
   return (
@@ -20,12 +35,12 @@ export default function CTA({ lang }: { lang: Lang }) {
             {dict.cta_section.eyebrow}
           </span>
           <h2 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-5xl">
-            {dict.cta_section.title.line1}
+            {renderSegments(dict.cta_section.title.line1)}
             <br />
-            {dict.cta_section.title.line2}
+            {renderSegments(dict.cta_section.title.line2)}
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-base text-ink-200 sm:text-lg">
-            {dict.cta_section.body}
+            {renderSegments(dict.cta_section.body)}
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Link

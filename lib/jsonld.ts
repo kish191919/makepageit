@@ -1,4 +1,6 @@
 import { site } from "@/lib/site";
+import type { Plan, FAQ } from "@/lib/data";
+import type { Lang } from "@/lib/i18n";
 
 const BASE_URL = "https://makepageit.com";
 
@@ -26,35 +28,68 @@ export function websiteSchema() {
   };
 }
 
-type BlogArticleInput = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  cover: string;
-  date: string;
-  category: string;
-};
-
-export function blogArticleSchema(post: BlogArticleInput) {
-  const url = `${BASE_URL}/ko/blog/${post.slug}`;
+export function professionalServiceSchema(lang: Lang) {
+  const url = lang === "ko" ? `${BASE_URL}/ko` : BASE_URL;
+  const description =
+    lang === "ko"
+      ? "MAKEPAGE는 소상공인과 프리랜서를 위한 홈페이지 제작 스튜디오입니다. 브랜딩, 쇼핑몰, 랜딩페이지, 예약 시스템까지 한 팀이 만듭니다."
+      : "MAKEPAGE is a web design studio for small businesses and creators. Brand sites, e-commerce, landing pages, and booking systems built by one team.";
   return {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    image: [post.cover],
-    datePublished: post.date,
-    dateModified: post.date,
-    inLanguage: "ko",
-    articleSection: post.category,
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    "@type": ["Organization", "ProfessionalService"],
+    "@id": `${BASE_URL}#organization`,
+    name: site.name,
+    alternateName: site.nameKo,
     url,
-    author: { "@type": "Organization", name: site.name, url: BASE_URL },
-    publisher: {
-      "@type": "Organization",
-      name: site.name,
-      logo: { "@type": "ImageObject", url: `${BASE_URL}/og-default.png` },
+    logo: `${BASE_URL}/og-default.png`,
+    image: `${BASE_URL}/og-default.png`,
+    email: site.email,
+    telephone: site.phoneIntl,
+    description,
+    priceRange: "$$",
+    areaServed: ["United States", "South Korea", "Worldwide"],
+    serviceType: "Web Design & Development",
+    sameAs: [site.social.instagram, site.social.youtube, site.social.blog].filter(Boolean),
+  };
+}
+
+export function serviceOfferCatalogSchema(plans: Plan[], lang: Lang) {
+  const catalogName = lang === "ko" ? "홈페이지 제작 패키지" : "Website Build Packages";
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: lang === "ko" ? "홈페이지 제작" : "Web Design & Development",
+    provider: { "@id": `${BASE_URL}#organization` },
+    areaServed: ["United States", "South Korea"],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: catalogName,
+      itemListElement: plans.map((p) => ({
+        "@type": "Offer",
+        name: p.name,
+        description: p.description,
+        price: p.pricing.oneTime.replace(/[^\d.]/g, ""),
+        priceCurrency: "USD",
+        category: p.audience,
+        availability: "https://schema.org/InStock",
+        url: lang === "ko" ? `${BASE_URL}/ko/pricing` : `${BASE_URL}/pricing`,
+      })),
     },
+  };
+}
+
+export function faqPageSchema(faqs: FAQ[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.a,
+      },
+    })),
   };
 }
 
@@ -67,7 +102,7 @@ type PortfolioCaseInput = {
   year: string;
 };
 
-export function portfolioCaseSchema(item: PortfolioCaseInput, lang: "en" | "ko") {
+export function portfolioCaseSchema(item: PortfolioCaseInput, lang: Lang) {
   const path = lang === "ko" ? `/ko/portfolio/${item.id}` : `/portfolio/${item.id}`;
   const url = `${BASE_URL}${path}`;
   return {

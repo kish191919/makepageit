@@ -87,7 +87,11 @@ type Dict = {
     description: string;
     moreQuestions: { title: string; body: string; cta: string };
   };
-  cta_section: { eyebrow: string; title: { line1: string; line2: string }; body: string };
+  cta_section: {
+    eyebrow: string;
+    title: { line1: string | string[]; line2: string | string[] };
+    body: string | string[];
+  };
   reviews: {
     eyebrow: string;
     title: string;
@@ -573,8 +577,14 @@ const ko: Dict = {
   },
   cta_section: {
     eyebrow: "무료 상담",
-    title: { line1: "오늘 상담, 다음 주에 첫 시안.", line2: "지금 시작하세요." },
-    body: "견적과 일정은 30분 통화로 충분합니다. 부담 없이 문의 남겨주세요.",
+    title: {
+      line1: ["오늘 상담,", "다음 주에 첫 시안."],
+      line2: "지금 시작하세요.",
+    },
+    body: [
+      "견적과 일정은 30분 통화로 충분합니다.",
+      "부담 없이 문의 남겨주세요.",
+    ],
   },
   reviews: {
     eyebrow: "제작 후기",
