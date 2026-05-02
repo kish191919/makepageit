@@ -1,12 +1,16 @@
+"use client";
+
+import { useState } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import { getDict, type Lang } from "@/lib/i18n";
 
 export default function Process({ lang }: { lang: Lang }) {
+  const [allOpen, setAllOpen] = useState(false);
   const dict = getDict(lang);
   const steps = dict.process.steps;
 
   return (
-    <section className="section relative overflow-hidden bg-ink-50">
+    <section className="section relative overflow-hidden bg-white">
       <div className="pointer-events-none absolute -left-32 top-20 hidden h-[420px] w-[420px] rounded-full bg-brand-200 opacity-30 blur-3xl lg:block" />
       <div className="pointer-events-none absolute -right-24 bottom-10 hidden h-[360px] w-[360px] rounded-full bg-accent-400 opacity-20 blur-3xl lg:block" />
 
@@ -21,56 +25,78 @@ export default function Process({ lang }: { lang: Lang }) {
         <div className="relative mt-16">
           <ConnectorLine />
 
-          <div className="relative -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 scrollbar-hide sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-4">
-            {steps.map((s, i) => (
-              <article
-                key={s.n}
-                className="group relative flex w-[85%] shrink-0 snap-start flex-col rounded-3xl border border-ink-200/70 bg-white p-6 shadow-[0_2px_4px_rgba(15,23,42,0.04),0_12px_28px_-12px_rgba(15,23,42,0.10)] transition duration-300 hover:-translate-y-1.5 hover:border-brand-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.04),0_24px_48px_-16px_rgba(79,70,229,0.28)] sm:w-[60%] md:w-auto"
-              >
-                <div className="relative h-28 overflow-hidden rounded-2xl border border-ink-100 bg-gradient-to-br from-brand-50 via-white to-brand-100/40">
-                  <StepMockup index={i} />
-                </div>
-
-                <div className="mt-6 flex items-center gap-3">
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-xs font-bold text-white shadow-md shadow-brand-600/40 ring-2 ring-white">
+          <div className="relative -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[7.5vw] pb-4 scrollbar-hide sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-4">
+            {steps.map((s, i) => {
+              return (
+                <article
+                  key={s.n}
+                  onClick={() => setAllOpen((prev) => !prev)}
+                  className="group relative flex w-[85vw] shrink-0 cursor-pointer snap-center flex-col overflow-hidden rounded-3xl border border-blue-500/60 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-[0_2px_4px_rgba(15,23,42,0.06),0_14px_32px_-12px_rgba(37,99,235,0.35)] transition duration-300 hover:-translate-y-1.5 hover:border-blue-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(37,99,235,0.50)] sm:w-[60%] sm:snap-start md:w-auto md:cursor-default"
+                >
+                  <span aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-blue-300/40 blur-3xl" />
+                  <span aria-hidden="true" className="pointer-events-none absolute -bottom-20 -left-16 h-44 w-44 rounded-full bg-accent-500/20 blur-3xl" />
+                  <span aria-hidden="true" className="pointer-events-none absolute bottom-0 right-2 select-none text-[140px] font-black leading-none tracking-tighter text-white/[0.07] translate-y-4">
                     {s.n}
                   </span>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-400">
-                    STEP
-                  </span>
-                </div>
 
-                <h3 className="mt-4 text-lg font-bold text-ink-900 md:text-xl">
-                  {s.title}
-                </h3>
-                <p className="mt-1 text-sm font-semibold text-brand-600">
-                  {s.subtitle}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-500">
-                  {s.body}
-                </p>
+                  <div className="relative z-10 flex flex-1 flex-col p-6">
+                    <div className="relative h-28 overflow-hidden rounded-2xl border border-white/30 bg-white">
+                      <StepMockup index={i} />
+                    </div>
 
-                <div className="mt-5 flex flex-wrap gap-2 pt-4 border-t border-ink-100">
-                  {s.meta.map((m, idx) => (
-                    <span
-                      key={m}
-                      className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium ${
-                        idx === 0
-                          ? "bg-brand-50 text-brand-700"
-                          : "bg-ink-50 text-ink-500"
-                      }`}
-                    >
+                    <div className="mt-6 flex items-center gap-3">
+                      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-bold text-blue-900 shadow-md shadow-blue-950/40">
+                        {s.n}
+                      </span>
+                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
+                        STEP
+                      </span>
+                    </div>
+
+                    <div className="mt-4 flex items-start justify-between gap-3">
+                      <h3 className="text-lg font-bold text-white md:text-xl">
+                        {s.title}
+                      </h3>
                       <span
-                        className={`h-1.5 w-1.5 rounded-full ${
-                          idx === 0 ? "bg-brand-500" : "bg-ink-400"
-                        }`}
-                      />
-                      {m}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
+                        aria-hidden="true"
+                        className={`md:hidden flex-none text-2xl leading-none text-white/90 transition-transform duration-200 ${allOpen ? "rotate-45" : ""}`}
+                      >
+                        +
+                      </span>
+                    </div>
+
+                    <div className={allOpen ? "flex flex-1 flex-col" : "hidden md:flex md:flex-1 md:flex-col"}>
+                      <p className="mt-1 text-sm font-semibold text-white">
+                        {s.subtitle}
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-white/80">
+                        {s.body}
+                      </p>
+
+                      <div className="mt-auto flex flex-wrap gap-2 pt-4 border-t border-white/20">
+                        {s.meta.map((m, idx) => (
+                          <span
+                            key={m}
+                            className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium ${
+                              idx === 0
+                                ? "bg-white/15 text-white"
+                                : "bg-white/10 text-white/70"
+                            }`}
+                          >
+                            <span
+                              className={`h-1.5 w-1.5 rounded-full ${
+                                idx === 0 ? "bg-white" : "bg-white/50"
+                              }`}
+                            />
+                            {m}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -97,49 +123,10 @@ function ConnectorLine() {
           stroke="currentColor"
           strokeWidth="1.5"
           strokeDasharray="2 6"
-          className="text-brand-300"
+          className="text-blue-300"
         />
       </svg>
-      <ConnectorArrow leftPercent="25%" tone="brand" />
-      <ConnectorArrow leftPercent="50%" tone="brand" />
-      <ConnectorArrow leftPercent="75%" tone="accent" />
     </div>
-  );
-}
-
-function ConnectorArrow({
-  leftPercent,
-  tone,
-}: {
-  leftPercent: string;
-  tone: "brand" | "accent";
-}) {
-  const color = tone === "accent" ? "text-accent-500" : "text-brand-400";
-  return (
-    <span
-      className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 ${color}`}
-      style={{ left: leftPercent }}
-    >
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <circle cx="8" cy="8" r="8" className="fill-white" />
-        <circle
-          cx="8"
-          cy="8"
-          r="7"
-          stroke="currentColor"
-          strokeWidth="1.2"
-          fill="none"
-        />
-        <path
-          d="M6.5 5 L9.5 8 L6.5 11"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
-      </svg>
-    </span>
   );
 }
 

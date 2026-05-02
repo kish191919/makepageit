@@ -44,7 +44,7 @@ export default function AdditionalOptions({ lang }: { lang: Lang }) {
   }
 
   return (
-    <section className="section relative overflow-hidden bg-ink-50">
+    <section className="section relative overflow-hidden bg-white">
       <div className="container-custom">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <div className="relative">

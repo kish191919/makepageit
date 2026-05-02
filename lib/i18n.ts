@@ -227,7 +227,7 @@ const en: Dict = {
     title: "Four clear steps.\nYou always know what's next.",
     description: "We tell you exactly what we'll show you at each meeting and when each payment is due.\nNo surprises.",
     steps: [
-      { n: "01", title: "Free consult", subtitle: "30-minute call", body: "We learn your goals, audience, and budget — then recommend the right package.", meta: ["30 min", "Free"] },
+      { n: "01", title: "Free consult", subtitle: "30-minute call", body: "We learn your goals and budget, then recommend the right package.", meta: ["30 min", "Free"] },
       { n: "02", title: "Design", subtitle: "Approve as we go", body: "Sitemap, wireframes, and visual designs reviewed step by step.", meta: ["Step-by-step", "You sign off"] },
       { n: "03", title: "Launch", subtitle: "Test → Live", body: "Domain, SSL, and search engine setup are handled end to end.", meta: ["Domain + SSL", "SEO ready"] },
       { n: "04", title: "Ongoing care", subtitle: "Dedicated manager", body: "Content updates, new features, and performance checks every month.", meta: ["Monthly report", "Same-day fixes"] },
@@ -247,7 +247,7 @@ const en: Dict = {
   },
   pricing: {
     eyebrow: "Pricing",
-    title: { line1: "Clear one-time + monthly,", line2: "first-year cost on one screen" },
+    title: { line1: "One-time and monthly costs,", line2: "first-year total on one screen" },
     description: { line1: "Every package includes domain, hosting, basic SEO, SSL, and mobile-responsive design.", line2: "Hosting and database are free for non-commercial personal portfolios." },
     yearTotal: "📊 First-year total",
     yearAfter: "📈 Year 2 onward (annual)",
@@ -362,7 +362,7 @@ const en: Dict = {
     pageDescription: "Request a free quote from MAKEPAGE. Your account manager will respond within one business day.",
     headerEyebrow: "Contact",
     headerTitle: "30 minutes is all we need.",
-    headerDescription: "You don't need to know exactly what you want. Tell us about your business and we'll figure it out together.",
+    headerDescription: "You don't need to know exactly what you want.\nTell us about your business and we'll figure it out together.",
     directContactTitle: "Reach us directly",
     directContactBody: "Prefer not to fill out a form? Email or call us. We respond fastest during business hours.",
     info: { email: "Email", phone: "Phone" },
@@ -429,8 +429,9 @@ const en: Dict = {
   },
   pricingPlans: {
     eyebrow: "Pricing",
-    headerTitle: "Clear packages. No surprise charges.",
-    headerDescription: "Not sure which package to pick? Book a free consult and we'll match the right options to your business.",
+    headerTitle: "All-inclusive pricing. No surprises.",
+    headerDescription:
+      "Every package bundles domain, hosting, SEO, SSL, and mobile-responsive design — with one-time and monthly costs side by side. Not sure which to pick? Book a free 20-minute consult.",
   },
   legal: {
     privacy: {
@@ -517,7 +518,7 @@ const ko: Dict = {
   },
   pricing: {
     eyebrow: "가격 안내",
-    title: { line1: "명확한 일회성 + 월 구독,", line2: "1년 비용까지 한눈에" },
+    title: { line1: "일회성 비용과 월 구독료,", line2: "1년 총비용까지 한눈에" },
     description: {
       line1: "모든 패키지는 도메인·호스팅·기본 SEO·SSL·모바일 반응형을 포함합니다.",
       line2: "비상업 개인은 호스팅·DB가 무료입니다.",
@@ -641,7 +642,7 @@ const ko: Dict = {
     pageDescription: "메이크페이지에 무료 견적을 요청하세요. 영업일 기준 24시간 이내 담당 매니저가 답변드립니다.",
     headerEyebrow: "문의하기",
     headerTitle: "30분 통화면 충분합니다.",
-    headerDescription: "아직 무엇을 만들지 정해지지 않으셔도 괜찮습니다. 사장님 사업 이야기를 들려주시면 함께 정리해드립니다.",
+    headerDescription: "아직 무엇을 만들지 정해지지 않으셔도 괜찮습니다.\n사장님 사업 이야기를 들려주시면 함께 정리해드립니다.",
     directContactTitle: "바로 연락하기",
     directContactBody: "폼을 작성하기 어려우시면 아래로 직접 연락 주세요. 평일 영업시간 내 가장 빠르게 답변드립니다.",
     info: { email: "이메일", phone: "대표전화" },
@@ -702,9 +703,9 @@ const ko: Dict = {
   },
   pricingPlans: {
     eyebrow: "가격 안내",
-    headerTitle: "숨겨진 비용 없이, 명확한 패키지.",
+    headerTitle: "모두 포함된 가격. 숨겨진 비용 없음.",
     headerDescription:
-      "패키지 선택이 어려우시다면 무료 상담을 신청해주세요. 사장님 비즈니스에 맞는 옵션을 함께 정하겠습니다.",
+      "도메인·호스팅·SEO·SSL·모바일 반응형까지 전부 포함. 일회성 비용과 월 구독을 한 화면에서 비교하세요. 어떤 패키지가 맞는지 모르겠다면 20분 무료 상담을 신청해주세요.",
   },
   legal: {
     privacy: {

@@ -44,12 +44,12 @@ export default function PortfolioFilterGrid({ lang, portfolios, categories }: Pr
         })}
       </div>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 scrollbar-hide sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
         {filtered.map((p) => (
           <Link
             key={p.id}
             href={localePath(lang, `/portfolio/${p.id}`)}
-            className="group block overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-ink-200 transition hover:-translate-y-1 hover:shadow-xl"
+            className="group block w-[85%] shrink-0 snap-start overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-ink-200 transition hover:-translate-y-1 hover:shadow-xl sm:w-auto sm:shrink"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-ink-100">
               <Image

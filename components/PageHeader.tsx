@@ -1,6 +1,6 @@
 type Props = {
   eyebrow: string;
-  title: string;
+  title: React.ReactNode;
   description?: string;
   wide?: boolean;
 };
@@ -19,7 +19,7 @@ export default function PageHeader({ eyebrow, title, description, wide }: Props)
             {title}
           </h1>
           {description && (
-            <p className={`mt-6 lead break-keep ${wide ? "lg:whitespace-nowrap" : ""}`}>
+            <p className={`mt-6 lead break-keep whitespace-pre-line ${wide ? "lg:whitespace-nowrap" : ""}`}>
               {description}
             </p>
           )}
