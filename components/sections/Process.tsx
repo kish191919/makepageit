@@ -21,11 +21,11 @@ export default function Process({ lang }: { lang: Lang }) {
         <div className="relative mt-16">
           <ConnectorLine />
 
-          <div className="relative grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="relative -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 scrollbar-hide sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-4">
             {steps.map((s, i) => (
               <article
                 key={s.n}
-                className="group relative flex flex-col rounded-3xl border border-ink-200 bg-white p-6 shadow-[0_1px_0_rgba(15,23,42,0.04)] transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-xl"
+                className="group relative flex w-[85%] shrink-0 snap-start flex-col rounded-3xl border border-ink-200 bg-white p-6 shadow-[0_1px_0_rgba(15,23,42,0.04)] transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-xl sm:w-[60%] md:w-auto"
               >
                 <div className="relative h-28 overflow-hidden rounded-2xl border border-ink-100 bg-gradient-to-br from-brand-50 via-white to-brand-50/40">
                   <StepMockup index={i} />

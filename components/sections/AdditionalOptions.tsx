@@ -1,10 +1,47 @@
+"use client";
+
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import { getDict, type Lang } from "@/lib/i18n";
 
 export default function AdditionalOptions({ lang }: { lang: Lang }) {
   const dict = getDict(lang);
   const options = dict.additionalOptions.options;
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    const cards = Array.from(
+      scroller.querySelectorAll<HTMLElement>("[data-carousel-item]")
+    );
+    if (cards.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const idx = cards.indexOf(visible.target as HTMLElement);
+        if (idx >= 0) setActiveIndex(idx);
+      },
+      { root: scroller, threshold: [0.5, 0.75, 1] }
+    );
+    cards.forEach((c) => observer.observe(c));
+    return () => observer.disconnect();
+  }, [options.length]);
+
+  function scrollToIndex(i: number) {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    const card = scroller.querySelectorAll<HTMLElement>("[data-carousel-item]")[i];
+    if (!card) return;
+    card.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }
 
   return (
     <section className="section relative overflow-hidden bg-white">
@@ -33,11 +70,16 @@ export default function AdditionalOptions({ lang }: { lang: Lang }) {
               description={dict.additionalOptions.description}
             />
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <div
+              ref={scrollerRef}
+              className="mt-8 -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:snap-none sm:overflow-visible sm:px-0 sm:pb-0"
+              style={{ scrollbarWidth: "none" }}
+            >
               {options.map((o) => (
                 <div
                   key={o.title}
-                  className="rounded-2xl border border-ink-200 bg-white p-6 transition hover:-translate-y-1 hover:border-brand-600 hover:shadow-lg"
+                  data-carousel-item
+                  className="snap-center shrink-0 basis-[82%] rounded-2xl border border-ink-200 bg-white p-6 transition hover:-translate-y-1 hover:border-brand-600 hover:shadow-lg sm:shrink sm:basis-auto"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-xl">
                     {o.icon}
@@ -49,6 +91,22 @@ export default function AdditionalOptions({ lang }: { lang: Lang }) {
                   </p>
                   <p className="mt-2 text-xs leading-relaxed text-ink-500">{o.desc}</p>
                 </div>
+              ))}
+            </div>
+
+            <div className="mt-4 flex justify-center gap-2 sm:hidden" role="tablist">
+              {options.map((o, i) => (
+                <button
+                  key={o.title}
+                  type="button"
+                  role="tab"
+                  aria-label={o.title}
+                  aria-selected={i === activeIndex}
+                  onClick={() => scrollToIndex(i)}
+                  className={`h-2 rounded-full transition-all ${
+                    i === activeIndex ? "w-6 bg-brand-600" : "w-2 bg-ink-300"
+                  }`}
+                />
               ))}
             </div>
 

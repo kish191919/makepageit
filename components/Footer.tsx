@@ -22,8 +22,8 @@ export default function Footer() {
   return (
     <footer className="border-t border-ink-200 bg-ink-50">
       <div className="container-custom py-16 sm:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.5fr_1fr_1fr]">
-          <div>
+        <div className="grid grid-cols-2 gap-8 lg:grid-cols-[1.5fr_1fr_1fr] lg:gap-12">
+          <div className="col-span-2 lg:col-span-1">
             <Link href={localePath(lang, "/")} className="flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-900 text-white text-sm font-black">
                 M
@@ -69,7 +69,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-3 border-t border-ink-200 pt-6 text-xs text-ink-400 sm:flex-row sm:items-center">
+        <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-ink-200 pt-6 text-xs text-ink-400 sm:flex-row">
           <p>
             © {year} {site.name}. {dict.footer.rights}
           </p>

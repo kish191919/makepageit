@@ -1,15 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { detectLangFromPath, getDict, localePath, type Lang } from "@/lib/i18n";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const lang: Lang = detectLangFromPath(pathname);
   const dict = getDict(lang);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function handleOutside(event: MouseEvent | TouchEvent) {
+      const target = event.target as Node | null;
+      if (target && headerRef.current && !headerRef.current.contains(target)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("touchstart", handleOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
+    };
+  }, [open]);
 
   if (/^\/(?:ko\/)?portfolio\/[^/]+$/.test(pathname ?? "")) return null;
 
@@ -21,7 +40,10 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink-200/60 bg-white/80 backdrop-blur-md">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 border-b border-ink-200/60 bg-white/80 backdrop-blur-md"
+    >
       <div className="container-custom flex h-16 items-center justify-between sm:h-20">
         <Link href={localePath(lang, "/")} className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-900 text-white">
