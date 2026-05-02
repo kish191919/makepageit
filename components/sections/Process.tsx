@@ -6,7 +6,7 @@ export default function Process({ lang }: { lang: Lang }) {
   const steps = dict.process.steps;
 
   return (
-    <section className="section relative overflow-hidden bg-white">
+    <section className="section relative overflow-hidden bg-ink-50">
       <div className="pointer-events-none absolute -left-32 top-20 hidden h-[420px] w-[420px] rounded-full bg-brand-200 opacity-30 blur-3xl lg:block" />
       <div className="pointer-events-none absolute -right-24 bottom-10 hidden h-[360px] w-[360px] rounded-full bg-accent-400 opacity-20 blur-3xl lg:block" />
 
@@ -25,14 +25,14 @@ export default function Process({ lang }: { lang: Lang }) {
             {steps.map((s, i) => (
               <article
                 key={s.n}
-                className="group relative flex w-[85%] shrink-0 snap-start flex-col rounded-3xl border border-ink-200 bg-white p-6 shadow-[0_1px_0_rgba(15,23,42,0.04)] transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-xl sm:w-[60%] md:w-auto"
+                className="group relative flex w-[85%] shrink-0 snap-start flex-col rounded-3xl border border-ink-200/70 bg-white p-6 shadow-[0_2px_4px_rgba(15,23,42,0.04),0_12px_28px_-12px_rgba(15,23,42,0.10)] transition duration-300 hover:-translate-y-1.5 hover:border-brand-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.04),0_24px_48px_-16px_rgba(79,70,229,0.28)] sm:w-[60%] md:w-auto"
               >
-                <div className="relative h-28 overflow-hidden rounded-2xl border border-ink-100 bg-gradient-to-br from-brand-50 via-white to-brand-50/40">
+                <div className="relative h-28 overflow-hidden rounded-2xl border border-ink-100 bg-gradient-to-br from-brand-50 via-white to-brand-100/40">
                   <StepMockup index={i} />
                 </div>
 
                 <div className="mt-6 flex items-center gap-3">
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white shadow-sm shadow-brand-600/20">
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-xs font-bold text-white shadow-md shadow-brand-600/40 ring-2 ring-white">
                     {s.n}
                   </span>
                   <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-400">
@@ -167,7 +167,10 @@ function Mockup01() {
       preserveAspectRatio="xMidYMid meet"
     >
       <rect x="20" y="18" width="120" height="26" rx="13" className="fill-white" stroke="#E0E7FF" />
-      <circle cx="32" cy="31" r="4" className="fill-brand-300" />
+      <circle cx="32" cy="31" r="4" className="fill-brand-300">
+        <animate attributeName="r" values="4;5;4" dur="2.4s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="1;0.7;1" dur="2.4s" repeatCount="indefinite" />
+      </circle>
       <rect x="42" y="27" width="50" height="3" rx="1.5" className="fill-ink-200" />
       <rect x="42" y="33" width="80" height="3" rx="1.5" className="fill-ink-100" />
 
@@ -177,14 +180,24 @@ function Mockup01() {
 
       <g transform="translate(190 18)">
         <circle cx="12" cy="12" r="12" className="fill-accent-500" />
-        <path
-          d="M12 7 L12 12 L15.5 14"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-        />
+        <g>
+          <path
+            d="M12 7 L12 12 L15.5 14"
+            stroke="white"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            from="0 12 12"
+            to="360 12 12"
+            dur="6s"
+            repeatCount="indefinite"
+          />
+        </g>
       </g>
     </svg>
   );
@@ -209,16 +222,27 @@ function Mockup02() {
       <rect x="32" y="48" width="176" height="22" rx="3" className="fill-brand-50" />
       <rect x="32" y="76" width="52" height="18" rx="3" className="fill-ink-100" />
       <rect x="94" y="76" width="52" height="18" rx="3" className="fill-ink-100" />
-      <rect x="156" y="76" width="52" height="18" rx="3" className="fill-brand-100" stroke="#6366F1" strokeWidth="1.2" />
+      <rect x="156" y="76" width="52" height="18" rx="3" className="fill-brand-100" stroke="#6366F1" strokeWidth="1.2">
+        <animate attributeName="stroke-opacity" values="1;0.35;1" dur="2.4s" repeatCount="indefinite" />
+      </rect>
 
       <g transform="translate(168 80)">
-        <path
-          d="M0 0 L0 14 L4 11 L7 18 L10 17 L7 10 L12 10 Z"
-          className="fill-accent-500"
-          stroke="white"
-          strokeWidth="0.8"
-          strokeLinejoin="round"
-        />
+        <g>
+          <path
+            d="M0 0 L0 14 L4 11 L7 18 L10 17 L7 10 L12 10 Z"
+            className="fill-accent-500"
+            stroke="white"
+            strokeWidth="0.8"
+            strokeLinejoin="round"
+          />
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            values="0,0; 0,-3; 0,0"
+            dur="2.4s"
+            repeatCount="indefinite"
+          />
+        </g>
       </g>
     </svg>
   );
@@ -248,19 +272,27 @@ function Mockup03() {
       <g transform="translate(32 48)">
         <rect width="58" height="20" rx="10" className="fill-brand-50" />
         <circle cx="14" cy="10" r="6" className="fill-brand-600" />
-        <path d="M11 10 L13 12 L17 8" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="M11 10 L13 12 L17 8" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <animate attributeName="stroke-dasharray" values="0 12;12 0;12 0;12 0" keyTimes="0;0.18;0.92;1" dur="3.6s" repeatCount="indefinite" />
+        </path>
         <rect x="24" y="8" width="28" height="4" rx="2" className="fill-brand-600/80" />
       </g>
       <g transform="translate(96 48)">
         <rect width="58" height="20" rx="10" className="fill-brand-50" />
         <circle cx="14" cy="10" r="6" className="fill-brand-600" />
-        <path d="M11 10 L13 12 L17 8" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="M11 10 L13 12 L17 8" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <animate attributeName="stroke-dasharray" values="0 12;0 12;12 0;12 0" keyTimes="0;0.32;0.5;1" dur="3.6s" repeatCount="indefinite" />
+        </path>
         <rect x="24" y="8" width="28" height="4" rx="2" className="fill-brand-600/80" />
       </g>
       <g transform="translate(160 48)">
-        <rect width="58" height="20" rx="10" className="fill-accent-500" />
+        <rect width="58" height="20" rx="10" className="fill-accent-500">
+          <animate attributeName="opacity" values="1;0.7;1" dur="1.8s" repeatCount="indefinite" />
+        </rect>
         <circle cx="14" cy="10" r="6" className="fill-white" />
-        <path d="M11 10 L13 12 L17 8" stroke="#F97316" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+        <path d="M11 10 L13 12 L17 8" stroke="#F97316" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" fill="none">
+          <animate attributeName="stroke-dasharray" values="0 12;0 12;12 0;12 0" keyTimes="0;0.6;0.78;1" dur="3.6s" repeatCount="indefinite" />
+        </path>
         <rect x="24" y="8" width="28" height="4" rx="2" className="fill-white/90" />
       </g>
 
@@ -296,7 +328,10 @@ function Mockup04() {
       <rect x="84" y="64" width="14" height="22" rx="2" className="fill-brand-400" />
       <rect x="106" y="54" width="14" height="32" rx="2" className="fill-brand-500" />
       <rect x="128" y="48" width="14" height="38" rx="2" className="fill-brand-600" />
-      <rect x="150" y="40" width="14" height="46" rx="2" className="fill-accent-500" />
+      <rect x="150" y="40" width="14" height="46" rx="2" className="fill-accent-500">
+        <animate attributeName="height" values="46;52;46" dur="2.6s" repeatCount="indefinite" />
+        <animate attributeName="y" values="40;34;40" dur="2.6s" repeatCount="indefinite" />
+      </rect>
 
       <path
         d="M48 78 L70 70 L92 74 L114 64 L136 58 L158 50"
@@ -307,8 +342,13 @@ function Mockup04() {
         fill="none"
         strokeDasharray="2 3"
         className="text-accent-500/60"
-      />
-      <circle cx="158" cy="50" r="2.5" className="fill-accent-500" />
+      >
+        <animate attributeName="stroke-dashoffset" values="0;-10" dur="1.4s" repeatCount="indefinite" />
+      </path>
+      <circle cx="158" cy="50" r="2.5" className="fill-accent-500">
+        <animate attributeName="r" values="2.5;4;2.5" dur="2.6s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="1;0.6;1" dur="2.6s" repeatCount="indefinite" />
+      </circle>
     </svg>
   );
 }

@@ -10,7 +10,7 @@ export default function Pricing({ lang }: { lang: Lang }) {
   const yearlyLabel = lang === "en" ? " / yr" : " / 년";
 
   return (
-    <section className="section relative overflow-hidden bg-gradient-to-b from-ink-50 to-white">
+    <section className="section relative overflow-hidden bg-ink-50">
       <div className="pointer-events-none absolute -right-32 top-24 hidden h-[400px] w-[400px] rounded-full bg-accent-400 opacity-20 blur-3xl md:block" />
       <div className="pointer-events-none absolute -left-32 bottom-16 hidden h-[420px] w-[420px] rounded-full bg-brand-200 opacity-30 blur-3xl md:block" />
 
@@ -38,10 +38,10 @@ export default function Pricing({ lang }: { lang: Lang }) {
           {plans.map((p) => (
             <article
               key={p.id}
-              className={`relative flex flex-col rounded-3xl border p-8 transition ${
+              className={`relative flex flex-col rounded-3xl border p-8 transition duration-300 ${
                 p.best
                   ? "border-ink-900 bg-ink-900 text-white shadow-2xl lg:scale-[1.03]"
-                  : "border-ink-200 bg-white text-ink-900 hover:border-brand-600"
+                  : "border-ink-200/70 bg-white text-ink-900 shadow-[0_2px_4px_rgba(15,23,42,0.04),0_12px_28px_-12px_rgba(15,23,42,0.10)] hover:-translate-y-1 hover:border-brand-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.04),0_24px_48px_-16px_rgba(79,70,229,0.28)]"
               }`}
             >
               {p.best && (

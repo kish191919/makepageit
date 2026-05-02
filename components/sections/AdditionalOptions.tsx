@@ -44,7 +44,7 @@ export default function AdditionalOptions({ lang }: { lang: Lang }) {
   }
 
   return (
-    <section className="section relative overflow-hidden bg-white">
+    <section className="section relative overflow-hidden bg-ink-50">
       <div className="container-custom">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
           <div className="relative">
@@ -79,9 +79,9 @@ export default function AdditionalOptions({ lang }: { lang: Lang }) {
                 <div
                   key={o.title}
                   data-carousel-item
-                  className="snap-center shrink-0 basis-[82%] rounded-2xl border border-ink-200 bg-white p-6 transition hover:-translate-y-1 hover:border-brand-600 hover:shadow-lg sm:shrink sm:basis-auto"
+                  className="snap-center shrink-0 basis-[82%] rounded-2xl border border-ink-200/70 bg-white p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_8px_20px_-12px_rgba(15,23,42,0.10)] transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-[0_3px_6px_rgba(15,23,42,0.04),0_18px_36px_-12px_rgba(79,70,229,0.22)] sm:shrink sm:basis-auto"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-xl">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-50 to-brand-100 text-xl ring-1 ring-brand-100/60">
                     {o.icon}
                   </div>
                   <p className="mt-4 text-sm font-semibold text-ink-900">{o.title}</p>
