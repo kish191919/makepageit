@@ -65,6 +65,11 @@ export default function Footer() {
                   {site.phone}
                 </a>
               </li>
+              <li>
+                <Link href={localePath(lang, "/manage")} className="hover:text-brand-600">
+                  {dict.manage.nav}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

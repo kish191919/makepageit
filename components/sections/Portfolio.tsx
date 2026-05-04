@@ -9,7 +9,7 @@ export default function Portfolio({ lang, limit = 6 }: { lang: Lang; limit?: num
   const items = getPortfolios(lang).slice(0, limit);
 
   return (
-    <section className="section bg-ink-50">
+    <section className="section bg-brand-50">
       <div className="container-custom">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading

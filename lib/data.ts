@@ -34,6 +34,11 @@ export type Plan = {
     yearTotal: string;
     yearlyAfter: string;
   };
+  amounts: {
+    setup: number;
+    monthly: number;
+    domain: number;
+  };
   description: string;
   features: string[];
   cta: string;
@@ -519,11 +524,12 @@ const plansEn: Plan[] = [
       oneTimeNote: "one-time (3 pages)",
       monthly: "$15",
       monthlyNote: "monthly maintenance",
-      annual: "$15",
+      annual: "$20",
       annualNote: "domain (annual)",
-      yearTotal: "$494",
-      yearlyAfter: "$195",
+      yearTotal: "$499",
+      yearlyAfter: "$200",
     },
+    amounts: { setup: 299, monthly: 15, domain: 20 },
     description: "A clean, professional starting point for non-commercial portfolios.",
     features: [
       "3-page core layout",
@@ -537,17 +543,20 @@ const plansEn: Plan[] = [
   {
     id: "portfolio-pro",
     name: "PORTFOLIO PRO",
+    best: true,
+    badge: "RECOMMENDED",
     audience: "Freelancers · consultants · solopreneurs",
     pricing: {
       oneTime: "$449",
       oneTimeNote: "one-time (5 pages)",
       monthly: "$65",
       monthlyNote: "hosting + DB + maintenance",
-      annual: "$15",
+      annual: "$20",
       annualNote: "domain (annual)",
-      yearTotal: "$1,244",
-      yearlyAfter: "$795",
+      yearTotal: "$1,249",
+      yearlyAfter: "$800",
     },
+    amounts: { setup: 449, monthly: 65, domain: 20 },
     description: "Everything you need to run a real business website.",
     features: [
       "5-page core layout",
@@ -571,11 +580,12 @@ const plansKo: Plan[] = [
       oneTimeNote: "일회성 (3페이지)",
       monthly: "$15",
       monthlyNote: "월 유지보수",
-      annual: "$15",
+      annual: "$20",
       annualNote: "연 도메인",
-      yearTotal: "$494",
-      yearlyAfter: "$195",
+      yearTotal: "$499",
+      yearlyAfter: "$200",
     },
+    amounts: { setup: 299, monthly: 15, domain: 20 },
     description: "비상업적 개인 포트폴리오를 깔끔하게 시작.",
     features: [
       "3페이지 기본 구성",
@@ -589,17 +599,20 @@ const plansKo: Plan[] = [
   {
     id: "portfolio-pro",
     name: "PORTFOLIO PRO",
+    best: true,
+    badge: "추천",
     audience: "프리랜서 · 컨설턴트 · 강사 · 소상공인",
     pricing: {
       oneTime: "$449",
       oneTimeNote: "일회성 (5페이지)",
       monthly: "$65",
       monthlyNote: "호스팅 + DB + 유지보수",
-      annual: "$15",
+      annual: "$20",
       annualNote: "연 도메인",
-      yearTotal: "$1,244",
-      yearlyAfter: "$795",
+      yearTotal: "$1,249",
+      yearlyAfter: "$800",
     },
+    amounts: { setup: 449, monthly: 65, domain: 20 },
     description: "상업 활동에 필요한 모든 기능을 갖춘 포트폴리오.",
     features: [
       "5페이지 기본 구성",

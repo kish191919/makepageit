@@ -6,6 +6,15 @@ import SectionHeading from "@/components/SectionHeading";
 import { getPlans } from "@/lib/data";
 import { getDict, localePath, type Lang } from "@/lib/i18n";
 
+const CHECKOUT_PLAN_IDS = new Set(["portfolio-lite"]);
+
+type CheckoutOptions = { monthly: boolean; domain: boolean };
+const DEFAULT_OPTIONS: CheckoutOptions = { monthly: true, domain: true };
+
+function formatUsd(amount: number): string {
+  return `$${amount.toLocaleString("en-US")}`;
+}
+
 export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hideHeading?: boolean }) {
   const dict = getDict(lang);
   const plans = getPlans(lang);
@@ -14,6 +23,47 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
 
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [pendingPlan, setPendingPlan] = useState<string | null>(null);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [showCanceled, setShowCanceled] = useState(false);
+  const [planOptions, setPlanOptions] = useState<Record<string, CheckoutOptions>>({});
+
+  function getOptions(planId: string): CheckoutOptions {
+    return planOptions[planId] ?? DEFAULT_OPTIONS;
+  }
+
+  function setOption(planId: string, key: keyof CheckoutOptions, value: boolean) {
+    setPlanOptions((prev) => ({
+      ...prev,
+      [planId]: { ...getOptions(planId), [key]: value },
+    }));
+  }
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("canceled") === "1") setShowCanceled(true);
+  }, []);
+
+  async function handleCheckout(planId: string) {
+    setCheckoutError(null);
+    setPendingPlan(planId);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ planId, lang, options: getOptions(planId) }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.url) {
+        throw new Error(data?.error || dict.pricing.checkoutError);
+      }
+      window.location.href = data.url as string;
+    } catch (err) {
+      setPendingPlan(null);
+      setCheckoutError(err instanceof Error ? err.message : dict.pricing.checkoutError);
+    }
+  }
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -48,11 +98,16 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
   }
 
   return (
-    <section className="section relative overflow-hidden bg-ink-50">
+    <section className="section relative overflow-hidden bg-ink-100">
       <div className="pointer-events-none absolute -right-32 top-24 hidden h-[400px] w-[400px] rounded-full bg-accent-400 opacity-20 blur-3xl md:block" />
       <div className="pointer-events-none absolute -left-32 bottom-16 hidden h-[420px] w-[420px] rounded-full bg-brand-200 opacity-30 blur-3xl md:block" />
 
       <div className="container-custom relative z-10">
+        {showCanceled && (
+          <div className="mb-8 rounded-2xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
+            {dict.pricing.canceledNotice}
+          </div>
+        )}
         {!hideHeading && (
           <SectionHeading
             align="center"
@@ -207,20 +262,118 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                 ))}
               </ul>
 
-              <Link
-                href={localePath(lang, "/contact")}
-                className={`mt-9 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition ${
-                  p.best
-                    ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
-                    : "bg-ink-900 text-white hover:bg-blue-700"
-                }`}
-              >
-                {p.cta}
-              </Link>
+              {CHECKOUT_PLAN_IDS.has(p.id) ? (() => {
+                const opts = getOptions(p.id);
+                const today =
+                  p.amounts.setup +
+                  (opts.monthly ? p.amounts.monthly : 0) +
+                  (opts.domain ? p.amounts.domain : 0);
+                const isSubscription = opts.monthly;
+                const ctaLabel =
+                  pendingPlan === p.id
+                    ? dict.pricing.checkoutSubmitting
+                    : isSubscription
+                    ? dict.pricing.subscribeCta(formatUsd(today))
+                    : dict.pricing.payOnceCta(formatUsd(today));
+                return (
+                  <div className="mt-9 space-y-3">
+                    <div
+                      className={`rounded-2xl p-4 ring-1 ${
+                        p.best
+                          ? "bg-white/5 ring-white/15"
+                          : "bg-white/15 ring-white/30"
+                      }`}
+                    >
+                      <p
+                        className={`text-[11px] font-bold uppercase tracking-[0.2em] ${
+                          p.best ? "text-white/70" : "text-white/90"
+                        }`}
+                      >
+                        {dict.pricing.customizeTitle}
+                      </p>
+                      <div className="mt-3 space-y-2.5">
+                        <ToggleRow
+                          checked={opts.monthly}
+                          onChange={(v) => setOption(p.id, "monthly", v)}
+                          label={dict.pricing.customizeMonthlyLabel}
+                          hint={dict.pricing.customizeMonthlyHint}
+                          amount={`${formatUsd(p.amounts.monthly)}${monthlyLabel}`}
+                          dark={Boolean(p.best)}
+                        />
+                        <ToggleRow
+                          checked={opts.domain}
+                          onChange={(v) => setOption(p.id, "domain", v)}
+                          label={dict.pricing.customizeDomainLabel}
+                          hint={dict.pricing.customizeDomainHint}
+                          amount={`${formatUsd(p.amounts.domain)}${yearlyLabel}`}
+                          dark={Boolean(p.best)}
+                        />
+                      </div>
+                      <div
+                        className={`mt-4 flex items-baseline justify-between border-t pt-3 text-sm ${
+                          p.best ? "border-white/10" : "border-white/30"
+                        }`}
+                      >
+                        <span className={p.best ? "text-white/70" : "text-white/90"}>
+                          {dict.pricing.todayLabel}
+                        </span>
+                        <span className="text-2xl font-extrabold text-white">
+                          {formatUsd(today)}
+                        </span>
+                      </div>
+                      {isSubscription && (
+                        <p
+                          className={`mt-1 text-right text-[11px] ${
+                            p.best ? "text-white/50" : "text-white/70"
+                          }`}
+                        >
+                          {dict.pricing.monthlyAfterLabel(formatUsd(p.amounts.monthly))}
+                        </p>
+                      )}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => handleCheckout(p.id)}
+                      disabled={pendingPlan === p.id}
+                      className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-70 ${
+                        p.best
+                          ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
+                          : "bg-ink-900 text-white hover:bg-blue-700"
+                      }`}
+                    >
+                      {ctaLabel}
+                    </button>
+                    <Link
+                      href={localePath(lang, "/contact")}
+                      className={`block text-center text-xs font-semibold underline-offset-4 hover:underline ${
+                        p.best ? "text-ink-200" : "text-white/80"
+                      }`}
+                    >
+                      {dict.pricing.quoteCta}
+                    </Link>
+                  </div>
+                );
+              })() : (
+                <Link
+                  href={localePath(lang, "/contact")}
+                  className={`mt-9 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition ${
+                    p.best
+                      ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
+                      : "bg-ink-900 text-white hover:bg-blue-700"
+                  }`}
+                >
+                  {p.cta}
+                </Link>
+              )}
               </div>
             </article>
           ))}
         </div>
+
+        {checkoutError && (
+          <p className="mt-4 text-center text-sm font-medium text-red-600">{checkoutError}</p>
+        )}
 
         <div className="mt-4 flex justify-center gap-2 md:hidden" role="tablist">
           {plans.map((p, i) => (
@@ -239,5 +392,41 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
         </div>
       </div>
     </section>
+  );
+}
+
+function ToggleRow({
+  checked,
+  onChange,
+  label,
+  hint,
+  amount,
+  dark,
+}: {
+  checked: boolean;
+  onChange: (v: boolean) => void;
+  label: string;
+  hint: string;
+  amount: string;
+  dark: boolean;
+}) {
+  return (
+    <label className="flex cursor-pointer items-start gap-3">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked)}
+        className="mt-1 h-4 w-4 flex-none accent-accent-500"
+      />
+      <span className="flex flex-1 items-start justify-between gap-3 text-left">
+        <span className="flex flex-col">
+          <span className="text-sm font-semibold text-white">{label}</span>
+          <span className={`text-[11px] ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
+        </span>
+        <span className={`whitespace-nowrap text-xs font-semibold ${dark ? "text-white/70" : "text-white/90"}`}>
+          {amount}
+        </span>
+      </span>
+    </label>
   );
 }

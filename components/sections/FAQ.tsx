@@ -12,7 +12,7 @@ export default function FAQ({ lang }: { lang: Lang }) {
   const faqs = getFaqs(lang);
 
   return (
-    <section className="section relative overflow-hidden bg-ink-50">
+    <section className="section relative overflow-hidden bg-brand-50">
       <div className="pointer-events-none absolute -right-40 bottom-0 hidden h-[500px] w-[500px] rounded-full bg-brand-200 opacity-25 blur-3xl lg:block" />
 
       <div className="container-custom relative z-10">

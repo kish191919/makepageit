@@ -66,6 +66,23 @@ type Dict = {
     yearAfter: string;
     pageTitle: string;
     pageDescription: string;
+    checkoutCta: string;
+    checkoutSubmitting: string;
+    checkoutError: string;
+    customizeTitle: string;
+    customizeMonthlyLabel: string;
+    customizeMonthlyHint: string;
+    customizeDomainLabel: string;
+    customizeDomainHint: string;
+    todayLabel: string;
+    monthlyAfterLabel: (amount: string) => string;
+    subscribeCta: (amount: string) => string;
+    payOnceCta: (amount: string) => string;
+    quoteCta: string;
+    successTitle: string;
+    successBody: string;
+    successHomeCta: string;
+    canceledNotice: string;
     compare: {
       title: string;
       eyebrow: string;
@@ -191,6 +208,57 @@ type Dict = {
     privacy: { eyebrow: string; title: string; description: string; pageTitle: string; pageDescription: string };
     terms: { eyebrow: string; title: string; description: string; pageTitle: string; pageDescription: string };
   };
+  manage: {
+    nav: string;
+    pageTitle: string;
+    pageDescription: string;
+    requestEyebrow: string;
+    requestTitle: string;
+    requestBody: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    submitCta: string;
+    submitting: string;
+    linkSentTitle: string;
+    linkSentBody: string;
+    requestError: string;
+    emailSubject: string;
+    emailHeading: string;
+    emailIntro: string;
+    emailCta: string;
+    emailExpiryNote: string;
+    emailFooter: string;
+    dashboardEyebrow: string;
+    dashboardTitle: string;
+    dashboardBody: (email: string) => string;
+    subscriptionCardTitle: string;
+    subscriptionCardBody: string;
+    subscriptionCardCta: string;
+    subscriptionCardLoading: string;
+    domainCardTitle: string;
+    domainCardBody: string;
+    domainNotePlaceholder: string;
+    domainCardCta: string;
+    domainSubmitting: string;
+    domainSentTitle: string;
+    domainSentBody: string;
+    portalError: string;
+    domainError: string;
+    invalidTokenTitle: string;
+    invalidTokenBody: string;
+    invalidTokenCta: string;
+    customerEmailSubject: string;
+    customerEmailHeading: string;
+    customerEmailIntro: string;
+    customerEmailManageNote: string;
+    customerEmailManageCta: string;
+    customerEmailFooter: string;
+    cancelEmailSubject: string;
+    cancelEmailHeading: string;
+    cancelEmailBody: string;
+    domainRequestEmailSubject: (email: string) => string;
+    domainRequestEmailHeading: string;
+  };
   backToPortfolio: { long: string; short: string };
   notFoundTemplate: string;
   rootMetadata: {
@@ -257,6 +325,23 @@ const en: Dict = {
     yearAfter: "📈 Year 2 onward (annual)",
     pageTitle: "Pricing",
     pageDescription: "Portfolio Lite, Portfolio Pro — MAKEPAGE's transparent packages with one-time and monthly costs in plain view.",
+    checkoutCta: "Subscribe & launch",
+    checkoutSubmitting: "Redirecting to checkout...",
+    checkoutError: "Checkout failed. Please try again or contact us.",
+    customizeTitle: "Customize what you pay",
+    customizeMonthlyLabel: "Monthly maintenance",
+    customizeMonthlyHint: "Skip if you'll handle updates yourself.",
+    customizeDomainLabel: "First-year domain",
+    customizeDomainHint: "Skip if you already own a domain.",
+    todayLabel: "Pay today",
+    monthlyAfterLabel: (amount) => `then ${amount}/mo from next month`,
+    subscribeCta: (amount) => `Subscribe — ${amount} today`,
+    payOnceCta: (amount) => `Pay ${amount}`,
+    quoteCta: "Get a quote",
+    successTitle: "Payment received — welcome to MAKEPAGE.",
+    successBody: "Your subscription is active. Your account manager will reach out within one business day to kick off your build.",
+    successHomeCta: "Back to home",
+    canceledNotice: "Checkout was canceled. You can try again whenever you're ready.",
     compare: {
       title: "Compare packages side by side",
       eyebrow: "Detailed comparison",
@@ -268,9 +353,9 @@ const en: Dict = {
         { item: "└ Hosting", lite: "Free (non-commercial)", pro: "$20/mo included", isSub: true },
         { item: "└ Database", lite: "Free (non-commercial)", pro: "$25/mo included", isSub: true },
         { item: "└ Maintenance", lite: "$15/mo included", pro: "$20/mo included", isSub: true },
-        { item: "Domain (annual)", lite: "$15", pro: "$15" },
-        { item: "First-year total", lite: "$494", pro: "$1,244" },
-        { item: "Year 2 onward (annual)", lite: "$195", pro: "$795" },
+        { item: "Domain (annual)", lite: "$20", pro: "$20" },
+        { item: "First-year total", lite: "$499", pro: "$1,249" },
+        { item: "Year 2 onward (annual)", lite: "$200", pro: "$800" },
         { item: "Pages included", lite: "3 pages", pro: "5 pages" },
         { item: "Mobile-responsive", lite: "✓", pro: "✓" },
         { item: "Basic SEO", lite: "✓", pro: "✓" },
@@ -453,6 +538,67 @@ const en: Dict = {
       pageDescription: "MAKEPAGE (operated by CloudMasterIT LLC) Terms of Service.",
     },
   },
+  manage: {
+    nav: "Manage subscription",
+    pageTitle: "Manage your subscription",
+    pageDescription:
+      "Cancel your monthly maintenance, update your payment method, view invoices, or request a domain non-renewal.",
+    requestEyebrow: "Account",
+    requestTitle: "Manage your subscription",
+    requestBody:
+      "Enter the email you used at checkout. We'll send a secure link valid for 15 minutes that takes you to your billing portal.",
+    emailLabel: "Email address",
+    emailPlaceholder: "you@example.com",
+    submitCta: "Email me a secure link",
+    submitting: "Sending...",
+    linkSentTitle: "Check your inbox",
+    linkSentBody:
+      "If we have an account on file with that email, a secure link is on its way. The link expires in 15 minutes.",
+    requestError: "We couldn't process that request. Please try again in a moment.",
+    emailSubject: "Manage your MAKEPAGE subscription",
+    emailHeading: "Manage your subscription",
+    emailIntro:
+      "Use the secure link below to open your billing portal. From there you can cancel your monthly maintenance, update your card, or download invoices.",
+    emailCta: "Open billing portal",
+    emailExpiryNote: "This link expires in 15 minutes. If you didn't request it, you can ignore this email.",
+    emailFooter: "MAKEPAGE — websites that win customers.",
+    dashboardEyebrow: "Account",
+    dashboardTitle: "Manage your subscription",
+    dashboardBody: (email) => `Signed in as ${email}. Choose what you'd like to do.`,
+    subscriptionCardTitle: "Monthly maintenance",
+    subscriptionCardBody:
+      "Open the secure Stripe billing portal to cancel your monthly subscription, update your payment method, or download invoices.",
+    subscriptionCardCta: "Open billing portal",
+    subscriptionCardLoading: "Opening portal...",
+    domainCardTitle: "Domain renewal",
+    domainCardBody:
+      "Domain charges are billed once per year and aren't part of your monthly subscription. Submit a non-renewal request and we'll confirm by email and let your domain expire at the end of the current term.",
+    domainNotePlaceholder: "Optional note (which domain, why, etc.)",
+    domainCardCta: "Request domain non-renewal",
+    domainSubmitting: "Submitting...",
+    domainSentTitle: "Request received",
+    domainSentBody: "Thanks — we'll confirm by email within one business day.",
+    portalError: "Couldn't open the billing portal. Please try again or contact support.",
+    domainError: "Couldn't submit your request. Please try again or contact support.",
+    invalidTokenTitle: "This link is invalid or has expired",
+    invalidTokenBody: "Secure links are only valid for 15 minutes. Request a new one to continue.",
+    invalidTokenCta: "Request a new link",
+    customerEmailSubject: "Your MAKEPAGE order is confirmed",
+    customerEmailHeading: "Thanks — your order is confirmed",
+    customerEmailIntro:
+      "Your account manager will reach out within one business day to kick off your build. Below is a copy of your receipt for your records.",
+    customerEmailManageNote:
+      "Need to cancel monthly maintenance, update your card, or stop your domain renewal? You can do all of that anytime from your account page.",
+    customerEmailManageCta: "Manage my subscription",
+    customerEmailFooter:
+      "If you didn't make this purchase, please contact us right away at admin@cloudmasterit.com.",
+    cancelEmailSubject: "Your MAKEPAGE subscription has been canceled",
+    cancelEmailHeading: "Your subscription has been canceled",
+    cancelEmailBody:
+      "Your monthly maintenance subscription has been canceled. You won't be billed again. If this was a mistake, just reply to this email and we'll get you sorted.",
+    domainRequestEmailSubject: (email) => `[MAKEPAGE] Domain non-renewal request — ${email}`,
+    domainRequestEmailHeading: "Domain non-renewal request",
+  },
   backToPortfolio: { long: "Back to MAKEPAGE work", short: "Back" },
   notFoundTemplate: "Template preview",
   rootMetadata: {
@@ -531,6 +677,23 @@ const ko: Dict = {
     yearAfter: "📈 2년차부터 매년 예상비용",
     pageTitle: "가격안내",
     pageDescription: "Portfolio Lite, Portfolio Pro, Business Starter — 메이크페이지의 투명한 번들. 일회성 비용과 월 구독 모두 한눈에.",
+    checkoutCta: "지금 결제하고 시작하기",
+    checkoutSubmitting: "결제창으로 이동 중...",
+    checkoutError: "결제 시작에 실패했습니다. 잠시 후 다시 시도해주세요.",
+    customizeTitle: "결제 항목 선택",
+    customizeMonthlyLabel: "월 유지보수",
+    customizeMonthlyHint: "직접 운영하실 거면 체크 해제하세요.",
+    customizeDomainLabel: "첫해 도메인",
+    customizeDomainHint: "이미 도메인이 있으시면 체크 해제하세요.",
+    todayLabel: "오늘 결제",
+    monthlyAfterLabel: (amount) => `다음 달부터 매월 ${amount}`,
+    subscribeCta: (amount) => `${amount} 결제하고 구독 시작`,
+    payOnceCta: (amount) => `${amount} 결제하기`,
+    quoteCta: "견적 문의하기",
+    successTitle: "결제가 완료되었습니다.",
+    successBody: "구독이 활성화되었습니다. 영업일 기준 24시간 이내 담당 매니저가 제작 시작을 위해 연락드립니다.",
+    successHomeCta: "홈으로 돌아가기",
+    canceledNotice: "결제가 취소되었습니다. 언제든 다시 시도해주세요.",
     compare: {
       title: "패키지 한눈에 비교하기",
       eyebrow: "상세 비교",
@@ -542,9 +705,9 @@ const ko: Dict = {
         { item: "└ 호스팅", lite: "무료 (비상업용)", pro: "$20/월 포함", isSub: true },
         { item: "└ 데이터베이스", lite: "무료 (비상업용)", pro: "$25/월 포함", isSub: true },
         { item: "└ 유지보수", lite: "$15/월 포함", pro: "$20/월 포함", isSub: true },
-        { item: "연 도메인", lite: "$15", pro: "$15" },
-        { item: "1년 총 예상비용", lite: "$494", pro: "$1,244" },
-        { item: "2년차부터 매년 예상비용", lite: "$195", pro: "$795" },
+        { item: "연 도메인", lite: "$20", pro: "$20" },
+        { item: "1년 총 예상비용", lite: "$499", pro: "$1,249" },
+        { item: "2년차부터 매년 예상비용", lite: "$200", pro: "$800" },
         { item: "페이지 수", lite: "3페이지", pro: "5페이지" },
         { item: "모바일 반응형", lite: "✓", pro: "✓" },
         { item: "기본 SEO", lite: "✓", pro: "✓" },
@@ -732,6 +895,67 @@ const ko: Dict = {
       pageTitle: "이용약관",
       pageDescription: "메이크페이지(운영: CloudMasterIT LLC) 이용약관",
     },
+  },
+  manage: {
+    nav: "구독 관리",
+    pageTitle: "구독 관리",
+    pageDescription:
+      "월 유지보수 취소, 결제 수단 변경, 인보이스 조회, 도메인 갱신 거절 요청을 한 곳에서.",
+    requestEyebrow: "내 계정",
+    requestTitle: "내 구독 관리하기",
+    requestBody:
+      "결제 시 사용하신 이메일을 입력해주세요. 15분간 유효한 안전 링크를 보내드립니다. 링크를 누르시면 결제 관리 페이지로 이동합니다.",
+    emailLabel: "이메일 주소",
+    emailPlaceholder: "you@example.com",
+    submitCta: "안전 링크 받기",
+    submitting: "전송 중...",
+    linkSentTitle: "메일함을 확인해주세요",
+    linkSentBody:
+      "해당 이메일로 가입된 결제 내역이 있다면 안전 링크가 발송됩니다. 링크는 15분 후 만료됩니다.",
+    requestError: "요청을 처리하지 못했습니다. 잠시 후 다시 시도해주세요.",
+    emailSubject: "메이크페이지 구독 관리",
+    emailHeading: "구독 관리",
+    emailIntro:
+      "아래 안전 링크를 통해 결제 관리 페이지로 이동하실 수 있습니다. 월 유지보수 취소, 카드 정보 변경, 인보이스 다운로드 모두 가능합니다.",
+    emailCta: "결제 관리 페이지 열기",
+    emailExpiryNote: "이 링크는 15분 후 만료됩니다. 본인이 요청하지 않으셨다면 무시하셔도 됩니다.",
+    emailFooter: "메이크페이지 — 사장님 사업이 빛나는 홈페이지.",
+    dashboardEyebrow: "내 계정",
+    dashboardTitle: "구독 관리",
+    dashboardBody: (email) => `${email} 계정으로 인증되었습니다. 원하시는 작업을 선택해주세요.`,
+    subscriptionCardTitle: "월 유지보수",
+    subscriptionCardBody:
+      "Stripe 결제 관리 페이지에서 월 구독을 취소하거나, 결제 수단을 변경하거나, 인보이스를 다운로드할 수 있습니다.",
+    subscriptionCardCta: "결제 관리 페이지 열기",
+    subscriptionCardLoading: "이동 중...",
+    domainCardTitle: "도메인 갱신",
+    domainCardBody:
+      "도메인은 1년에 한 번 결제되는 항목으로 월 구독에 포함되지 않습니다. 갱신을 원치 않으시면 아래로 요청해주세요. 영업일 1일 이내에 메일로 확인드리고, 현재 기간 종료 시 도메인을 만료시켜드립니다.",
+    domainNotePlaceholder: "메모 (어떤 도메인인지, 사유 등 — 선택)",
+    domainCardCta: "도메인 갱신 거절 요청",
+    domainSubmitting: "전송 중...",
+    domainSentTitle: "요청이 접수되었습니다",
+    domainSentBody: "감사합니다. 영업일 기준 1일 이내에 메일로 확인드립니다.",
+    portalError: "결제 관리 페이지를 열지 못했습니다. 다시 시도해주시거나 고객센터로 문의해주세요.",
+    domainError: "요청을 전송하지 못했습니다. 다시 시도해주시거나 고객센터로 문의해주세요.",
+    invalidTokenTitle: "유효하지 않거나 만료된 링크입니다",
+    invalidTokenBody: "안전 링크는 15분간만 유효합니다. 새 링크를 받아 다시 시도해주세요.",
+    invalidTokenCta: "새 링크 받기",
+    customerEmailSubject: "메이크페이지 결제가 완료되었습니다",
+    customerEmailHeading: "결제가 완료되었습니다",
+    customerEmailIntro:
+      "영업일 기준 24시간 이내 담당 매니저가 제작 시작을 위해 연락드립니다. 영수증을 아래에 첨부하니 보관용으로 사용해주세요.",
+    customerEmailManageNote:
+      "월 유지보수 취소, 결제 수단 변경, 도메인 갱신 거절이 필요하실 때는 언제든 내 계정 페이지에서 처리하실 수 있습니다.",
+    customerEmailManageCta: "내 구독 관리하기",
+    customerEmailFooter:
+      "본인이 결제하지 않으셨다면 즉시 admin@cloudmasterit.com 으로 연락 주세요.",
+    cancelEmailSubject: "메이크페이지 구독이 취소되었습니다",
+    cancelEmailHeading: "구독이 취소되었습니다",
+    cancelEmailBody:
+      "월 유지보수 구독이 취소되었습니다. 더 이상 결제되지 않습니다. 실수로 취소하셨다면 이 메일에 답장해주세요.",
+    domainRequestEmailSubject: (email) => `[MAKEPAGE] 도메인 갱신 거절 요청 — ${email}`,
+    domainRequestEmailHeading: "도메인 갱신 거절 요청",
   },
   backToPortfolio: { long: "메이크페이지 포트폴리오로 돌아가기", short: "돌아가기" },
   notFoundTemplate: "포트폴리오 템플릿",
