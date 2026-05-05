@@ -186,8 +186,9 @@ export async function issueRecurringCheckoutLink(input: {
 }): Promise<Stripe.Checkout.Session> {
   const stripe = getStripe();
   const currency = input.currency ?? DEFAULT_CURRENCY;
-  const successPath = input.lang === "ko" ? "/ko/pricing?status=success" : "/pricing?status=success";
-  const cancelPath = input.lang === "ko" ? "/ko/pricing?status=canceled" : "/pricing?status=canceled";
+  const localePath = input.lang === "ko" ? "/ko" : "";
+  const successPath = `${localePath}/checkout/success?session_id={CHECKOUT_SESSION_ID}`;
+  const cancelPath = `${localePath}/pricing?canceled=1`;
 
   return stripe.checkout.sessions.create({
     mode: "subscription",
