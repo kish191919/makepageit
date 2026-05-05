@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { getDict, localePath, type Lang } from "@/lib/i18n";
 
-export default function CheckoutSuccessView({ lang }: { lang: Lang }) {
+type Props = {
+  lang: Lang;
+  receiptUrl?: string | null;
+};
+
+export default function CheckoutSuccessView({ lang, receiptUrl }: Props) {
   const dict = getDict(lang);
   return (
     <section className="section">
@@ -28,6 +33,16 @@ export default function CheckoutSuccessView({ lang }: { lang: Lang }) {
           >
             {dict.pricing.successHomeCta}
           </Link>
+          {receiptUrl ? (
+            <a
+              href={receiptUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-brand-200 bg-brand-50 px-6 py-3.5 text-sm font-semibold text-brand-700 transition hover:border-brand-300 hover:bg-brand-100"
+            >
+              {dict.pricing.successDownloadReceiptCta}
+            </a>
+          ) : null}
           <Link
             href={localePath(lang, "/manage")}
             className="inline-flex items-center justify-center rounded-full border border-ink-200 bg-white px-6 py-3.5 text-sm font-semibold text-ink-900 transition hover:border-ink-300 hover:bg-ink-50"

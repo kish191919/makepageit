@@ -100,6 +100,7 @@ type Dict = {
     successTitle: string;
     successBody: string;
     successHomeCta: string;
+    successDownloadReceiptCta: string;
     canceledNotice: string;
     compare: {
       title: string;
@@ -377,6 +378,7 @@ const en: Dict = {
     successTitle: "Payment received — welcome to MAKEPAGE.",
     successBody: "Your subscription is active. Your account manager will reach out within one business day to kick off your build.",
     successHomeCta: "Back to home",
+    successDownloadReceiptCta: "Download receipt",
     canceledNotice: "Checkout was canceled. You can try again whenever you're ready.",
     compare: {
       title: "Compare packages side by side",
@@ -747,6 +749,7 @@ const ko: Dict = {
     successTitle: "결제가 완료되었습니다.",
     successBody: "구독이 활성화되었습니다. 영업일 기준 24시간 이내 담당 매니저가 제작 시작을 위해 연락드립니다.",
     successHomeCta: "홈으로 돌아가기",
+    successDownloadReceiptCta: "영수증 다운로드",
     canceledNotice: "결제가 취소되었습니다. 언제든 다시 시도해주세요.",
     compare: {
       title: "패키지 한눈에 비교하기",
