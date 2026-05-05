@@ -17,15 +17,26 @@ type PlanPriceConfig = {
   monthly: string | undefined;
   domainFirstYear: string | undefined;
   domainRenewal: string | undefined;
+  emailAnnual: string | undefined;
+  extraPage: string | undefined;
+  booking: string | undefined;
+  payment: string | undefined;
 };
 
 export function getPlanPrices(planId: PlanId): PlanPriceConfig {
+  const sharedAddons = {
+    extraPage: process.env.STRIPE_PRICE_EXTRA_PAGE,
+    booking: process.env.STRIPE_PRICE_BOOKING,
+    payment: process.env.STRIPE_PRICE_PAYMENT,
+  };
   if (planId === "portfolio-lite") {
     return {
       setup: process.env.STRIPE_PRICE_LITE_SETUP,
       monthly: process.env.STRIPE_PRICE_LITE_MONTHLY,
       domainFirstYear: process.env.STRIPE_PRICE_LITE_DOMAIN_FIRST_YEAR,
       domainRenewal: process.env.STRIPE_PRICE_LITE_DOMAIN_RENEWAL,
+      emailAnnual: process.env.STRIPE_PRICE_LITE_EMAIL_ANNUAL,
+      ...sharedAddons,
     };
   }
   return {
@@ -33,6 +44,8 @@ export function getPlanPrices(planId: PlanId): PlanPriceConfig {
     monthly: process.env.STRIPE_PRICE_PRO_MONTHLY,
     domainFirstYear: process.env.STRIPE_PRICE_PRO_DOMAIN_FIRST_YEAR,
     domainRenewal: process.env.STRIPE_PRICE_PRO_DOMAIN_RENEWAL,
+    emailAnnual: process.env.STRIPE_PRICE_PRO_EMAIL_ANNUAL,
+    ...sharedAddons,
   };
 }
 

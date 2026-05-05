@@ -56,7 +56,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const lang = detectLangFromPath(headers().get("x-pathname"));
+  const pathname = headers().get("x-pathname");
+  const lang = detectLangFromPath(pathname);
+  const isAdmin = pathname?.startsWith("/admin") ?? false;
+
+  if (isAdmin) {
+    return (
+      <html lang="en">
+        <body className="bg-slate-50 text-ink-900 antialiased">{children}</body>
+      </html>
+    );
+  }
+
   return (
     <html lang={lang}>
       <body className="bg-white text-ink-900 antialiased">

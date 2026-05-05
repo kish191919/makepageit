@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getStripe, getSiteUrl, getPlanPrices, type PlanId } from "@/lib/stripe";
 import { getDict, type Lang } from "@/lib/i18n";
+import { formatAmount, escapeHtml as escape } from "@/lib/email-helpers";
 import type Stripe from "stripe";
 
 export const runtime = "nodejs";
@@ -45,6 +46,10 @@ export async function POST(request: Request) {
     } else if (event.type === "customer.subscription.deleted") {
       const subscription = event.data.object as Stripe.Subscription;
       await notifySubscriptionCanceled(subscription);
+    } else if (event.type === "invoice.paid") {
+      await notifyInvoicePaid(event.data.object as Stripe.Invoice);
+    } else if (event.type === "invoice.payment_failed") {
+      await notifyInvoicePaymentFailed(event.data.object as Stripe.Invoice);
     }
     return NextResponse.json({ received: true });
   } catch (err) {
@@ -93,6 +98,7 @@ async function notifyAdmin(session: Stripe.Checkout.Session) {
   const customerName = session.customer_details?.name ?? "(no name)";
   const amountTotal =
     session.amount_total != null ? formatAmount(session.amount_total, session.currency) : "-";
+  const emailMailboxes = Number(session.metadata?.emailMailboxes ?? 0) || 0;
 
   const html = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
@@ -103,6 +109,7 @@ async function notifyAdmin(session: Stripe.Checkout.Session) {
         <tr><td style="padding: 8px 0; color: #6b7280; width: 140px;">Plan</td><td style="padding: 8px 0; color: #111827; font-weight: 600;">${escape(planId)}</td></tr>
         <tr><td style="padding: 8px 0; color: #6b7280;">Customer</td><td style="padding: 8px 0; color: #111827;">${escape(customerName)}</td></tr>
         <tr><td style="padding: 8px 0; color: #6b7280;">Email</td><td style="padding: 8px 0; color: #111827;"><a href="mailto:${escape(customerEmail)}">${escape(customerEmail)}</a></td></tr>
+        ${emailMailboxes > 0 ? `<tr><td style="padding: 8px 0; color: #6b7280;">Mailboxes</td><td style="padding: 8px 0; color: #111827;">${emailMailboxes} × $60/yr — provision Microsoft 365 mailboxes</td></tr>` : ""}
         <tr><td style="padding: 8px 0; color: #6b7280;">First invoice total</td><td style="padding: 8px 0; color: #111827;">${escape(amountTotal)}</td></tr>
         <tr><td style="padding: 8px 0; color: #6b7280;">Session ID</td><td style="padding: 8px 0; color: #111827; font-family: monospace; font-size: 12px;">${escape(session.id)}</td></tr>
         <tr><td style="padding: 8px 0; color: #6b7280;">Locale</td><td style="padding: 8px 0; color: #111827;">${escape(lang)}</td></tr>
@@ -221,17 +228,57 @@ async function notifySubscriptionCanceled(subscription: Stripe.Subscription) {
   ]);
 }
 
-function formatAmount(amount: number, currency: string | null): string {
-  const code = (currency ?? "usd").toUpperCase();
-  const value = (amount / 100).toFixed(2);
-  return `${value} ${code}`;
+async function notifyInvoicePaid(invoice: Stripe.Invoice) {
+  if (!process.env.RESEND_API_KEY) return;
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
+  const amount = formatAmount(invoice.amount_paid ?? invoice.amount_due ?? 0, invoice.currency);
+  const customerEmail = invoice.customer_email ?? "(no email)";
+  const number = invoice.number ?? invoice.id;
+  const memo = (invoice.metadata?.memo as string | undefined) ?? invoice.description ?? "";
+
+  await resend.emails.send({
+    from: FROM,
+    to: TO,
+    subject: `[MAKEPAGE] Invoice paid — ${number} (${amount})`,
+    html: `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
+        <h2 style="color: #111827; border-bottom: 2px solid #10b981; padding-bottom: 12px;">Invoice paid</h2>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+          <tr><td style="padding: 8px 0; color: #6b7280; width: 140px;">Invoice</td><td style="padding: 8px 0; color: #111827; font-weight: 600;">${escape(number)}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6b7280;">Customer</td><td style="padding: 8px 0; color: #111827;">${escape(customerEmail)}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6b7280;">Amount</td><td style="padding: 8px 0; color: #111827;">${escape(amount)}</td></tr>
+          ${memo ? `<tr><td style="padding: 8px 0; color: #6b7280;">Memo</td><td style="padding: 8px 0; color: #111827;">${escape(memo)}</td></tr>` : ""}
+          <tr><td style="padding: 8px 0; color: #6b7280;">Source</td><td style="padding: 8px 0; color: #111827;">${escape((invoice.metadata?.source as string | undefined) ?? "stripe")}</td></tr>
+        </table>
+      </div>
+    `,
+  });
 }
 
-function escape(str: string) {
-  return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+async function notifyInvoicePaymentFailed(invoice: Stripe.Invoice) {
+  if (!process.env.RESEND_API_KEY) return;
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
+  const amount = formatAmount(invoice.amount_due ?? 0, invoice.currency);
+  const customerEmail = invoice.customer_email ?? "(no email)";
+  const number = invoice.number ?? invoice.id;
+
+  await resend.emails.send({
+    from: FROM,
+    to: TO,
+    subject: `[MAKEPAGE] Invoice payment failed — ${number}`,
+    html: `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
+        <h2 style="color: #111827; border-bottom: 2px solid #ef4444; padding-bottom: 12px;">Invoice payment failed</h2>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+          <tr><td style="padding: 8px 0; color: #6b7280; width: 140px;">Invoice</td><td style="padding: 8px 0; color: #111827; font-weight: 600;">${escape(number)}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6b7280;">Customer</td><td style="padding: 8px 0; color: #111827;">${escape(customerEmail)}</td></tr>
+          <tr><td style="padding: 8px 0; color: #6b7280;">Amount due</td><td style="padding: 8px 0; color: #111827;">${escape(amount)}</td></tr>
+          ${invoice.hosted_invoice_url ? `<tr><td style="padding: 8px 0; color: #6b7280;">Hosted</td><td style="padding: 8px 0;"><a href="${escape(invoice.hosted_invoice_url)}">Open invoice</a></td></tr>` : ""}
+        </table>
+        <p style="margin-top: 16px; color: #6b7280; font-size: 13px;">Customer should retry payment from the hosted invoice page above.</p>
+      </div>
+    `,
+  });
 }

@@ -1,15 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import { getPlans } from "@/lib/data";
 import { getDict, localePath, type Lang } from "@/lib/i18n";
 
-const CHECKOUT_PLAN_IDS = new Set(["portfolio-lite"]);
+const CHECKOUT_PLAN_IDS = new Set(["portfolio-lite", "portfolio-pro"]);
+const MAX_MAILBOXES = 5;
+const MAX_EXTRA_PAGES = 10;
 
-type CheckoutOptions = { monthly: boolean; domain: boolean };
-const DEFAULT_OPTIONS: CheckoutOptions = { monthly: true, domain: true };
+type CheckoutOptions = {
+  monthly: boolean;
+  monthlyMaintenance: boolean;
+  hosting: boolean;
+  database: boolean;
+  domain: boolean;
+  emailMailboxes: number;
+  extraPages: number;
+  booking: boolean;
+  payment: boolean;
+};
+const DEFAULT_OPTIONS: CheckoutOptions = {
+  monthly: true,
+  monthlyMaintenance: true,
+  hosting: true,
+  database: true,
+  domain: true,
+  emailMailboxes: 0,
+  extraPages: 0,
+  booking: false,
+  payment: false,
+};
 
 function formatUsd(amount: number): string {
   return `$${amount.toLocaleString("en-US")}`;
@@ -22,17 +44,27 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
   const yearlyLabel = lang === "en" ? " / yr" : " / 년";
 
   const scrollerRef = useRef<HTMLDivElement>(null);
+  const customizePanelRefs = useRef<Map<string, HTMLDivElement | null>>(new Map());
   const [activeIndex, setActiveIndex] = useState(0);
   const [pendingPlan, setPendingPlan] = useState<string | null>(null);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [showCanceled, setShowCanceled] = useState(false);
   const [planOptions, setPlanOptions] = useState<Record<string, CheckoutOptions>>({});
+  const [customizeOpen, setCustomizeOpen] = useState(false);
 
   function getOptions(planId: string): CheckoutOptions {
     return planOptions[planId] ?? DEFAULT_OPTIONS;
   }
 
-  function setOption(planId: string, key: keyof CheckoutOptions, value: boolean) {
+  function toggleCustomize() {
+    setCustomizeOpen((prev) => !prev);
+  }
+
+  function setOption<K extends keyof CheckoutOptions>(
+    planId: string,
+    key: K,
+    value: CheckoutOptions[K]
+  ) {
     setPlanOptions((prev) => ({
       ...prev,
       [planId]: { ...getOptions(planId), [key]: value },
@@ -44,6 +76,31 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
     const params = new URLSearchParams(window.location.search);
     if (params.get("canceled") === "1") setShowCanceled(true);
   }, []);
+
+  useLayoutEffect(() => {
+    const panels: HTMLDivElement[] = [];
+    customizePanelRefs.current.forEach((el) => {
+      if (el) panels.push(el);
+    });
+    if (panels.length === 0) return;
+
+    panels.forEach((el) => {
+      el.style.minHeight = "";
+    });
+
+    if (!customizeOpen) return;
+
+    let max = 0;
+    panels.forEach((el) => {
+      if (el.offsetHeight > max) max = el.offsetHeight;
+    });
+
+    if (max > 0) {
+      panels.forEach((el) => {
+        el.style.minHeight = `${max}px`;
+      });
+    }
+  }, [customizeOpen, planOptions, lang]);
 
   async function handleCheckout(planId: string) {
     setCheckoutError(null);
@@ -134,13 +191,33 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
           className={`mx-auto max-w-4xl ${hideHeading ? "" : "mt-14"} -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:grid-cols-2 md:gap-6 md:snap-none md:overflow-visible md:px-0 md:pb-0`}
           style={{ scrollbarWidth: "none" }}
         >
-          {plans.map((p) => (
+          {plans.map((p) => {
+            const opts = getOptions(p.id);
+            const hasMonthlyBreakdown = p.amounts.monthlyMaintenance !== undefined;
+            const monthlyPerMonth = hasMonthlyBreakdown
+              ? (opts.monthlyMaintenance ? (p.amounts.monthlyMaintenance ?? 0) : 0) +
+                (opts.hosting ? (p.amounts.hosting ?? 0) : 0) +
+                (opts.database ? (p.amounts.database ?? 0) : 0)
+              : opts.monthly ? p.amounts.monthly : 0;
+            const monthlyAnnual = monthlyPerMonth * 12;
+            const domainAnnual = opts.domain ? p.amounts.domain : 0;
+            const emailAnnual = p.amounts.email * opts.emailMailboxes;
+            const oneTimeAddons =
+              p.amounts.extraPage * opts.extraPages +
+              (opts.booking ? p.amounts.booking : 0) +
+              (opts.payment ? p.amounts.payment : 0);
+            const setupTotal = p.amounts.setup + oneTimeAddons;
+            const annualRecurring = monthlyAnnual + domainAnnual + emailAnnual;
+            const firstYearTotal = setupTotal + annualRecurring;
+            const yearTwoOnward = annualRecurring;
+            const isCustomizeOpen = customizeOpen;
+            return (
             <article
               key={p.id}
               data-carousel-item
-              className={`relative flex flex-col rounded-3xl border transition duration-300 snap-center shrink-0 basis-[88%] md:shrink md:basis-auto ${
+              className={`relative flex h-full flex-col rounded-3xl border transition duration-300 snap-center shrink-0 basis-[88%] md:shrink md:basis-auto ${
                 p.best
-                  ? "border-ink-900 bg-ink-900 text-white shadow-2xl lg:scale-[1.03]"
+                  ? "border-ink-900 bg-ink-900 text-white shadow-2xl"
                   : "overflow-hidden border-blue-500/60 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-[0_2px_4px_rgba(15,23,42,0.06),0_14px_32px_-12px_rgba(37,99,235,0.35)] hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(37,99,235,0.50)]"
               }`}
             >
@@ -179,7 +256,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               <div className="mt-6">
                 <div className="flex items-baseline gap-2">
                   <span className="text-4xl font-extrabold sm:text-5xl">
-                    {p.pricing.oneTime}
+                    {formatUsd(setupTotal)}
                   </span>
                   <span
                     className={`text-sm ${p.best ? "text-ink-200" : "text-white/70"}`}
@@ -222,7 +299,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                     p.best ? "text-accent-400" : "text-blue-900"
                   }`}
                 >
-                  {p.pricing.yearTotal}
+                  {formatUsd(firstYearTotal)}
                 </span>
               </div>
 
@@ -241,7 +318,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                     p.best ? "text-accent-400" : "text-blue-900"
                   }`}
                 >
-                  {p.pricing.yearlyAfter}
+                  {formatUsd(yearTwoOnward)}
                 </span>
               </div>
 
@@ -263,12 +340,12 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               </ul>
 
               {CHECKOUT_PLAN_IDS.has(p.id) ? (() => {
-                const opts = getOptions(p.id);
                 const today =
-                  p.amounts.setup +
-                  (opts.monthly ? p.amounts.monthly : 0) +
-                  (opts.domain ? p.amounts.domain : 0);
-                const isSubscription = opts.monthly;
+                  setupTotal +
+                  monthlyPerMonth +
+                  (opts.domain ? p.amounts.domain : 0) +
+                  p.amounts.email * opts.emailMailboxes;
+                const isSubscription = monthlyPerMonth > 0 || opts.emailMailboxes > 0;
                 const ctaLabel =
                   pendingPlan === p.id
                     ? dict.pricing.checkoutSubmitting
@@ -278,39 +355,141 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                 return (
                   <div className="mt-9 space-y-3">
                     <div
-                      className={`rounded-2xl p-4 ring-1 ${
+                      ref={(el) => {
+                        customizePanelRefs.current.set(p.id, el);
+                      }}
+                      className={`flex flex-col rounded-2xl p-4 ring-1 ${
                         p.best
                           ? "bg-white/5 ring-white/15"
                           : "bg-white/15 ring-white/30"
                       }`}
                     >
-                      <p
-                        className={`text-[11px] font-bold uppercase tracking-[0.2em] ${
-                          p.best ? "text-white/70" : "text-white/90"
+                      <button
+                        type="button"
+                        onClick={toggleCustomize}
+                        aria-expanded={isCustomizeOpen}
+                        className={`flex w-full items-center justify-between gap-2 text-left ${
+                          p.best ? "text-white/90" : "text-white"
                         }`}
                       >
-                        {dict.pricing.customizeTitle}
-                      </p>
-                      <div className="mt-3 space-y-2.5">
-                        <ToggleRow
-                          checked={opts.monthly}
-                          onChange={(v) => setOption(p.id, "monthly", v)}
-                          label={dict.pricing.customizeMonthlyLabel}
-                          hint={dict.pricing.customizeMonthlyHint}
-                          amount={`${formatUsd(p.amounts.monthly)}${monthlyLabel}`}
-                          dark={Boolean(p.best)}
-                        />
-                        <ToggleRow
-                          checked={opts.domain}
-                          onChange={(v) => setOption(p.id, "domain", v)}
-                          label={dict.pricing.customizeDomainLabel}
-                          hint={dict.pricing.customizeDomainHint}
-                          amount={`${formatUsd(p.amounts.domain)}${yearlyLabel}`}
-                          dark={Boolean(p.best)}
-                        />
-                      </div>
+                        <span
+                          className={`text-[11px] font-bold uppercase tracking-[0.2em] ${
+                            p.best ? "text-white/70" : "text-white/90"
+                          }`}
+                        >
+                          {dict.pricing.customizeTitle}
+                        </span>
+                        <span
+                          className={`flex items-center gap-1 text-[11px] font-semibold ${
+                            p.best ? "text-white/70" : "text-white/90"
+                          }`}
+                        >
+                          {isCustomizeOpen
+                            ? dict.pricing.customizeHideOptions
+                            : dict.pricing.customizeShowOptions}
+                          <svg
+                            width="10"
+                            height="10"
+                            viewBox="0 0 10 10"
+                            fill="none"
+                            className={`transition-transform ${isCustomizeOpen ? "rotate-180" : ""}`}
+                            aria-hidden="true"
+                          >
+                            <path
+                              d="M2 3.5l3 3 3-3"
+                              stroke="currentColor"
+                              strokeWidth="1.6"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </span>
+                      </button>
+                      {isCustomizeOpen && (
+                        <div className="mt-3 space-y-2.5">
+                          {hasMonthlyBreakdown ? (
+                            <>
+                              <ToggleRow
+                                checked={opts.monthlyMaintenance}
+                                onChange={(v) => setOption(p.id, "monthlyMaintenance", v)}
+                                label={dict.pricing.customizeMonthlyLabel}
+                                hint={dict.pricing.customizeMonthlyHint}
+                                amount={`${formatUsd(p.amounts.monthlyMaintenance ?? 0)}${monthlyLabel}`}
+                                dark={Boolean(p.best)}
+                              />
+                              <ToggleRow
+                                checked={opts.hosting}
+                                onChange={(v) => setOption(p.id, "hosting", v)}
+                                label={dict.pricing.customizeHostingLabel}
+                                hint={dict.pricing.customizeHostingHint}
+                                amount={`${formatUsd(p.amounts.hosting ?? 0)}${monthlyLabel}`}
+                                dark={Boolean(p.best)}
+                              />
+                              <ToggleRow
+                                checked={opts.database}
+                                onChange={(v) => setOption(p.id, "database", v)}
+                                label={dict.pricing.customizeDatabaseLabel}
+                                hint={dict.pricing.customizeDatabaseHint}
+                                amount={`${formatUsd(p.amounts.database ?? 0)}${monthlyLabel}`}
+                                dark={Boolean(p.best)}
+                              />
+                            </>
+                          ) : (
+                            <ToggleRow
+                              checked={opts.monthly}
+                              onChange={(v) => setOption(p.id, "monthly", v)}
+                              label={dict.pricing.customizeMonthlyLabel}
+                              hint={dict.pricing.customizeMonthlyHint}
+                              amount={`${formatUsd(p.amounts.monthly)}${monthlyLabel}`}
+                              dark={Boolean(p.best)}
+                            />
+                          )}
+                          <ToggleRow
+                            checked={opts.domain}
+                            onChange={(v) => setOption(p.id, "domain", v)}
+                            label={dict.pricing.customizeDomainLabel}
+                            hint={dict.pricing.customizeDomainHint}
+                            amount={`${formatUsd(p.amounts.domain)}${yearlyLabel}`}
+                            dark={Boolean(p.best)}
+                          />
+                          <EmailRow
+                            mailboxes={opts.emailMailboxes}
+                            onChange={(v) => setOption(p.id, "emailMailboxes", v)}
+                            label={dict.pricing.customizeEmailLabel}
+                            hint={dict.pricing.customizeEmailHint}
+                            mailboxesLabel={dict.pricing.customizeEmailMailboxesLabel}
+                            amount={dict.pricing.customizeEmailPerMailbox(`${formatUsd(p.amounts.email)}${yearlyLabel}`)}
+                            dark={Boolean(p.best)}
+                          />
+                          <ExtraPageRow
+                            pages={opts.extraPages}
+                            onChange={(v) => setOption(p.id, "extraPages", v)}
+                            label={dict.pricing.customizeExtraPageLabel}
+                            hint={dict.pricing.customizeExtraPageHint}
+                            pagesLabel={dict.pricing.customizeExtraPagePagesLabel}
+                            amount={dict.pricing.customizeExtraPagePerPage(formatUsd(p.amounts.extraPage))}
+                            dark={Boolean(p.best)}
+                          />
+                          <ToggleRow
+                            checked={opts.booking}
+                            onChange={(v) => setOption(p.id, "booking", v)}
+                            label={dict.pricing.customizeBookingLabel}
+                            hint={dict.pricing.customizeBookingHint}
+                            amount={`+${formatUsd(p.amounts.booking)}`}
+                            dark={Boolean(p.best)}
+                          />
+                          <ToggleRow
+                            checked={opts.payment}
+                            onChange={(v) => setOption(p.id, "payment", v)}
+                            label={dict.pricing.customizePaymentLabel}
+                            hint={dict.pricing.customizePaymentHint}
+                            amount={`+${formatUsd(p.amounts.payment)}`}
+                            dark={Boolean(p.best)}
+                          />
+                        </div>
+                      )}
                       <div
-                        className={`mt-4 flex items-baseline justify-between border-t pt-3 text-sm ${
+                        className={`mt-auto flex items-baseline justify-between border-t pt-3 text-sm ${
                           p.best ? "border-white/10" : "border-white/30"
                         }`}
                       >
@@ -321,13 +500,13 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                           {formatUsd(today)}
                         </span>
                       </div>
-                      {isSubscription && (
+                      {monthlyPerMonth > 0 && (
                         <p
                           className={`mt-1 text-right text-[11px] ${
                             p.best ? "text-white/50" : "text-white/70"
                           }`}
                         >
-                          {dict.pricing.monthlyAfterLabel(formatUsd(p.amounts.monthly))}
+                          {dict.pricing.monthlyAfterLabel(formatUsd(monthlyPerMonth))}
                         </p>
                       )}
                     </div>
@@ -368,7 +547,8 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               )}
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
 
         {checkoutError && (
@@ -428,5 +608,133 @@ function ToggleRow({
         </span>
       </span>
     </label>
+  );
+}
+
+function EmailRow({
+  mailboxes,
+  onChange,
+  label,
+  hint,
+  mailboxesLabel,
+  amount,
+  dark,
+}: {
+  mailboxes: number;
+  onChange: (v: number) => void;
+  label: string;
+  hint: string;
+  mailboxesLabel: string;
+  amount: string;
+  dark: boolean;
+}) {
+  const checked = mailboxes > 0;
+  return (
+    <div className="flex items-start gap-3">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked ? 1 : 0)}
+        className="mt-1 h-4 w-4 flex-none accent-accent-500"
+        aria-label={label}
+      />
+      <div className="flex flex-1 flex-col gap-2">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold text-white">{label}</span>
+            <span className={`text-[11px] ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
+          </div>
+          <span className={`whitespace-nowrap text-xs font-semibold ${dark ? "text-white/70" : "text-white/90"}`}>
+            {amount}
+          </span>
+        </div>
+        {checked && (
+          <label className="flex items-center gap-2">
+            <span className={`text-[11px] ${dark ? "text-white/60" : "text-white/80"}`}>
+              {mailboxesLabel}
+            </span>
+            <select
+              value={mailboxes}
+              onChange={(e) => onChange(Number(e.target.value))}
+              className={`rounded-md px-2 py-1 text-xs font-semibold ${
+                dark
+                  ? "bg-white/10 text-white ring-1 ring-white/20"
+                  : "bg-white/90 text-ink-900 ring-1 ring-white/40"
+              }`}
+            >
+              {Array.from({ length: MAX_MAILBOXES }, (_, i) => i + 1).map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ExtraPageRow({
+  pages,
+  onChange,
+  label,
+  hint,
+  pagesLabel,
+  amount,
+  dark,
+}: {
+  pages: number;
+  onChange: (v: number) => void;
+  label: string;
+  hint: string;
+  pagesLabel: string;
+  amount: string;
+  dark: boolean;
+}) {
+  const checked = pages > 0;
+  return (
+    <div className="flex items-start gap-3">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => onChange(e.target.checked ? 1 : 0)}
+        className="mt-1 h-4 w-4 flex-none accent-accent-500"
+        aria-label={label}
+      />
+      <div className="flex flex-1 flex-col gap-2">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex flex-col">
+            <span className="text-sm font-semibold text-white">{label}</span>
+            <span className={`text-[11px] ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
+          </div>
+          <span className={`whitespace-nowrap text-xs font-semibold ${dark ? "text-white/70" : "text-white/90"}`}>
+            {amount}
+          </span>
+        </div>
+        {checked && (
+          <label className="flex items-center gap-2">
+            <span className={`text-[11px] ${dark ? "text-white/60" : "text-white/80"}`}>
+              {pagesLabel}
+            </span>
+            <select
+              value={pages}
+              onChange={(e) => onChange(Number(e.target.value))}
+              className={`rounded-md px-2 py-1 text-xs font-semibold ${
+                dark
+                  ? "bg-white/10 text-white ring-1 ring-white/20"
+                  : "bg-white/90 text-ink-900 ring-1 ring-white/40"
+              }`}
+            >
+              {Array.from({ length: MAX_EXTRA_PAGES }, (_, i) => i + 1).map((n) => (
+                <option key={n} value={n}>
+                  {n}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+      </div>
+    </div>
   );
 }

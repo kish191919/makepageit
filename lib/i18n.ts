@@ -72,8 +72,26 @@ type Dict = {
     customizeTitle: string;
     customizeMonthlyLabel: string;
     customizeMonthlyHint: string;
+    customizeHostingLabel: string;
+    customizeHostingHint: string;
+    customizeDatabaseLabel: string;
+    customizeDatabaseHint: string;
     customizeDomainLabel: string;
     customizeDomainHint: string;
+    customizeEmailLabel: string;
+    customizeEmailHint: string;
+    customizeEmailMailboxesLabel: string;
+    customizeEmailPerMailbox: (amount: string) => string;
+    customizeExtraPageLabel: string;
+    customizeExtraPageHint: string;
+    customizeExtraPagePagesLabel: string;
+    customizeExtraPagePerPage: (amount: string) => string;
+    customizeBookingLabel: string;
+    customizeBookingHint: string;
+    customizePaymentLabel: string;
+    customizePaymentHint: string;
+    customizeShowOptions: string;
+    customizeHideOptions: string;
     todayLabel: string;
     monthlyAfterLabel: (amount: string) => string;
     subscribeCta: (amount: string) => string;
@@ -331,8 +349,26 @@ const en: Dict = {
     customizeTitle: "Customize what you pay",
     customizeMonthlyLabel: "Monthly maintenance",
     customizeMonthlyHint: "Skip if you'll handle updates yourself.",
+    customizeHostingLabel: "Hosting",
+    customizeHostingHint: "Server hosting for your live site.",
+    customizeDatabaseLabel: "Database",
+    customizeDatabaseHint: "Managed DB for forms, login, and dynamic content.",
     customizeDomainLabel: "First-year domain",
     customizeDomainHint: "Skip if you already own a domain.",
+    customizeEmailLabel: "Microsoft 365 Email Essentials",
+    customizeEmailHint: "10GB storage + custom-domain email (you@yourdomain.com).",
+    customizeEmailMailboxesLabel: "Mailboxes",
+    customizeEmailPerMailbox: (amount) => `${amount} per mailbox`,
+    customizeExtraPageLabel: "Extra pages",
+    customizeExtraPageHint: "Beyond the pages included in your package.",
+    customizeExtraPagePagesLabel: "Pages",
+    customizeExtraPagePerPage: (amount) => `${amount} per page`,
+    customizeBookingLabel: "Booking integration",
+    customizeBookingHint: "Calendar, booking form, and automated reminders.",
+    customizePaymentLabel: "Payment integration",
+    customizePaymentHint: "Stripe, Square, or any major gateway.",
+    customizeShowOptions: "Show options",
+    customizeHideOptions: "Hide options",
     todayLabel: "Pay today",
     monthlyAfterLabel: (amount) => `then ${amount}/mo from next month`,
     subscribeCta: (amount) => `Subscribe — ${amount} today`,
@@ -683,8 +719,26 @@ const ko: Dict = {
     customizeTitle: "결제 항목 선택",
     customizeMonthlyLabel: "월 유지보수",
     customizeMonthlyHint: "직접 운영하실 거면 체크 해제하세요.",
+    customizeHostingLabel: "호스팅",
+    customizeHostingHint: "운영 중인 사이트의 서버 호스팅 비용.",
+    customizeDatabaseLabel: "데이터베이스",
+    customizeDatabaseHint: "폼·로그인·동적 콘텐츠용 관리형 DB.",
     customizeDomainLabel: "첫해 도메인",
     customizeDomainHint: "이미 도메인이 있으시면 체크 해제하세요.",
+    customizeEmailLabel: "Microsoft 365 Email Essentials",
+    customizeEmailHint: "10GB 저장공간 + 도메인 이메일 (you@yourdomain.com).",
+    customizeEmailMailboxesLabel: "메일박스 수",
+    customizeEmailPerMailbox: (amount) => `메일박스당 ${amount}`,
+    customizeExtraPageLabel: "추가 페이지",
+    customizeExtraPageHint: "패키지 기본 페이지 외 추가 제작.",
+    customizeExtraPagePagesLabel: "페이지 수",
+    customizeExtraPagePerPage: (amount) => `페이지당 ${amount}`,
+    customizeBookingLabel: "예약 시스템 연동",
+    customizeBookingHint: "캘린더 · 예약 폼 · 자동 리마인더.",
+    customizePaymentLabel: "결제 시스템 연동",
+    customizePaymentHint: "Stripe, Square 등 주요 결제 게이트웨이.",
+    customizeShowOptions: "옵션 펼치기",
+    customizeHideOptions: "옵션 접기",
     todayLabel: "오늘 결제",
     monthlyAfterLabel: (amount) => `다음 달부터 매월 ${amount}`,
     subscribeCta: (amount) => `${amount} 결제하고 구독 시작`,

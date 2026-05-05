@@ -31,13 +31,18 @@ export type Plan = {
     monthlyNote: string;
     annual: string;
     annualNote: string;
-    yearTotal: string;
-    yearlyAfter: string;
   };
   amounts: {
     setup: number;
     monthly: number;
+    monthlyMaintenance?: number;
+    hosting?: number;
+    database?: number;
     domain: number;
+    email: number;
+    extraPage: number;
+    booking: number;
+    payment: number;
   };
   description: string;
   features: string[];
@@ -524,13 +529,11 @@ const plansEn: Plan[] = [
       oneTimeNote: "one-time (3 pages)",
       monthly: "$15",
       monthlyNote: "monthly maintenance",
-      annual: "$20",
+      annual: "$25",
       annualNote: "domain (annual)",
-      yearTotal: "$499",
-      yearlyAfter: "$200",
     },
-    amounts: { setup: 299, monthly: 15, domain: 20 },
-    description: "A clean, professional starting point for non-commercial portfolios.",
+    amounts: { setup: 299, monthly: 15, domain: 25, email: 60, extraPage: 50, booking: 100, payment: 100 },
+    description: "A clean starter for non-commercial portfolios.",
     features: [
       "3-page core layout",
       "Template design + mobile-responsive",
@@ -550,13 +553,11 @@ const plansEn: Plan[] = [
       oneTime: "$449",
       oneTimeNote: "one-time (5 pages)",
       monthly: "$65",
-      monthlyNote: "hosting + DB + maintenance",
-      annual: "$20",
+      monthlyNote: "hosting + DB + monthly maintenance",
+      annual: "$25",
       annualNote: "domain (annual)",
-      yearTotal: "$1,249",
-      yearlyAfter: "$800",
     },
-    amounts: { setup: 449, monthly: 65, domain: 20 },
+    amounts: { setup: 449, monthly: 65, monthlyMaintenance: 25, hosting: 20, database: 20, domain: 25, email: 60, extraPage: 50, booking: 100, payment: 100 },
     description: "Everything you need to run a real business website.",
     features: [
       "5-page core layout",
@@ -580,12 +581,10 @@ const plansKo: Plan[] = [
       oneTimeNote: "일회성 (3페이지)",
       monthly: "$15",
       monthlyNote: "월 유지보수",
-      annual: "$20",
+      annual: "$25",
       annualNote: "연 도메인",
-      yearTotal: "$499",
-      yearlyAfter: "$200",
     },
-    amounts: { setup: 299, monthly: 15, domain: 20 },
+    amounts: { setup: 299, monthly: 15, domain: 25, email: 60, extraPage: 50, booking: 100, payment: 100 },
     description: "비상업적 개인 포트폴리오를 깔끔하게 시작.",
     features: [
       "3페이지 기본 구성",
@@ -606,13 +605,11 @@ const plansKo: Plan[] = [
       oneTime: "$449",
       oneTimeNote: "일회성 (5페이지)",
       monthly: "$65",
-      monthlyNote: "호스팅 + DB + 유지보수",
-      annual: "$20",
+      monthlyNote: "호스팅 + DB + 월 유지보수",
+      annual: "$25",
       annualNote: "연 도메인",
-      yearTotal: "$1,249",
-      yearlyAfter: "$800",
     },
-    amounts: { setup: 449, monthly: 65, domain: 20 },
+    amounts: { setup: 449, monthly: 65, monthlyMaintenance: 25, hosting: 20, database: 20, domain: 25, email: 60, extraPage: 50, booking: 100, payment: 100 },
     description: "상업 활동에 필요한 모든 기능을 갖춘 포트폴리오.",
     features: [
       "5페이지 기본 구성",
@@ -759,7 +756,7 @@ const faqsEn: FAQ[] = [
   },
   {
     q: "Do you handle the domain and hosting?",
-    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $15/year; hosting + DB + maintenance is $15/month for PORTFOLIO LITE and $65/month for PORTFOLIO PRO. Hosting and DB are free for non-commercial personal portfolios.",
+    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $25/year; hosting + DB + maintenance is $15/month for PORTFOLIO LITE and $65/month for PORTFOLIO PRO. Hosting and DB are free for non-commercial personal portfolios.",
   },
   {
     q: "Can I edit the site myself afterward?",
@@ -786,7 +783,7 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "도메인과 호스팅도 맡아주시나요?",
-    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $15, 호스팅·DB·유지보수가 PORTFOLIO LITE는 월 $15, PORTFOLIO PRO는 월 $65로 운영돼요. 비상업 개인 포트폴리오는 호스팅·DB가 무료입니다.",
+    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 호스팅·DB·유지보수가 PORTFOLIO LITE는 월 $15, PORTFOLIO PRO는 월 $65로 운영돼요. 비상업 개인 포트폴리오는 호스팅·DB가 무료입니다.",
   },
   {
     q: "직접 수정하고 관리할 수 있나요?",
