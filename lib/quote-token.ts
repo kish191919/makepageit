@@ -2,17 +2,21 @@ import { createHmac, timingSafeEqual } from "crypto";
 
 const TOKEN_TTL_SECONDS = 30 * 24 * 60 * 60;
 
+export type Cadence = "one_time" | "monthly" | "yearly";
+
 export type QuoteCadences = {
   one_time?: { totalCents: number; daysUntilDue: number };
   monthly?: { totalCents: number };
   yearly?: { totalCents: number };
 };
 
+export type QuoteLineItem = { description: string; cadence?: Cadence };
+
 export type QuotePayload = {
   customerId: string;
   lang: "en" | "ko";
   currency: string;
-  lineItems: { description: string }[];
+  lineItems: QuoteLineItem[];
   cadences: QuoteCadences;
   memo?: string;
 };
@@ -108,12 +112,17 @@ export function verifyQuoteToken(token: string | undefined | null): VerifiedQuot
       currency: payload.currency,
       lineItems: payload.lineItems
         .filter(
-          (li: unknown): li is { description: string } =>
+          (li: unknown): li is { description: string; cadence?: unknown } =>
             typeof li === "object" &&
             li !== null &&
             typeof (li as { description?: unknown }).description === "string"
         )
-        .map((li: { description: string }) => ({ description: li.description })),
+        .map((li: { description: string; cadence?: unknown }) => {
+          const c = li.cadence;
+          const cadence: Cadence | undefined =
+            c === "one_time" || c === "monthly" || c === "yearly" ? c : undefined;
+          return cadence ? { description: li.description, cadence } : { description: li.description };
+        }),
       cadences,
       memo: typeof payload.memo === "string" ? payload.memo : undefined,
       exp: payload.exp,

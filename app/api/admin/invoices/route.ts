@@ -31,7 +31,7 @@ type QuoteBody = {
   customerId?: string;
   lang?: "en" | "ko";
   memo?: string;
-  lineItems?: Array<{ description?: string }>;
+  lineItems?: Array<{ description?: string; cadence?: string }>;
   cadences?: {
     one_time?: { totalCents?: number; daysUntilDue?: number };
     monthly?: { totalCents?: number };
@@ -140,7 +140,14 @@ async function handleSingle(body: SingleBody & { customerId: string; lang: "en" 
 async function handleQuote(body: QuoteBody & { customerId: string; lang: "en" | "ko" }) {
   const lineItems = (body.lineItems ?? [])
     .filter((it) => typeof it.description === "string" && (it.description as string).trim().length > 0)
-    .map((it) => ({ description: (it.description as string).trim() }));
+    .map((it) => {
+      const c = it.cadence;
+      const cadence: "one_time" | "monthly" | "yearly" | undefined =
+        c === "one_time" || c === "monthly" || c === "yearly" ? c : undefined;
+      return cadence
+        ? { description: (it.description as string).trim(), cadence }
+        : { description: (it.description as string).trim() };
+    });
 
   if (lineItems.length === 0) {
     return NextResponse.json(
@@ -166,6 +173,20 @@ async function handleQuote(body: QuoteBody & { customerId: string; lang: "en" | 
   if (!cadences.one_time && !cadences.monthly && !cadences.yearly) {
     return NextResponse.json(
       { error: "Enable at least one cadence with totalCents > 0" },
+      { status: 400 }
+    );
+  }
+
+  const enabledCadences = new Set(Object.keys(cadences));
+  const orphan = lineItems.find(
+    (it): it is { description: string; cadence: "one_time" | "monthly" | "yearly" } =>
+      "cadence" in it && it.cadence !== undefined && !enabledCadences.has(it.cadence)
+  );
+  if (orphan) {
+    return NextResponse.json(
+      {
+        error: `Line "${orphan.description}" is assigned to ${orphan.cadence} but that cadence is not enabled`,
+      },
       { status: 400 }
     );
   }
@@ -234,7 +255,7 @@ async function sendCheckoutEmail(input: {
 async function sendQuoteEmail(input: {
   customerId: string;
   url: string;
-  lineItems: { description: string }[];
+  lineItems: { description: string; cadence?: "one_time" | "monthly" | "yearly" }[];
   cadences: QuoteCadences;
   lang: "en" | "ko";
   memo?: string;

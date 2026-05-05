@@ -47,7 +47,7 @@ const strings: Record<Lang, Strings> = {
 export type QuoteLinkEmailInput = {
   lang: Lang;
   url: string;
-  lineItems: { description: string }[];
+  lineItems: { description: string; cadence?: "one_time" | "monthly" | "yearly" }[];
   cadences: QuoteCadences;
   currency: string;
   memo?: string;
@@ -59,14 +59,32 @@ export function renderQuoteLinkEmail(input: QuoteLinkEmailInput): {
 } {
   const t = strings[input.lang];
 
-  const itemRows = input.lineItems
-    .map(
-      (item) => `
+  const hasCadenceMeta = input.lineItems.some((li) => li.cadence);
+  const cadenceOrder: ("one_time" | "monthly" | "yearly")[] = ["one_time", "monthly", "yearly"];
+  const itemRows = hasCadenceMeta
+    ? cadenceOrder
+        .filter((c) => input.cadences[c])
+        .map((c) => {
+          const items = input.lineItems.filter((li) => li.cadence === c);
+          if (items.length === 0) return "";
+          const header = `<tr><td style="padding: 12px 0 4px; color: #6b7280; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;">${escapeHtml(t.cadenceLabels[c])}</td></tr>`;
+          const rows = items
+            .map(
+              (item) =>
+                `<tr><td style="padding: 4px 0 4px 12px; color: #111827;">• ${escapeHtml(item.description)}</td></tr>`
+            )
+            .join("");
+          return header + rows;
+        })
+        .join("")
+    : input.lineItems
+        .map(
+          (item) => `
       <tr>
         <td style="padding: 8px 0; color: #111827;">• ${escapeHtml(item.description)}</td>
       </tr>`
-    )
-    .join("");
+        )
+        .join("");
 
   const cadenceRows: string[] = [];
   if (input.cadences.one_time) {

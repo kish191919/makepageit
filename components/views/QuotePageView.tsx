@@ -124,17 +124,47 @@ export default function QuotePageView({
 
         <section className="mt-8 rounded-lg border border-slate-200 bg-white p-6">
           <h2 className="text-sm font-semibold text-slate-900">{t.itemsLabel}</h2>
-          <ul className="mt-3 space-y-2 text-sm text-slate-700">
-            {quote.lineItems.map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
-                <span>{item.description}</span>
-              </li>
-            ))}
-            {quote.lineItems.length === 0 && (
-              <li className="text-slate-500">—</li>
-            )}
-          </ul>
+          {(() => {
+            const hasCadenceMeta = quote.lineItems.some((li) => li.cadence);
+            if (!hasCadenceMeta) {
+              return (
+                <ul className="mt-3 space-y-2 text-sm text-slate-700">
+                  {quote.lineItems.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
+                      <span>{item.description}</span>
+                    </li>
+                  ))}
+                  {quote.lineItems.length === 0 && <li className="text-slate-500">—</li>}
+                </ul>
+              );
+            }
+            return (
+              <div className="mt-3 space-y-4">
+                {cadenceOrder
+                  .filter((c) => quote.cadences[c])
+                  .map((c) => {
+                    const itemsInCadence = quote.lineItems.filter((li) => li.cadence === c);
+                    if (itemsInCadence.length === 0) return null;
+                    return (
+                      <div key={c}>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                          {t.cadenceTitles[c]}
+                        </p>
+                        <ul className="mt-2 space-y-1.5 text-sm text-slate-700">
+                          {itemsInCadence.map((item, i) => (
+                            <li key={i} className="flex items-start gap-2">
+                              <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-slate-400" />
+                              <span>{item.description}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    );
+                  })}
+              </div>
+            );
+          })()}
         </section>
 
         <section className="mt-8">

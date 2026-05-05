@@ -5,7 +5,14 @@ import Link from "next/link";
 
 type Mode = "single_one_time" | "single_monthly" | "single_yearly" | "quote";
 
-type LineItem = { description: string; quantity: number; unitDollars: number };
+type Cadence = "one_time" | "monthly" | "yearly";
+
+type LineItem = {
+  description: string;
+  quantity: number;
+  unitDollars: number;
+  cadence: Cadence;
+};
 
 type QuoteCadenceState = {
   enabled: boolean;
@@ -31,7 +38,7 @@ export default function NewInvoiceForm({
   const [daysUntilDue, setDaysUntilDue] = useState(7);
   const [memo, setMemo] = useState("");
   const [items, setItems] = useState<LineItem[]>([
-    { description: "", quantity: 1, unitDollars: 0 },
+    { description: "", quantity: 1, unitDollars: 0, cadence: "one_time" },
   ]);
   const [quoteCadences, setQuoteCadences] = useState<{
     one_time: QuoteCadenceState;
@@ -85,7 +92,7 @@ export default function NewInvoiceForm({
     if (isQuote) {
       const lineItemDescriptions = items
         .filter((it) => it.description.trim())
-        .map((it) => ({ description: it.description.trim() }));
+        .map((it) => ({ description: it.description.trim(), cadence: it.cadence }));
       if (lineItemDescriptions.length === 0) {
         setError("Add at least one line item description.");
         return;
@@ -117,6 +124,24 @@ export default function NewInvoiceForm({
       }
       if (Object.keys(cadences).length === 0) {
         setError("Enable at least one payment option.");
+        return;
+      }
+
+      const enabledKeys = new Set(Object.keys(cadences));
+      const orphan = lineItemDescriptions.find((it) => !enabledKeys.has(it.cadence));
+      if (orphan) {
+        setError(
+          `Line "${orphan.description}" is assigned to ${orphan.cadence.replace("_", "-")} but that cadence is not enabled.`
+        );
+        return;
+      }
+      const missingCadenceItems = (Object.keys(cadences) as Cadence[]).filter(
+        (c) => !lineItemDescriptions.some((it) => it.cadence === c)
+      );
+      if (missingCadenceItems.length > 0) {
+        setError(
+          `Add at least one line item for: ${missingCadenceItems.map((c) => c.replace("_", "-")).join(", ")}.`
+        );
         return;
       }
 
@@ -242,7 +267,7 @@ export default function NewInvoiceForm({
             type="button"
             onClick={() => {
               setResult(null);
-              setItems([{ description: "", quantity: 1, unitDollars: 0 }]);
+              setItems([{ description: "", quantity: 1, unitDollars: 0, cadence: "one_time" }]);
               setMemo("");
             }}
             className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
@@ -323,7 +348,7 @@ export default function NewInvoiceForm({
 
       <fieldset className="space-y-3">
         <legend className="text-sm font-medium text-slate-700">
-          Line items {isQuote && <span className="text-xs font-normal text-slate-500">(displayed on quote page only — totals come from cadence section below)</span>}
+          Line items {isQuote && <span className="text-xs font-normal text-slate-500">(assign each item to a cadence — Stripe checkout shows only items for the cadence the customer picks)</span>}
         </legend>
         {items.map((item, i) => (
           <div key={i} className="grid grid-cols-12 gap-2">
@@ -331,9 +356,19 @@ export default function NewInvoiceForm({
               placeholder="Description"
               value={item.description}
               onChange={(e) => patchItem(i, { description: e.target.value })}
-              className={isQuote ? "col-span-11 rounded-md border border-slate-300 px-3 py-2 text-sm" : "col-span-7 rounded-md border border-slate-300 px-3 py-2 text-sm"}
+              className={isQuote ? "col-span-7 rounded-md border border-slate-300 px-3 py-2 text-sm" : "col-span-7 rounded-md border border-slate-300 px-3 py-2 text-sm"}
             />
-            {!isQuote && (
+            {isQuote ? (
+              <select
+                value={item.cadence}
+                onChange={(e) => patchItem(i, { cadence: e.target.value as Cadence })}
+                className="col-span-4 rounded-md border border-slate-300 px-3 py-2 text-sm bg-white"
+              >
+                <option value="one_time">One-time</option>
+                <option value="monthly">Monthly</option>
+                <option value="yearly">Yearly</option>
+              </select>
+            ) : (
               <>
                 <input
                   type="number"
@@ -368,7 +403,7 @@ export default function NewInvoiceForm({
         <button
           type="button"
           onClick={() =>
-            setItems((arr) => [...arr, { description: "", quantity: 1, unitDollars: 0 }])
+            setItems((arr) => [...arr, { description: "", quantity: 1, unitDollars: 0, cadence: "one_time" }])
           }
           className="text-xs font-medium text-slate-600 hover:text-slate-900"
         >

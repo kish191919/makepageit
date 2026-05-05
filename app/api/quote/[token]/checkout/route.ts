@@ -36,11 +36,13 @@ export async function POST(
     );
   }
 
+  const itemsForCadence = verified.lineItems.filter(
+    (li) => !li.cadence || li.cadence === cadence
+  );
   const description =
-    verified.memo ||
-    (verified.lineItems.length > 0
-      ? verified.lineItems.map((li) => li.description).join(" + ")
-      : "Quote payment");
+    itemsForCadence.length > 0
+      ? itemsForCadence.map((li) => li.description).join(" + ")
+      : verified.memo || "Quote payment";
 
   try {
     if (cadence === "one_time") {
