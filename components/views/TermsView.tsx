@@ -71,6 +71,16 @@ function TermsEn() {
         Payment methods, timing, and refund conditions are set out in the individual quotation or written agreement.
         Where work has partially progressed, refunds may be reduced by an amount commensurate with the work completed.
       </p>
+      <p className="mt-3 leading-relaxed">
+        <strong>Billing entity.</strong> All payments for {site.legal.brand} are processed by {site.legal.operator},
+        the legal operator of the {site.legal.brand} service. Charges will appear on your card statement as
+        &ldquo;CLOUDMASTERIT LLC&rdquo; or a similar descriptor. Receipts and invoices are issued by{" "}
+        {site.legal.operator}. For any billing inquiries, contact{" "}
+        <a href={`mailto:${site.legal.contactEmail}`} className="text-brand-600 hover:underline">
+          {site.legal.contactEmail}
+        </a>
+        .
+      </p>
 
       <h2 className="mt-12 text-2xl font-bold text-ink-900">Article 7. Obligations of the Company</h2>
       <p className="mt-3 leading-relaxed">
@@ -175,6 +185,15 @@ function TermsKo() {
       <p className="mt-3 leading-relaxed break-keep">
         서비스 대금의 결제 방법, 시점, 환불 조건은 개별 견적서 또는 계약서에 명시된 바에 따릅니다. 작업이 일부 진행된 후
         환불이 요청되는 경우, 진행된 범위에 상응하는 금액을 차감한 후 잔액이 환불될 수 있습니다.
+      </p>
+      <p className="mt-3 leading-relaxed break-keep">
+        <strong>결제 주체.</strong> {site.legal.brandKo}의 모든 결제는 {site.legal.brandKo} 서비스의 운영 법인인{" "}
+        {site.legal.operator}에서 처리됩니다. 카드 명세서에는 &ldquo;CLOUDMASTERIT LLC&rdquo; 또는 유사 표기로
+        나타날 수 있으며, 영수증과 인보이스 또한 {site.legal.operator} 명의로 발행됩니다. 결제 관련 문의는{" "}
+        <a href={`mailto:${site.legal.contactEmail}`} className="text-brand-600 hover:underline">
+          {site.legal.contactEmail}
+        </a>
+        로 연락 주시기 바랍니다.
       </p>
 
       <h2 className="mt-12 text-2xl font-bold text-ink-900 break-keep">제7조 (회사의 의무)</h2>

@@ -75,9 +75,12 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-ink-200 pt-6 text-xs text-ink-400 sm:flex-row">
-          <p>
-            © {year} {site.name}. {dict.footer.rights}
-          </p>
+          <div className="flex flex-col items-center gap-1 sm:items-start">
+            <p>
+              © {year} {site.name}. {dict.footer.rights}
+            </p>
+            <p className="text-[11px] text-ink-400/80">{dict.footer.operatedBy}</p>
+          </div>
           <div className="flex gap-5">
             <Link href={localePath(lang, "/privacy")} className="hover:text-brand-600">
               {dict.footer.privacy}

@@ -484,8 +484,10 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
 
                     <Link
                       href={localePath(lang, "/contact")}
-                      className={`block text-center text-xs font-semibold underline-offset-4 hover:underline ${
-                        p.best ? "text-ink-200" : "text-white/80"
+                      className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition ${
+                        p.best
+                          ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
+                          : "bg-ink-900 text-white hover:bg-blue-700"
                       }`}
                     >
                       {dict.pricing.quoteCta}

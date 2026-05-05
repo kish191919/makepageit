@@ -31,6 +31,8 @@ const strings = {
     submitting: "Redirecting…",
     error: "Couldn't start checkout. Please try again or contact support.",
     footer: "Secure payment via Stripe. We never see your card details.",
+    billingEntity:
+      "Billed by CloudMasterIT LLC, the legal operator of MAKEPAGE. Charges will appear as “CLOUDMASTERIT LLC” on your card statement.",
   },
   ko: {
     eyebrow: "견적서",
@@ -56,6 +58,8 @@ const strings = {
     submitting: "이동 중…",
     error: "결제를 시작하지 못했습니다. 잠시 후 다시 시도하거나 문의해 주세요.",
     footer: "Stripe를 통한 안전 결제입니다. 카드 정보는 저장되지 않습니다.",
+    billingEntity:
+      "결제는 메이크페이지의 운영 법인인 CloudMasterIT LLC에서 처리됩니다. 카드 명세서에는 “CLOUDMASTERIT LLC”로 표시됩니다.",
   },
 } as const;
 
@@ -169,6 +173,9 @@ export default function QuotePageView({
 
         <section className="mt-8">
           <h2 className="text-sm font-semibold text-slate-900">{t.optionsLabel}</h2>
+          <div className="mt-3 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-xs leading-relaxed text-amber-900">
+            {t.billingEntity}
+          </div>
           <div className="mt-3 space-y-3">
             {enabledCadences.map((cadence) => {
               const cfg = quote.cadences[cadence]!;

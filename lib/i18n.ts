@@ -217,6 +217,7 @@ type Dict = {
     phoneLabel: string;
     description: string;
     businessHours: string;
+    operatedBy: string;
   };
   pricingPlans: {
     eyebrow: string;
@@ -374,7 +375,7 @@ const en: Dict = {
     monthlyAfterLabel: (amount) => `then ${amount}/mo from next month`,
     subscribeCta: (amount) => `Subscribe — ${amount} today`,
     payOnceCta: (amount) => `Pay ${amount}`,
-    quoteCta: "Get a quote",
+    quoteCta: "Request a consultation",
     successTitle: "Payment received — welcome to MAKEPAGE.",
     successBody: "Your subscription is active. Your account manager will reach out within one business day to kick off your build.",
     successHomeCta: "Back to home",
@@ -553,6 +554,7 @@ const en: Dict = {
     phoneLabel: "",
     description: "Strategy, design, development, and care — all in one place. We build websites that help small businesses grow.",
     businessHours: "Mon–Fri, 9:00 AM – 6:00 PM EST",
+    operatedBy: "MAKEPAGE is a service operated by CloudMasterIT LLC. Charges appear as “CLOUDMASTERIT LLC” on your statement.",
   },
   pricingPlans: {
     eyebrow: "Pricing",
@@ -745,7 +747,7 @@ const ko: Dict = {
     monthlyAfterLabel: (amount) => `다음 달부터 매월 ${amount}`,
     subscribeCta: (amount) => `${amount} 결제하고 구독 시작`,
     payOnceCta: (amount) => `${amount} 결제하기`,
-    quoteCta: "견적 문의하기",
+    quoteCta: "상담 요청하기",
     successTitle: "결제가 완료되었습니다.",
     successBody: "구독이 활성화되었습니다. 영업일 기준 24시간 이내 담당 매니저가 제작 시작을 위해 연락드립니다.",
     successHomeCta: "홈으로 돌아가기",
@@ -930,6 +932,7 @@ const ko: Dict = {
     phoneLabel: "대표 ",
     description: "기획부터 디자인, 개발, 운영까지. 사장님의 사업이 빛나도록 홈페이지를 만들어드립니다.",
     businessHours: "평일 10:00 – 19:00 (점심 12:30 – 13:30)",
+    operatedBy: "메이크페이지는 CloudMasterIT LLC가 운영하는 서비스입니다. 카드 명세서에는 “CLOUDMASTERIT LLC”로 표시됩니다.",
   },
   pricingPlans: {
     eyebrow: "가격 안내",
