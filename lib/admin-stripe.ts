@@ -128,6 +128,46 @@ export async function issueOneTimeInvoice(input: {
   return stripe.invoices.sendInvoice(finalized.id);
 }
 
+export async function issueOneTimeQuoteInvoice(input: {
+  customerId: string;
+  totalCents: number;
+  description: string;
+  daysUntilDue: number;
+  lang: Lang;
+  currency?: string;
+  quoteId?: string;
+}): Promise<Stripe.Invoice> {
+  const stripe = getStripe();
+  const currency = input.currency ?? DEFAULT_CURRENCY;
+
+  const draft = await stripe.invoices.create({
+    customer: input.customerId,
+    collection_method: "send_invoice",
+    days_until_due: input.daysUntilDue,
+    pending_invoice_items_behavior: "exclude",
+    description: input.description,
+    metadata: {
+      lang: input.lang,
+      source: "quote-page",
+      ...(input.quoteId ? { quoteId: input.quoteId } : {}),
+    },
+    auto_advance: false,
+  });
+
+  await stripe.invoiceItems.create({
+    customer: input.customerId,
+    invoice: draft.id,
+    currency,
+    amount: input.totalCents,
+    description: input.description,
+  });
+
+  const finalized = await stripe.invoices.finalizeInvoice(draft.id, {
+    auto_advance: false,
+  });
+  return finalized;
+}
+
 export async function issueRecurringCheckoutLink(input: {
   customerId: string;
   lineItems: LineItemInput[];

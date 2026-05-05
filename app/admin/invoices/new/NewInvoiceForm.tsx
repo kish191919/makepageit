@@ -3,13 +3,20 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 
-type Cadence = "one_time" | "monthly" | "yearly";
+type Mode = "single_one_time" | "single_monthly" | "single_yearly" | "quote";
 
 type LineItem = { description: string; quantity: number; unitDollars: number };
 
+type QuoteCadenceState = {
+  enabled: boolean;
+  totalDollars: number;
+  daysUntilDue?: number;
+};
+
 type Result =
   | { kind: "one_time"; invoiceId: string; hostedUrl: string | null; number: string | null }
-  | { kind: "subscription"; checkoutUrl: string; emailSent: boolean };
+  | { kind: "subscription"; checkoutUrl: string; emailSent: boolean }
+  | { kind: "quote"; quoteUrl: string; emailSent: boolean };
 
 export default function NewInvoiceForm({
   customerOptions,
@@ -20,15 +27,28 @@ export default function NewInvoiceForm({
 }) {
   const [customerId, setCustomerId] = useState(initialCustomerId ?? "");
   const [lang, setLang] = useState<"en" | "ko">("en");
-  const [cadence, setCadence] = useState<Cadence>("one_time");
+  const [mode, setMode] = useState<Mode>("quote");
   const [daysUntilDue, setDaysUntilDue] = useState(7);
   const [memo, setMemo] = useState("");
   const [items, setItems] = useState<LineItem[]>([
     { description: "", quantity: 1, unitDollars: 0 },
   ]);
+  const [quoteCadences, setQuoteCadences] = useState<{
+    one_time: QuoteCadenceState;
+    monthly: QuoteCadenceState;
+    yearly: QuoteCadenceState;
+  }>({
+    one_time: { enabled: true, totalDollars: 0, daysUntilDue: 7 },
+    monthly: { enabled: false, totalDollars: 0 },
+    yearly: { enabled: false, totalDollars: 0 },
+  });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<Result | null>(null);
+  const [copied, setCopied] = useState(false);
+
+  const isQuote = mode === "quote";
+  const singleCadence = isQuote ? null : (mode.replace("single_", "") as "one_time" | "monthly" | "yearly");
 
   const total = useMemo(
     () =>
@@ -43,6 +63,13 @@ export default function NewInvoiceForm({
     setItems((arr) => arr.map((it, idx) => (idx === i ? { ...it, ...patch } : it)));
   }
 
+  function patchQuoteCadence(
+    key: "one_time" | "monthly" | "yearly",
+    patch: Partial<QuoteCadenceState>
+  ) {
+    setQuoteCadences((prev) => ({ ...prev, [key]: { ...prev[key], ...patch } }));
+  }
+
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
@@ -52,16 +79,76 @@ export default function NewInvoiceForm({
       setError("Pick a customer.");
       return;
     }
-    const lineItems = items
-      .filter((it) => it.description.trim() && it.unitDollars > 0)
-      .map((it) => ({
-        description: it.description.trim(),
-        quantity: Math.max(1, Math.floor(it.quantity)),
-        unitAmount: Math.round(it.unitDollars * 100),
-      }));
-    if (lineItems.length === 0) {
-      setError("Add at least one line item with a description and amount.");
-      return;
+
+    let bodyPayload: Record<string, unknown>;
+
+    if (isQuote) {
+      const lineItemDescriptions = items
+        .filter((it) => it.description.trim())
+        .map((it) => ({ description: it.description.trim() }));
+      if (lineItemDescriptions.length === 0) {
+        setError("Add at least one line item description.");
+        return;
+      }
+      const cadences: Record<string, { totalCents: number; daysUntilDue?: number }> = {};
+      if (quoteCadences.one_time.enabled) {
+        if (quoteCadences.one_time.totalDollars <= 0) {
+          setError("Enter a one-time total greater than $0.");
+          return;
+        }
+        cadences.one_time = {
+          totalCents: Math.round(quoteCadences.one_time.totalDollars * 100),
+          daysUntilDue: Math.min(60, Math.max(1, Math.floor(quoteCadences.one_time.daysUntilDue ?? 7))),
+        };
+      }
+      if (quoteCadences.monthly.enabled) {
+        if (quoteCadences.monthly.totalDollars <= 0) {
+          setError("Enter a monthly total greater than $0.");
+          return;
+        }
+        cadences.monthly = { totalCents: Math.round(quoteCadences.monthly.totalDollars * 100) };
+      }
+      if (quoteCadences.yearly.enabled) {
+        if (quoteCadences.yearly.totalDollars <= 0) {
+          setError("Enter a yearly total greater than $0.");
+          return;
+        }
+        cadences.yearly = { totalCents: Math.round(quoteCadences.yearly.totalDollars * 100) };
+      }
+      if (Object.keys(cadences).length === 0) {
+        setError("Enable at least one payment option.");
+        return;
+      }
+
+      bodyPayload = {
+        mode: "quote",
+        customerId,
+        lang,
+        memo: memo.trim() || undefined,
+        lineItems: lineItemDescriptions,
+        cadences,
+      };
+    } else {
+      const lineItems = items
+        .filter((it) => it.description.trim() && it.unitDollars > 0)
+        .map((it) => ({
+          description: it.description.trim(),
+          quantity: Math.max(1, Math.floor(it.quantity)),
+          unitAmount: Math.round(it.unitDollars * 100),
+        }));
+      if (lineItems.length === 0) {
+        setError("Add at least one line item with a description and amount.");
+        return;
+      }
+      bodyPayload = {
+        mode: "single",
+        customerId,
+        lang,
+        cadence: singleCadence,
+        daysUntilDue,
+        memo: memo.trim() || undefined,
+        lineItems,
+      };
     }
 
     setSubmitting(true);
@@ -69,14 +156,7 @@ export default function NewInvoiceForm({
       const res = await fetch("/api/admin/invoices", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          customerId,
-          lang,
-          cadence,
-          daysUntilDue,
-          memo: memo.trim() || undefined,
-          lineItems,
-        }),
+        body: JSON.stringify(bodyPayload),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
@@ -85,19 +165,22 @@ export default function NewInvoiceForm({
       const body = (await res.json()) as Result;
       setResult(body);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to issue invoice");
+      setError(err instanceof Error ? err.message : "Failed to issue");
     } finally {
       setSubmitting(false);
     }
   }
 
   if (result) {
+    const isQuoteResult = result.kind === "quote";
     return (
       <div className="space-y-4 rounded-lg border border-emerald-200 bg-emerald-50 p-6">
         <h2 className="text-lg font-semibold text-emerald-900">
           {result.kind === "one_time"
             ? "Invoice sent — Stripe is emailing the customer."
-            : "Checkout link emailed to customer."}
+            : result.kind === "subscription"
+              ? "Checkout link emailed to customer."
+              : `Quote ready${result.emailSent ? " — emailed to customer." : "."}`}
         </h2>
         {result.kind === "one_time" && result.hostedUrl && (
           <p className="text-sm text-emerald-800">
@@ -110,6 +193,35 @@ export default function NewInvoiceForm({
               Open hosted invoice ({result.number ?? result.invoiceId}) ↗
             </a>
           </p>
+        )}
+        {isQuoteResult && (
+          <>
+            <div className="rounded-md border border-emerald-300 bg-white px-4 py-3 text-sm">
+              <p className="text-xs uppercase tracking-wide text-slate-500">Quote URL</p>
+              <p className="mt-1 break-all font-mono text-slate-900">{result.quoteUrl}</p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <a
+                href={result.quoteUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700"
+              >
+                Open quote ↗
+              </a>
+              <button
+                type="button"
+                onClick={async () => {
+                  await navigator.clipboard.writeText(result.quoteUrl);
+                  setCopied(true);
+                  setTimeout(() => setCopied(false), 2000);
+                }}
+                className="rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                {copied ? "Copied!" : "Copy URL"}
+              </button>
+            </div>
+          </>
         )}
         {result.kind === "subscription" && (
           <p className="text-sm text-emerald-800 break-all">
@@ -171,34 +283,78 @@ export default function NewInvoiceForm({
         </p>
       </div>
 
+      <fieldset className="space-y-2">
+        <legend className="text-sm font-medium text-slate-700">Mode</legend>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {(
+            [
+              { v: "quote", label: "Quote (customer chooses)" },
+              { v: "single_one_time", label: "Send One-time" },
+              { v: "single_monthly", label: "Send Monthly" },
+              { v: "single_yearly", label: "Send Yearly" },
+            ] as const
+          ).map((opt) => (
+            <label
+              key={opt.v}
+              className={
+                mode === opt.v
+                  ? "rounded-md border border-slate-900 bg-slate-900 text-white px-3 py-2 text-xs text-center cursor-pointer"
+                  : "rounded-md border border-slate-300 bg-white text-slate-700 px-3 py-2 text-xs text-center cursor-pointer hover:bg-slate-50"
+              }
+            >
+              <input
+                type="radio"
+                name="mode"
+                value={opt.v}
+                checked={mode === opt.v}
+                onChange={() => setMode(opt.v)}
+                className="sr-only"
+              />
+              {opt.label}
+            </label>
+          ))}
+        </div>
+        <p className="text-xs text-slate-500">
+          {isQuote
+            ? "Quote mode sends one email with a single link; the customer picks a payment option on the quote page."
+            : "Single mode issues the invoice immediately for the chosen cadence."}
+        </p>
+      </fieldset>
+
       <fieldset className="space-y-3">
-        <legend className="text-sm font-medium text-slate-700">Line items</legend>
+        <legend className="text-sm font-medium text-slate-700">
+          Line items {isQuote && <span className="text-xs font-normal text-slate-500">(displayed on quote page only — totals come from cadence section below)</span>}
+        </legend>
         {items.map((item, i) => (
           <div key={i} className="grid grid-cols-12 gap-2">
             <input
               placeholder="Description"
               value={item.description}
               onChange={(e) => patchItem(i, { description: e.target.value })}
-              className="col-span-7 rounded-md border border-slate-300 px-3 py-2 text-sm"
+              className={isQuote ? "col-span-11 rounded-md border border-slate-300 px-3 py-2 text-sm" : "col-span-7 rounded-md border border-slate-300 px-3 py-2 text-sm"}
             />
-            <input
-              type="number"
-              min="1"
-              step="1"
-              placeholder="Qty"
-              value={item.quantity}
-              onChange={(e) => patchItem(i, { quantity: Number(e.target.value) || 1 })}
-              className="col-span-2 rounded-md border border-slate-300 px-3 py-2 text-sm"
-            />
-            <input
-              type="number"
-              min="0"
-              step="0.01"
-              placeholder="Unit USD"
-              value={item.unitDollars}
-              onChange={(e) => patchItem(i, { unitDollars: Number(e.target.value) || 0 })}
-              className="col-span-2 rounded-md border border-slate-300 px-3 py-2 text-sm"
-            />
+            {!isQuote && (
+              <>
+                <input
+                  type="number"
+                  min="1"
+                  step="1"
+                  placeholder="Qty"
+                  value={item.quantity}
+                  onChange={(e) => patchItem(i, { quantity: Number(e.target.value) || 1 })}
+                  className="col-span-2 rounded-md border border-slate-300 px-3 py-2 text-sm"
+                />
+                <input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  placeholder="Unit USD"
+                  value={item.unitDollars}
+                  onChange={(e) => patchItem(i, { unitDollars: Number(e.target.value) || 0 })}
+                  className="col-span-2 rounded-md border border-slate-300 px-3 py-2 text-sm"
+                />
+              </>
+            )}
             <button
               type="button"
               onClick={() => setItems((arr) => arr.filter((_, idx) => idx !== i))}
@@ -220,53 +376,50 @@ export default function NewInvoiceForm({
         </button>
       </fieldset>
 
-      <fieldset className="space-y-2">
-        <legend className="text-sm font-medium text-slate-700">Payment cadence</legend>
-        <div className="grid grid-cols-3 gap-2">
-          {(
-            [
-              { v: "one_time", label: "One-time" },
-              { v: "monthly", label: "Monthly" },
-              { v: "yearly", label: "Yearly" },
-            ] as const
-          ).map((opt) => (
-            <label
-              key={opt.v}
-              className={
-                cadence === opt.v
-                  ? "rounded-md border border-slate-900 bg-slate-900 text-white px-3 py-2 text-sm text-center cursor-pointer"
-                  : "rounded-md border border-slate-300 bg-white text-slate-700 px-3 py-2 text-sm text-center cursor-pointer hover:bg-slate-50"
-              }
-            >
-              <input
-                type="radio"
-                name="cadence"
-                value={opt.v}
-                checked={cadence === opt.v}
-                onChange={() => setCadence(opt.v)}
-                className="sr-only"
-              />
-              {opt.label}
-            </label>
-          ))}
-        </div>
-      </fieldset>
+      {isQuote ? (
+        <fieldset className="space-y-3">
+          <legend className="text-sm font-medium text-slate-700">Cadence options</legend>
+          <p className="text-xs text-slate-500">
+            Enable at least one. Each price represents the total customer will be charged at that cadence.
+          </p>
 
-      {cadence === "one_time" && (
-        <div>
-          <label htmlFor="dueDays" className="block text-sm font-medium text-slate-700">
-            Due in (days)
-          </label>
-          <input
-            id="dueDays"
-            type="number"
-            min="1"
-            max="60"
-            value={daysUntilDue}
-            onChange={(e) => setDaysUntilDue(Number(e.target.value) || 7)}
-            className="mt-1 w-32 rounded-md border border-slate-300 px-3 py-2 text-sm"
+          <CadenceRow
+            label="One-time"
+            suffix=""
+            state={quoteCadences.one_time}
+            onChange={(p) => patchQuoteCadence("one_time", p)}
+            withDueDays
           />
-        </div>
+          <CadenceRow
+            label="Monthly"
+            suffix="/ month"
+            state={quoteCadences.monthly}
+            onChange={(p) => patchQuoteCadence("monthly", p)}
+          />
+          <CadenceRow
+            label="Yearly"
+            suffix="/ year"
+            state={quoteCadences.yearly}
+            onChange={(p) => patchQuoteCadence("yearly", p)}
+          />
+        </fieldset>
+      ) : (
+        singleCadence === "one_time" && (
+          <div>
+            <label htmlFor="dueDays" className="block text-sm font-medium text-slate-700">
+              Due in (days)
+            </label>
+            <input
+              id="dueDays"
+              type="number"
+              min="1"
+              max="60"
+              value={daysUntilDue}
+              onChange={(e) => setDaysUntilDue(Number(e.target.value) || 7)}
+              className="mt-1 w-32 rounded-md border border-slate-300 px-3 py-2 text-sm"
+            />
+          </div>
+        )
       )}
 
       <div>
@@ -298,18 +451,20 @@ export default function NewInvoiceForm({
         />
       </div>
 
-      <div className="flex items-center justify-between rounded-md bg-slate-100 px-4 py-3">
-        <span className="text-sm text-slate-700">
-          {cadence === "one_time"
-            ? "Total due"
-            : cadence === "monthly"
-              ? "Per month"
-              : "Per year"}
-        </span>
-        <span className="font-mono text-lg font-semibold text-slate-900">
-          ${(total / 100).toFixed(2)} USD
-        </span>
-      </div>
+      {!isQuote && (
+        <div className="flex items-center justify-between rounded-md bg-slate-100 px-4 py-3">
+          <span className="text-sm text-slate-700">
+            {singleCadence === "one_time"
+              ? "Total due"
+              : singleCadence === "monthly"
+                ? "Per month"
+                : "Per year"}
+          </span>
+          <span className="font-mono text-lg font-semibold text-slate-900">
+            ${(total / 100).toFixed(2)} USD
+          </span>
+        </div>
+      )}
 
       {error && (
         <div className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
@@ -322,8 +477,68 @@ export default function NewInvoiceForm({
         disabled={submitting}
         className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:opacity-60"
       >
-        {submitting ? "Issuing…" : cadence === "one_time" ? "Send invoice" : "Send checkout link"}
+        {submitting
+          ? "Working…"
+          : isQuote
+            ? "Send quote"
+            : singleCadence === "one_time"
+              ? "Send invoice"
+              : "Send checkout link"}
       </button>
     </form>
+  );
+}
+
+function CadenceRow({
+  label,
+  suffix,
+  state,
+  onChange,
+  withDueDays = false,
+}: {
+  label: string;
+  suffix: string;
+  state: QuoteCadenceState;
+  onChange: (patch: Partial<QuoteCadenceState>) => void;
+  withDueDays?: boolean;
+}) {
+  return (
+    <div className="rounded-md border border-slate-200 p-3">
+      <label className="flex items-center gap-3">
+        <input
+          type="checkbox"
+          checked={state.enabled}
+          onChange={(e) => onChange({ enabled: e.target.checked })}
+          className="h-4 w-4 rounded border-slate-400"
+        />
+        <span className="text-sm font-medium text-slate-900 w-20">{label}</span>
+        <span className="text-slate-500">$</span>
+        <input
+          type="number"
+          min="0"
+          step="0.01"
+          value={state.totalDollars}
+          onChange={(e) => onChange({ totalDollars: Number(e.target.value) || 0 })}
+          disabled={!state.enabled}
+          className="w-32 rounded-md border border-slate-300 px-3 py-2 text-sm disabled:bg-slate-50 disabled:text-slate-400"
+        />
+        <span className="text-sm text-slate-500">USD {suffix}</span>
+        {withDueDays && (
+          <>
+            <span className="text-sm text-slate-500 ml-4">due in</span>
+            <input
+              type="number"
+              min="1"
+              max="60"
+              value={state.daysUntilDue ?? 7}
+              onChange={(e) => onChange({ daysUntilDue: Number(e.target.value) || 7 })}
+              disabled={!state.enabled}
+              className="w-20 rounded-md border border-slate-300 px-3 py-2 text-sm disabled:bg-slate-50 disabled:text-slate-400"
+            />
+            <span className="text-sm text-slate-500">days</span>
+          </>
+        )}
+      </label>
+    </div>
   );
 }

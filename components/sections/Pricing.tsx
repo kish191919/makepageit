@@ -46,8 +46,6 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
   const scrollerRef = useRef<HTMLDivElement>(null);
   const customizePanelRefs = useRef<Map<string, HTMLDivElement | null>>(new Map());
   const [activeIndex, setActiveIndex] = useState(0);
-  const [pendingPlan, setPendingPlan] = useState<string | null>(null);
-  const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [showCanceled, setShowCanceled] = useState(false);
   const [planOptions, setPlanOptions] = useState<Record<string, CheckoutOptions>>({});
   const [customizeOpen, setCustomizeOpen] = useState(false);
@@ -101,26 +99,6 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
       });
     }
   }, [customizeOpen, planOptions, lang]);
-
-  async function handleCheckout(planId: string) {
-    setCheckoutError(null);
-    setPendingPlan(planId);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ planId, lang, options: getOptions(planId) }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data?.url) {
-        throw new Error(data?.error || dict.pricing.checkoutError);
-      }
-      window.location.href = data.url as string;
-    } catch (err) {
-      setPendingPlan(null);
-      setCheckoutError(err instanceof Error ? err.message : dict.pricing.checkoutError);
-    }
-  }
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -345,13 +323,6 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                   monthlyPerMonth +
                   (opts.domain ? p.amounts.domain : 0) +
                   p.amounts.email * opts.emailMailboxes;
-                const isSubscription = monthlyPerMonth > 0 || opts.emailMailboxes > 0;
-                const ctaLabel =
-                  pendingPlan === p.id
-                    ? dict.pricing.checkoutSubmitting
-                    : isSubscription
-                    ? dict.pricing.subscribeCta(formatUsd(today))
-                    : dict.pricing.payOnceCta(formatUsd(today));
                 return (
                   <div className="mt-9 space-y-3">
                     <div
@@ -511,18 +482,6 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                       )}
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={() => handleCheckout(p.id)}
-                      disabled={pendingPlan === p.id}
-                      className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-70 ${
-                        p.best
-                          ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
-                          : "bg-ink-900 text-white hover:bg-blue-700"
-                      }`}
-                    >
-                      {ctaLabel}
-                    </button>
                     <Link
                       href={localePath(lang, "/contact")}
                       className={`block text-center text-xs font-semibold underline-offset-4 hover:underline ${
@@ -550,10 +509,6 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
             );
           })}
         </div>
-
-        {checkoutError && (
-          <p className="mt-4 text-center text-sm font-medium text-red-600">{checkoutError}</p>
-        )}
 
         <div className="mt-4 flex justify-center gap-2 md:hidden" role="tablist">
           {plans.map((p, i) => (
