@@ -76,6 +76,14 @@ export async function getCustomerWithHistory(id: string): Promise<{
   };
 }
 
+export async function setSubscriptionCancelAtPeriodEnd(
+  id: string,
+  cancel: boolean
+): Promise<Stripe.Subscription> {
+  const stripe = getStripe();
+  return stripe.subscriptions.update(id, { cancel_at_period_end: cancel });
+}
+
 export async function listAllInvoices(opts: {
   limit?: number;
   starting_after?: string;

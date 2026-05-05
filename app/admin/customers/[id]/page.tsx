@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getCustomerWithHistory } from "@/lib/admin-stripe";
 import { formatAmount } from "@/lib/email-helpers";
 import MetadataEditor from "./MetadataEditor";
+import SubscriptionActions from "./SubscriptionActions";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -125,7 +126,7 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
               key={sub.id}
               className="px-5 py-3 flex items-center justify-between gap-4 text-sm"
             >
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <p className="font-medium text-slate-900 truncate">{sub.id}</p>
                 <p className="text-xs text-slate-500">
                   {sub.items.data
@@ -133,7 +134,17 @@ export default async function CustomerDetailPage({ params }: { params: { id: str
                     .join(", ")}
                 </p>
               </div>
-              <span className="text-xs uppercase tracking-wide text-slate-500">{sub.status}</span>
+              <div className="flex items-center gap-3 shrink-0">
+                <span className="text-xs uppercase tracking-wide text-slate-500">
+                  {sub.status}
+                </span>
+                <SubscriptionActions
+                  subscriptionId={sub.id}
+                  status={sub.status}
+                  cancelAtPeriodEnd={sub.cancel_at_period_end}
+                  currentPeriodEnd={sub.items.data[0]?.current_period_end ?? 0}
+                />
+              </div>
             </li>
           ))}
           {subscriptions.length === 0 && (
