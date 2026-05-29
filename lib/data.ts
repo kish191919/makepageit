@@ -532,7 +532,7 @@ const plansEn: Plan[] = [
       annual: "$25",
       annualNote: "domain (annual)",
     },
-    amounts: { setup: 299, monthly: 15, domain: 25, email: 60, extraPage: 50, booking: 100, payment: 100 },
+    amounts: { setup: 299, monthly: 15, domain: 25, email: 140, extraPage: 50, booking: 100, payment: 200 },
     description: "A clean starter for non-commercial portfolios.",
     features: [
       "3-page core layout",
@@ -552,19 +552,19 @@ const plansEn: Plan[] = [
     pricing: {
       oneTime: "$449",
       oneTimeNote: "one-time (5 pages)",
-      monthly: "$65",
+      monthly: "$80",
       monthlyNote: "hosting + DB + monthly maintenance",
       annual: "$25",
       annualNote: "domain (annual)",
     },
-    amounts: { setup: 449, monthly: 65, monthlyMaintenance: 25, hosting: 20, database: 20, domain: 25, email: 60, extraPage: 50, booking: 100, payment: 100 },
+    amounts: { setup: 449, monthly: 80, monthlyMaintenance: 25, hosting: 25, database: 30, domain: 25, email: 140, extraPage: 50, booking: 100, payment: 200 },
     description: "Everything you need to run a real business website.",
     features: [
       "5-page core layout",
       "Template design + mobile-responsive",
       "Basic SEO setup",
-      "Hosting (server) at $20/mo",
-      "Database at $20/mo",
+      "Hosting (server) at $25/mo",
+      "Database at $30/mo",
       "Two free add-ons (login, blog, gallery)",
     ],
     cta: "Get a quote",
@@ -584,7 +584,7 @@ const plansKo: Plan[] = [
       annual: "$25",
       annualNote: "연 도메인",
     },
-    amounts: { setup: 299, monthly: 15, domain: 25, email: 60, extraPage: 50, booking: 100, payment: 100 },
+    amounts: { setup: 299, monthly: 15, domain: 25, email: 140, extraPage: 50, booking: 100, payment: 200 },
     description: "비상업적 개인 포트폴리오를 깔끔하게 시작.",
     features: [
       "3페이지 기본 구성",
@@ -604,19 +604,19 @@ const plansKo: Plan[] = [
     pricing: {
       oneTime: "$449",
       oneTimeNote: "일회성 (5페이지)",
-      monthly: "$65",
+      monthly: "$80",
       monthlyNote: "호스팅 + DB + 월 유지보수",
       annual: "$25",
       annualNote: "연 도메인",
     },
-    amounts: { setup: 449, monthly: 65, monthlyMaintenance: 25, hosting: 20, database: 20, domain: 25, email: 60, extraPage: 50, booking: 100, payment: 100 },
+    amounts: { setup: 449, monthly: 80, monthlyMaintenance: 25, hosting: 25, database: 30, domain: 25, email: 140, extraPage: 50, booking: 100, payment: 200 },
     description: "상업 활동에 필요한 모든 기능을 갖춘 포트폴리오.",
     features: [
       "5페이지 기본 구성",
       "템플릿 디자인 + 모바일 반응형",
       "기본 SEO 세팅",
-      "호스팅 (서버비용) 월 $20",
-      "데이터베이스 월 $20",
+      "호스팅 (서버비용) 월 $25",
+      "데이터베이스 월 $30",
       "로그인 · 게시판 · 사진첩 중 2개 무료 추가",
     ],
     cta: "견적 문의하기",
@@ -756,7 +756,7 @@ const faqsEn: FAQ[] = [
   },
   {
     q: "Do you handle the domain and hosting?",
-    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $25/year; hosting + DB + maintenance is $15/month for PORTFOLIO LITE and $65/month for PORTFOLIO PRO. Hosting and DB are free for non-commercial personal portfolios.",
+    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $25/year; hosting + DB + maintenance is $15/month for PORTFOLIO LITE and $80/month for PORTFOLIO PRO. Hosting and DB are free for non-commercial personal portfolios.",
   },
   {
     q: "Can I edit the site myself afterward?",
@@ -783,7 +783,7 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "도메인과 호스팅도 맡아주시나요?",
-    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 호스팅·DB·유지보수가 PORTFOLIO LITE는 월 $15, PORTFOLIO PRO는 월 $65로 운영돼요. 비상업 개인 포트폴리오는 호스팅·DB가 무료입니다.",
+    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 호스팅·DB·유지보수가 PORTFOLIO LITE는 월 $15, PORTFOLIO PRO는 월 $80으로 운영돼요. 비상업 개인 포트폴리오는 호스팅·DB가 무료입니다.",
   },
   {
     q: "직접 수정하고 관리할 수 있나요?",
