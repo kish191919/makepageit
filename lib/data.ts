@@ -772,7 +772,7 @@ const faqsEn: FAQ[] = [
   },
   {
     q: "Can you also handle ongoing operations?",
-    a: "Yes — monthly maintenance covers content updates, feature checks, performance monitoring, and basic SEO ($15/mo on LITE, $20/mo built into PRO). We don't run paid ads or blog content as part of these plans, but we'll scope that separately during the consult.",
+    a: "Yes — monthly maintenance covers content updates, feature checks, performance monitoring, and basic SEO ($15/mo on LITE, $25/mo built into PRO). We don't run paid ads or blog content as part of these plans, but we'll scope that separately during the consult.",
   },
 ];
 
@@ -799,7 +799,7 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "오픈 후 운영도 맡길 수 있나요?",
-    a: "네, 월 유지보수 비용에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO 관리까지 포함되어 있습니다(LITE 월 $15 / PRO 월 $20). 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
+    a: "네, 월 유지보수 비용에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO 관리까지 포함되어 있습니다(LITE 월 $15 / PRO 월 $25). 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
   },
 ];
 
