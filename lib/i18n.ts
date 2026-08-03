@@ -192,7 +192,6 @@ type Dict = {
         phone: string;
         email: string;
         industry: string;
-        service: string;
         budget: string;
         message: string;
       };
@@ -204,7 +203,6 @@ type Dict = {
         message: string;
       };
       selectPrompt: string;
-      services: string[];
       budgets: string[];
       consent: string;
     };
@@ -357,8 +355,8 @@ const en: Dict = {
     customizeDatabaseHint: "Managed DB for forms, login, and dynamic content.",
     customizeDomainLabel: "Domain",
     customizeDomainHint: "Skip if you already own a domain.",
-    customizeEmailLabel: "Microsoft 365 Email Essentials",
-    customizeEmailHint: "10GB storage + custom-domain email (you@yourdomain.com).",
+    customizeEmailLabel: "Email",
+    customizeEmailHint: "5GB storage + domain email (you@yourdomain.com).",
     customizeEmailMailboxesLabel: "Mailboxes",
     customizeEmailPerMailbox: (amount) => `${amount} per mailbox`,
     customizeExtraPageLabel: "Extra pages",
@@ -399,7 +397,7 @@ const en: Dict = {
         { item: "Mobile-responsive", lite: "✓", pro: "✓" },
         { item: "Basic SEO", lite: "✓", pro: "✓" },
         { item: "Login · forum · gallery", lite: "—", pro: "2 included free" },
-        { item: "Extra pages", lite: "$50/page", pro: "$50/page" },
+        { item: "Extra pages", lite: "$80/page", pro: "$80/page" },
       ],
     },
   },
@@ -410,7 +408,7 @@ const en: Dict = {
     badge: "Custom options",
     note: "Final pricing is shared after a free consult.",
     options: [
-      { icon: "📄", title: "Extra page", price: "$50", unit: "/ page", desc: "Beyond the pages included in your package." },
+      { icon: "📄", title: "Extra page", price: "$80", unit: "/ page", desc: "Beyond the pages included in your package." },
       { icon: "📅", title: "Booking integration", price: "+$200", unit: "/ one-time", desc: "Calendar, booking form, and automated reminders." },
       { icon: "💳", title: "Payment integration", price: "+$200", unit: "/ one-time", desc: "Stripe, Square, or any major gateway." },
     ],
@@ -513,7 +511,6 @@ const en: Dict = {
         phone: "Phone",
         email: "Email",
         industry: "Industry",
-        service: "Project type",
         budget: "Estimated budget",
         message: "Project details",
       },
@@ -525,19 +522,9 @@ const en: Dict = {
         message: "Goals, references you like, target launch date — anything is helpful.",
       },
       selectPrompt: "Please select",
-      services: [
-        "Brand site",
-        "E-commerce / online store",
-        "Landing page",
-        "Redesign / maintenance",
-        "Booking / membership",
-        "Marketing operations",
-        "Not sure yet (let's talk)",
-      ],
       budgets: [
-        "Under $300",
-        "$300 – $500",
-        "$500 – $1,000",
+        "Under $450",
+        "$450 – $1,000",
         "$1,000 – $2,500",
         "$2,500+",
         "Open / let's discuss",
@@ -631,7 +618,7 @@ const en: Dict = {
       "Need to cancel monthly maintenance, update your card, or stop your domain renewal? You can do all of that anytime from your account page.",
     customerEmailManageCta: "Manage my subscription",
     customerEmailFooter:
-      "If you didn't make this purchase, please contact us right away at admin@cloudmasterit.com.",
+      "If you didn't make this purchase, please contact us right away at kish1919@gmail.com.",
     cancelEmailSubject: "Your MAKEPAGE subscription has been canceled",
     cancelEmailHeading: "Your subscription has been canceled",
     cancelEmailBody:
@@ -729,8 +716,8 @@ const ko: Dict = {
     customizeDatabaseHint: "폼·로그인·동적 콘텐츠용 관리형 DB.",
     customizeDomainLabel: "도메인",
     customizeDomainHint: "이미 도메인이 있으시면 체크 해제하세요.",
-    customizeEmailLabel: "Microsoft 365 Email Essentials",
-    customizeEmailHint: "10GB 저장공간 + 도메인 이메일 (you@yourdomain.com).",
+    customizeEmailLabel: "Email",
+    customizeEmailHint: "5GB 저장공간 + 도메인 이메일 (you@yourdomain.com).",
     customizeEmailMailboxesLabel: "메일박스 수",
     customizeEmailPerMailbox: (amount) => `메일박스당 ${amount}`,
     customizeExtraPageLabel: "추가 페이지",
@@ -771,7 +758,7 @@ const ko: Dict = {
         { item: "모바일 반응형", lite: "✓", pro: "✓" },
         { item: "기본 SEO", lite: "✓", pro: "✓" },
         { item: "로그인·게시판·사진첩", lite: "—", pro: "2개 무료 추가" },
-        { item: "추가 페이지", lite: "$50/페이지", pro: "$50/페이지" },
+        { item: "추가 페이지", lite: "$80/페이지", pro: "$80/페이지" },
       ],
     },
   },
@@ -782,7 +769,7 @@ const ko: Dict = {
     badge: "맞춤 옵션",
     note: "정확한 견적은 무료 상담 후 안내해드려요.",
     options: [
-      { icon: "📄", title: "추가 페이지", price: "$50", unit: "/ 페이지", desc: "기본 패키지에 포함된 페이지 외 추가 시" },
+      { icon: "📄", title: "추가 페이지", price: "$80", unit: "/ 페이지", desc: "기본 패키지에 포함된 페이지 외 추가 시" },
       { icon: "📅", title: "예약 시스템 연동", price: "+$200", unit: "/ 일회성", desc: "캘린더·예약 폼·자동 알림 연동" },
       { icon: "💳", title: "결제 시스템 연동", price: "+$200", unit: "/ 일회성", desc: "Stripe·Toss 등 결제 게이트웨이 연동" },
     ],
@@ -898,28 +885,18 @@ const ko: Dict = {
         phone: "연락 가능한 번호",
         email: "이메일",
         industry: "업종",
-        service: "문의 유형",
         budget: "예상 예산",
-        message: "요청사항",
+        message: "문의내용",
       },
       placeholders: {
         name: "홍길동 / 메이크페이지",
-        phone: "010-0000-0000",
+        phone: "(205) 555-0123",
         email: "hello@example.com",
         industry: "예: 카페, 학원, 쇼핑몰",
         message: "만들고자 하는 사이트의 목적, 참고 사이트, 일정 등을 자유롭게 적어주세요.",
       },
       selectPrompt: "선택해주세요",
-      services: [
-        "브랜딩 사이트",
-        "쇼핑몰 / 커머스",
-        "랜딩페이지",
-        "리뉴얼 / 유지보수",
-        "예약 / 멤버십",
-        "마케팅 운영",
-        "잘 모르겠어요 (상담 필요)",
-      ],
-      budgets: ["$300 미만", "$300 – $500", "$500 – $1,000", "$1,000 – $2,500", "$2,500 이상", "협의 가능"],
+      budgets: ["$450 미만", "$450 – $1,000", "$1,000 – $2,500", "$2,500 이상", "협의 가능"],
       consent:
         "개인정보 수집·이용에 동의합니다. (수집 항목: 이름, 연락처, 이메일 / 보유기간: 상담 종료 후 1년)",
     },
@@ -1009,7 +986,7 @@ const ko: Dict = {
       "월 유지보수 취소, 결제 수단 변경, 도메인 갱신 거절이 필요하실 때는 언제든 내 계정 페이지에서 처리하실 수 있습니다.",
     customerEmailManageCta: "내 구독 관리하기",
     customerEmailFooter:
-      "본인이 결제하지 않으셨다면 즉시 admin@cloudmasterit.com 으로 연락 주세요.",
+      "본인이 결제하지 않으셨다면 즉시 kish1919@gmail.com 으로 연락 주세요.",
     cancelEmailSubject: "메이크페이지 구독이 취소되었습니다",
     cancelEmailHeading: "구독이 취소되었습니다",
     cancelEmailBody:

@@ -532,7 +532,7 @@ const plansEn: Plan[] = [
       annual: "$25",
       annualNote: "domain (annual)",
     },
-    amounts: { setup: 399, monthly: 15, domain: 25, email: 140, extraPage: 50, booking: 200, payment: 200 },
+    amounts: { setup: 399, monthly: 15, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
     description: "A clean starter for non-commercial portfolios.",
     features: [
       "3-page core layout",
@@ -557,7 +557,7 @@ const plansEn: Plan[] = [
       annual: "$25",
       annualNote: "domain (annual)",
     },
-    amounts: { setup: 649, monthly: 80, monthlyMaintenance: 25, hosting: 25, database: 30, domain: 25, email: 140, extraPage: 50, booking: 200, payment: 200 },
+    amounts: { setup: 649, monthly: 80, monthlyMaintenance: 25, hosting: 25, database: 30, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
     description: "Everything you need to run a real business website.",
     features: [
       "5-page core layout",
@@ -584,7 +584,7 @@ const plansKo: Plan[] = [
       annual: "$25",
       annualNote: "연 도메인",
     },
-    amounts: { setup: 399, monthly: 15, domain: 25, email: 140, extraPage: 50, booking: 200, payment: 200 },
+    amounts: { setup: 399, monthly: 15, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
     description: "비상업적 개인 포트폴리오를 깔끔하게 시작.",
     features: [
       "3페이지 기본 구성",
@@ -609,7 +609,7 @@ const plansKo: Plan[] = [
       annual: "$25",
       annualNote: "연 도메인",
     },
-    amounts: { setup: 649, monthly: 80, monthlyMaintenance: 25, hosting: 25, database: 30, domain: 25, email: 140, extraPage: 50, booking: 200, payment: 200 },
+    amounts: { setup: 649, monthly: 80, monthlyMaintenance: 25, hosting: 25, database: 30, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
     description: "상업 활동에 필요한 모든 기능을 갖춘 포트폴리오.",
     features: [
       "5페이지 기본 구성",

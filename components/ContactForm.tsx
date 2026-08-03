@@ -91,13 +91,6 @@ export default function ContactForm({ lang }: { lang: Lang }) {
       </div>
 
       <Select
-        label={dict.contact.form.labels.service}
-        name="service"
-        options={dict.contact.form.services}
-        required
-        prompt={dict.contact.form.selectPrompt}
-      />
-      <Select
         label={dict.contact.form.labels.budget}
         name="budget"
         options={dict.contact.form.budgets}

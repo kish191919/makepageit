@@ -2,16 +2,16 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const FROM = "MAKEPAGE <noreply@makepageit.com>";
-const TO = process.env.CONTACT_TO_EMAIL ?? "admin@cloudmasterit.com";
+const TO = process.env.CONTACT_TO_EMAIL ?? "kish1919@gmail.com";
 
 export async function POST(request: Request) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await request.json();
-    const { name, phone, email, industry, service, budget, message, lang } = body ?? {};
+    const { name, phone, email, industry, budget, message, lang } = body ?? {};
     const isEn = lang !== "ko";
 
-    if (!name || !phone || !email || !service || !budget || !message) {
+    if (!name || !phone || !email || !budget || !message) {
       return NextResponse.json(
         { error: isEn ? "Some required fields are missing." : "필수 항목이 누락되었습니다." },
         { status: 400 }
@@ -25,7 +25,6 @@ export async function POST(request: Request) {
           phone: "Phone",
           email: "Email",
           industry: "Industry",
-          service: "Project type",
           budget: "Budget",
           message: "Project details",
         }
@@ -35,9 +34,8 @@ export async function POST(request: Request) {
           phone: "연락처",
           email: "이메일",
           industry: "업종",
-          service: "문의 유형",
           budget: "예상 예산",
-          message: "요청사항",
+          message: "문의내용",
         };
 
     const html = `
@@ -50,7 +48,6 @@ export async function POST(request: Request) {
           <tr><td style="padding: 8px 0; color: #6b7280;">${labels.phone}</td><td style="padding: 8px 0; color: #111827;">${escape(phone)}</td></tr>
           <tr><td style="padding: 8px 0; color: #6b7280;">${labels.email}</td><td style="padding: 8px 0; color: #111827;"><a href="mailto:${escape(email)}">${escape(email)}</a></td></tr>
           <tr><td style="padding: 8px 0; color: #6b7280;">${labels.industry}</td><td style="padding: 8px 0; color: #111827;">${escape(industry || "-")}</td></tr>
-          <tr><td style="padding: 8px 0; color: #6b7280;">${labels.service}</td><td style="padding: 8px 0; color: #111827;">${escape(service)}</td></tr>
           <tr><td style="padding: 8px 0; color: #6b7280;">${labels.budget}</td><td style="padding: 8px 0; color: #111827;">${escape(budget)}</td></tr>
         </table>
         <div style="margin-top: 24px; padding: 16px; background: #f9fafb; border-radius: 8px;">
@@ -69,7 +66,7 @@ export async function POST(request: Request) {
       from: FROM,
       to: TO,
       replyTo: email,
-      subject: `${subjectPrefix} ${name} - ${service}`,
+      subject: `${subjectPrefix} ${name}`,
       html,
     });
 
