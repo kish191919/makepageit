@@ -15,7 +15,7 @@ export default function PageHeader({ eyebrow, title, description, wide }: Props)
       <div className="container-custom py-16 sm:py-24">
         <div className={wide ? "max-w-3xl lg:max-w-none" : "max-w-3xl"}>
           <p className="eyebrow">{eyebrow}</p>
-          <h1 className={`mt-3 h-display break-keep ${wide ? "lg:whitespace-nowrap" : ""}`}>
+          <h1 className={`mt-3 h-display ${wide ? "lg:whitespace-nowrap" : ""}`}>
             {title}
           </h1>
           {description && (

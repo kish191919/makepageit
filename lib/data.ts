@@ -527,19 +527,19 @@ const plansEn: Plan[] = [
     pricing: {
       oneTime: "$399",
       oneTimeNote: "one-time (3 pages)",
-      monthly: "$15",
-      monthlyNote: "monthly maintenance",
+      monthly: "$35",
+      monthlyNote: "hosting + DB + monthly maintenance",
       annual: "$25",
       annualNote: "domain (annual)",
     },
-    amounts: { setup: 399, monthly: 15, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
-    description: "A clean starter for non-commercial portfolios.",
+    amounts: { setup: 399, monthly: 35, monthlyMaintenance: 15, hosting: 10, database: 10, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
+    description: "A clean starter for personal portfolios.",
     features: [
       "3-page core layout",
       "Template design + mobile-responsive",
       "Basic SEO setup",
-      "Free hosting (non-commercial)",
-      "Free database (non-commercial)",
+      "Hosting (server) at $10/mo",
+      "Database at $10/mo",
     ],
     cta: "Get a quote",
   },
@@ -575,23 +575,23 @@ const plansKo: Plan[] = [
   {
     id: "portfolio-lite",
     name: "PORTFOLIO LITE",
-    audience: "비상업 개인 포트폴리오 · 학생 · 아티스트",
+    audience: "개인 포트폴리오 · 학생 · 아티스트",
     pricing: {
       oneTime: "$399",
       oneTimeNote: "일회성 (3페이지)",
-      monthly: "$15",
-      monthlyNote: "월 유지보수",
+      monthly: "$35",
+      monthlyNote: "호스팅 + DB + 월 유지보수",
       annual: "$25",
       annualNote: "연 도메인",
     },
-    amounts: { setup: 399, monthly: 15, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
-    description: "비상업적 개인 포트폴리오를 깔끔하게 시작.",
+    amounts: { setup: 399, monthly: 35, monthlyMaintenance: 15, hosting: 10, database: 10, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
+    description: "개인 포트폴리오를 깔끔하게 시작.",
     features: [
       "3페이지 기본 구성",
       "템플릿 디자인 + 모바일 반응형",
       "기본 SEO 세팅",
-      "호스팅 무료 (비상업용)",
-      "데이터베이스 무료 (비상업용)",
+      "호스팅 (서버비용) 월 $10",
+      "데이터베이스 월 $10",
     ],
     cta: "견적 문의하기",
   },
@@ -756,7 +756,7 @@ const faqsEn: FAQ[] = [
   },
   {
     q: "Do you handle the domain and hosting?",
-    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $25/year; hosting + DB + maintenance is $15/month for PORTFOLIO LITE and $80/month for PORTFOLIO PRO. Hosting and DB are free for non-commercial personal portfolios.",
+    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $25/year; hosting + DB + maintenance is $35/month for PORTFOLIO LITE and $80/month for PORTFOLIO PRO.",
   },
   {
     q: "Can I edit the site myself afterward?",
@@ -768,7 +768,7 @@ const faqsEn: FAQ[] = [
   },
   {
     q: "Can individuals (not registered businesses) hire you?",
-    a: "Of course. PORTFOLIO LITE is built specifically for personal, non-commercial portfolios — students, artists, etc. — with hosting and DB included free. We've also delivered plenty of personal-brand and freelancer sites.",
+    a: "Of course. PORTFOLIO LITE is built for personal portfolios — students, artists, etc. — with hosting and DB included in the monthly cost. We've also delivered plenty of personal-brand and freelancer sites.",
   },
   {
     q: "Can you also handle ongoing operations?",
@@ -783,7 +783,7 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "도메인과 호스팅도 맡아주시나요?",
-    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 호스팅·DB·유지보수가 PORTFOLIO LITE는 월 $15, PORTFOLIO PRO는 월 $80으로 운영돼요. 비상업 개인 포트폴리오는 호스팅·DB가 무료입니다.",
+    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 호스팅·DB·유지보수가 PORTFOLIO LITE는 월 $35, PORTFOLIO PRO는 월 $80으로 운영돼요.",
   },
   {
     q: "직접 수정하고 관리할 수 있나요?",
@@ -795,7 +795,7 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "사업자가 아닌 개인도 의뢰할 수 있나요?",
-    a: "물론입니다. PORTFOLIO LITE는 학생·아티스트 등 비상업 개인 포트폴리오를 위한 패키지로, 호스팅·DB가 무료로 제공돼요. 작가·강사·프리랜서·개인 브랜드 사이트도 다수 진행하고 있습니다.",
+    a: "물론입니다. PORTFOLIO LITE는 학생·아티스트 등 개인 포트폴리오를 위한 패키지로, 호스팅·DB 비용이 월 이용료에 포함돼요. 작가·강사·프리랜서·개인 브랜드 사이트도 다수 진행하고 있습니다.",
   },
   {
     q: "오픈 후 운영도 맡길 수 있나요?",

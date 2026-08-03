@@ -32,7 +32,7 @@ export default function Hero({ lang }: { lang: Lang }) {
 
       <div className="relative z-10 container-custom pt-20 pb-24 sm:pt-28 sm:pb-32 lg:pt-32 lg:pb-40">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="h-display">
+          <h1 className="h-display text-3xl sm:text-5xl lg:text-6xl">
             {lang === "en" ? (
               <>
                 {dict.hero.titleA}
@@ -56,7 +56,9 @@ export default function Hero({ lang }: { lang: Lang }) {
                 <span className="underline decoration-accent-500 decoration-[6px] underline-offset-4">
                   {dict.hero.titleBrandWord}
                 </span>
-                {dict.hero.titleC}
+                {dict.hero.titleC.slice(0, 1)}
+                <br className="sm:hidden" />
+                {dict.hero.titleC.slice(1)}
               </>
             )}
           </h1>
