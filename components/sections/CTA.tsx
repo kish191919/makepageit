@@ -22,7 +22,7 @@ export default function CTA({ lang }: { lang: Lang }) {
   return (
     <section className="section bg-white">
       <div className="container-custom">
-        <div className="relative overflow-hidden rounded-[32px] bg-ink-900 px-8 py-16 text-center sm:px-16 sm:py-24">
+        <div className="relative overflow-hidden rounded-[32px] bg-ink-900 px-6 py-10 text-center sm:px-16 sm:py-24">
           <div
             aria-hidden
             className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-brand-600 opacity-30 blur-3xl"

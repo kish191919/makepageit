@@ -80,25 +80,47 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
     customizePanelRefs.current.forEach((el) => {
       if (el) panels.push(el);
     });
-    if (panels.length === 0) return;
 
     panels.forEach((el) => {
       el.style.minHeight = "";
     });
 
-    if (!customizeOpen) return;
+    if (customizeOpen) {
+      let maxPanel = 0;
+      panels.forEach((el) => {
+        if (el.offsetHeight > maxPanel) maxPanel = el.offsetHeight;
+      });
 
-    let max = 0;
-    panels.forEach((el) => {
-      if (el.offsetHeight > max) max = el.offsetHeight;
+      if (maxPanel > 0) {
+        panels.forEach((el) => {
+          el.style.minHeight = `${maxPanel}px`;
+        });
+      }
+    }
+
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    const cards = Array.from(
+      scroller.querySelectorAll<HTMLElement>("[data-carousel-item]")
+    );
+    if (cards.length === 0) return;
+
+    cards.forEach((el) => {
+      el.style.minHeight = "";
     });
 
-    if (max > 0) {
-      panels.forEach((el) => {
-        el.style.minHeight = `${max}px`;
+    let maxCard = 0;
+    cards.forEach((el) => {
+      if (el.offsetHeight > maxCard) maxCard = el.offsetHeight;
+    });
+
+    if (maxCard > 0) {
+      cards.forEach((el) => {
+        el.style.minHeight = `${maxCard}px`;
       });
     }
-  }, [customizeOpen, planOptions, lang]);
+  }, [customizeOpen, planOptions, lang, plans.length]);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -166,7 +188,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
 
         <div
           ref={scrollerRef}
-          className={`mx-auto max-w-4xl ${hideHeading ? "" : "mt-14"} -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:grid-cols-2 md:gap-6 md:snap-none md:overflow-visible md:px-0 md:pb-0`}
+          className={`mx-auto max-w-4xl ${hideHeading ? "" : "mt-14"} -mx-4 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto px-4 pb-2 [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:grid-cols-2 md:gap-6 md:snap-none md:overflow-visible md:px-0 md:pb-0`}
           style={{ scrollbarWidth: "none" }}
         >
           {plans.map((p) => {
@@ -193,7 +215,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
             <article
               key={p.id}
               data-carousel-item
-              className={`relative flex h-full flex-col rounded-3xl border transition duration-300 snap-center shrink-0 basis-[88%] md:shrink md:basis-auto ${
+              className={`relative flex h-full flex-col rounded-3xl border transition duration-300 snap-center shrink-0 basis-[85%] md:shrink md:basis-auto ${
                 p.best
                   ? "border-ink-900 bg-ink-900 text-white shadow-2xl"
                   : "overflow-hidden border-blue-500/60 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-[0_2px_4px_rgba(15,23,42,0.06),0_14px_32px_-12px_rgba(37,99,235,0.35)] hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(37,99,235,0.50)]"
@@ -232,7 +254,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               </p>
 
               <div className="mt-6">
-                <div className="flex items-baseline gap-2">
+                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
                   <span className="text-4xl font-extrabold sm:text-5xl">
                     {formatUsd(setupTotal)}
                   </span>
@@ -613,7 +635,7 @@ function EmailRow({
             <select
               value={mailboxes}
               onChange={(e) => onChange(Number(e.target.value))}
-              className={`rounded-md px-2 py-1 text-xs font-semibold ${
+              className={`rounded-md px-2 py-1 text-sm font-semibold ${
                 dark
                   ? "bg-white/10 text-white ring-1 ring-white/20"
                   : "bg-white/90 text-ink-900 ring-1 ring-white/40"
@@ -677,7 +699,7 @@ function ExtraPageRow({
             <select
               value={pages}
               onChange={(e) => onChange(Number(e.target.value))}
-              className={`rounded-md px-2 py-1 text-xs font-semibold ${
+              className={`rounded-md px-2 py-1 text-sm font-semibold ${
                 dark
                   ? "bg-white/10 text-white ring-1 ring-white/20"
                   : "bg-white/90 text-ink-900 ring-1 ring-white/40"

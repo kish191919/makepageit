@@ -111,7 +111,7 @@ export default function ContactForm({ lang }: { lang: Lang }) {
           rows={5}
           required
           placeholder={dict.contact.form.placeholders.message}
-          className="mt-2 w-full rounded-2xl border border-ink-200 bg-white px-4 py-3 text-sm leading-relaxed text-ink-900 placeholder:text-ink-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
+          className="mt-2 w-full rounded-2xl border border-ink-200 bg-white px-4 py-3 text-base leading-relaxed text-ink-900 placeholder:text-ink-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
         />
       </div>
 
@@ -166,7 +166,7 @@ function Field({
         type={type}
         placeholder={placeholder}
         required={required}
-        className="mt-2 w-full rounded-2xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
+        className="mt-2 w-full rounded-2xl border border-ink-200 bg-white px-4 py-3 text-base text-ink-900 placeholder:text-ink-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
       />
     </div>
   );
@@ -196,7 +196,7 @@ function Select({
         name={name}
         required={required}
         defaultValue=""
-        className="mt-2 w-full rounded-2xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-900 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
+        className="mt-2 w-full rounded-2xl border border-ink-200 bg-white px-4 py-3 text-base text-ink-900 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-100"
       >
         <option value="" disabled>
           {prompt}
