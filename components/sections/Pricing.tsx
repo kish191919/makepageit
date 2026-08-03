@@ -577,7 +577,7 @@ function ToggleRow({
         onChange={(e) => onChange(e.target.checked)}
         className="mt-1 h-4 w-4 flex-none accent-accent-500"
       />
-      <span className="flex flex-1 items-start justify-between gap-3 text-left">
+      <span className="flex flex-1 flex-wrap items-start justify-between gap-x-3 gap-y-1 text-left">
         <span className="flex flex-col">
           <span className="text-sm font-semibold text-white">{label}</span>
           <span className={`text-[11px] ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
@@ -618,7 +618,7 @@ function EmailRow({
         aria-label={label}
       />
       <div className="flex flex-1 flex-col gap-2">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
           <div className="flex flex-col">
             <span className="text-sm font-semibold text-white">{label}</span>
             <span className={`text-[11px] ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
@@ -682,7 +682,7 @@ function ExtraPageRow({
         aria-label={label}
       />
       <div className="flex flex-1 flex-col gap-2">
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
           <div className="flex flex-col">
             <span className="text-sm font-semibold text-white">{label}</span>
             <span className={`text-[11px] ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
