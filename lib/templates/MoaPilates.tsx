@@ -34,9 +34,9 @@ const copy = {
     ],
     trainersSection: { eyebrow: "Trainers", title: "Meet the team" },
     trainers: [
-      { name: "Yuna", role: "Founder · 8 yrs", image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=80&auto=format&fit=crop" },
-      { name: "Soo", role: "Reformer Lead · 6 yrs", image: "https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=600&q=80&auto=format&fit=crop" },
-      { name: "Hana", role: "Rehab Specialist · 7 yrs", image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&auto=format&fit=crop" },
+      { name: "Yuna", role: "Founder · 8 yrs", image: "https://images.unsplash.com/photo-1685342744654-3cd3f48060e4?w=600&q=80&auto=format&fit=crop" },
+      { name: "Soo", role: "Reformer Lead · 6 yrs", image: "https://images.unsplash.com/photo-1542996966-2e31c00bae31?w=600&q=80&auto=format&fit=crop" },
+      { name: "Hana", role: "Rehab Specialist · 7 yrs", image: "https://images.unsplash.com/photo-1682917265558-f3dbf6507e5b?w=600&q=80&auto=format&fit=crop" },
     ],
     plansSection: { eyebrow: "Membership", title: "Pay only for what you use." },
     plans: [
@@ -84,9 +84,9 @@ const copy = {
     ],
     trainersSection: { eyebrow: "Trainers", title: "우리의 강사들" },
     trainers: [
-      { name: "Yuna", role: "원장 · 8년차", image: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=80&auto=format&fit=crop" },
-      { name: "Soo", role: "리포머 전담 · 6년차", image: "https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=600&q=80&auto=format&fit=crop" },
-      { name: "Hana", role: "재활 전문 · 7년차", image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&auto=format&fit=crop" },
+      { name: "Yuna", role: "원장 · 8년차", image: "https://images.unsplash.com/photo-1685342744654-3cd3f48060e4?w=600&q=80&auto=format&fit=crop" },
+      { name: "Soo", role: "리포머 전담 · 6년차", image: "https://images.unsplash.com/photo-1542996966-2e31c00bae31?w=600&q=80&auto=format&fit=crop" },
+      { name: "Hana", role: "재활 전문 · 7년차", image: "https://images.unsplash.com/photo-1682917265558-f3dbf6507e5b?w=600&q=80&auto=format&fit=crop" },
     ],
     plansSection: { eyebrow: "Membership", title: "필요한 만큼만, 정직하게." },
     plans: [

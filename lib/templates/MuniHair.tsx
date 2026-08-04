@@ -19,9 +19,9 @@ const copy = {
       title: "Three designers",
       bookBtn: "☆ Book this designer",
       list: [
-        { name: "AVA", role: "Founder · Color Director", spec: "Vivid color / tone-down", img: "https://i.pravatar.cc/300?img=47" },
-        { name: "CRYSTAL", role: "Senior Designer", spec: "Bobs / layered cuts", img: "https://i.pravatar.cc/300?img=32" },
-        { name: "RIO", role: "Designer", spec: "Men's perm / dandy", img: "https://i.pravatar.cc/300?img=12" },
+        { name: "AVA", role: "Founder · Color Director", spec: "Vivid color / tone-down", img: "https://images.unsplash.com/photo-1687298703924-0d11be697d8b?w=600&q=80&auto=format&fit=crop" },
+        { name: "CRYSTAL", role: "Senior Designer", spec: "Bobs / layered cuts", img: "https://images.unsplash.com/photo-1597460832707-766283b5e775?w=600&q=80&auto=format&fit=crop" },
+        { name: "RIO", role: "Designer", spec: "Men's perm / dandy", img: "https://images.unsplash.com/photo-1518725522904-4b3939358342?w=600&q=80&auto=format&fit=crop" },
       ],
     },
     menusTitle: "Menu & prices",
@@ -56,7 +56,7 @@ const copy = {
       title: "3인의 디자이너",
       bookBtn: "☆ 디자이너 예약",
       list: [
-        { name: "MUNI", role: "Founder · Color Director", spec: "비비드 컬러 / 톤다운", img: "https://i.pravatar.cc/300?img=47" },
+        { name: "MUNI", role: "Founder · Color Director", spec: "비비드 컬러 / 톤다운", img: "https://images.unsplash.com/photo-1687298703924-0d11be697d8b?w=600&q=80&auto=format&fit=crop" },
         { name: "CRYSTAL", role: "Senior Designer", spec: "단발 / 레이어드 컷", img: "https://i.pravatar.cc/300?img=32" },
         { name: "RIO", role: "Designer", spec: "남성 매직펌 / 댄디", img: "https://i.pravatar.cc/300?img=12" },
       ],

@@ -32,17 +32,17 @@ const copy = {
       {
         name: "Dr. Lauren Park",
         role: "Founder · Board-Certified Dermatologist",
-        image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1686737357914-80a665ca1c29?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Dr. Marcus Chen",
         role: "Laser Lead",
-        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Dr. Yuna Cho",
         role: "Lift & Contour Lead",
-        image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1612944095914-33fd0a85fcfc?w=600&q=80&auto=format&fit=crop",
       },
     ],
     booking: {
@@ -95,17 +95,17 @@ const copy = {
       {
         name: "이수진 원장",
         role: "대표원장 · 피부과 전문의",
-        image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1686737357914-80a665ca1c29?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "박민호 원장",
         role: "레이저 시술 전담의",
-        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "정유나 원장",
         role: "리프팅 · 윤곽 전담의",
-        image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1612944095914-33fd0a85fcfc?w=600&q=80&auto=format&fit=crop",
       },
     ],
     booking: {

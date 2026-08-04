@@ -34,22 +34,22 @@ const copy = {
       {
         name: "Jonathan Greene",
         role: "Managing Partner · Harvard Law",
-        image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1543132220-4bf3de6e10ae?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Sarah Cho",
         role: "Corporate · 12 yrs",
-        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1665224752136-4dbe2dfc8195?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Daniel Park",
         role: "Litigation · 9 yrs",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1603810229820-294023a73fa4?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Sofia Lee",
         role: "Employment & Antitrust · 7 yrs",
-        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1736939666674-9e481e249366?w=600&q=80&auto=format&fit=crop",
       },
     ],
     consult: {
@@ -105,22 +105,22 @@ const copy = {
       {
         name: "한지훈 대표변호사",
         role: "사법연수원 39기 · 서울대 법대",
-        image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1543132220-4bf3de6e10ae?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "조서린 변호사",
         role: "기업법무 · 12년차",
-        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1665224752136-4dbe2dfc8195?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "윤재훈 변호사",
         role: "분쟁·소송 · 9년차",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1603810229820-294023a73fa4?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "임소연 변호사",
         role: "노동·공정거래 · 7년차",
-        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1736939666674-9e481e249366?w=600&q=80&auto=format&fit=crop",
       },
     ],
     consult: {
