@@ -20,14 +20,12 @@ type PlanPriceConfig = {
   emailAnnual: string | undefined;
   extraPage: string | undefined;
   booking: string | undefined;
-  payment: string | undefined;
 };
 
 export function getPlanPrices(planId: PlanId): PlanPriceConfig {
   const sharedAddons = {
     extraPage: process.env.STRIPE_PRICE_EXTRA_PAGE,
     booking: process.env.STRIPE_PRICE_BOOKING,
-    payment: process.env.STRIPE_PRICE_PAYMENT,
   };
   if (planId === "portfolio-lite") {
     return {

@@ -19,7 +19,6 @@ type CheckoutOptions = {
   emailMailboxes: number;
   extraPages: number;
   booking: boolean;
-  payment: boolean;
 };
 const DEFAULT_OPTIONS: CheckoutOptions = {
   monthly: true,
@@ -30,7 +29,6 @@ const DEFAULT_OPTIONS: CheckoutOptions = {
   emailMailboxes: 0,
   extraPages: 0,
   booking: false,
-  payment: false,
 };
 
 function formatUsd(amount: number): string {
@@ -204,8 +202,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
             const emailAnnual = p.amounts.email * opts.emailMailboxes;
             const oneTimeAddons =
               p.amounts.extraPage * opts.extraPages +
-              (opts.booking ? p.amounts.booking : 0) +
-              (opts.payment ? p.amounts.payment : 0);
+              (opts.booking ? p.amounts.booking : 0);
             const setupTotal = p.amounts.setup + oneTimeAddons;
             const annualRecurring = monthlyAnnual + domainAnnual + emailAnnual;
             const firstYearTotal = setupTotal + annualRecurring;
@@ -469,14 +466,6 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                             label={dict.pricing.customizeBookingLabel}
                             hint={dict.pricing.customizeBookingHint}
                             amount={`+${formatUsd(p.amounts.booking)}`}
-                            dark={Boolean(p.best)}
-                          />
-                          <ToggleRow
-                            checked={opts.payment}
-                            onChange={(v) => setOption(p.id, "payment", v)}
-                            label={dict.pricing.customizePaymentLabel}
-                            hint={dict.pricing.customizePaymentHint}
-                            amount={`+${formatUsd(p.amounts.payment)}`}
                             dark={Boolean(p.best)}
                           />
                         </div>

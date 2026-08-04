@@ -42,7 +42,6 @@ export type Plan = {
     email: number;
     extraPage: number;
     booking: number;
-    payment: number;
   };
   description: string;
   features: string[];
@@ -74,8 +73,8 @@ const servicesEn: Service[] = [
   {
     id: "shopping-mall",
     title: "E-commerce",
-    summary: "Payments, members, shipping, reporting — a real online store, ready to take orders on day one.",
-    bullets: ["Stripe / Square checkout", "Customers & tiers", "Coupons / loyalty", "Inventory & orders"],
+    summary: "Members, shipping, reporting — a real online store, ready to take orders on day one.",
+    bullets: ["Product catalog & checkout", "Customers & tiers", "Coupons / loyalty", "Inventory & orders"],
     icon: "▲",
   },
   {
@@ -95,8 +94,8 @@ const servicesEn: Service[] = [
   {
     id: "booking",
     title: "Booking · Membership",
-    summary: "Clinics, studios, salons, gyms — one place to book, pay, and stay in touch with members.",
-    bullets: ["Calendar bookings", "No-show prevention", "Recurring billing", "Automated reminders"],
+    summary: "Clinics, studios, salons, gyms — one place to book and stay in touch with members.",
+    bullets: ["Calendar bookings", "No-show prevention", "Membership management", "Automated reminders"],
     icon: "◇",
   },
   {
@@ -119,8 +118,8 @@ const servicesKo: Service[] = [
   {
     id: "shopping-mall",
     title: "쇼핑몰 / 커머스",
-    summary: "결제, 회원, 배송, 정산까지. 매출이 오르는 온라인 매장을 만들어드립니다.",
-    bullets: ["PG 결제 연동", "회원/등급 관리", "쿠폰/포인트", "재고/주문 관리"],
+    summary: "회원, 배송, 정산까지. 매출이 오르는 온라인 매장을 만들어드립니다.",
+    bullets: ["상품 카탈로그 · 주문", "회원/등급 관리", "쿠폰/포인트", "재고/주문 관리"],
     icon: "▲",
   },
   {
@@ -140,8 +139,8 @@ const servicesKo: Service[] = [
   {
     id: "booking",
     title: "예약 / 멤버십",
-    summary: "병원, 학원, 스튜디오, 공간 비즈니스를 위한 예약·결제 통합 솔루션.",
-    bullets: ["캘린더 예약", "노쇼 방지", "정기 결제", "카카오 알림톡"],
+    summary: "병원, 학원, 스튜디오, 공간 비즈니스를 위한 예약 통합 솔루션.",
+    bullets: ["캘린더 예약", "노쇼 방지", "회원 관리", "카카오 알림톡"],
     icon: "◇",
   },
   {
@@ -167,9 +166,9 @@ const portfoliosEn: Portfolio[] = [
     id: "lumiere-clinic",
     client: "Lumière Skin Clinic",
     category: "Booking",
-    description: "Booking, payments, and reviews for a high-end dermatology practice.",
+    description: "Booking and reviews for a high-end dermatology practice.",
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop",
-    tags: ["Healthcare", "Booking", "Payments"],
+    tags: ["Healthcare", "Booking", "Reviews"],
     year: "2025",
   },
   {
@@ -350,9 +349,9 @@ const portfoliosKo: Portfolio[] = [
     id: "lumiere-clinic",
     client: "루미에르 피부과",
     category: "예약 시스템",
-    description: "온라인 예약·결제·후기 통합 의료 사이트.",
+    description: "온라인 예약·후기 통합 의료 사이트.",
     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop",
-    tags: ["의료", "예약", "결제"],
+    tags: ["의료", "예약", "후기"],
     year: "2025",
   },
   {
@@ -377,7 +376,7 @@ const portfoliosKo: Portfolio[] = [
     id: "moa-pilates",
     client: "모아 필라테스",
     category: "예약 시스템",
-    description: "회원·예약·정기결제 일체형 필라테스 스튜디오 사이트.",
+    description: "회원·예약 일체형 필라테스 스튜디오 사이트.",
     image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop",
     tags: ["멤버십", "예약", "공간"],
     year: "2025",
@@ -527,19 +526,19 @@ const plansEn: Plan[] = [
     pricing: {
       oneTime: "$399",
       oneTimeNote: "one-time (3 pages)",
-      monthly: "$35",
+      monthly: "$60",
       monthlyNote: "hosting + DB + monthly maintenance",
       annual: "$25",
       annualNote: "domain (annual)",
     },
-    amounts: { setup: 399, monthly: 35, monthlyMaintenance: 15, hosting: 10, database: 10, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
+    amounts: { setup: 399, monthly: 60, monthlyMaintenance: 15, hosting: 20, database: 25, domain: 25, email: 50, extraPage: 80, booking: 200 },
     description: "A clean starter for personal portfolios.",
     features: [
       "3-page core layout",
       "Template design + mobile-responsive",
       "Basic SEO setup",
-      "Hosting (server) at $10/mo",
-      "Database at $10/mo",
+      "Hosting (server) at $20/mo",
+      "Database at $25/mo",
     ],
     cta: "Get a quote",
   },
@@ -557,14 +556,14 @@ const plansEn: Plan[] = [
       annual: "$25",
       annualNote: "domain (annual)",
     },
-    amounts: { setup: 649, monthly: 80, monthlyMaintenance: 25, hosting: 25, database: 30, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
+    amounts: { setup: 649, monthly: 80, monthlyMaintenance: 25, hosting: 20, database: 35, domain: 25, email: 50, extraPage: 80, booking: 200 },
     description: "Everything you need to run a real business website.",
     features: [
       "5-page core layout",
       "Template design + mobile-responsive",
       "Basic SEO setup",
-      "Hosting (server) at $25/mo",
-      "Database at $30/mo",
+      "Hosting (server) at $20/mo",
+      "Database at $35/mo",
       "Two free add-ons (login, blog, gallery)",
     ],
     cta: "Get a quote",
@@ -579,19 +578,19 @@ const plansKo: Plan[] = [
     pricing: {
       oneTime: "$399",
       oneTimeNote: "일회성 (3페이지)",
-      monthly: "$35",
+      monthly: "$60",
       monthlyNote: "호스팅 + DB + 월 유지보수",
       annual: "$25",
       annualNote: "연 도메인",
     },
-    amounts: { setup: 399, monthly: 35, monthlyMaintenance: 15, hosting: 10, database: 10, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
+    amounts: { setup: 399, monthly: 60, monthlyMaintenance: 15, hosting: 20, database: 25, domain: 25, email: 50, extraPage: 80, booking: 200 },
     description: "개인 포트폴리오를 깔끔하게 시작.",
     features: [
       "3페이지 기본 구성",
       "템플릿 디자인 + 모바일 반응형",
       "기본 SEO 세팅",
-      "호스팅 (서버비용) 월 $10",
-      "데이터베이스 월 $10",
+      "호스팅 (서버비용) 월 $20",
+      "데이터베이스 월 $25",
     ],
     cta: "견적 문의하기",
   },
@@ -600,7 +599,7 @@ const plansKo: Plan[] = [
     name: "PORTFOLIO PRO",
     best: true,
     badge: "추천",
-    audience: "예약·문의·결제까지 실제 비즈니스를 운영하는 분",
+    audience: "예약·문의까지 실제 비즈니스를 운영하는 분",
     pricing: {
       oneTime: "$649",
       oneTimeNote: "일회성 (5페이지)",
@@ -609,14 +608,14 @@ const plansKo: Plan[] = [
       annual: "$25",
       annualNote: "연 도메인",
     },
-    amounts: { setup: 649, monthly: 80, monthlyMaintenance: 25, hosting: 25, database: 30, domain: 25, email: 50, extraPage: 80, booking: 200, payment: 200 },
+    amounts: { setup: 649, monthly: 80, monthlyMaintenance: 25, hosting: 20, database: 35, domain: 25, email: 50, extraPage: 80, booking: 200 },
     description: "상업 활동에 필요한 모든 기능을 갖춘 포트폴리오.",
     features: [
       "5페이지 기본 구성",
       "템플릿 디자인 + 모바일 반응형",
       "기본 SEO 세팅",
-      "호스팅 (서버비용) 월 $25",
-      "데이터베이스 월 $30",
+      "호스팅 (서버비용) 월 $20",
+      "데이터베이스 월 $35",
       "로그인 · 게시판 · 사진첩 중 2개 무료 추가",
     ],
     cta: "견적 문의하기",
@@ -671,7 +670,7 @@ const reviewsEn: Review[] = [
     rating: 5,
     title: "Cut 70% of our admin time on member management.",
     body:
-      "Bookings, payments, attendance — all in one place. Our staff aren't stuck behind the counter anymore. ROI was clear within weeks.",
+      "Bookings and attendance — all in one place. Our staff aren't stuck behind the counter anymore. ROI was clear within weeks.",
     avatar: "https://i.pravatar.cc/120?img=23",
   },
   {
@@ -734,7 +733,7 @@ const reviewsKo: Review[] = [
     rating: 5,
     title: "회원 관리에 쓰던 시간을 70% 절약했어요.",
     body:
-      "예약, 결제, 출석까지 한 사이트에서 다 되니 직원이 굳이 카운터에 붙어 있을 필요가 없어졌습니다. ROI가 명확합니다.",
+      "예약, 출석까지 한 사이트에서 다 되니 직원이 굳이 카운터에 붙어 있을 필요가 없어졌습니다. ROI가 명확합니다.",
     avatar: "https://i.pravatar.cc/120?img=23",
   },
   {
@@ -752,11 +751,11 @@ const reviewsKo: Review[] = [
 const faqsEn: FAQ[] = [
   {
     q: "How long does it take?",
-    a: "Most sites launch in about two weeks. PORTFOLIO LITE (3 pages) is roughly 2 weeks; PORTFOLIO PRO (5 pages) is 3–4 weeks. Adding extra pages, booking, or payment integration may extend the timeline. You'll see your first design within a week of kickoff.",
+    a: "Most sites launch in about two weeks. PORTFOLIO LITE (3 pages) is roughly 2 weeks; PORTFOLIO PRO (5 pages) is 3–4 weeks. Adding extra pages or booking integration may extend the timeline. You'll see your first design within a week of kickoff.",
   },
   {
     q: "Do you handle the domain and hosting?",
-    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $25/year; hosting + DB + maintenance is $35/month for PORTFOLIO LITE and $80/month for PORTFOLIO PRO.",
+    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $25/year; hosting + DB + maintenance is $60/month for PORTFOLIO LITE and $80/month for PORTFOLIO PRO.",
   },
   {
     q: "Can I edit the site myself afterward?",
@@ -779,11 +778,11 @@ const faqsEn: FAQ[] = [
 const faqsKo: FAQ[] = [
   {
     q: "제작 기간은 얼마나 걸리나요?",
-    a: "평균 2주 안에 오픈을 목표로 진행해드립니다. PORTFOLIO LITE(3페이지)는 약 2주, PORTFOLIO PRO(5페이지)는 약 3~4주 정도이며, 추가 페이지나 예약·결제 연동을 추가하시면 일정이 늘어날 수 있어요. 첫 시안은 의뢰 후 평균 1주 안에 보여드립니다.",
+    a: "평균 2주 안에 오픈을 목표로 진행해드립니다. PORTFOLIO LITE(3페이지)는 약 2주, PORTFOLIO PRO(5페이지)는 약 3~4주 정도이며, 추가 페이지나 예약 연동을 추가하시면 일정이 늘어날 수 있어요. 첫 시안은 의뢰 후 평균 1주 안에 보여드립니다.",
   },
   {
     q: "도메인과 호스팅도 맡아주시나요?",
-    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 호스팅·DB·유지보수가 PORTFOLIO LITE는 월 $35, PORTFOLIO PRO는 월 $80으로 운영돼요.",
+    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 호스팅·DB·유지보수가 PORTFOLIO LITE는 월 $60, PORTFOLIO PRO는 월 $80으로 운영돼요.",
   },
   {
     q: "직접 수정하고 관리할 수 있나요?",

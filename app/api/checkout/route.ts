@@ -43,7 +43,6 @@ export async function POST(request: Request) {
       Math.min(10, Math.floor(Number(body?.options?.extraPages) || 0))
     );
     const includeBooking = body?.options?.booking === true;
-    const includePayment = body?.options?.payment === true;
 
     if (planId !== "portfolio-lite" && planId !== "portfolio-pro") {
       return NextResponse.json(
@@ -114,17 +113,6 @@ export async function POST(request: Request) {
         { status: 503 }
       );
     }
-    if (includePayment && !prices.payment) {
-      return NextResponse.json(
-        {
-          error: isEn
-            ? "Payment integration price is not configured."
-            : "결제 시스템 가격이 설정되지 않았습니다.",
-        },
-        { status: 503 }
-      );
-    }
-
     const stripe = getStripe();
     const siteUrl = getSiteUrl();
     const localePath = isEn ? "" : "/ko";
@@ -139,7 +127,6 @@ export async function POST(request: Request) {
       lineItems.push({ price: prices.extraPage!, quantity: extraPages });
     }
     if (includeBooking) lineItems.push({ price: prices.booking!, quantity: 1 });
-    if (includePayment) lineItems.push({ price: prices.payment!, quantity: 1 });
 
     const subscriptionDescription =
       planId === "portfolio-lite" ? "Portfolio Lite" : "Portfolio Pro";
@@ -162,7 +149,6 @@ export async function POST(request: Request) {
         emailMailboxes: String(emailMailboxes),
         extraPages: String(extraPages),
         includeBooking: String(includeBooking),
-        includePayment: String(includePayment),
       },
     };
 

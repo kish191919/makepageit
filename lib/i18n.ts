@@ -88,8 +88,6 @@ type Dict = {
     customizeExtraPagePerPage: (amount: string) => string;
     customizeBookingLabel: string;
     customizeBookingHint: string;
-    customizePaymentLabel: string;
-    customizePaymentHint: string;
     customizeShowOptions: string;
     customizeHideOptions: string;
     todayLabel: string;
@@ -365,8 +363,6 @@ const en: Dict = {
     customizeExtraPagePerPage: (amount) => `${amount} per page`,
     customizeBookingLabel: "Booking integration",
     customizeBookingHint: "Calendar, booking form, and automated reminders.",
-    customizePaymentLabel: "Payment integration",
-    customizePaymentHint: "Stripe, Square, or any major gateway.",
     customizeShowOptions: "Show options",
     customizeHideOptions: "Hide options",
     todayLabel: "Pay today",
@@ -386,13 +382,13 @@ const en: Dict = {
       rows: [
         { item: "Best for", lite: "Personal portfolios", pro: "Freelancers · solopreneurs" },
         { item: "Build cost (one-time)", lite: "$399", pro: "$649" },
-        { item: "Hosting + DB + maintenance (monthly)", lite: "$35", pro: "$80" },
-        { item: "└ Hosting", lite: "$10/mo included", pro: "$25/mo included", isSub: true },
-        { item: "└ Database", lite: "$10/mo included", pro: "$30/mo included", isSub: true },
+        { item: "Hosting + DB + maintenance (monthly)", lite: "$60", pro: "$80" },
+        { item: "└ Hosting", lite: "$20/mo included", pro: "$20/mo included", isSub: true },
+        { item: "└ Database", lite: "$25/mo included", pro: "$35/mo included", isSub: true },
         { item: "└ Maintenance", lite: "$15/mo included", pro: "$25/mo included", isSub: true },
         { item: "Domain (annual)", lite: "$25", pro: "$25" },
-        { item: "First-year total", lite: "$844", pro: "$1,634" },
-        { item: "Year 2 onward (annual)", lite: "$445", pro: "$985" },
+        { item: "First-year total", lite: "$1,144", pro: "$1,634" },
+        { item: "Year 2 onward (annual)", lite: "$745", pro: "$985" },
         { item: "Pages included", lite: "3 pages", pro: "5 pages" },
         { item: "Mobile-responsive", lite: "✓", pro: "✓" },
         { item: "Basic SEO", lite: "✓", pro: "✓" },
@@ -410,7 +406,6 @@ const en: Dict = {
     options: [
       { icon: "📄", title: "Extra page", price: "$80", unit: "/ page", desc: "Beyond the pages included in your package." },
       { icon: "📅", title: "Booking integration", price: "+$200", unit: "/ one-time", desc: "Calendar, booking form, and automated reminders." },
-      { icon: "💳", title: "Payment integration", price: "+$200", unit: "/ one-time", desc: "Stripe, Square, or any major gateway." },
     ],
   },
   faq: {
@@ -726,8 +721,6 @@ const ko: Dict = {
     customizeExtraPagePerPage: (amount) => `페이지당 ${amount}`,
     customizeBookingLabel: "예약 시스템 연동",
     customizeBookingHint: "캘린더 · 예약 폼 · 자동 리마인더.",
-    customizePaymentLabel: "결제 시스템 연동",
-    customizePaymentHint: "Stripe, Square 등 주요 결제 게이트웨이.",
     customizeShowOptions: "옵션 펼치기",
     customizeHideOptions: "옵션 접기",
     todayLabel: "오늘 결제",
@@ -747,13 +740,13 @@ const ko: Dict = {
       rows: [
         { item: "추천 대상", lite: "개인 포트폴리오", pro: "프리랜서·강사" },
         { item: "홈페이지 제작비용 (일회성)", lite: "$399", pro: "$649" },
-        { item: "호스팅 + DB + 유지보수 (월비용)", lite: "$35", pro: "$80" },
-        { item: "└ 호스팅", lite: "$10/월 포함", pro: "$25/월 포함", isSub: true },
-        { item: "└ 데이터베이스", lite: "$10/월 포함", pro: "$30/월 포함", isSub: true },
+        { item: "호스팅 + DB + 유지보수 (월비용)", lite: "$60", pro: "$80" },
+        { item: "└ 호스팅", lite: "$20/월 포함", pro: "$20/월 포함", isSub: true },
+        { item: "└ 데이터베이스", lite: "$25/월 포함", pro: "$35/월 포함", isSub: true },
         { item: "└ 유지보수", lite: "$15/월 포함", pro: "$25/월 포함", isSub: true },
         { item: "연 도메인", lite: "$25", pro: "$25" },
-        { item: "1년 총 예상비용", lite: "$844", pro: "$1,634" },
-        { item: "2년차부터 매년 예상비용", lite: "$445", pro: "$985" },
+        { item: "1년 총 예상비용", lite: "$1,144", pro: "$1,634" },
+        { item: "2년차부터 매년 예상비용", lite: "$745", pro: "$985" },
         { item: "페이지 수", lite: "3페이지", pro: "5페이지" },
         { item: "모바일 반응형", lite: "✓", pro: "✓" },
         { item: "기본 SEO", lite: "✓", pro: "✓" },
@@ -771,7 +764,6 @@ const ko: Dict = {
     options: [
       { icon: "📄", title: "추가 페이지", price: "$80", unit: "/ 페이지", desc: "기본 패키지에 포함된 페이지 외 추가 시" },
       { icon: "📅", title: "예약 시스템 연동", price: "+$200", unit: "/ 일회성", desc: "캘린더·예약 폼·자동 알림 연동" },
-      { icon: "💳", title: "결제 시스템 연동", price: "+$200", unit: "/ 일회성", desc: "Stripe·Toss 등 결제 게이트웨이 연동" },
     ],
   },
   faq: {
