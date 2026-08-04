@@ -3,6 +3,7 @@ import type { Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
+    brand: { short: "FORM & FLOW", full: "FORM & FLOW PILATES" },
     nav: { programs: "Programs", trainers: "Trainers", membership: "Membership", studio: "Studio" },
     bookCta: "Book a Class",
     hero: {
@@ -49,9 +50,10 @@ const copy = {
       body: "One 1:1 intake — together we'll figure out which class fits.",
       button: "Book a Free Trial →",
     },
-    footer: "© 2025 MOA · Brooklyn",
+    footer: "© 2025 FORM & FLOW · Brooklyn",
   },
   ko: {
+    brand: { short: "MOA", full: "MOA PILATES" },
     nav: { programs: "Programs", trainers: "Trainers", membership: "Membership", studio: "Studio" },
     bookCta: "Book a Class",
     hero: {
@@ -108,7 +110,7 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
     <div className="bg-[#0e0d0c] text-white">
       <header className="border-b border-white/10 bg-[#0e0d0c]/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <div className="text-xl font-bold tracking-[0.3em]">MOA</div>
+          <div className="text-xl font-bold tracking-[0.3em]">{t.brand.short}</div>
           <nav className="hidden gap-7 text-xs uppercase tracking-widest text-white/70 md:flex">
             <a>{t.nav.programs}</a>
             <a>{t.nav.trainers}</a>
@@ -124,7 +126,7 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
       <section className="relative h-[88vh] min-h-[560px] overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1800&q=80&auto=format&fit=crop"
-          alt="Moa Pilates"
+          alt={t.brand.full}
           fill
           priority
           className="object-cover opacity-70"
@@ -230,7 +232,7 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
 
       <footer className="border-t border-white/10 py-10 text-xs uppercase tracking-widest text-white/40">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 md:flex-row">
-          <div className="font-bold text-white/80 tracking-[0.3em]">MOA PILATES</div>
+          <div className="font-bold text-white/80 tracking-[0.3em]">{t.brand.full}</div>
           <div>{t.footer}</div>
         </div>
       </footer>

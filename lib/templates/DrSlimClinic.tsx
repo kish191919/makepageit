@@ -3,7 +3,7 @@ import type { Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
-    brand: { left: "DR.", right: "SLIM" },
+    brand: { left: "CONTOUR", right: "WELLNESS" },
     cta: "☎ Free 1:1 Call",
     hero: {
       tag: "🔥 April only — 80% off intake visit",
@@ -54,7 +54,7 @@ const copy = {
       body: "April: only 50 free consults a week.",
       button: "Request a Free Call →",
     },
-    footer: "Licensed wellness clinic NYC · Dr. Slim Wellness · Director: Dr. K.",
+    footer: "Licensed wellness clinic NYC · Contour Wellness Clinic · Director: Dr. K.",
   },
   ko: {
     brand: { left: "DR.", right: "SLIM" },
@@ -172,7 +172,7 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop"
-                alt="Dr. Slim"
+                alt="Contour Wellness Clinic"
                 fill
                 priority
                 className="object-cover"

@@ -43,34 +43,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ];
   });
 
-  // Portfolio detail pages — both locales
-  const portfolioRoutes: MetadataRoute.Sitemap = getPortfolios("en").flatMap((item) => {
-    const enUrl = `${BASE_URL}/portfolio/${item.id}`;
-    const koUrl = `${BASE_URL}/ko/portfolio/${item.id}`;
-    const alternates = {
-      languages: {
-        en: enUrl,
-        ko: koUrl,
-        "x-default": enUrl,
-      },
-    };
-    return [
-      {
-        url: enUrl,
-        lastModified: now,
-        changeFrequency: "monthly",
-        priority: 0.7,
-        alternates,
-      },
-      {
-        url: koUrl,
-        lastModified: now,
-        changeFrequency: "monthly",
-        priority: 0.7,
-        alternates,
-      },
-    ];
-  });
+  // Portfolio detail pages — both locales (external-link items have no internal case-study page)
+  const portfolioRoutes: MetadataRoute.Sitemap = getPortfolios("en")
+    .filter((item) => !item.url)
+    .flatMap((item) => {
+      const enUrl = `${BASE_URL}/portfolio/${item.id}`;
+      const koUrl = `${BASE_URL}/ko/portfolio/${item.id}`;
+      const alternates = {
+        languages: {
+          en: enUrl,
+          ko: koUrl,
+          "x-default": enUrl,
+        },
+      };
+      return [
+        {
+          url: enUrl,
+          lastModified: now,
+          changeFrequency: "monthly",
+          priority: 0.7,
+          alternates,
+        },
+        {
+          url: koUrl,
+          lastModified: now,
+          changeFrequency: "monthly",
+          priority: 0.7,
+          alternates,
+        },
+      ];
+    });
 
   return [...staticRoutes, ...portfolioRoutes];
 }

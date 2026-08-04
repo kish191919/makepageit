@@ -3,7 +3,7 @@ import type { Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
-    brand: { left: "Haru ", right: "Tutoring" },
+    brand: { left: "BrightPath ", right: "Tutoring" },
     cta: "Get a Free Plan →",
     hero: {
       tag: "⚡ 3.2× ad conversion verified",
@@ -22,7 +22,7 @@ const copy = {
       formNote: "* Your dedicated coach will call back within a minute.",
     },
     why: {
-      title: ["Why ", "Haru?"],
+      title: ["Why ", "BrightPath?"],
       items: [
         { icon: "🎯", title: "SAT + School", desc: "A custom plan built from five years of test data" },
         { icon: "📈", title: "+220 pts on average", desc: "Real score gains across 312 enrolled students" },
@@ -58,7 +58,7 @@ const copy = {
       body: "Free diagnostic seats are limited to 30 per week.",
       button: "Request a Free Call →",
     },
-    footer: "© 2025 Haru Tutoring · NYC test-prep studio.",
+    footer: "© 2025 BrightPath Tutoring · NYC test-prep studio.",
   },
   ko: {
     brand: { left: "하루", right: "영어" },
@@ -171,7 +171,7 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
             <Image
               src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80&auto=format&fit=crop"
-              alt="Haru Tutoring"
+              alt="BrightPath Tutoring"
               fill
               priority
               className="object-cover"

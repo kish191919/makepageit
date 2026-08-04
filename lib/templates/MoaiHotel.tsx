@@ -3,6 +3,7 @@ import type { Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
+    brand: "WAYFARER",
     nav: ["STAY", "DINE", "SPA", "JOURNAL"],
     reserveCta: "RESERVE",
     hero: {
@@ -44,9 +45,10 @@ const copy = {
       titleB: "one guest at a time.",
       cta: "CONCIERGE +1 (831) 555 0028",
     },
-    footer: "© 2025 MOAI HOTEL & RESORT — BIG SUR, CALIFORNIA",
+    footer: "© 2025 THE WAYFARER HOTEL & RESORT — BIG SUR, CALIFORNIA",
   },
   ko: {
+    brand: "MOAI",
     nav: ["STAY", "DINE", "SPA", "JOURNAL"],
     reserveCta: "RESERVE",
     hero: {
@@ -98,7 +100,7 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
     <div className="min-h-screen bg-[#0d0c0a] text-[#f0e9d6]">
       <header className="absolute inset-x-0 top-0 z-30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
-          <div className="font-serif text-xl tracking-[0.5em] text-[#d4af37]">MOAI</div>
+          <div className="font-serif text-xl tracking-[0.5em] text-[#d4af37]">{t.brand}</div>
           <nav className="hidden gap-10 text-[11px] font-medium tracking-[0.3em] md:flex">
             {t.nav.map((n) => (
               <a key={n}>{n}</a>
@@ -113,7 +115,7 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
       <section className="relative h-[100vh] min-h-[640px] overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=2000&q=80&auto=format&fit=crop"
-          alt="Moai Hotel & Resort"
+          alt="Hotel exterior"
           fill
           priority
           className="object-cover"
@@ -159,7 +161,7 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
           <div className="relative aspect-[4/5] overflow-hidden">
             <Image
               src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80&auto=format&fit=crop"
-              alt="Moai interior"
+              alt="Hotel interior"
               fill
               className="object-cover"
             />

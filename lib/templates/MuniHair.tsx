@@ -3,13 +3,14 @@ import type { Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
+    brand: "MUSE ✦ HAIR",
     nav: ["Stylist", "Gallery", "Menu", "Booking"],
     bookCta: "Book ☆",
     hero: {
       tag: "★ Y2K SALON SINCE 2002",
       titleA: "Hair is your",
       titleB: "main accessory.",
-      body: "A vivid-color salon that's spent 22 years in West Hollywood making editorial-meets-everyday hair. Sit in Muni's chair for the signature color you've seen on TV.",
+      body: "A vivid-color salon that's spent 22 years in West Hollywood making editorial-meets-everyday hair. Sit in Ava's chair for the signature color you've seen on TV.",
       ctaPrimary: "☆ Open today",
       ctaSecondary: "View gallery",
     },
@@ -18,7 +19,7 @@ const copy = {
       title: "Three designers",
       bookBtn: "☆ Book this designer",
       list: [
-        { name: "MUNI", role: "Founder · Color Director", spec: "Vivid color / tone-down", img: "https://i.pravatar.cc/300?img=47" },
+        { name: "AVA", role: "Founder · Color Director", spec: "Vivid color / tone-down", img: "https://i.pravatar.cc/300?img=47" },
         { name: "CRYSTAL", role: "Senior Designer", spec: "Bobs / layered cuts", img: "https://i.pravatar.cc/300?img=32" },
         { name: "RIO", role: "Designer", spec: "Men's perm / dandy", img: "https://i.pravatar.cc/300?img=12" },
       ],
@@ -36,9 +37,10 @@ const copy = {
       dateLabel: "SUN · APR 27",
       submit: "☆ Confirm via text",
     },
-    footer: "✦ MUNI HAIR · 8410 Melrose Pl, 3F, Los Angeles CA 90069 · (323) 555-0202 ✦",
+    footer: "✦ MUSE HAIR · 8410 Melrose Pl, 3F, Los Angeles CA 90069 · (323) 555-0202 ✦",
   },
   ko: {
+    brand: "MUNI ✦ HAIR",
     nav: ["Stylist", "Gallery", "Menu", "Booking"],
     bookCta: "Book ☆",
     hero: {
@@ -86,7 +88,7 @@ export default function MuniHair({ lang }: { lang: Lang }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="text-xl font-black italic tracking-tighter">
             <span className="bg-gradient-to-r from-[#c0c0ff] via-[#ff9ee5] to-[#a3ffd6] bg-clip-text text-transparent">
-              MUNI ✦ HAIR
+              {t.brand}
             </span>
           </div>
           <nav className="hidden gap-7 text-xs font-bold uppercase tracking-widest text-white/70 md:flex">
@@ -135,7 +137,7 @@ export default function MuniHair({ lang }: { lang: Lang }) {
           <div className="relative aspect-square overflow-hidden rounded-[3rem] border-4 border-white/20 shadow-2xl shadow-[#ff9ee5]/30">
             <Image
               src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80&auto=format&fit=crop"
-              alt="Muni Hair"
+              alt={t.brand}
               fill
               priority
               className="object-cover"

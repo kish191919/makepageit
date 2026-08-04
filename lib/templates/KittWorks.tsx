@@ -3,12 +3,13 @@ import type { Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
+    domain: "kade.works",
     nav: ["index", "work", "about", "contact"],
-    contactEmail: "hello@kitt.works",
+    contactEmail: "hello@kade.works",
     intro: {
       label: "01 — INDEX",
       sub: "Brooklyn / 2017 — Now",
-      titlePre: "Kitt is a product designer",
+      titlePre: "Kade is a product designer",
       titlePost: " focused on calm, useful interfaces for everyday tools.",
       body: "Over the past seven years I've worked with 12 companies, including Stripe, Linear, Notion, and Riot Games. My job is making interfaces that work — quietly.",
     },
@@ -43,9 +44,10 @@ const copy = {
       titlePost: "Taking one slot for the second half.",
       ctaSecondary: "Schedule a 30-min call →",
     },
-    footer: { stamp: "kitt.works · last updated 2025-04-27", links: ["read.cv", "are.na", "linkedin"] },
+    footer: { stamp: "kade.works · last updated 2025-04-27", links: ["read.cv", "are.na", "linkedin"] },
   },
   ko: {
+    domain: "kitt.works",
     nav: ["index", "work", "about", "contact"],
     contactEmail: "hello@kitt.works",
     intro: {
@@ -96,7 +98,7 @@ export default function KittWorks({ lang }: { lang: Lang }) {
     <div className="min-h-screen bg-white text-neutral-900">
       <header className="border-b border-neutral-200">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-          <div className="font-mono text-sm">kitt.works</div>
+          <div className="font-mono text-sm">{t.domain}</div>
           <nav className="hidden gap-8 font-mono text-xs text-neutral-500 md:flex">
             {t.nav.map((n) => (
               <a key={n}>{n}</a>

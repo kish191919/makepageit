@@ -3,7 +3,7 @@ import type { Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
-    brand: "Seoul Bakery NYC",
+    brand: "Sunrise Bakery Co.",
     nav: { menu: "Full Menu", delivery: "Same-Day", story: "Story", visit: "Visit" },
     orderCta: "Order Now",
     hero: {
@@ -47,7 +47,7 @@ const copy = {
       body: "Free delivery across NYC on orders over $40.",
       button: "Order Now →",
     },
-    footer: { brand: "Seoul Bakery NYC", address: "31-12 30th Ave, Astoria NY 11102 · (718) 555-0188", legal: "© 2025 Seoul Bakery NYC. All rights reserved." },
+    footer: { brand: "Sunrise Bakery Co.", address: "31-12 30th Ave, Astoria NY 11102 · (718) 555-0188", legal: "© 2025 Sunrise Bakery Co. All rights reserved." },
   },
   ko: {
     brand: "서울 베이커리",
@@ -150,7 +150,7 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
           <div className="relative aspect-square overflow-hidden rounded-[40%_60%_55%_45%/55%_45%_55%_45%]">
             <Image
               src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80&auto=format&fit=crop"
-              alt="Seoul Bakery"
+              alt={t.brand}
               fill
               priority
               className="object-cover"

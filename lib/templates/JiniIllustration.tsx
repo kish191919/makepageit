@@ -3,6 +3,7 @@ import type { Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
+    brand: "jenna",
     nav: ["works", "about", "shop", "contact"],
     cta: "Hire me ✏️",
     hero: {
@@ -32,11 +33,12 @@ const copy = {
     contact: {
       title: "Inquiries by email!",
       body: "I take six commissions per quarter. I reply within a week.",
-      email: "jini@jini-illustrations.com ✉️",
+      email: "jenna@jennacoleillustration.com ✉️",
     },
-    footer: "© 2025 jini illustration · drawn by hand, sent kindly 🌱",
+    footer: "© 2025 Jenna Cole Illustration · drawn by hand, sent kindly 🌱",
   },
   ko: {
+    brand: "jini",
     nav: ["works", "about", "shop", "contact"],
     cta: "의뢰하기 ✏️",
     hero: {
@@ -88,7 +90,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
       <header className="border-b-2 border-dashed border-[#3a2e2a]/20 bg-[#fff8ec]/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2 text-2xl font-black tracking-tight">
-            <span>🖍️</span> jini
+            <span>🖍️</span> {t.brand}
             <span className="text-[#ef476f]">.</span>
           </div>
           <nav className="hidden gap-6 text-sm font-bold md:flex">
@@ -139,7 +141,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
             <div className="relative aspect-square overflow-hidden rounded-3xl border-4 border-[#3a2e2a] shadow-[8px_8px_0_#3a2e2a]">
               <Image
                 src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80&auto=format&fit=crop"
-                alt="Jini illustration"
+                alt="Illustration work"
                 fill
                 priority
                 className="object-cover"

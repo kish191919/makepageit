@@ -7,7 +7,9 @@ import { breadcrumbSchema, jsonLdScriptProps, portfolioCaseSchema } from "@/lib/
 type Params = { id: string };
 
 export function generateStaticParams(): Params[] {
-  return getPortfolios("ko").map((p) => ({ id: p.id }));
+  return getPortfolios("ko")
+    .filter((p) => !p.url)
+    .map((p) => ({ id: p.id }));
 }
 
 export function generateMetadata({ params }: { params: Params }): Metadata {

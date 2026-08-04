@@ -16,6 +16,7 @@ export type Portfolio = {
   image: string;
   tags: string[];
   year: string;
+  url?: string;
 };
 
 export type Plan = {
@@ -154,6 +155,16 @@ const servicesKo: Service[] = [
 
 const portfoliosEn: Portfolio[] = [
   {
+    id: "sbm-nationwide",
+    client: "SBM Nationwide",
+    category: "Brand site",
+    description: "Nationwide commercial cleaning, staffing, and supply sourcing brand turned into a site built to win enterprise RFPs.",
+    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80&auto=format&fit=crop",
+    tags: ["B2B services", "Facilities", "Nationwide"],
+    year: "2026",
+    url: "https://www.sbmnationwide.com/",
+  },
+  {
     id: "noble-coffee",
     client: "Noble Coffee Roasters",
     category: "Brand site",
@@ -182,7 +193,7 @@ const portfoliosEn: Portfolio[] = [
   },
   {
     id: "haru-academy",
-    client: "Haru Language School",
+    client: "BrightPath Language Academy",
     category: "Landing page",
     description: "Landing page that 3.2x'd ad-driven sign-ups.",
     image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=80&auto=format&fit=crop",
@@ -191,7 +202,7 @@ const portfoliosEn: Portfolio[] = [
   },
   {
     id: "moa-pilates",
-    client: "Moa Pilates Studio",
+    client: "Form & Flow Pilates",
     category: "Booking",
     description: "Members, bookings, and recurring billing for a boutique pilates studio.",
     image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop",
@@ -209,7 +220,7 @@ const portfoliosEn: Portfolio[] = [
   },
   {
     id: "seoul-bakery",
-    client: "Seoul Bakery NYC",
+    client: "Sunrise Bakery Co.",
     category: "E-commerce",
     description: "Same-day delivery storefront for a neighborhood bakery.",
     image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=1200&q=80&auto=format&fit=crop",
@@ -245,7 +256,7 @@ const portfoliosEn: Portfolio[] = [
   },
   {
     id: "moai-hotel",
-    client: "Moai Hotel & Resort",
+    client: "The Wayfarer Hotel & Resort",
     category: "Brand site",
     description: "Gold-accented luxury site for a boutique hotel chain.",
     image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=80&auto=format&fit=crop",
@@ -290,7 +301,7 @@ const portfoliosEn: Portfolio[] = [
   },
   {
     id: "dr-slim-clinic",
-    client: "Dr. Slim Wellness",
+    client: "Contour Wellness Clinic",
     category: "Landing page",
     description: "Before/after social proof and testimonial badges drove conversions on this weight-loss landing.",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80&auto=format&fit=crop",
@@ -308,7 +319,7 @@ const portfoliosEn: Portfolio[] = [
   },
   {
     id: "muni-hair",
-    client: "Muni Hair Studio",
+    client: "Muse Hair Studio",
     category: "Booking",
     description: "Y2K chrome aesthetic for a trend-forward salon's booking site.",
     image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200&q=80&auto=format&fit=crop",
@@ -317,7 +328,7 @@ const portfoliosEn: Portfolio[] = [
   },
   {
     id: "kitt-works",
-    client: "Kitt Works",
+    client: "Kade Studio",
     category: "Portfolio",
     description: "Swiss-style grid for an independent UX designer's portfolio.",
     image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1200&q=80&auto=format&fit=crop",
@@ -326,7 +337,7 @@ const portfoliosEn: Portfolio[] = [
   },
   {
     id: "jini-illustration",
-    client: "Jini Illustrations",
+    client: "Jenna Cole Illustration",
     category: "Portfolio",
     description: "Paper textures and hand-drawn warmth for an illustrator's portfolio.",
     image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80&auto=format&fit=crop",
@@ -336,6 +347,16 @@ const portfoliosEn: Portfolio[] = [
 ];
 
 const portfoliosKo: Portfolio[] = [
+  {
+    id: "sbm-nationwide",
+    client: "SBM Nationwide",
+    category: "브랜딩 사이트",
+    description: "미국 전역 상업 청소·인력파견·자재소싱 브랜드를 대기업 입찰(RFP)까지 대응 가능한 사이트로 재구축.",
+    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80&auto=format&fit=crop",
+    tags: ["B2B 서비스", "시설관리", "전국 서비스"],
+    year: "2026",
+    url: "https://www.sbmnationwide.com/",
+  },
   {
     id: "noble-coffee",
     client: "노블 커피로스터스",
@@ -656,7 +677,7 @@ const reviewsEn: Review[] = [
   {
     id: "r4",
     client: "Jess C.",
-    industry: "Haru Language School",
+    industry: "BrightPath Language Academy",
     rating: 5,
     title: "Ad ROI improved 3x after the new landing.",
     body:
@@ -666,7 +687,7 @@ const reviewsEn: Review[] = [
   {
     id: "r5",
     client: "Hannah K.",
-    industry: "Moa Pilates Studio",
+    industry: "Form & Flow Pilates",
     rating: 5,
     title: "Cut 70% of our admin time on member management.",
     body:
@@ -820,10 +841,10 @@ const logosEn = [
   "Noble Coffee",
   "Lumière",
   "Atelier 22",
-  "Haru Lang.",
-  "Moa Pilates",
+  "BrightPath",
+  "Form & Flow",
   "Greene Law",
-  "Seoul Bakery",
+  "Sunrise Bakery",
   "Nova Studio",
 ];
 
