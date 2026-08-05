@@ -117,8 +117,8 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-20 text-white">
           <p className="text-xs uppercase tracking-[0.4em]">{t.hero.season}</p>
-          <h1 className="mt-4 max-w-2xl font-serif text-5xl leading-[1.05] md:text-7xl">
-            {t.hero.title[0]}<br />{t.hero.title[1]}
+          <h1 className="mt-4 max-w-2xl font-serif text-4xl leading-[1.05] md:text-7xl">
+            {t.hero.title[0]}<br className="hidden md:block" />{t.hero.title[1]}
           </h1>
           <a className="mt-10 inline-flex w-fit border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em]">
             {t.hero.cta}
@@ -127,9 +127,9 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="flex items-end justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="font-serif text-3xl md:text-4xl">{t.featured.title}</h2>
-          <div className="flex gap-3 text-xs uppercase tracking-widest">
+          <div className="flex flex-wrap gap-3 text-xs uppercase tracking-widest">
             {t.featured.filters.map((f, i) => (
               <a key={f} className={i === 0 ? "border-b border-[#1f1d1a] pb-0.5" : "text-[#7a7770]"}>
                 {f}
@@ -167,8 +167,8 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
           </div>
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-[#bcb8aa]">{t.story.eyebrow}</p>
-            <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl">
-              {t.story.title[0]}<br />{t.story.title[1]}
+            <h2 className="mt-4 font-serif text-3xl leading-tight md:text-5xl">
+              {t.story.title[0]}<br className="hidden md:block" />{t.story.title[1]}
             </h2>
             <p className="mt-6 leading-relaxed text-[#d3cfc0]">
               {t.story.body}

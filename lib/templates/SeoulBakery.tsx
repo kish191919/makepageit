@@ -131,8 +131,8 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full bg-[#c0681e]/10 px-4 py-1.5 text-xs font-bold text-[#c0681e]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-5 text-5xl font-extrabold leading-[1.1] md:text-6xl">
-              {t.hero.titlePre}<br />
+            <h1 className="mt-5 text-4xl font-extrabold leading-[1.15] md:text-6xl md:leading-[1.1]">
+              {t.hero.titlePre}<br className="hidden md:block" />
               <span className="text-[#c0681e]">{t.hero.titleAccent}</span>{t.hero.titlePost}
             </h1>
             <p className="mt-5 max-w-md text-lg leading-relaxed text-[#5b3e2c]">
@@ -216,8 +216,8 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
           </div>
           <div>
             <span className="text-xs font-bold tracking-[0.3em] text-[#c0681e]">{t.story.eyebrow}</span>
-            <h2 className="mt-3 text-4xl font-extrabold leading-tight">
-              {t.story.title[0]}<br />{t.story.title[1]}
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
+              {t.story.title[0]}<br className="hidden md:block" />{t.story.title[1]}
             </h2>
             <p className="mt-6 leading-relaxed text-[#5b3e2c]">
               {t.story.body}
@@ -229,8 +229,8 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
 
       <section className="bg-[#c0681e] py-20 text-white">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-4xl font-extrabold leading-tight md:text-5xl">
-            {t.bottomCta.titlePre}<br />{t.bottomCta.titleAccent}
+          <h2 className="text-3xl font-extrabold leading-tight md:text-5xl">
+            {t.bottomCta.titlePre}<br className="hidden md:block" />{t.bottomCta.titleAccent}
           </h2>
           <p className="mt-4 text-white/90">{t.bottomCta.body}</p>
           <a className="mt-10 inline-block rounded-full bg-white px-10 py-4 text-base font-extrabold text-[#c0681e]">

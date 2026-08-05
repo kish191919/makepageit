@@ -107,9 +107,9 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_1fr] md:items-end md:py-24">
         <div>
           <p className="text-xs tracking-[0.4em] text-[#a08260]">{t.hero.season}</p>
-          <h1 className="mt-6 font-serif text-5xl leading-[1.1] tracking-tight md:text-7xl">
+          <h1 className="mt-6 font-serif text-4xl leading-[1.15] tracking-tight md:text-7xl md:leading-[1.1]">
             {t.hero.titleA}
-            <br />
+            <br className="hidden md:block" />
             <span className="italic text-[#7d6a4d]">{t.hero.titleB}</span>
           </h1>
           <p className="mt-8 max-w-md text-base leading-relaxed text-[#5b4f3d]">
@@ -190,9 +190,9 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-[1fr_1fr] md:items-center">
           <div>
             <p className="text-xs tracking-[0.4em] text-[#c4a47a]">{t.showroom.eyebrow}</p>
-            <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl">
+            <h2 className="mt-4 font-serif text-3xl leading-tight md:text-5xl">
               {t.showroom.titleA}
-              <br />
+              <br className="hidden md:block" />
               {t.showroom.titleB}
             </h2>
           </div>

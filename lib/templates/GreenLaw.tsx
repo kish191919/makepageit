@@ -44,7 +44,7 @@ const copy = {
       {
         name: "Daniel Park",
         role: "Litigation · 9 yrs",
-        image: "https://images.unsplash.com/photo-1603810229820-294023a73fa4?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1736939561648-bafddedd9f5e?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Sofia Lee",
@@ -115,7 +115,7 @@ const copy = {
       {
         name: "윤재훈 변호사",
         role: "분쟁·소송 · 9년차",
-        image: "https://images.unsplash.com/photo-1603810229820-294023a73fa4?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1736939561648-bafddedd9f5e?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "임소연 변호사",
@@ -176,8 +176,8 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[1.2fr_1fr] md:items-center md:py-32">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.hero.eyebrow}</p>
-            <h1 className="mt-6 font-serif text-5xl leading-[1.15] md:text-6xl">
-              {t.hero.title[0]}<br />{t.hero.title[1]}
+            <h1 className="mt-6 font-serif text-4xl leading-[1.15] md:text-6xl">
+              {t.hero.title[0]}<br className="hidden md:block" />{t.hero.title[1]}
             </h1>
             <p className="mt-6 max-w-md leading-relaxed text-[#0b1a2a]/70">
               {t.hero.body}
@@ -250,8 +250,8 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.consult.eyebrow}</p>
-            <h2 className="mt-3 font-serif text-4xl leading-tight md:text-5xl">
-              {t.consult.title[0]}<br />{t.consult.title[1]}
+            <h2 className="mt-3 font-serif text-3xl leading-tight md:text-5xl">
+              {t.consult.title[0]}<br className="hidden md:block" />{t.consult.title[1]}
             </h2>
             <p className="mt-6 leading-relaxed text-[#0b1a2a]/70">
               {t.consult.body}

@@ -103,9 +103,9 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full bg-[#ffd6e0] px-3 py-1 text-[11px] font-bold text-[#c44569]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-6 text-5xl font-bold leading-[1.1] md:text-7xl">
+            <h1 className="mt-6 text-4xl font-bold leading-[1.1] md:text-7xl">
               {t.hero.titlePre}
-              <br />
+              <br className="hidden md:block" />
               <span className="text-[#ff8aa3]">{t.hero.titleAccent}</span>
             </h1>
             <p className="mt-6 max-w-md text-base text-[#7a5f6a]">
@@ -137,7 +137,7 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="flex items-end justify-between">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-3xl font-bold md:text-4xl">{t.weeklyTitle}</h2>
           <a className="text-sm font-medium text-[#c44569]">{t.viewAll}</a>
         </div>
@@ -170,9 +170,9 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-6xl rounded-[3rem] bg-gradient-to-br from-[#ffd6e0] via-[#fff0e8] to-[#ffe8b6] px-6 py-20 text-center">
         <p className="text-xs font-bold uppercase tracking-widest text-[#c44569]">{t.valuesEyebrow}</p>
-        <h2 className="mt-5 text-4xl font-bold leading-snug md:text-5xl">
+        <h2 className="mt-5 text-3xl font-bold leading-snug md:text-5xl">
           {t.valuesTitle[0]}
-          <br />
+          <br className="hidden md:block" />
           {t.valuesTitle[1]}
         </h2>
         <div className="mt-12 grid gap-6 md:grid-cols-3">

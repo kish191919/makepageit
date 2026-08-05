@@ -103,7 +103,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
       <section className="border-b-2 border-black">
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
           <p className="text-xs font-bold uppercase tracking-[0.4em]">{t.hero.eyebrow}</p>
-          <h1 className="mt-10 text-[18vw] font-black leading-[0.85] tracking-[-0.04em] md:text-[14rem]">
+          <h1 className="mt-10 text-[15vw] font-black leading-[0.85] tracking-[-0.04em] md:text-[14rem]">
             {t.hero.brand}
             <br />
             <span className="block text-black/30">{t.hero.brandSub}</span>
@@ -120,7 +120,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
       <section className="border-b-2 border-black">
         <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="flex items-end justify-between border-b-2 border-black pb-6">
-            <h2 className="text-5xl font-black tracking-tight md:text-7xl">{t.selected.title}</h2>
+            <h2 className="text-3xl font-black tracking-tight md:text-7xl">{t.selected.title}</h2>
             <span className="hidden text-xs font-bold uppercase tracking-widest md:block">{t.selected.years}</span>
           </div>
           <div className="mt-12 space-y-20">
@@ -156,7 +156,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
 
       <section className="border-b-2 border-black bg-black text-[#ededed]">
         <div className="mx-auto max-w-7xl px-6 py-24">
-          <h2 className="text-4xl font-black tracking-tight md:text-6xl">{t.awardsTitle}</h2>
+          <h2 className="text-3xl font-black tracking-tight md:text-6xl">{t.awardsTitle}</h2>
           <ul className="mt-12 divide-y divide-white/20 border-y border-white/20">
             {t.awards.map(([y, label]) => (
               <li key={label} className="grid grid-cols-[80px_1fr] gap-6 py-5 md:grid-cols-[120px_1fr]">
@@ -172,9 +172,9 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-24 md:grid-cols-2">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.4em]">{t.studio.eyebrow}</p>
-            <h2 className="mt-6 text-4xl font-black leading-tight md:text-6xl">
+            <h2 className="mt-6 text-3xl font-black leading-tight md:text-6xl">
               {t.studio.title[0]}
-              <br />
+              <br className="hidden md:block" />
               {t.studio.title[1]}
             </h2>
           </div>

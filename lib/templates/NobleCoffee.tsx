@@ -142,8 +142,8 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/60" />
         <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-20 text-white">
           <p className="text-xs tracking-[0.4em]">{t.hero.eyebrow}</p>
-          <h1 className="mt-4 max-w-3xl font-serif text-5xl leading-tight md:text-7xl">
-            {t.hero.title[0]}<br />{t.hero.title[1]}
+          <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-tight md:text-7xl">
+            {t.hero.title[0]}<br className="hidden md:block" />{t.hero.title[1]}
           </h1>
           <p className="mt-6 max-w-xl text-base text-white/80">
             {t.hero.body}
@@ -163,8 +163,8 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
           </div>
           <div>
             <p className="text-xs tracking-[0.4em] text-[#7a6850]">{t.story.eyebrow}</p>
-            <h2 className="mt-4 font-serif text-4xl leading-tight">
-              {t.story.title[0]}<br />{t.story.title[1]}
+            <h2 className="mt-4 font-serif text-3xl leading-tight md:text-4xl">
+              {t.story.title[0]}<br className="hidden md:block" />{t.story.title[1]}
             </h2>
             <p className="mt-6 leading-relaxed text-[#5b4b39]">
               {t.story.body}

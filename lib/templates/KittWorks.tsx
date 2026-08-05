@@ -190,7 +190,7 @@ export default function KittWorks({ lang }: { lang: Lang }) {
           <div className="md:col-span-9">
             <h2 className="text-3xl leading-tight md:text-5xl">
               {t.contact.titlePre}<span className="text-neutral-400">{t.contact.titleAccent}</span>
-              <br />
+              <br className="hidden md:block" />
               {t.contact.titlePost}
             </h2>
             <div className="mt-10 grid gap-4 md:max-w-md">

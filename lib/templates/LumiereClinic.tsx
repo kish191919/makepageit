@@ -159,8 +159,8 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full bg-[#9b6b4d]/10 px-3 py-1 text-xs font-semibold text-[#9b6b4d]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-5 text-4xl font-bold leading-tight md:text-5xl">
-              {t.hero.title[0]}<br />
+            <h1 className="mt-5 text-3xl font-bold leading-tight md:text-5xl">
+              {t.hero.title[0]}<br className="hidden md:block" />
               <span className="text-[#9b6b4d]">{t.hero.titleAccent}</span>{t.hero.titleEnd}
             </h1>
             <p className="mt-5 max-w-md text-base leading-relaxed text-slate-600">

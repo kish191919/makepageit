@@ -138,9 +138,9 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2 md:items-center">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-black/50">{t.studio.eyebrow}</p>
-            <h2 className="mt-3 font-serif text-5xl leading-tight md:text-6xl">
-              {t.studio.titleA}<br />
-              <span className="italic">{t.studio.titleB}</span><br />{t.studio.titleC}
+            <h2 className="mt-3 font-serif text-3xl leading-tight md:text-6xl">
+              {t.studio.titleA}<br className="hidden md:block" />
+              <span className="italic">{t.studio.titleB}</span><br className="hidden md:block" />{t.studio.titleC}
             </h2>
             <p className="mt-6 leading-relaxed text-black/70">
               {t.studio.body}

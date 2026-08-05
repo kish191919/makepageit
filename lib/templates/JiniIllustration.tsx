@@ -112,13 +112,13 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
             <span className="inline-block rotate-[-2deg] rounded-full bg-[#06d6a0] px-3 py-1 text-xs font-bold text-white">
               {t.hero.tag}
             </span>
-            <h1 className="mt-6 text-5xl font-black leading-[1.05] md:text-7xl">
+            <h1 className="mt-6 text-4xl font-black leading-[1.15] md:text-7xl md:leading-[1.05]">
               {t.hero.titleA}
-              <br />
+              <br className="hidden md:block" />
               <span className="bg-[#ffd166] px-2">{t.hero.titleAccent}</span>
               {t.hero.titleB && (
                 <>
-                  <br />
+                  <br className="hidden md:block" />
                   {t.hero.titleB}
                 </>
               )}
@@ -152,7 +152,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
-        <div className="flex items-end justify-between">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-3xl font-black md:text-4xl">{t.recentTitle}</h2>
           <a className="text-sm font-bold underline">{t.viewAll}</a>
         </div>

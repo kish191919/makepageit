@@ -141,8 +141,8 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full bg-[#ff5e3a]/10 px-3 py-1 text-xs font-bold text-[#ff5e3a]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-5 text-4xl font-black leading-[1.15] md:text-6xl">
-              {t.hero.titlePre}<br />
+            <h1 className="mt-5 text-3xl font-black leading-[1.15] md:text-6xl">
+              {t.hero.titlePre}<br className="hidden md:block" />
               <span className="text-[#ff5e3a]">{t.hero.titleAccent}</span>{t.hero.titlePost}
             </h1>
             <p className="mt-5 max-w-md text-lg text-slate-600">

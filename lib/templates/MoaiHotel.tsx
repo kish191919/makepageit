@@ -123,9 +123,9 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/30 to-black/80" />
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-center px-6 text-center">
           <p className="text-[11px] tracking-[0.5em] text-[#d4af37]">{t.hero.eyebrow}</p>
-          <h1 className="mt-8 font-serif text-6xl leading-[1.05] tracking-tight md:text-8xl">
+          <h1 className="mt-8 font-serif text-3xl leading-[1.15] tracking-tight md:text-8xl md:leading-[1.05]">
             {t.hero.titleA}
-            <br />
+            <br className="hidden md:block" />
             <span className="italic text-[#d4af37]">{t.hero.titleB}</span>
           </h1>
           <p className="mx-auto mt-8 max-w-2xl text-sm leading-relaxed text-white/70 md:text-base">
@@ -141,9 +141,9 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
         <div className="grid items-center gap-16 md:grid-cols-[1fr_1fr]">
           <div>
             <p className="text-[11px] tracking-[0.4em] text-[#d4af37]">{t.philosophy.eyebrow}</p>
-            <h2 className="mt-6 font-serif text-4xl leading-tight md:text-5xl">
+            <h2 className="mt-6 font-serif text-3xl leading-tight md:text-5xl">
               {t.philosophy.titleA}
-              <br />
+              <br className="hidden md:block" />
               {t.philosophy.titleB}
             </h2>
             <p className="mt-8 leading-relaxed text-[#c9bfa6]">
@@ -190,7 +190,7 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
                   />
                 </div>
                 <h3 className="mt-6 font-serif text-2xl">{r.name}</h3>
-                <p className="mt-2 text-xs tracking-widest text-[#9b9277]">{r.size}</p>
+                <p className="mt-2 text-xs tracking-wide text-[#9b9277]">{r.size}</p>
                 <p className="mt-4 text-sm tracking-widest text-[#d4af37]">{t.fromLabel} {r.price} {t.nightLabel}</p>
               </article>
             ))}
@@ -215,9 +215,9 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
       <section className="bg-[#15130f] py-24 text-center">
         <div className="mx-auto max-w-3xl px-6">
           <p className="text-[11px] tracking-[0.4em] text-[#d4af37]">{t.reserve.eyebrow}</p>
-          <h2 className="mt-6 font-serif text-4xl leading-tight md:text-6xl">
+          <h2 className="mt-6 font-serif text-3xl leading-tight md:text-6xl">
             {t.reserve.titleA}
-            <br />
+            <br className="hidden md:block" />
             {t.reserve.titleB}
           </h2>
           <a className="mt-12 inline-block bg-[#d4af37] px-12 py-4 text-xs tracking-[0.4em] text-black">

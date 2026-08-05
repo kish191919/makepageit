@@ -133,11 +133,11 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
             <span className="inline-flex items-center gap-2 rounded-full bg-[#ff5f5f]/10 px-3 py-1 text-xs font-bold text-[#ff5f5f]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-5 text-4xl font-black leading-[1.15] md:text-6xl">
+            <h1 className="mt-5 text-3xl font-black leading-[1.25] md:text-6xl md:leading-[1.15]">
               <span className="rounded bg-yellow-200 px-1.5">{t.hero.titleAccent}</span>,
-              <br />
+              <br className="hidden md:block" />
               {t.hero.titleA}
-              <br />
+              <br className="hidden md:block" />
               {t.hero.titleB}
             </h1>
             <ul className="mt-6 space-y-2 text-sm text-slate-700 md:text-base">

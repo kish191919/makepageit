@@ -118,9 +118,9 @@ export default function NexusLab({ lang }: { lang: Lang }) {
             <span className="h-1.5 w-1.5 rounded-full bg-[#22d3ee]" />
             {t.badge}
           </span>
-          <h1 className="mt-8 text-5xl font-black leading-[1.05] tracking-tight md:text-7xl">
+          <h1 className="mt-8 text-4xl font-black leading-[1.15] tracking-tight md:text-7xl md:leading-[1.05]">
             {t.hero.titleA}
-            <br />
+            <br className="hidden md:block" />
             <span className="bg-gradient-to-r from-[#7c5cff] via-[#a78bfa] to-[#22d3ee] bg-clip-text text-transparent">
               {t.hero.titleB}
             </span>

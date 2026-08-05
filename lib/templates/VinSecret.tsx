@@ -109,9 +109,9 @@ export default function VinSecret({ lang }: { lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#1a0d10]/60 to-[#1a0d10]" />
         <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-16">
           <p className="text-[11px] tracking-[0.5em] text-[#d4a574]">{t.hero.eyebrow}</p>
-          <h1 className="mt-6 max-w-3xl font-serif text-5xl leading-[1.1] md:text-7xl">
+          <h1 className="mt-6 max-w-3xl font-serif text-4xl leading-[1.15] md:text-7xl md:leading-[1.1]">
             {t.hero.titleA}
-            <br />
+            <br className="hidden md:block" />
             <span className="italic text-[#d4a574]">{t.hero.titleB}</span>
           </h1>
           <p className="mt-6 max-w-xl text-base text-[#c8b896]">
@@ -124,9 +124,9 @@ export default function VinSecret({ lang }: { lang: Lang }) {
         <div className="grid items-center gap-14 md:grid-cols-2">
           <div>
             <p className="text-[11px] tracking-[0.5em] text-[#d4a574]">{t.promise.eyebrow}</p>
-            <h2 className="mt-6 font-serif text-4xl leading-tight">
+            <h2 className="mt-6 font-serif text-3xl leading-tight md:text-4xl">
               {t.promise.titleA}
-              <br />
+              <br className="hidden md:block" />
               {t.promise.titleB}
             </h2>
             <p className="mt-7 leading-relaxed text-[#c8b896]">
@@ -189,7 +189,7 @@ export default function VinSecret({ lang }: { lang: Lang }) {
                     {t.bestBadge}
                   </span>
                 )}
-                <h3 className="mt-5 font-serif text-2xl tracking-widest">{p.tier}</h3>
+                <h3 className="mt-5 font-serif text-2xl tracking-wide">{p.tier}</h3>
                 <p className="mt-2 text-xs text-[#c8b896]">{p.count}</p>
                 <p className="mt-7 font-serif text-3xl text-[#d4a574]">{p.price}<span className="ml-1 text-xs text-[#c8b896]">{t.perMonthSuffix}</span></p>
                 <p className="mt-5 text-sm text-[#c8b896]">{p.desc}</p>

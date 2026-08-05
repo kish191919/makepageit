@@ -134,10 +134,10 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
         <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 text-[#f4ede1]">
           <div className="max-w-2xl">
             <p className="text-[11px] tracking-[0.5em]">{t.hero.eyebrow}</p>
-            <h1 className="mt-6 font-serif text-5xl italic leading-[1.1] md:text-7xl">
+            <h1 className="mt-6 font-serif text-3xl italic leading-[1.2] md:text-7xl md:leading-[1.1]">
               {t.hero.titleA}
-              <br />{t.hero.titleB}
-              <br />{t.hero.titleC}
+              <br className="hidden md:block" />{t.hero.titleB}
+              <br className="hidden md:block" />{t.hero.titleC}
             </h1>
           </div>
         </div>
@@ -147,9 +147,9 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
         <div className="grid gap-14 md:grid-cols-[1fr_2fr]">
           <p className="text-[11px] tracking-[0.4em] text-[#7d2c1a]">{t.editorial.eyebrow}</p>
           <div>
-            <h2 className="font-serif text-4xl leading-tight md:text-5xl">
+            <h2 className="font-serif text-3xl leading-tight md:text-5xl">
               <span className="italic">{t.editorial.titleA}</span>
-              <br />
+              <br className="hidden md:block" />
               {t.editorial.titleB}
             </h2>
             <p className="mt-8 text-base leading-relaxed text-[#5b4a36]">

@@ -134,8 +134,8 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#0e0d0c] via-[#0e0d0c]/40 to-transparent" />
         <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-24">
           <p className="text-xs uppercase tracking-[0.4em] text-white/70">{t.hero.eyebrow}</p>
-          <h1 className="mt-5 max-w-3xl text-5xl font-light leading-[1.05] md:text-7xl">
-            {t.hero.title[0]}<br />
+          <h1 className="mt-5 max-w-3xl text-4xl font-light leading-[1.15] md:text-7xl md:leading-[1.05]">
+            {t.hero.title[0]}<br className="hidden md:block" />
             <span className="italic font-serif">{t.hero.title[1]}</span>
           </h1>
           <p className="mt-6 max-w-md text-white/70">
@@ -177,9 +177,9 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
                 <div className="relative aspect-[3/4] overflow-hidden bg-black/5">
                   <Image src={tr.image} alt={tr.name} fill className="object-cover" />
                 </div>
-                <div className="mt-4 flex items-baseline justify-between">
+                <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-2">
                   <h3 className="text-2xl">{tr.name}</h3>
-                  <span className="text-xs uppercase tracking-widest text-black/50">{tr.role}</span>
+                  <span className="text-xs uppercase tracking-wide text-black/50">{tr.role}</span>
                 </div>
               </div>
             ))}

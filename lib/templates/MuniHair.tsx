@@ -115,9 +115,9 @@ export default function MuniHair({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full border border-white/30 bg-white/10 px-3 py-1 font-mono text-[11px] tracking-widest backdrop-blur">
               {t.hero.tag}
             </span>
-            <h1 className="mt-7 text-5xl font-black italic leading-[1] tracking-tighter md:text-7xl">
+            <h1 className="mt-7 text-4xl font-black italic leading-[1.1] tracking-tighter md:text-7xl md:leading-[1]">
               {t.hero.titleA}
-              <br />
+              <br className="hidden md:block" />
               <span className="bg-gradient-to-r from-[#c0c0ff] via-[#ff9ee5] to-[#a3ffd6] bg-clip-text text-transparent">
                 {t.hero.titleB}
               </span>
@@ -125,7 +125,7 @@ export default function MuniHair({ lang }: { lang: Lang }) {
             <p className="mt-7 max-w-md text-base text-white/70">
               {t.hero.body}
             </p>
-            <div className="mt-10 flex gap-3">
+            <div className="mt-10 flex flex-wrap gap-3">
               <a className="rounded-full bg-white px-6 py-3 text-sm font-bold text-[#0d0a14]">
                 {t.hero.ctaPrimary}
               </a>

@@ -110,9 +110,9 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs">
               {t.hero.tag}
             </span>
-            <h1 className="mt-7 text-5xl font-black leading-[1] tracking-tight md:text-7xl">
+            <h1 className="mt-7 text-4xl font-black leading-[1.1] tracking-tight md:text-7xl md:leading-[1]">
               {t.hero.titleA}
-              <br />
+              <br className="hidden md:block" />
               <span className="bg-gradient-to-r from-[#ff3d8b] via-[#ffb44a] to-[#6c5cff] bg-clip-text text-transparent">
                 {t.hero.titleB}
               </span>
@@ -203,9 +203,9 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-3xl px-6 py-24 text-center">
-        <h2 className="text-4xl font-black leading-tight md:text-6xl">
+        <h2 className="text-3xl font-black leading-tight md:text-6xl">
           {t.bottomCta.titleA}
-          <br />
+          <br className="hidden md:block" />
           <span className="bg-gradient-to-r from-[#ff3d8b] to-[#ffb44a] bg-clip-text text-transparent">
             {t.bottomCta.titleB}
           </span>
