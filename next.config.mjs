@@ -8,6 +8,7 @@ const nextConfig = {
       { protocol: "https", hostname: "picsum.photos" },
       { protocol: "https", hostname: "i.pravatar.cc" },
       { protocol: "https", hostname: "www.sbmnationwide.com" },
+      { protocol: "https", hostname: "www.yttmission.org" },
     ],
   },
   async headers() {
