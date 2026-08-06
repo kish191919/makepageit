@@ -32,7 +32,7 @@ const copy = {
       {
         name: "Dr. Lauren Park",
         role: "Founder · Board-Certified Dermatologist",
-        image: "https://images.unsplash.com/photo-1686737357914-80a665ca1c29?w=600&q=80&auto=format&fit=crop",
+        image: "/images/lumiere/lee-sujin.jpg",
       },
       {
         name: "Dr. Marcus Chen",
@@ -42,7 +42,7 @@ const copy = {
       {
         name: "Dr. Yuna Cho",
         role: "Lift & Contour Lead",
-        image: "https://images.unsplash.com/photo-1612944095914-33fd0a85fcfc?w=600&q=80&auto=format&fit=crop",
+        image: "/images/lumiere/jung-yuna.jpg",
       },
     ],
     booking: {
@@ -95,7 +95,7 @@ const copy = {
       {
         name: "이수진 원장",
         role: "대표원장 · 피부과 전문의",
-        image: "https://images.unsplash.com/photo-1686737357914-80a665ca1c29?w=600&q=80&auto=format&fit=crop",
+        image: "/images/lumiere/lee-sujin.jpg",
       },
       {
         name: "박민호 원장",
@@ -105,7 +105,7 @@ const copy = {
       {
         name: "정유나 원장",
         role: "리프팅 · 윤곽 전담의",
-        image: "https://images.unsplash.com/photo-1612944095914-33fd0a85fcfc?w=600&q=80&auto=format&fit=crop",
+        image: "/images/lumiere/jung-yuna.jpg",
       },
     ],
     booking: {
