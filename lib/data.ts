@@ -184,15 +184,6 @@ const portfoliosEn: Portfolio[] = [
     year: "2025",
   },
   {
-    id: "lumiere-clinic",
-    client: "Lumière Skin Clinic",
-    category: "Booking",
-    description: "Booking and reviews for a high-end dermatology practice.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop",
-    tags: ["Healthcare", "Booking", "Reviews"],
-    year: "2025",
-  },
-  {
     id: "atelier-shop",
     client: "Atelier 22",
     category: "E-commerce",
@@ -218,15 +209,6 @@ const portfoliosEn: Portfolio[] = [
     image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop",
     tags: ["Membership", "Booking", "Wellness"],
     year: "2025",
-  },
-  {
-    id: "green-law",
-    client: "Greene Law Group",
-    category: "Brand site",
-    description: "A trustworthy, no-nonsense site for a boutique law firm.",
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80&auto=format&fit=crop",
-    tags: ["Legal", "Trust", "B2B"],
-    year: "2024",
   },
   {
     id: "seoul-bakery",
@@ -354,6 +336,24 @@ const portfoliosEn: Portfolio[] = [
     tags: ["Illustration", "Hand-drawn", "Colorful"],
     year: "2024",
   },
+  {
+    id: "lumiere-clinic",
+    client: "Lumière Skin Clinic",
+    category: "Booking",
+    description: "Booking and reviews for a high-end dermatology practice.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Healthcare", "Booking", "Reviews"],
+    year: "2025",
+  },
+  {
+    id: "green-law",
+    client: "Greene Law Group",
+    category: "Brand site",
+    description: "A trustworthy, no-nonsense site for a boutique law firm.",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80&auto=format&fit=crop",
+    tags: ["Legal", "Trust", "B2B"],
+    year: "2024",
+  },
 ];
 
 const portfoliosKo: Portfolio[] = [
@@ -387,15 +387,6 @@ const portfoliosKo: Portfolio[] = [
     year: "2025",
   },
   {
-    id: "lumiere-clinic",
-    client: "루미에르 피부과",
-    category: "예약 시스템",
-    description: "온라인 예약·후기 통합 의료 사이트.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop",
-    tags: ["의료", "예약", "후기"],
-    year: "2025",
-  },
-  {
     id: "atelier-shop",
     client: "아뜰리에 22",
     category: "쇼핑몰",
@@ -421,15 +412,6 @@ const portfoliosKo: Portfolio[] = [
     image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1200&q=80&auto=format&fit=crop",
     tags: ["멤버십", "예약", "공간"],
     year: "2025",
-  },
-  {
-    id: "green-law",
-    client: "그린 법률사무소",
-    category: "브랜딩 사이트",
-    description: "신뢰감을 강조한 법률 전문 브랜딩 사이트.",
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80&auto=format&fit=crop",
-    tags: ["법률", "신뢰", "B2B"],
-    year: "2024",
   },
   {
     id: "seoul-bakery",
@@ -555,6 +537,24 @@ const portfoliosKo: Portfolio[] = [
     description: "페이퍼 텍스처와 컬러풀한 핸드드로운 일러스트 포트폴리오.",
     image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1200&q=80&auto=format&fit=crop",
     tags: ["일러스트", "핸드드로잉", "컬러풀"],
+    year: "2024",
+  },
+  {
+    id: "lumiere-clinic",
+    client: "루미에르 피부과",
+    category: "예약 시스템",
+    description: "온라인 예약·후기 통합 의료 사이트.",
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80&auto=format&fit=crop",
+    tags: ["의료", "예약", "후기"],
+    year: "2025",
+  },
+  {
+    id: "green-law",
+    client: "그린 법률사무소",
+    category: "브랜딩 사이트",
+    description: "신뢰감을 강조한 법률 전문 브랜딩 사이트.",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80&auto=format&fit=crop",
+    tags: ["법률", "신뢰", "B2B"],
     year: "2024",
   },
 ];
