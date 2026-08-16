@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
 
 const copy = {
@@ -180,6 +183,8 @@ const copy = {
 
 export default function HarborRealty({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navItems = [t.nav.listings, t.nav.neighborhoods, t.nav.sell, t.nav.agents, t.nav.contact];
   return (
     <div className="bg-[#faf7f2] text-[#1c3829]">
       <header className="border-b border-[#1c3829]/10 bg-[#faf7f2]">
@@ -200,10 +205,37 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
             <a>{t.nav.agents}</a>
             <a>{t.nav.contact}</a>
           </nav>
-          <a className="rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white">
-            {t.bookCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a className="hidden rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white sm:inline-block">
+              {t.bookCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#1c3829]/20 md:hidden"
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <div className="border-t border-[#1c3829]/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-medium text-[#1c3829]/80">
+              {navItems.map((label) => (
+                <a key={label} className="py-2">
+                  {label}
+                </a>
+              ))}
+            </nav>
+            <a className="mt-3 inline-block rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white">
+              {t.bookCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="relative flex min-h-[80vh] items-end overflow-hidden md:min-h-[88vh]">
@@ -244,7 +276,7 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#b08d57]">{t.listingsSection.eyebrow}</p>
         <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t.listingsSection.title}</h2>
         <div className="mt-14 grid gap-10 md:grid-cols-3">
@@ -266,7 +298,7 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#f2ead9] py-24">
+      <section className="bg-[#f2ead9] py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#b08d57]">{t.agentsSection.eyebrow}</p>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t.agentsSection.title}</h2>
@@ -284,7 +316,7 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#b08d57]">{t.contact.eyebrow}</p>
@@ -303,7 +335,7 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
               ))}
             </dl>
           </div>
-          <form className="rounded-sm bg-[#1c3829] p-10 text-white">
+          <form className="rounded-sm bg-[#1c3829] p-6 text-white sm:p-10">
             <h3 className="font-serif text-2xl">{t.contact.formTitle}</h3>
             <p className="mt-2 text-xs text-white/60">{t.contact.formNote}</p>
             <div className="mt-8 space-y-4">

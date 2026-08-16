@@ -39,7 +39,7 @@ export default function Process({ lang }: { lang: Lang }) {
                     {s.n}
                   </span>
 
-                  <div className="relative z-10 flex flex-1 flex-col p-6">
+                  <div className="relative z-10 flex flex-1 flex-col p-5 sm:p-6">
                     <div className="relative h-28 overflow-hidden rounded-2xl border border-white/30 bg-white">
                       <StepMockup index={i} />
                     </div>
@@ -48,13 +48,13 @@ export default function Process({ lang }: { lang: Lang }) {
                       <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-bold text-blue-900 shadow-md shadow-blue-950/40">
                         {s.n}
                       </span>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
+                      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
                         STEP
                       </span>
                     </div>
 
                     <div className="mt-4 flex items-start justify-between gap-3">
-                      <h3 className="text-lg font-bold text-white md:text-xl">
+                      <h3 className="text-lg font-bold text-white sm:text-xl">
                         {s.title}
                       </h3>
                       <span
@@ -77,7 +77,7 @@ export default function Process({ lang }: { lang: Lang }) {
                         {s.meta.map((m, idx) => (
                           <span
                             key={m}
-                            className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium ${
+                            className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${
                               idx === 0
                                 ? "bg-white/15 text-white"
                                 : "bg-white/10 text-white/70"

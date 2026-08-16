@@ -48,7 +48,7 @@ export default function Portfolio({ lang, limit = 6 }: { lang: Lang; limit?: num
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="p-5 sm:p-6">
                   <div className="flex items-center justify-between">
                     <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
                       {p.category}
@@ -61,7 +61,7 @@ export default function Portfolio({ lang, limit = 6 }: { lang: Lang; limit?: num
                     {p.tags.map((t) => (
                       <span
                         key={t}
-                        className="rounded-md border border-ink-200 px-2 py-0.5 text-[11px] text-ink-500"
+                        className="rounded-md border border-ink-200 px-2 py-0.5 text-xs text-ink-500"
                       >
                         #{t}
                       </span>

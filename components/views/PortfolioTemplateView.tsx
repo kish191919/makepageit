@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import BackToPortfolio from "@/components/template/BackToPortfolio";
 import { getPortfolios } from "@/lib/data";
 import { templates } from "@/lib/templates";
-import { localePath, type Lang } from "@/lib/i18n";
+import { getDict, localePath, type Lang } from "@/lib/i18n";
 import {
   breadcrumbSchema,
   jsonLdScriptProps,
@@ -29,6 +29,7 @@ export default function PortfolioTemplateView({ lang, id }: { lang: Lang; id: st
   if (!item || !Template) notFound();
 
   const t = copy[lang];
+  const dict = getDict(lang);
   const related = items
     .filter((p) => p.id !== id && p.category === item.category)
     .slice(0, 3);
@@ -72,6 +73,15 @@ export default function PortfolioTemplateView({ lang, id }: { lang: Lang; id: st
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover transition duration-500 group-hover:scale-105"
                     />
+                    <span
+                      className={`absolute left-3 top-3 rounded-full px-3 py-1 text-[11px] font-semibold shadow-sm ${
+                        p.url
+                          ? "bg-brand-600 text-white"
+                          : "bg-white/90 text-ink-600 ring-1 ring-inset ring-ink-200"
+                      }`}
+                    >
+                      {p.url ? dict.portfolio.liveClientBadge : dict.portfolio.templateBadge}
+                    </span>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <span className="self-start rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">

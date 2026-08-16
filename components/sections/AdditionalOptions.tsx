@@ -79,7 +79,7 @@ export default function AdditionalOptions({ lang }: { lang: Lang }) {
                 <div
                   key={o.title}
                   data-carousel-item
-                  className="snap-center shrink-0 basis-[85%] rounded-2xl border border-ink-200/70 bg-white p-6 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_8px_20px_-12px_rgba(15,23,42,0.10)] transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-[0_3px_6px_rgba(15,23,42,0.04),0_18px_36px_-12px_rgba(79,70,229,0.22)] sm:shrink sm:basis-auto"
+                  className="snap-center shrink-0 basis-[85%] rounded-2xl border border-ink-200/70 bg-white p-5 shadow-[0_1px_3px_rgba(15,23,42,0.04),0_8px_20px_-12px_rgba(15,23,42,0.10)] transition duration-300 hover:-translate-y-1 hover:border-brand-300 hover:shadow-[0_3px_6px_rgba(15,23,42,0.04),0_18px_36px_-12px_rgba(79,70,229,0.22)] sm:shrink sm:basis-auto sm:p-6"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-50 to-brand-100 text-xl ring-1 ring-brand-100/60">
                     {o.icon}

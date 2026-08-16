@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
 
 const copy = {
@@ -140,6 +143,8 @@ const copy = {
 
 export default function MeridianWealth({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navItems = [t.nav.services, t.nav.approach, t.nav.advisors, t.nav.insights, t.nav.contact];
   return (
     <div className="bg-[#f7f6f2] text-[#1a2332]">
       <header className="border-b border-[#1a2332]/10 bg-[#f7f6f2]">
@@ -158,18 +163,45 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
             <a>{t.nav.insights}</a>
             <a>{t.nav.contact}</a>
           </nav>
-          <a className="rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
-            {t.bookCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a className="hidden rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
+              {t.bookCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#1a2332]/20 md:hidden"
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <div className="border-t border-[#1a2332]/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-medium text-[#1a2332]/75">
+              {navItems.map((label) => (
+                <a key={label} className="py-2">
+                  {label}
+                </a>
+              ))}
+            </nav>
+            <a className="mt-3 inline-block rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
+              {t.bookCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="relative overflow-hidden bg-[#f7f6f2]">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[1.15fr_1fr] md:items-center md:py-32">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 sm:py-24 md:grid-cols-[1.15fr_1fr] md:items-center md:py-32">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.hero.eyebrow}</p>
             <h1 className="mt-6 text-4xl font-semibold leading-[1.15] tracking-tight md:text-6xl">
-              {t.hero.title[0]}<br className="hidden md:block" />{t.hero.title[1]}
+              {t.hero.title[0]} <br className="hidden md:block" />{t.hero.title[1]}
             </h1>
             <p className="mt-6 max-w-md leading-relaxed text-[#1a2332]/70">
               {t.hero.body}
@@ -216,7 +248,7 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.servicesSection.eyebrow}</p>
         <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">{t.servicesSection.title}</h2>
         <div className="mt-14 grid gap-px overflow-hidden rounded-sm bg-[#1a2332]/10 md:grid-cols-3">
@@ -230,7 +262,7 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-white py-24">
+      <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.advisorsSection.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">{t.advisorsSection.title}</h2>
@@ -248,12 +280,12 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.consult.eyebrow}</p>
             <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
-              {t.consult.title[0]}<br className="hidden md:block" />{t.consult.title[1]}
+              {t.consult.title[0]} <br className="hidden md:block" />{t.consult.title[1]}
             </h2>
             <p className="mt-6 leading-relaxed text-[#1a2332]/70">
               {t.consult.body}
@@ -267,7 +299,7 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
               ))}
             </dl>
           </div>
-          <form className="rounded-sm bg-[#1a2332] p-10 text-white">
+          <form className="rounded-sm bg-[#1a2332] p-6 text-white sm:p-10">
             <h3 className="text-2xl font-semibold tracking-tight">{t.consult.formTitle}</h3>
             <p className="mt-2 text-xs text-white/60">{t.consult.formNote}</p>
             <div className="mt-8 space-y-4">

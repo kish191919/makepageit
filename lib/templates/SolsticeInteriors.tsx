@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
 
 const copy = {
@@ -132,6 +135,8 @@ const copy = {
 
 export default function SolsticeInteriors({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navItems = [t.nav.portfolio, t.nav.services, t.nav.process, t.nav.about, t.nav.contact];
   return (
     <div className="bg-[#f7f0e6] text-[#2b241d]">
       <header className="border-b border-[#2b241d]/10 bg-[#f7f0e6]">
@@ -152,10 +157,37 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             <a>{t.nav.about}</a>
             <a>{t.nav.contact}</a>
           </nav>
-          <a className="rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
-            {t.bookCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a className="hidden rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
+              {t.bookCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#2b241d]/20 md:hidden"
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <div className="border-t border-[#2b241d]/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-medium text-[#2b241d]/75">
+              {navItems.map((label) => (
+                <a key={label} className="py-2">
+                  {label}
+                </a>
+              ))}
+            </nav>
+            <a className="mt-3 inline-block rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
+              {t.bookCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="relative overflow-hidden">
@@ -189,7 +221,7 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.gallerySection.eyebrow}</p>
         <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t.gallerySection.title}</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-6">
@@ -201,8 +233,8 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
               className="object-cover transition duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0" />
-            <div className="absolute bottom-0 left-0 p-7 text-white">
-              <h3 className="font-serif text-2xl">{t.projects[0].name}</h3>
+            <div className="absolute bottom-0 left-0 p-5 text-white sm:p-7">
+              <h3 className="font-serif text-xl sm:text-2xl">{t.projects[0].name}</h3>
               <p className="mt-1 text-sm text-white/80">{t.projects[0].desc}</p>
             </div>
           </a>
@@ -214,8 +246,8 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
               className="object-cover transition duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0" />
-            <div className="absolute bottom-0 left-0 p-6 text-white">
-              <h3 className="font-serif text-xl">{t.projects[1].name}</h3>
+            <div className="absolute bottom-0 left-0 p-4 text-white sm:p-6">
+              <h3 className="font-serif text-lg sm:text-xl">{t.projects[1].name}</h3>
               <p className="mt-1 text-sm text-white/80">{t.projects[1].desc}</p>
             </div>
           </a>
@@ -227,8 +259,8 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
               className="object-cover transition duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0" />
-            <div className="absolute bottom-0 left-0 p-6 text-white">
-              <h3 className="font-serif text-xl">{t.projects[2].name}</h3>
+            <div className="absolute bottom-0 left-0 p-4 text-white sm:p-6">
+              <h3 className="font-serif text-lg sm:text-xl">{t.projects[2].name}</h3>
               <p className="mt-1 text-sm text-white/80">{t.projects[2].desc}</p>
             </div>
           </a>
@@ -240,15 +272,15 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
               className="object-cover transition duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0" />
-            <div className="absolute bottom-0 left-0 p-7 text-white">
-              <h3 className="font-serif text-2xl">{t.projects[3].name}</h3>
+            <div className="absolute bottom-0 left-0 p-5 text-white sm:p-7">
+              <h3 className="font-serif text-xl sm:text-2xl">{t.projects[3].name}</h3>
               <p className="mt-1 text-sm text-white/80">{t.projects[3].desc}</p>
             </div>
           </a>
         </div>
       </section>
 
-      <section className="bg-[#efe4d2] py-24">
+      <section className="bg-[#efe4d2] py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.processSection.eyebrow}</p>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t.processSection.title}</h2>
@@ -264,7 +296,7 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.consult.eyebrow}</p>
@@ -283,7 +315,7 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
               ))}
             </dl>
           </div>
-          <form className="rounded-2xl bg-[#c1652f] p-10 text-white">
+          <form className="rounded-2xl bg-[#c1652f] p-6 text-white sm:p-10">
             <h3 className="font-serif text-2xl">{t.consult.formTitle}</h3>
             <p className="mt-2 text-xs text-white/70">{t.consult.formNote}</p>
             <div className="mt-8 space-y-4">

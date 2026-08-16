@@ -19,7 +19,7 @@ export default function Services({ lang }: { lang: Lang }) {
           {services.map((s) => (
             <article
               key={s.id}
-              className="group relative overflow-hidden rounded-3xl border border-ink-200 bg-white p-7 transition hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl"
+              className="group relative overflow-hidden rounded-3xl border border-ink-200 bg-white p-6 transition hover:-translate-y-1 hover:border-brand-600 hover:shadow-xl sm:p-7"
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-2xl text-brand-600">
                 {s.icon}

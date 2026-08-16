@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
 
 const copy = {
@@ -106,6 +109,8 @@ const copy = {
 
 export default function IroncladIndustrial({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const [menuOpen, setMenuOpen] = useState(false);
+  const navItems = [t.nav.capabilities, t.nav.products, t.nav.certifications, t.nav.industries, t.nav.contact];
   return (
     <div className="bg-[#23272e] text-[#f2f1ec]">
       <header className="border-b border-white/10 bg-[#1b1e24]">
@@ -124,18 +129,45 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
             <a>{t.nav.industries}</a>
             <a>{t.nav.contact}</a>
           </nav>
-          <a className="bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24]">
-            {t.quoteCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a className="hidden bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24] sm:inline-block">
+              {t.quoteCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center border border-white/20 md:hidden"
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
         </div>
+        {menuOpen && (
+          <div className="border-t border-white/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-semibold uppercase tracking-wide text-white/70">
+              {navItems.map((label) => (
+                <a key={label} className="py-2">
+                  {label}
+                </a>
+              ))}
+            </nav>
+            <a className="mt-3 inline-block bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24]">
+              {t.quoteCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="relative overflow-hidden border-b border-white/10">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[1.15fr_1fr] md:items-center md:py-32">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 sm:py-24 md:grid-cols-[1.15fr_1fr] md:items-center md:py-32">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.hero.eyebrow}</p>
             <h1 className="mt-6 font-black uppercase leading-[1.05] tracking-tight text-4xl md:text-6xl">
-              {t.hero.title[0]}<br className="hidden md:block" />{t.hero.title[1]}
+              {t.hero.title[0]} <br className="hidden md:block" />{t.hero.title[1]}
             </h1>
             <p className="mt-6 max-w-md leading-relaxed text-white/70">
               {t.hero.body}
@@ -172,7 +204,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.capabilitiesSection.eyebrow}</p>
         <h2 className="mt-3 font-black uppercase tracking-tight text-4xl md:text-5xl">{t.capabilitiesSection.title}</h2>
         <div className="mt-14 grid gap-px overflow-hidden bg-white/10 md:grid-cols-3">
@@ -185,7 +217,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-[#1b1e24] py-24">
+      <section className="border-y border-white/10 bg-[#1b1e24] py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.certSection.eyebrow}</p>
           <h2 className="mt-3 font-black uppercase tracking-tight text-3xl md:text-5xl">{t.certSection.title}</h2>
@@ -217,12 +249,12 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.consult.eyebrow}</p>
             <h2 className="mt-3 font-black uppercase leading-tight tracking-tight text-3xl md:text-5xl">
-              {t.consult.title[0]}<br className="hidden md:block" />{t.consult.title[1]}
+              {t.consult.title[0]} <br className="hidden md:block" />{t.consult.title[1]}
             </h2>
             <p className="mt-6 leading-relaxed text-white/70">
               {t.consult.body}
@@ -236,7 +268,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
               ))}
             </dl>
           </div>
-          <form className="border border-[#ff6a13]/40 bg-[#1b1e24] p-10">
+          <form className="border border-[#ff6a13]/40 bg-[#1b1e24] p-6 sm:p-10">
             <h3 className="font-black uppercase tracking-tight text-2xl">{t.consult.formTitle}</h3>
             <p className="mt-2 text-xs text-white/50">{t.consult.formNote}</p>
             <div className="mt-8 space-y-4">

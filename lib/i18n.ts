@@ -53,6 +53,8 @@ type Dict = {
     seeAll: string;
     viewTemplate: string;
     visitSite: string;
+    liveClientBadge: string;
+    templateBadge: string;
     filterAll: string;
     filterCategories: string[];
     nondisclosed: string;
@@ -329,6 +331,8 @@ const en: Dict = {
     seeAll: "View all work",
     viewTemplate: "Preview design",
     visitSite: "Visit live site",
+    liveClientBadge: "Live client",
+    templateBadge: "Template preview",
     filterAll: "All",
     filterCategories: ["All", "Brand site", "E-commerce", "Landing page", "Booking", "Portfolio"],
     nondisclosed: "* Only selected projects are shown. NDA work is shared during private consults.",
@@ -685,6 +689,8 @@ const ko: Dict = {
     seeAll: "전체 포트폴리오",
     viewTemplate: "템플릿 보기 →",
     visitSite: "실제 사이트 방문 →",
+    liveClientBadge: "실제 고객사",
+    templateBadge: "템플릿 미리보기",
     filterAll: "전체",
     filterCategories: ["전체", "브랜딩 사이트", "쇼핑몰", "랜딩페이지", "예약 시스템", "포트폴리오"],
     nondisclosed: "* 이 페이지에는 일부 홈페이지만 노출되며, 비공개 NDA 프로젝트는 별도 상담 시 안내해드립니다.",

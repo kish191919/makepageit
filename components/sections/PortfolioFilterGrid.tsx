@@ -64,13 +64,22 @@ export default function PortfolioFilterGrid({ lang, portfolios, categories }: Pr
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition duration-500 group-hover:scale-105"
                 />
+                <span
+                  className={`absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-semibold shadow-sm ${
+                    p.url
+                      ? "bg-brand-600 text-white"
+                      : "bg-white/90 text-ink-600 ring-1 ring-inset ring-ink-200"
+                  }`}
+                >
+                  {p.url ? dict.portfolio.liveClientBadge : dict.portfolio.templateBadge}
+                </span>
                 <div className="absolute inset-0 flex items-center justify-center bg-ink-900/0 opacity-0 transition group-hover:bg-ink-900/40 group-hover:opacity-100">
                   <span className="rounded-full bg-white px-5 py-2 text-sm font-semibold text-ink-900 shadow-lg">
                     {p.url ? dict.portfolio.visitSite : dict.portfolio.viewTemplate}
                   </span>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-5 sm:p-6">
                 <div className="flex items-center justify-between">
                   <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
                     {p.category}
@@ -83,7 +92,7 @@ export default function PortfolioFilterGrid({ lang, portfolios, categories }: Pr
                   {p.tags.map((t) => (
                     <span
                       key={t}
-                      className="rounded-md border border-ink-200 px-2 py-0.5 text-[11px] text-ink-500"
+                      className="rounded-md border border-ink-200 px-2 py-0.5 text-xs text-ink-500"
                     >
                       #{t}
                     </span>

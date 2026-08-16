@@ -231,7 +231,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                   <span aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-16 h-52 w-52 rounded-full bg-accent-500/20 blur-3xl" />
                 </>
               )}
-              <div className="relative z-10 flex flex-1 flex-col p-8">
+              <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-8">
               <h3
                 className={`text-sm font-bold uppercase tracking-[0.25em] ${
                   p.best ? "text-accent-400" : "text-white"
@@ -365,14 +365,14 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                         }`}
                       >
                         <span
-                          className={`text-[11px] font-bold uppercase tracking-[0.2em] ${
+                          className={`text-xs font-bold uppercase tracking-[0.2em] ${
                             p.best ? "text-white/70" : "text-white/90"
                           }`}
                         >
                           {dict.pricing.customizeTitle}
                         </span>
                         <span
-                          className={`flex items-center gap-1 text-[11px] font-semibold ${
+                          className={`flex items-center gap-1 text-xs font-semibold ${
                             p.best ? "text-white/70" : "text-white/90"
                           }`}
                         >
@@ -486,7 +486,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                       </div>
                       {monthlyPerMonth > 0 && (
                         <p
-                          className={`mt-1 text-right text-[11px] ${
+                          className={`mt-1 text-right text-xs ${
                             p.best ? "text-white/50" : "text-white/70"
                           }`}
                         >
@@ -497,7 +497,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
 
                     <Link
                       href={localePath(lang, "/contact")}
-                      className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition ${
+                      className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition sm:text-base ${
                         p.best
                           ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
                           : "bg-ink-900 text-white hover:bg-blue-700"
@@ -510,7 +510,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               })() : (
                 <Link
                   href={localePath(lang, "/contact")}
-                  className={`mt-9 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition ${
+                  className={`mt-9 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition sm:text-base ${
                     p.best
                       ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
                       : "bg-ink-900 text-white hover:bg-blue-700"
@@ -571,7 +571,7 @@ function ToggleRow({
       <span className="flex flex-1 flex-wrap items-start justify-between gap-x-3 gap-y-1 text-left">
         <span className="flex flex-col">
           <span className="text-sm font-semibold text-white">{label}</span>
-          <span className={`text-[11px] ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
+          <span className={`text-xs ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
         </span>
         <span className={`whitespace-nowrap text-xs font-semibold ${dark ? "text-white/70" : "text-white/90"}`}>
           {amount}
@@ -612,7 +612,7 @@ function EmailRow({
         <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
           <div className="flex flex-col">
             <span className="text-sm font-semibold text-white">{label}</span>
-            <span className={`text-[11px] ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
+            <span className={`text-xs ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
           </div>
           <span className={`whitespace-nowrap text-xs font-semibold ${dark ? "text-white/70" : "text-white/90"}`}>
             {amount}
@@ -620,13 +620,13 @@ function EmailRow({
         </div>
         {checked && (
           <label className="flex items-center gap-2">
-            <span className={`text-[11px] ${dark ? "text-white/60" : "text-white/80"}`}>
+            <span className={`text-xs ${dark ? "text-white/60" : "text-white/80"}`}>
               {mailboxesLabel}
             </span>
             <select
               value={mailboxes}
               onChange={(e) => onChange(Number(e.target.value))}
-              className={`rounded-md px-2 py-1 text-sm font-semibold ${
+              className={`rounded-md px-2 py-1.5 text-sm font-semibold ${
                 dark
                   ? "bg-white/10 text-white ring-1 ring-white/20"
                   : "bg-white/90 text-ink-900 ring-1 ring-white/40"
@@ -676,7 +676,7 @@ function ExtraPageRow({
         <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-1">
           <div className="flex flex-col">
             <span className="text-sm font-semibold text-white">{label}</span>
-            <span className={`text-[11px] ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
+            <span className={`text-xs ${dark ? "text-white/50" : "text-white/70"}`}>{hint}</span>
           </div>
           <span className={`whitespace-nowrap text-xs font-semibold ${dark ? "text-white/70" : "text-white/90"}`}>
             {amount}
@@ -684,13 +684,13 @@ function ExtraPageRow({
         </div>
         {checked && (
           <label className="flex items-center gap-2">
-            <span className={`text-[11px] ${dark ? "text-white/60" : "text-white/80"}`}>
+            <span className={`text-xs ${dark ? "text-white/60" : "text-white/80"}`}>
               {pagesLabel}
             </span>
             <select
               value={pages}
               onChange={(e) => onChange(Number(e.target.value))}
-              className={`rounded-md px-2 py-1 text-sm font-semibold ${
+              className={`rounded-md px-2 py-1.5 text-sm font-semibold ${
                 dark
                   ? "bg-white/10 text-white ring-1 ring-white/20"
                   : "bg-white/90 text-ink-900 ring-1 ring-white/40"
