@@ -109,7 +109,7 @@ async function notifyAdmin(session: Stripe.Checkout.Session) {
         <tr><td style="padding: 8px 0; color: #6b7280; width: 140px;">Plan</td><td style="padding: 8px 0; color: #111827; font-weight: 600;">${escape(planId)}</td></tr>
         <tr><td style="padding: 8px 0; color: #6b7280;">Customer</td><td style="padding: 8px 0; color: #111827;">${escape(customerName)}</td></tr>
         <tr><td style="padding: 8px 0; color: #6b7280;">Email</td><td style="padding: 8px 0; color: #111827;"><a href="mailto:${escape(customerEmail)}">${escape(customerEmail)}</a></td></tr>
-        ${emailMailboxes > 0 ? `<tr><td style="padding: 8px 0; color: #6b7280;">Mailboxes</td><td style="padding: 8px 0; color: #111827;">${emailMailboxes} × $50/yr — provision email mailboxes</td></tr>` : ""}
+        ${emailMailboxes > 0 ? `<tr><td style="padding: 8px 0; color: #6b7280;">Mailboxes</td><td style="padding: 8px 0; color: #111827;">${emailMailboxes} × $30/yr — provision email mailboxes</td></tr>` : ""}
         <tr><td style="padding: 8px 0; color: #6b7280;">First invoice total</td><td style="padding: 8px 0; color: #111827;">${escape(amountTotal)}</td></tr>
         <tr><td style="padding: 8px 0; color: #6b7280;">Session ID</td><td style="padding: 8px 0; color: #111827; font-family: monospace; font-size: 12px;">${escape(session.id)}</td></tr>
         <tr><td style="padding: 8px 0; color: #6b7280;">Locale</td><td style="padding: 8px 0; color: #111827;">${escape(lang)}</td></tr>

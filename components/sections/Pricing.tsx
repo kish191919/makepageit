@@ -20,16 +20,18 @@ type CheckoutOptions = {
   extraPages: number;
   booking: boolean;
 };
-const DEFAULT_OPTIONS: CheckoutOptions = {
-  monthly: true,
-  monthlyMaintenance: true,
-  hosting: true,
-  database: true,
-  domain: true,
-  emailMailboxes: 0,
-  extraPages: 0,
-  booking: false,
-};
+function getDefaultOptions(planId: string): CheckoutOptions {
+  return {
+    monthly: true,
+    monthlyMaintenance: true,
+    hosting: true,
+    database: planId !== "portfolio-lite",
+    domain: true,
+    emailMailboxes: 0,
+    extraPages: 0,
+    booking: false,
+  };
+}
 
 function formatUsd(amount: number): string {
   return `$${amount.toLocaleString("en-US")}`;
@@ -49,7 +51,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
   const [customizeOpen, setCustomizeOpen] = useState(false);
 
   function getOptions(planId: string): CheckoutOptions {
-    return planOptions[planId] ?? DEFAULT_OPTIONS;
+    return planOptions[planId] ?? getDefaultOptions(planId);
   }
 
   function toggleCustomize() {

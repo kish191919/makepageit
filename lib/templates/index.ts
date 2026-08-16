@@ -20,6 +20,10 @@ import VillaToscana from "./VillaToscana";
 import MuniHair from "./MuniHair";
 import KittWorks from "./KittWorks";
 import JiniIllustration from "./JiniIllustration";
+import HarborRealty from "./HarborRealty";
+import MeridianWealth from "./MeridianWealth";
+import SolsticeInteriors from "./SolsticeInteriors";
+import IroncladIndustrial from "./IroncladIndustrial";
 
 export const templates: Record<string, ComponentType<{ lang: Lang }>> = {
   "noble-coffee": NobleCoffee,
@@ -42,4 +46,8 @@ export const templates: Record<string, ComponentType<{ lang: Lang }>> = {
   "muni-hair": MuniHair,
   "kitt-works": KittWorks,
   "jini-illustration": JiniIllustration,
+  "harbor-realty": HarborRealty,
+  "meridian-wealth": MeridianWealth,
+  "solstice-interiors": SolsticeInteriors,
+  "ironclad-industrial": IroncladIndustrial,
 };

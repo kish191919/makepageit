@@ -11,6 +11,13 @@ export async function POST(request: Request) {
     const lang = body?.lang === "ko" ? "ko" : "en";
     const isEn = lang === "en";
 
+    if (planId !== "portfolio-lite" && planId !== "portfolio-pro") {
+      return NextResponse.json(
+        { error: isEn ? "Invalid plan." : "잘못된 플랜입니다." },
+        { status: 400 }
+      );
+    }
+
     const hasBreakdownFlags =
       body?.options?.monthlyMaintenance !== undefined ||
       body?.options?.hosting !== undefined ||
@@ -20,7 +27,10 @@ export async function POST(request: Request) {
     const databaseOn = body?.options?.database !== false;
     const allBreakdownOn = monthlyMaintenanceOn && hostingOn && databaseOn;
     const allBreakdownOff = !monthlyMaintenanceOn && !hostingOn && !databaseOn;
-    if (hasBreakdownFlags && !allBreakdownOn && !allBreakdownOff) {
+    // Lite-only: hosting + maintenance without database is a supported reduced bundle.
+    const hostingMaintenanceOnlyOn =
+      planId === "portfolio-lite" && monthlyMaintenanceOn && hostingOn && !databaseOn;
+    if (hasBreakdownFlags && !allBreakdownOn && !allBreakdownOff && !hostingMaintenanceOnlyOn) {
       return NextResponse.json(
         {
           error: isEn
@@ -31,8 +41,9 @@ export async function POST(request: Request) {
       );
     }
     const includeMonthly = hasBreakdownFlags
-      ? allBreakdownOn
+      ? allBreakdownOn || hostingMaintenanceOnlyOn
       : body?.options?.monthly !== false;
+    const useNoDatabasePrice = hasBreakdownFlags && hostingMaintenanceOnlyOn && !allBreakdownOn;
     const includeDomain = body?.options?.domain !== false;
     const emailMailboxes = Math.max(
       0,
@@ -43,13 +54,6 @@ export async function POST(request: Request) {
       Math.min(10, Math.floor(Number(body?.options?.extraPages) || 0))
     );
     const includeBooking = body?.options?.booking === true;
-
-    if (planId !== "portfolio-lite" && planId !== "portfolio-pro") {
-      return NextResponse.json(
-        { error: isEn ? "Invalid plan." : "잘못된 플랜입니다." },
-        { status: 400 }
-      );
-    }
 
     const prices = getPlanPrices(planId);
     console.log("[checkout] prices:", prices);
@@ -63,7 +67,17 @@ export async function POST(request: Request) {
         { status: 503 }
       );
     }
-    if (includeMonthly && !prices.monthly) {
+    if (includeMonthly && useNoDatabasePrice && !prices.monthlyNoDatabase) {
+      return NextResponse.json(
+        {
+          error: isEn
+            ? "The hosting + maintenance (no database) price is not configured yet."
+            : "호스팅 + 유지보수(데이터베이스 제외) 가격이 아직 설정되지 않았습니다.",
+        },
+        { status: 503 }
+      );
+    }
+    if (includeMonthly && !useNoDatabasePrice && !prices.monthly) {
       return NextResponse.json(
         {
           error: isEn
@@ -118,7 +132,10 @@ export async function POST(request: Request) {
     const localePath = isEn ? "" : "/ko";
 
     const lineItems: LineItem[] = [{ price: prices.setup, quantity: 1 }];
-    if (includeMonthly) lineItems.push({ price: prices.monthly!, quantity: 1 });
+    if (includeMonthly) {
+      const monthlyPrice = useNoDatabasePrice ? prices.monthlyNoDatabase! : prices.monthly!;
+      lineItems.push({ price: monthlyPrice, quantity: 1 });
+    }
     if (includeDomain) lineItems.push({ price: prices.domainFirstYear!, quantity: 1 });
     if (emailMailboxes > 0) {
       lineItems.push({ price: prices.emailAnnual!, quantity: emailMailboxes });

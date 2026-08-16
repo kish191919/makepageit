@@ -15,6 +15,7 @@ export type PlanId = "portfolio-lite" | "portfolio-pro";
 type PlanPriceConfig = {
   setup: string | undefined;
   monthly: string | undefined;
+  monthlyNoDatabase: string | undefined;
   domainFirstYear: string | undefined;
   domainRenewal: string | undefined;
   emailAnnual: string | undefined;
@@ -31,6 +32,7 @@ export function getPlanPrices(planId: PlanId): PlanPriceConfig {
     return {
       setup: process.env.STRIPE_PRICE_LITE_SETUP,
       monthly: process.env.STRIPE_PRICE_LITE_MONTHLY,
+      monthlyNoDatabase: process.env.STRIPE_PRICE_LITE_MONTHLY_NO_DB,
       domainFirstYear: process.env.STRIPE_PRICE_LITE_DOMAIN_FIRST_YEAR,
       domainRenewal: process.env.STRIPE_PRICE_LITE_DOMAIN_RENEWAL,
       emailAnnual: process.env.STRIPE_PRICE_LITE_EMAIL_ANNUAL,
@@ -40,6 +42,7 @@ export function getPlanPrices(planId: PlanId): PlanPriceConfig {
   return {
     setup: process.env.STRIPE_PRICE_PRO_SETUP,
     monthly: process.env.STRIPE_PRICE_PRO_MONTHLY,
+    monthlyNoDatabase: undefined,
     domainFirstYear: process.env.STRIPE_PRICE_PRO_DOMAIN_FIRST_YEAR,
     domainRenewal: process.env.STRIPE_PRICE_PRO_DOMAIN_RENEWAL,
     emailAnnual: process.env.STRIPE_PRICE_PRO_EMAIL_ANNUAL,
