@@ -109,12 +109,12 @@ export default function VinSecret({ lang }: { lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#1a0d10]/60 to-[#1a0d10]" />
         <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-16">
           <p className="text-[11px] tracking-[0.5em] text-[#d4a574]">{t.hero.eyebrow}</p>
-          <h1 className="mt-6 max-w-3xl font-serif text-4xl leading-[1.15] md:text-7xl md:leading-[1.1]">
+          <h1 className="mt-6 max-w-3xl font-serif text-4xl leading-[1.15] md:text-7xl md:leading-[1.1] break-keep text-balance">
             {t.hero.titleA}
             <br className="hidden md:block" />
             <span className="italic text-[#d4a574]">{t.hero.titleB}</span>
           </h1>
-          <p className="mt-6 max-w-xl text-base text-[#c8b896]">
+          <p className="mt-6 max-w-xl text-base text-[#c8b896] break-keep text-pretty">
             {t.hero.body}
           </p>
         </div>
@@ -124,12 +124,12 @@ export default function VinSecret({ lang }: { lang: Lang }) {
         <div className="grid items-center gap-14 md:grid-cols-2">
           <div>
             <p className="text-[11px] tracking-[0.5em] text-[#d4a574]">{t.promise.eyebrow}</p>
-            <h2 className="mt-6 font-serif text-3xl leading-tight md:text-4xl">
+            <h2 className="mt-6 font-serif text-3xl leading-tight md:text-4xl break-keep text-balance">
               {t.promise.titleA}
               <br className="hidden md:block" />
               {t.promise.titleB}
             </h2>
-            <p className="mt-7 leading-relaxed text-[#c8b896]">
+            <p className="mt-7 leading-relaxed text-[#c8b896] break-keep text-pretty">
               {t.promise.body}
             </p>
             <ul className="mt-10 space-y-3 border-t border-[#3a1f25] pt-8 text-sm">
@@ -152,16 +152,16 @@ export default function VinSecret({ lang }: { lang: Lang }) {
       <section className="border-y border-[#3a1f25] bg-[#23121a] py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-[11px] tracking-[0.5em] text-[#d4a574]">{t.monthSection.eyebrow}</p>
-          <h2 className="mt-3 font-serif text-4xl">{t.monthSection.title}</h2>
+          <h2 className="mt-3 font-serif text-4xl break-keep text-balance">{t.monthSection.title}</h2>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {t.wines.map((w) => (
               <article key={w.name} className="group">
                 <div className="relative aspect-[3/4] overflow-hidden bg-[#3a1f25]">
                   <Image src={w.image} alt={w.name} fill className="object-cover transition duration-700 group-hover:scale-105" />
                 </div>
-                <h3 className="mt-6 font-serif text-xl">{w.name}</h3>
+                <h3 className="mt-6 font-serif text-xl break-keep text-balance">{w.name}</h3>
                 <p className="mt-2 text-[11px] tracking-widest text-[#d4a574]">{w.region}</p>
-                <p className="mt-3 text-sm text-[#c8b896]">{w.notes}</p>
+                <p className="mt-3 text-sm text-[#c8b896] break-keep text-pretty">{w.notes}</p>
                 <p className="mt-5 text-sm tracking-widest">{w.price}</p>
               </article>
             ))}
@@ -171,7 +171,7 @@ export default function VinSecret({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-6xl px-6 py-24">
         <p className="text-center text-[11px] tracking-[0.5em] text-[#d4a574]">{t.membershipSection.eyebrow}</p>
-        <h2 className="mt-3 text-center font-serif text-4xl">{t.membershipSection.title}</h2>
+        <h2 className="mt-3 text-center font-serif text-4xl break-keep text-balance">{t.membershipSection.title}</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {t.plans.map((p) => {
             const best = "best" in p && p.best;
@@ -189,10 +189,10 @@ export default function VinSecret({ lang }: { lang: Lang }) {
                     {t.bestBadge}
                   </span>
                 )}
-                <h3 className="mt-5 font-serif text-2xl tracking-wide">{p.tier}</h3>
+                <h3 className="mt-5 font-serif text-2xl tracking-wide break-keep text-balance">{p.tier}</h3>
                 <p className="mt-2 text-xs text-[#c8b896]">{p.count}</p>
                 <p className="mt-7 font-serif text-3xl text-[#d4a574]">{p.price}<span className="ml-1 text-xs text-[#c8b896]">{t.perMonthSuffix}</span></p>
-                <p className="mt-5 text-sm text-[#c8b896]">{p.desc}</p>
+                <p className="mt-5 text-sm text-[#c8b896] break-keep text-pretty">{p.desc}</p>
                 <a className="mt-10 block border border-[#d4a574] py-3 text-center text-xs tracking-[0.3em] text-[#d4a574]">
                   {t.startCta}
                 </a>
@@ -202,7 +202,7 @@ export default function VinSecret({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <footer className="border-t border-[#3a1f25] py-10 text-center text-[10px] tracking-[0.4em] text-[#7a6a55]">
+      <footer className="border-t border-[#3a1f25] py-10 text-center text-[10px] tracking-[0.4em] text-[#7a6a55] break-keep text-pretty">
         {t.footer}
       </footer>
     </div>

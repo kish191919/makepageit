@@ -194,12 +194,12 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-[1.05fr_1fr] md:items-center md:py-28">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.hero.eyebrow}</p>
-            <h1 className="mt-6 font-serif text-4xl leading-[1.15] md:text-6xl">
+            <h1 className="mt-6 font-serif text-4xl leading-[1.15] md:text-6xl break-keep text-balance">
               {t.hero.title[0]}
               <br className="hidden md:block" />
               {t.hero.title[1]}
             </h1>
-            <p className="mt-6 max-w-md leading-relaxed text-[#2b241d]/70">{t.hero.body}</p>
+            <p className="mt-6 max-w-md leading-relaxed text-[#2b241d]/70 break-keep text-pretty">{t.hero.body}</p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a className="rounded-full bg-[#c1652f] px-7 py-3.5 text-sm font-semibold text-white">
                 {t.hero.ctaPrimary}
@@ -223,7 +223,7 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.gallerySection.eyebrow}</p>
-        <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t.gallerySection.title}</h2>
+        <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.gallerySection.title}</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-6">
           <a className="group relative col-span-6 aspect-[16/10] overflow-hidden rounded-2xl md:col-span-4 md:aspect-auto">
             <Image
@@ -234,8 +234,8 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0" />
             <div className="absolute bottom-0 left-0 p-5 text-white sm:p-7">
-              <h3 className="font-serif text-xl sm:text-2xl">{t.projects[0].name}</h3>
-              <p className="mt-1 text-sm text-white/80">{t.projects[0].desc}</p>
+              <h3 className="font-serif text-xl sm:text-2xl break-keep text-balance">{t.projects[0].name}</h3>
+              <p className="mt-1 text-sm text-white/80 break-keep text-pretty">{t.projects[0].desc}</p>
             </div>
           </a>
           <a className="group relative col-span-6 aspect-[4/5] overflow-hidden rounded-2xl md:col-span-2">
@@ -247,8 +247,8 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0" />
             <div className="absolute bottom-0 left-0 p-4 text-white sm:p-6">
-              <h3 className="font-serif text-lg sm:text-xl">{t.projects[1].name}</h3>
-              <p className="mt-1 text-sm text-white/80">{t.projects[1].desc}</p>
+              <h3 className="font-serif text-lg sm:text-xl break-keep text-balance">{t.projects[1].name}</h3>
+              <p className="mt-1 text-sm text-white/80 break-keep text-pretty">{t.projects[1].desc}</p>
             </div>
           </a>
           <a className="group relative col-span-6 aspect-[4/5] overflow-hidden rounded-2xl md:col-span-2">
@@ -260,8 +260,8 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0" />
             <div className="absolute bottom-0 left-0 p-4 text-white sm:p-6">
-              <h3 className="font-serif text-lg sm:text-xl">{t.projects[2].name}</h3>
-              <p className="mt-1 text-sm text-white/80">{t.projects[2].desc}</p>
+              <h3 className="font-serif text-lg sm:text-xl break-keep text-balance">{t.projects[2].name}</h3>
+              <p className="mt-1 text-sm text-white/80 break-keep text-pretty">{t.projects[2].desc}</p>
             </div>
           </a>
           <a className="group relative col-span-6 aspect-[16/10] overflow-hidden rounded-2xl md:col-span-4 md:aspect-auto">
@@ -273,8 +273,8 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0" />
             <div className="absolute bottom-0 left-0 p-5 text-white sm:p-7">
-              <h3 className="font-serif text-xl sm:text-2xl">{t.projects[3].name}</h3>
-              <p className="mt-1 text-sm text-white/80">{t.projects[3].desc}</p>
+              <h3 className="font-serif text-xl sm:text-2xl break-keep text-balance">{t.projects[3].name}</h3>
+              <p className="mt-1 text-sm text-white/80 break-keep text-pretty">{t.projects[3].desc}</p>
             </div>
           </a>
         </div>
@@ -283,13 +283,13 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
       <section className="bg-[#efe4d2] py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.processSection.eyebrow}</p>
-          <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t.processSection.title}</h2>
+          <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.processSection.title}</h2>
           <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {t.process.map((p) => (
               <div key={p.n} className="border-t border-[#2b241d]/15 pt-6">
                 <div className="font-serif text-3xl text-[#c1652f]">{p.n}</div>
-                <h3 className="mt-4 font-serif text-xl">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#2b241d]/70">{p.desc}</p>
+                <h3 className="mt-4 font-serif text-xl break-keep text-balance">{p.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#2b241d]/70 break-keep text-pretty">{p.desc}</p>
               </div>
             ))}
           </div>
@@ -300,12 +300,12 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.consult.eyebrow}</p>
-            <h2 className="mt-3 font-serif text-3xl leading-tight md:text-5xl">
+            <h2 className="mt-3 font-serif text-3xl leading-tight md:text-5xl break-keep text-balance">
               {t.consult.title[0]}
               <br className="hidden md:block" />
               {t.consult.title[1]}
             </h2>
-            <p className="mt-6 leading-relaxed text-[#2b241d]/70">{t.consult.body}</p>
+            <p className="mt-6 leading-relaxed text-[#2b241d]/70 break-keep text-pretty">{t.consult.body}</p>
             <dl className="mt-10 space-y-3 border-t border-[#2b241d]/10 pt-8 text-sm">
               {t.consult.rows.map((r) => (
                 <div key={r.label} className="flex gap-6">
@@ -316,8 +316,8 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             </dl>
           </div>
           <form className="rounded-2xl bg-[#c1652f] p-6 text-white sm:p-10">
-            <h3 className="font-serif text-2xl">{t.consult.formTitle}</h3>
-            <p className="mt-2 text-xs text-white/70">{t.consult.formNote}</p>
+            <h3 className="font-serif text-2xl break-keep text-balance">{t.consult.formTitle}</h3>
+            <p className="mt-2 text-xs text-white/70 break-keep text-pretty">{t.consult.formNote}</p>
             <div className="mt-8 space-y-4">
               <input
                 placeholder={t.consult.placeholders.name}
@@ -355,7 +355,7 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
       <footer className="border-t border-[#2b241d]/10 py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 text-xs text-[#2b241d]/50 md:flex-row md:items-center md:justify-between">
           <div className="font-serif text-sm tracking-wide text-[#2b241d]">{t.brand.name}</div>
-          <div>{t.footer}</div>
+          <div className="break-keep text-pretty">{t.footer}</div>
         </div>
       </footer>
     </div>

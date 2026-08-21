@@ -115,14 +115,14 @@ export default function MuniHair({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full border border-white/30 bg-white/10 px-3 py-1 font-mono text-[11px] tracking-widest backdrop-blur">
               {t.hero.tag}
             </span>
-            <h1 className="mt-7 text-4xl font-black italic leading-[1.1] tracking-tighter md:text-7xl md:leading-[1]">
+            <h1 className="mt-7 text-4xl font-black italic leading-[1.1] tracking-tighter md:text-7xl md:leading-[1] break-keep text-balance">
               {t.hero.titleA}
               <br className="hidden md:block" />
               <span className="bg-gradient-to-r from-[#c0c0ff] via-[#ff9ee5] to-[#a3ffd6] bg-clip-text text-transparent">
                 {t.hero.titleB}
               </span>
             </h1>
-            <p className="mt-7 max-w-md text-base text-white/70">
+            <p className="mt-7 max-w-md text-base text-white/70 break-keep text-pretty">
               {t.hero.body}
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
@@ -150,16 +150,16 @@ export default function MuniHair({ lang }: { lang: Lang }) {
         <h2 className="text-center font-mono text-xs uppercase tracking-[0.5em] text-[#a3ffd6]">
           {t.stylists.eyebrow}
         </h2>
-        <h3 className="mt-3 text-center text-4xl font-black italic md:text-5xl">{t.stylists.title}</h3>
+        <h3 className="mt-3 text-center text-4xl font-black italic md:text-5xl break-keep text-balance">{t.stylists.title}</h3>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {t.stylists.list.map((s) => (
             <article key={s.name} className="rounded-3xl bg-white/5 p-5 backdrop-blur transition hover:bg-white/10">
               <div className="relative aspect-square overflow-hidden rounded-2xl">
                 <Image src={s.img} alt={s.name} fill className="object-cover" />
               </div>
-              <h4 className="mt-5 text-2xl font-black italic">{s.name}</h4>
+              <h4 className="mt-5 text-2xl font-black italic break-keep text-balance">{s.name}</h4>
               <p className="mt-1 text-xs uppercase tracking-widest text-[#ff9ee5]">{s.role}</p>
-              <p className="mt-3 text-sm text-white/70">{s.spec}</p>
+              <p className="mt-3 text-sm text-white/70 break-keep text-pretty">{s.spec}</p>
               <button className="mt-5 w-full rounded-full border border-white/20 py-2.5 text-xs font-bold tracking-widest hover:border-[#ff9ee5]">
                 {t.stylists.bookBtn}
               </button>
@@ -170,7 +170,7 @@ export default function MuniHair({ lang }: { lang: Lang }) {
 
       <section className="bg-gradient-to-r from-[#c0c0ff]/10 via-[#ff9ee5]/10 to-[#a3ffd6]/10 py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center text-4xl font-black italic md:text-5xl">{t.menusTitle}</h2>
+          <h2 className="text-center text-4xl font-black italic md:text-5xl break-keep text-balance">{t.menusTitle}</h2>
           <ul className="mx-auto mt-12 max-w-2xl divide-y divide-white/10 border-y border-white/10">
             {t.menus.map(([k, label, p]) => (
               <li key={label} className="grid grid-cols-[80px_1fr_auto] items-center gap-4 py-4 text-sm md:grid-cols-[120px_1fr_auto]">
@@ -187,7 +187,7 @@ export default function MuniHair({ lang }: { lang: Lang }) {
         <h2 className="text-center font-mono text-xs uppercase tracking-[0.5em] text-[#a3ffd6]">
           {t.booking.eyebrow}
         </h2>
-        <h3 className="mt-3 text-center text-4xl font-black italic">{t.booking.title}</h3>
+        <h3 className="mt-3 text-center text-4xl font-black italic break-keep text-balance">{t.booking.title}</h3>
         <div className="mt-10 rounded-3xl bg-white/5 p-6 backdrop-blur">
           <p className="font-mono text-xs tracking-widest text-white/60">{t.booking.dateLabel}</p>
           <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
@@ -206,7 +206,7 @@ export default function MuniHair({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 py-8 text-center font-mono text-[11px] tracking-widest text-white/40">
+      <footer className="border-t border-white/10 py-8 text-center font-mono text-[11px] tracking-widest text-white/40 break-keep text-pretty">
         {t.footer}
       </footer>
     </div>

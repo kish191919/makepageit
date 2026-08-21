@@ -21,7 +21,7 @@ const copy = {
       { title: "Bustling Library", client: "Penguin Young Readers", year: "2024", color: "#ffd166", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&q=80&auto=format&fit=crop" },
       { title: "A Slice of Summer", client: "Blue Bottle packaging", year: "2024", color: "#ef476f", img: "https://images.unsplash.com/photo-1502691876148-a84978e59af8?w=900&q=80&auto=format&fit=crop" },
       { title: "Moon and Cat", client: "Communication Arts", year: "2023", color: "#06d6a0", img: "https://images.unsplash.com/photo-1493106819501-66d381c466f1?w=900&q=80&auto=format&fit=crop" },
-      { title: "Birds of the City", client: "NYC Parks campaign", year: "2023", color: "#118ab2", img: "https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=900&q=80&auto=format&fit=crop" },
+      { title: "Birds of the City", client: "NYC Parks campaign", year: "2023", color: "#118ab2", img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=900&q=80&auto=format&fit=crop" },
     ],
     servicesTitle: "What I make",
     services: [
@@ -56,7 +56,7 @@ const copy = {
       { title: "북적북적 도서관", client: "창비 어린이", year: "2024", color: "#ffd166", img: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&q=80&auto=format&fit=crop" },
       { title: "여름 한 조각", client: "마쓰무라 카페 패키지", year: "2024", color: "#ef476f", img: "https://images.unsplash.com/photo-1502691876148-a84978e59af8?w=900&q=80&auto=format&fit=crop" },
       { title: "달과 고양이", client: "월간 디자인", year: "2023", color: "#06d6a0", img: "https://images.unsplash.com/photo-1493106819501-66d381c466f1?w=900&q=80&auto=format&fit=crop" },
-      { title: "도시의 새들", client: "서울시 캠페인", year: "2023", color: "#118ab2", img: "https://images.unsplash.com/photo-1499781350541-7783f6c6a0c8?w=900&q=80&auto=format&fit=crop" },
+      { title: "도시의 새들", client: "서울시 캠페인", year: "2023", color: "#118ab2", img: "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=900&q=80&auto=format&fit=crop" },
     ],
     servicesTitle: "이런 작업을 해요",
     services: [
@@ -112,7 +112,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
             <span className="inline-block rotate-[-2deg] rounded-full bg-[#06d6a0] px-3 py-1 text-xs font-bold text-white">
               {t.hero.tag}
             </span>
-            <h1 className="mt-6 text-4xl font-black leading-[1.15] md:text-7xl md:leading-[1.05]">
+            <h1 className="mt-6 text-4xl font-black leading-[1.15] md:text-7xl md:leading-[1.05] break-keep text-balance">
               {t.hero.titleA}
               <br className="hidden md:block" />
               <span className="bg-[#ffd166] px-2">{t.hero.titleAccent}</span>
@@ -123,7 +123,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
                 </>
               )}
             </h1>
-            <p className="mt-6 max-w-md text-base text-[#5b4a44]">
+            <p className="mt-6 max-w-md text-base text-[#5b4a44] break-keep text-pretty">
               {t.hero.body}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -153,7 +153,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-3xl font-black md:text-4xl">{t.recentTitle}</h2>
+          <h2 className="text-3xl font-black md:text-4xl break-keep text-balance">{t.recentTitle}</h2>
           <a className="text-sm font-bold underline">{t.viewAll}</a>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
@@ -167,7 +167,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
               </div>
               <div className="flex items-center justify-between border-t-4 border-[#3a2e2a] bg-[#fff8ec] p-5">
                 <div>
-                  <h3 className="text-xl font-black">{w.title}</h3>
+                  <h3 className="text-xl font-black break-keep text-balance">{w.title}</h3>
                   <p className="mt-1 text-sm text-[#5b4a44]">{w.client}</p>
                 </div>
                 <span className="rounded-full bg-[#3a2e2a] px-3 py-1 text-xs font-bold text-white">
@@ -180,7 +180,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="text-center text-3xl font-black md:text-4xl">{t.servicesTitle}</h2>
+        <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">{t.servicesTitle}</h2>
         <div className="mt-12 grid gap-5 md:grid-cols-4">
           {t.services.map(([icon, title, d]) => (
             <div
@@ -188,8 +188,8 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
               className="rounded-3xl border-4 border-[#3a2e2a] bg-white p-6 text-center shadow-[4px_4px_0_#3a2e2a]"
             >
               <div className="text-4xl">{icon}</div>
-              <h3 className="mt-4 text-base font-black">{title}</h3>
-              <p className="mt-2 text-xs text-[#5b4a44]">{d}</p>
+              <h3 className="mt-4 text-base font-black break-keep text-balance">{title}</h3>
+              <p className="mt-2 text-xs text-[#5b4a44] break-keep text-pretty">{d}</p>
             </div>
           ))}
         </div>
@@ -197,15 +197,15 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-3xl px-6 py-20">
         <div className="rotate-[-1deg] rounded-3xl border-4 border-[#3a2e2a] bg-[#ef476f] p-10 text-center text-white shadow-[10px_10px_0_#3a2e2a]">
-          <h2 className="text-3xl font-black md:text-4xl">{t.contact.title}</h2>
-          <p className="mt-3 text-white/90">{t.contact.body}</p>
+          <h2 className="text-3xl font-black md:text-4xl break-keep text-balance">{t.contact.title}</h2>
+          <p className="mt-3 text-white/90 break-keep text-pretty">{t.contact.body}</p>
           <a className="mt-8 inline-block rounded-full bg-white px-8 py-3 text-base font-black text-[#ef476f]">
             {t.contact.email}
           </a>
         </div>
       </section>
 
-      <footer className="border-t-2 border-dashed border-[#3a2e2a]/20 py-8 text-center text-xs text-[#5b4a44]">
+      <footer className="border-t-2 border-dashed border-[#3a2e2a]/20 py-8 text-center text-xs text-[#5b4a44] break-keep text-pretty">
         {t.footer}
       </footer>
     </div>

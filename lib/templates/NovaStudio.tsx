@@ -109,10 +109,10 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/40" />
         <div className="absolute inset-x-0 bottom-0 mx-auto flex max-w-7xl flex-col px-6 pb-20">
           <p className="text-xs uppercase tracking-[0.5em] text-white/70">{t.hero.eyebrow}</p>
-          <h1 className="mt-6 text-6xl font-light leading-[0.95] md:text-[8rem]">
+          <h1 className="mt-6 text-6xl font-light leading-[0.95] md:text-[8rem] break-keep text-balance">
             NOVA<span className="italic font-serif">.</span>
           </h1>
-          <p className="mt-5 max-w-md text-sm text-white/70">
+          <p className="mt-5 max-w-md text-sm text-white/70 break-keep text-pretty">
             {t.hero.tagline}
           </p>
         </div>
@@ -138,11 +138,11 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2 md:items-center">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-black/50">{t.studio.eyebrow}</p>
-            <h2 className="mt-3 font-serif text-3xl leading-tight md:text-6xl">
+            <h2 className="mt-3 font-serif text-3xl leading-tight md:text-6xl break-keep text-balance">
               {t.studio.titleA}<br className="hidden md:block" />
               <span className="italic">{t.studio.titleB}</span><br className="hidden md:block" />{t.studio.titleC}
             </h2>
-            <p className="mt-6 leading-relaxed text-black/70">
+            <p className="mt-6 leading-relaxed text-black/70 break-keep text-pretty">
               {t.studio.body}
             </p>
           </div>
@@ -160,15 +160,15 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
       <section className="bg-black py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-center text-xs uppercase tracking-[0.4em] text-white/50">{t.servicesSection.eyebrow}</p>
-          <h2 className="mt-3 text-center font-serif text-5xl">{t.servicesSection.title}</h2>
+          <h2 className="mt-3 text-center font-serif text-5xl break-keep text-balance">{t.servicesSection.title}</h2>
           <div className="mt-14 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
             {t.services.map((s) => (
               <div key={s.title} className="bg-black p-8 transition hover:bg-white/5">
                 <div className="flex items-baseline justify-between">
-                  <h3 className="font-serif text-2xl">{s.title}</h3>
+                  <h3 className="font-serif text-2xl break-keep text-balance">{s.title}</h3>
                   <span className="text-[10px] uppercase tracking-widest text-white/40">{t.serviceFromLabel}</span>
                 </div>
-                <p className="mt-4 text-sm text-white/60">{s.desc}</p>
+                <p className="mt-4 text-sm text-white/60 break-keep text-pretty">{s.desc}</p>
                 <p className="mt-8 text-lg">{s.price}</p>
               </div>
             ))}
@@ -180,8 +180,8 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
         <div className="mx-auto max-w-3xl px-6">
           <div className="rounded-none border border-white/20 p-10 md:p-14">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">{t.booking.eyebrow}</p>
-            <h2 className="mt-3 font-serif text-4xl">{t.booking.title}</h2>
-            <p className="mt-3 text-sm text-white/60">
+            <h2 className="mt-3 font-serif text-4xl break-keep text-balance">{t.booking.title}</h2>
+            <p className="mt-3 text-sm text-white/60 break-keep text-pretty">
               {t.booking.body}
             </p>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">

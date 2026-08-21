@@ -118,14 +118,14 @@ export default function NexusLab({ lang }: { lang: Lang }) {
             <span className="h-1.5 w-1.5 rounded-full bg-[#22d3ee]" />
             {t.badge}
           </span>
-          <h1 className="mt-8 text-4xl font-black leading-[1.15] tracking-tight md:text-7xl md:leading-[1.05]">
+          <h1 className="mt-8 text-4xl font-black leading-[1.15] tracking-tight md:text-7xl md:leading-[1.05] break-keep text-balance">
             {t.hero.titleA}
             <br className="hidden md:block" />
             <span className="bg-gradient-to-r from-[#7c5cff] via-[#a78bfa] to-[#22d3ee] bg-clip-text text-transparent">
               {t.hero.titleB}
             </span>
           </h1>
-          <p className="mx-auto mt-7 max-w-2xl text-base text-white/60 md:text-lg">
+          <p className="mx-auto mt-7 max-w-2xl text-base text-white/60 md:text-lg break-keep text-pretty">
             {t.hero.body}
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
@@ -167,8 +167,8 @@ export default function NexusLab({ lang }: { lang: Lang }) {
               className="group rounded-xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-6 transition hover:border-[#22d3ee]/40"
             >
               <div className="font-mono text-[11px] text-[#22d3ee]">{t.featureLabel}</div>
-              <h3 className="mt-2 text-xl font-bold">{f.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/60">{f.desc}</p>
+              <h3 className="mt-2 text-xl font-bold break-keep text-balance">{f.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/60 break-keep text-pretty">{f.desc}</p>
               <pre className="mt-6 overflow-x-auto rounded-md bg-black/60 p-3 font-mono text-[11px] text-[#a78bfa]">
                 {f.code}
               </pre>
@@ -205,10 +205,10 @@ export default function NexusLab({ lang }: { lang: Lang }) {
           </div>
           <div>
             <div className="font-mono text-[11px] text-[#22d3ee]">{t.teamLabel}</div>
-            <h2 className="mt-3 text-3xl font-black md:text-4xl">
+            <h2 className="mt-3 text-3xl font-black md:text-4xl break-keep text-balance">
               {t.teamTitle}
             </h2>
-            <p className="mt-5 text-white/60">
+            <p className="mt-5 text-white/60 break-keep text-pretty">
               {t.teamBody}
             </p>
             <a className="mt-8 inline-block rounded-md border border-white/20 px-5 py-2.5 font-mono text-sm">

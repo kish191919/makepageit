@@ -141,11 +141,11 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full bg-[#ff5e3a]/10 px-3 py-1 text-xs font-bold text-[#ff5e3a]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-5 text-3xl font-black leading-[1.15] md:text-6xl">
+            <h1 className="mt-5 text-3xl font-black leading-[1.15] md:text-6xl break-keep text-balance">
               {t.hero.titlePre}<br className="hidden md:block" />
               <span className="text-[#ff5e3a]">{t.hero.titleAccent}</span>{t.hero.titlePost}
             </h1>
-            <p className="mt-5 max-w-md text-lg text-slate-600">
+            <p className="mt-5 max-w-md text-lg text-slate-600 break-keep text-pretty">
               {t.hero.body}
             </p>
 
@@ -165,7 +165,7 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
                   {t.hero.formSubmit}
                 </button>
               </form>
-              <p className="mt-3 text-[11px] text-slate-400">{t.hero.formNote}</p>
+              <p className="mt-3 text-[11px] text-slate-400 break-keep text-pretty">{t.hero.formNote}</p>
             </div>
           </div>
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
@@ -182,15 +182,15 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center text-3xl font-black md:text-4xl">
+          <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">
             {t.why.title[0]}<span className="text-[#ff5e3a]">{t.why.title[1]}</span>
           </h2>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             {t.why.items.map((b) => (
               <div key={b.title} className="rounded-3xl bg-white p-8 shadow-sm">
                 <div className="text-4xl">{b.icon}</div>
-                <h3 className="mt-5 text-xl font-bold">{b.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{b.desc}</p>
+                <h3 className="mt-5 text-xl font-bold break-keep text-balance">{b.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 break-keep text-pretty">{b.desc}</p>
               </div>
             ))}
           </div>
@@ -200,13 +200,13 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
       <section className="mx-auto max-w-6xl px-6 py-20">
         <div className="rounded-3xl bg-gradient-to-br from-slate-900 to-slate-700 p-10 text-white md:p-14">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff5e3a]">{t.curriculum.eyebrow}</p>
-          <h2 className="mt-3 text-3xl font-black md:text-4xl">{t.curriculum.title}</h2>
+          <h2 className="mt-3 text-3xl font-black md:text-4xl break-keep text-balance">{t.curriculum.title}</h2>
           <div className="mt-10 grid gap-4 md:grid-cols-4">
             {t.curriculum.steps.map((s) => (
               <div key={s.n} className="rounded-2xl bg-white/10 p-5 backdrop-blur">
                 <div className="text-2xl font-black text-[#ff5e3a]">{s.n}</div>
                 <div className="mt-3 font-bold">{s.t}</div>
-                <p className="mt-1 text-xs text-white/70">{s.d}</p>
+                <p className="mt-1 text-xs text-white/70 break-keep text-pretty">{s.d}</p>
               </div>
             ))}
           </div>
@@ -214,12 +214,12 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="text-center text-3xl font-black md:text-4xl">{t.reviews.title}</h2>
+        <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">{t.reviews.title}</h2>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {t.reviews.items.map((r, i) => (
             <div key={i} className="rounded-2xl border border-slate-200 p-6">
               <div className="text-[#ff5e3a]">★★★★★</div>
-              <p className="mt-3 text-sm leading-relaxed text-slate-700">“{r.text}”</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700 break-keep text-pretty">“{r.text}”</p>
               <p className="mt-5 text-xs font-semibold text-slate-500">— {r.name}</p>
             </div>
           ))}
@@ -228,7 +228,7 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-center text-3xl font-black md:text-4xl">{t.faqsTitle}</h2>
+          <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">{t.faqsTitle}</h2>
           <div className="mt-10 space-y-3">
             {t.faqs.map((f) => (
               <details key={f.q} className="rounded-2xl bg-white p-5 ring-1 ring-slate-100 [&_summary]:cursor-pointer">
@@ -236,7 +236,7 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
                   {f.q}
                   <span className="text-[#ff5e3a]">+</span>
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">{f.a}</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600 break-keep text-pretty">{f.a}</p>
               </details>
             ))}
           </div>
@@ -245,15 +245,15 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
 
       <section className="bg-[#ff5e3a] py-20 text-white">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-black md:text-5xl">{t.bottomCta.title}</h2>
-          <p className="mt-4 text-white/80">{t.bottomCta.body}</p>
+          <h2 className="text-3xl font-black md:text-5xl break-keep text-balance">{t.bottomCta.title}</h2>
+          <p className="mt-4 text-white/80 break-keep text-pretty">{t.bottomCta.body}</p>
           <a className="mt-10 inline-block rounded-full bg-white px-10 py-4 text-base font-bold text-[#ff5e3a] shadow-2xl">
             {t.bottomCta.button}
           </a>
         </div>
       </section>
 
-      <footer className="bg-slate-900 py-8 text-center text-xs text-slate-400">
+      <footer className="bg-slate-900 py-8 text-center text-xs text-slate-400 break-keep text-pretty">
         {t.footer}
       </footer>
     </div>

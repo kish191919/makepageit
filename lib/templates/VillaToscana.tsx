@@ -134,7 +134,7 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
         <div className="relative z-10 mx-auto flex h-full max-w-6xl items-end px-6 pb-16 text-[#f4ede1]">
           <div className="max-w-2xl">
             <p className="text-[11px] tracking-[0.5em]">{t.hero.eyebrow}</p>
-            <h1 className="mt-6 font-serif text-3xl italic leading-[1.2] md:text-7xl md:leading-[1.1]">
+            <h1 className="mt-6 font-serif text-3xl italic leading-[1.2] md:text-7xl md:leading-[1.1] break-keep text-balance">
               {t.hero.titleA}
               <br className="hidden md:block" />{t.hero.titleB}
               <br className="hidden md:block" />{t.hero.titleC}
@@ -147,12 +147,12 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
         <div className="grid gap-14 md:grid-cols-[1fr_2fr]">
           <p className="text-[11px] tracking-[0.4em] text-[#7d2c1a]">{t.editorial.eyebrow}</p>
           <div>
-            <h2 className="font-serif text-3xl leading-tight md:text-5xl">
+            <h2 className="font-serif text-3xl leading-tight md:text-5xl break-keep text-balance">
               <span className="italic">{t.editorial.titleA}</span>
               <br className="hidden md:block" />
               {t.editorial.titleB}
             </h2>
-            <p className="mt-8 text-base leading-relaxed text-[#5b4a36]">
+            <p className="mt-8 text-base leading-relaxed text-[#5b4a36] break-keep text-pretty">
               {t.editorial.body}
             </p>
             <div className="mt-10 grid grid-cols-3 gap-6 border-y border-[#d8c8a9] py-6 text-center">
@@ -170,11 +170,11 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
       <section className="border-y border-[#d8c8a9] bg-[#ebe0c8] py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-[11px] tracking-[0.4em] text-[#7d2c1a]">{t.courses.eyebrow}</p>
-          <h2 className="mt-3 font-serif text-4xl">{t.courses.title}</h2>
+          <h2 className="mt-3 font-serif text-4xl break-keep text-balance">{t.courses.title}</h2>
           <div className="mt-14 grid gap-12 md:grid-cols-3">
             {t.courses.list.map((c) => (
               <article key={c.name}>
-                <h3 className="border-b border-[#7d2c1a] pb-3 font-serif text-2xl italic text-[#7d2c1a]">
+                <h3 className="border-b border-[#7d2c1a] pb-3 font-serif text-2xl italic text-[#7d2c1a] break-keep text-balance">
                   {c.name}
                 </h3>
                 <ul className="mt-5 space-y-4 text-sm leading-relaxed text-[#3d3022]">
@@ -185,7 +185,7 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
               </article>
             ))}
           </div>
-          <p className="mt-14 text-center font-serif text-base italic text-[#7a6248]">
+          <p className="mt-14 text-center font-serif text-base italic text-[#7a6248] break-keep text-pretty">
             {t.courses.footer}
           </p>
         </div>
@@ -203,10 +203,10 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
           </div>
           <div className="self-center">
             <p className="text-[11px] tracking-[0.4em] text-[#7d2c1a]">{t.reservation.eyebrow}</p>
-            <h2 className="mt-4 font-serif text-4xl leading-tight">
+            <h2 className="mt-4 font-serif text-4xl leading-tight break-keep text-balance">
               {t.reservation.title}
             </h2>
-            <p className="mt-6 text-sm leading-relaxed text-[#5b4a36]">
+            <p className="mt-6 text-sm leading-relaxed text-[#5b4a36] break-keep text-pretty">
               {t.reservation.body}
             </p>
 
@@ -248,8 +248,8 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
       <footer className="border-t border-[#d8c8a9] py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 text-[11px] tracking-[0.3em] text-[#7a6248] md:flex-row md:items-center md:justify-between">
           <div className="font-serif text-base italic text-[#2b1d12]">Villa Toscana</div>
-          <div>{t.footer.address}</div>
-          <div>{t.footer.copyright}</div>
+          <div className="break-keep text-pretty">{t.footer.address}</div>
+          <div className="break-keep text-pretty">{t.footer.copyright}</div>
         </div>
       </footer>
     </div>

@@ -176,10 +176,10 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-24 md:grid-cols-[1.2fr_1fr] md:items-center md:py-32">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.hero.eyebrow}</p>
-            <h1 className="mt-6 font-serif text-4xl leading-[1.15] md:text-6xl">
+            <h1 className="mt-6 font-serif text-4xl leading-[1.15] md:text-6xl break-keep text-balance">
               {t.hero.title[0]}<br className="hidden md:block" />{t.hero.title[1]}
             </h1>
-            <p className="mt-6 max-w-md leading-relaxed text-[#0b1a2a]/70">
+            <p className="mt-6 max-w-md leading-relaxed text-[#0b1a2a]/70 break-keep text-pretty">
               {t.hero.body}
             </p>
             <div className="mt-10 flex gap-4">
@@ -216,12 +216,12 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-6xl px-6 py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.areasSection.eyebrow}</p>
-        <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t.areasSection.title}</h2>
+        <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.areasSection.title}</h2>
         <div className="mt-14 grid gap-px overflow-hidden rounded-sm bg-[#0b1a2a]/10 md:grid-cols-3">
           {t.areas.map((a) => (
             <div key={a.title} className="bg-white p-8 transition hover:bg-[#f5f4ee]">
-              <h3 className="font-serif text-2xl">{a.title}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-[#0b1a2a]/70">{a.desc}</p>
+              <h3 className="font-serif text-2xl break-keep text-balance">{a.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-[#0b1a2a]/70 break-keep text-pretty">{a.desc}</p>
               <div className="mt-6 text-xs font-semibold tracking-widest text-[#7c8c47]">{t.viewMore}</div>
             </div>
           ))}
@@ -231,14 +231,14 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
       <section className="bg-[#f5f4ee] py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.lawyersSection.eyebrow}</p>
-          <h2 className="mt-3 font-serif text-4xl md:text-5xl">{t.lawyersSection.title}</h2>
+          <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.lawyersSection.title}</h2>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {t.lawyers.map((l) => (
               <div key={l.name}>
                 <div className="relative aspect-[3/4] overflow-hidden bg-[#0b1a2a]/5">
                   <Image src={l.image} alt={l.name} fill className="object-cover grayscale" />
                 </div>
-                <h3 className="mt-5 font-serif text-xl">{l.name}</h3>
+                <h3 className="mt-5 font-serif text-xl break-keep text-balance">{l.name}</h3>
                 <p className="mt-1 text-xs text-[#0b1a2a]/60">{l.role}</p>
               </div>
             ))}
@@ -250,10 +250,10 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.consult.eyebrow}</p>
-            <h2 className="mt-3 font-serif text-3xl leading-tight md:text-5xl">
+            <h2 className="mt-3 font-serif text-3xl leading-tight md:text-5xl break-keep text-balance">
               {t.consult.title[0]}<br className="hidden md:block" />{t.consult.title[1]}
             </h2>
-            <p className="mt-6 leading-relaxed text-[#0b1a2a]/70">
+            <p className="mt-6 leading-relaxed text-[#0b1a2a]/70 break-keep text-pretty">
               {t.consult.body}
             </p>
             <dl className="mt-10 space-y-3 border-t border-[#0b1a2a]/10 pt-8 text-sm">
@@ -266,8 +266,8 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
             </dl>
           </div>
           <form className="rounded-sm bg-[#0b1a2a] p-10 text-white">
-            <h3 className="font-serif text-2xl">{t.consult.formTitle}</h3>
-            <p className="mt-2 text-xs text-white/60">{t.consult.formNote}</p>
+            <h3 className="font-serif text-2xl break-keep text-balance">{t.consult.formTitle}</h3>
+            <p className="mt-2 text-xs text-white/60 break-keep text-pretty">{t.consult.formNote}</p>
             <div className="mt-8 space-y-4">
               <input placeholder={t.consult.placeholders.name} className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none" />
               <input placeholder={t.consult.placeholders.phone} className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none" />
@@ -288,7 +288,7 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
       <footer className="border-t border-[#0b1a2a]/10 bg-white py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 text-xs text-[#0b1a2a]/50 md:flex-row md:items-center md:justify-between">
           <div className="font-serif text-sm tracking-wide text-[#0b1a2a]">{t.brand.name}</div>
-          <div>{t.footer}</div>
+          <div className="break-keep text-pretty">{t.footer}</div>
         </div>
       </footer>
     </div>

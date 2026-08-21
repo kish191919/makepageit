@@ -117,10 +117,10 @@ export default function KittWorks({ lang }: { lang: Lang }) {
             <span className="text-neutral-400">{t.intro.sub}</span>
           </p>
           <div className="md:col-span-9">
-            <h1 className="text-4xl leading-[1.15] tracking-tight md:text-6xl">
+            <h1 className="text-4xl leading-[1.15] tracking-tight md:text-6xl break-keep text-balance">
               <span className="text-neutral-400">{t.intro.titlePre}</span>{t.intro.titlePost}
             </h1>
-            <p className="mt-10 max-w-2xl text-base leading-relaxed text-neutral-600">
+            <p className="mt-10 max-w-2xl text-base leading-relaxed text-neutral-600 break-keep text-pretty">
               {t.intro.body}
             </p>
           </div>
@@ -188,7 +188,7 @@ export default function KittWorks({ lang }: { lang: Lang }) {
         <div className="grid gap-10 md:grid-cols-12">
           <p className="font-mono text-xs text-neutral-500 md:col-span-3">{t.contact.label}</p>
           <div className="md:col-span-9">
-            <h2 className="text-3xl leading-tight md:text-5xl">
+            <h2 className="text-3xl leading-tight md:text-5xl break-keep text-balance">
               {t.contact.titlePre}<span className="text-neutral-400">{t.contact.titleAccent}</span>
               <br className="hidden md:block" />
               {t.contact.titlePost}
@@ -207,7 +207,7 @@ export default function KittWorks({ lang }: { lang: Lang }) {
 
       <footer className="border-t border-neutral-200 py-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 font-mono text-[11px] text-neutral-500 md:flex-row md:items-center md:justify-between">
-          <div>{t.footer.stamp}</div>
+          <div className="break-keep text-pretty">{t.footer.stamp}</div>
           <div className="flex gap-5">
             {t.footer.links.map((l) => (
               <a key={l}>{l}</a>

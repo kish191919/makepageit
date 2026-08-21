@@ -159,11 +159,11 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full bg-[#9b6b4d]/10 px-3 py-1 text-xs font-semibold text-[#9b6b4d]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-5 text-3xl font-bold leading-tight md:text-5xl">
+            <h1 className="mt-5 text-3xl font-bold leading-tight md:text-5xl break-keep text-balance">
               {t.hero.title[0]}<br className="hidden md:block" />
               <span className="text-[#9b6b4d]">{t.hero.titleAccent}</span>{t.hero.titleEnd}
             </h1>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-slate-600">
+            <p className="mt-5 max-w-md text-base leading-relaxed text-slate-600 break-keep text-pretty">
               {t.hero.body}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -198,14 +198,14 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
       <section className="mx-auto max-w-6xl px-6 py-24">
         <div className="text-center">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#9b6b4d]">{t.treatmentsSection.eyebrow}</p>
-          <h2 className="mt-3 text-3xl font-bold md:text-4xl">{t.treatmentsSection.title}</h2>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl break-keep text-balance">{t.treatmentsSection.title}</h2>
         </div>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {t.treatments.map((tr) => (
             <div key={tr.title} className="rounded-2xl border border-slate-200 p-6 transition hover:border-[#9b6b4d] hover:shadow-md">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#f9f3ee] text-[#9b6b4d]">✦</div>
-              <h3 className="mt-5 text-lg font-bold">{tr.title}</h3>
-              <p className="mt-1 text-sm text-slate-500">{tr.desc}</p>
+              <h3 className="mt-5 text-lg font-bold break-keep text-balance">{tr.title}</h3>
+              <p className="mt-1 text-sm text-slate-500 break-keep text-pretty">{tr.desc}</p>
               <p className="mt-6 text-sm font-semibold text-[#9b6b4d]">{tr.price}</p>
             </div>
           ))}
@@ -216,7 +216,7 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
             <p className="text-xs font-semibold tracking-[0.3em] text-[#9b6b4d]">{t.doctorsSection.eyebrow}</p>
-            <h2 className="mt-3 text-3xl font-bold md:text-4xl">{t.doctorsSection.title}</h2>
+            <h2 className="mt-3 text-3xl font-bold md:text-4xl break-keep text-balance">{t.doctorsSection.title}</h2>
           </div>
           <div className="mt-14 grid gap-8 md:grid-cols-3">
             {t.doctors.map((d) => (
@@ -225,8 +225,8 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
                   <Image src={d.image} alt={d.name} fill className="object-cover" />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-bold">{d.name}</h3>
-                  <p className="mt-1 text-sm text-slate-500">{d.role}</p>
+                  <h3 className="text-lg font-bold break-keep text-balance">{d.name}</h3>
+                  <p className="mt-1 text-sm text-slate-500 break-keep text-pretty">{d.role}</p>
                 </div>
               </div>
             ))}
@@ -237,8 +237,8 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
       <section className="mx-auto max-w-5xl px-6 py-24">
         <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-[#9b6b4d] to-[#7a4f35] p-10 text-white md:p-14">
           <p className="text-xs font-semibold tracking-[0.3em] text-white/70">{t.booking.eyebrow}</p>
-          <h2 className="mt-3 text-3xl font-bold md:text-4xl">{t.booking.title}</h2>
-          <p className="mt-3 max-w-md text-white/80">{t.booking.body}</p>
+          <h2 className="mt-3 text-3xl font-bold md:text-4xl break-keep text-balance">{t.booking.title}</h2>
+          <p className="mt-3 max-w-md text-white/80 break-keep text-pretty">{t.booking.body}</p>
           <div className="mt-10 grid gap-4 rounded-2xl bg-white/10 p-6 backdrop-blur sm:grid-cols-2">
             {t.booking.fields.map((f) => (
               <label key={f.label} className="block">
@@ -254,12 +254,12 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <h2 className="text-2xl font-bold md:text-3xl">{t.reviewsTitle}</h2>
+        <h2 className="text-2xl font-bold md:text-3xl break-keep text-balance">{t.reviewsTitle}</h2>
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {t.reviews.map((r, i) => (
             <div key={i} className="rounded-2xl border border-slate-200 p-6">
               <div className="text-[#f0a04b]">{"★".repeat(r.rating)}</div>
-              <p className="mt-4 text-sm leading-relaxed text-slate-700">“{r.text}”</p>
+              <p className="mt-4 text-sm leading-relaxed text-slate-700 break-keep text-pretty">“{r.text}”</p>
               <p className="mt-5 text-xs text-slate-500">— {r.who}</p>
             </div>
           ))}
@@ -270,9 +270,9 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 text-sm md:flex-row md:items-center md:justify-between">
           <div>
             <div className="font-semibold text-white">{t.brand}</div>
-            <p className="mt-1 text-xs">{t.footer.address}</p>
+            <p className="mt-1 text-xs break-keep text-pretty">{t.footer.address}</p>
           </div>
-          <p className="text-xs">{t.footer.legal}</p>
+          <p className="text-xs break-keep text-pretty">{t.footer.legal}</p>
         </div>
       </footer>
     </div>

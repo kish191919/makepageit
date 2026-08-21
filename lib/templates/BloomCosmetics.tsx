@@ -20,7 +20,7 @@ const copy = {
       { name: "Daily Glow Serum", tag: "BEST", price: "$32", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=80&auto=format&fit=crop" },
       { name: "Hydrating Toner 200ml", tag: "NEW", price: "$24", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=900&q=80&auto=format&fit=crop" },
       { name: "Velvet Matte Lip Balm", tag: "REFILL", price: "$18", image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=900&q=80&auto=format&fit=crop" },
-      { name: "Vegan Cleansing Foam", tag: "VEGAN", price: "$21", image: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=900&q=80&auto=format&fit=crop" },
+      { name: "Vegan Cleansing Foam", tag: "VEGAN", price: "$21", image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=900&q=80&auto=format&fit=crop" },
     ],
     valuesEyebrow: "Vegan · Cruelty Free",
     valuesTitle: ["Pretty for the planet,", "pretty for your skin."],
@@ -55,7 +55,7 @@ const copy = {
       { name: "데일리 글로우 세럼", tag: "BEST", price: "32,000원", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=80&auto=format&fit=crop" },
       { name: "수분 가득 토너 200ml", tag: "NEW", price: "24,000원", image: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=900&q=80&auto=format&fit=crop" },
       { name: "벨벳 매트 립밤", tag: "리필", price: "18,000원", image: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=900&q=80&auto=format&fit=crop" },
-      { name: "비건 클렌징 폼", tag: "VEGAN", price: "21,000원", image: "https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=900&q=80&auto=format&fit=crop" },
+      { name: "비건 클렌징 폼", tag: "VEGAN", price: "21,000원", image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=900&q=80&auto=format&fit=crop" },
     ],
     valuesEyebrow: "Vegan · Cruelty Free",
     valuesTitle: ["지구도 피부도,", "예쁜 선택을 합니다."],
@@ -103,12 +103,12 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full bg-[#ffd6e0] px-3 py-1 text-[11px] font-bold text-[#c44569]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-6 text-4xl font-bold leading-[1.1] md:text-7xl">
+            <h1 className="mt-6 text-4xl font-bold leading-[1.1] md:text-7xl break-keep text-balance">
               {t.hero.titlePre}
               <br className="hidden md:block" />
               <span className="text-[#ff8aa3]">{t.hero.titleAccent}</span>
             </h1>
-            <p className="mt-6 max-w-md text-base text-[#7a5f6a]">
+            <p className="mt-6 max-w-md text-base text-[#7a5f6a] break-keep text-pretty">
               {t.hero.body}
             </p>
             <div className="mt-10 flex gap-3">
@@ -138,7 +138,7 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-3xl font-bold md:text-4xl">{t.weeklyTitle}</h2>
+          <h2 className="text-3xl font-bold md:text-4xl break-keep text-balance">{t.weeklyTitle}</h2>
           <a className="text-sm font-medium text-[#c44569]">{t.viewAll}</a>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -158,7 +158,7 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
                   {p.tag}
                 </span>
               </div>
-              <h3 className="mt-5 px-2 text-base font-semibold">{p.name}</h3>
+              <h3 className="mt-5 px-2 text-base font-semibold break-keep text-balance">{p.name}</h3>
               <div className="mt-2 flex items-center justify-between px-2 pb-2">
                 <span className="text-sm font-bold">{p.price}</span>
                 <button className="rounded-full bg-[#ffd6e0] p-2 text-[#c44569]">＋</button>
@@ -170,7 +170,7 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-6xl rounded-[3rem] bg-gradient-to-br from-[#ffd6e0] via-[#fff0e8] to-[#ffe8b6] px-6 py-20 text-center">
         <p className="text-xs font-bold uppercase tracking-widest text-[#c44569]">{t.valuesEyebrow}</p>
-        <h2 className="mt-5 text-3xl font-bold leading-snug md:text-5xl">
+        <h2 className="mt-5 text-3xl font-bold leading-snug md:text-5xl break-keep text-balance">
           {t.valuesTitle[0]}
           <br className="hidden md:block" />
           {t.valuesTitle[1]}
@@ -179,20 +179,20 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
           {t.values.map(([icon, title, d]) => (
             <div key={title} className="rounded-3xl bg-white/70 p-6 backdrop-blur">
               <div className="text-3xl">{icon}</div>
-              <h3 className="mt-4 text-lg font-bold">{title}</h3>
-              <p className="mt-2 text-sm text-[#7a5f6a]">{d}</p>
+              <h3 className="mt-4 text-lg font-bold break-keep text-balance">{title}</h3>
+              <p className="mt-2 text-sm text-[#7a5f6a] break-keep text-pretty">{d}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="text-center text-3xl font-bold md:text-4xl">{t.reviewsTitle}</h2>
+        <h2 className="text-center text-3xl font-bold md:text-4xl break-keep text-balance">{t.reviewsTitle}</h2>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {t.reviews.map((r, i) => (
             <div key={i} className="rounded-3xl bg-white p-6 shadow-sm">
               <div className="text-[#ff8aa3]">★★★★★</div>
-              <p className="mt-3 text-sm leading-relaxed text-[#3a2530]">“{r.text}”</p>
+              <p className="mt-3 text-sm leading-relaxed text-[#3a2530] break-keep text-pretty">"{r.text}"</p>
               <p className="mt-5 text-xs font-semibold text-[#c44569]">— {r.name}</p>
             </div>
           ))}
@@ -202,7 +202,7 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
       <footer className="bg-white py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 text-xs text-[#7a5f6a] md:flex-row">
           <div className="text-base font-bold text-[#3a2530]">bloom·</div>
-          <div>{t.footer}</div>
+          <div className="break-keep text-pretty">{t.footer}</div>
         </div>
       </footer>
     </div>

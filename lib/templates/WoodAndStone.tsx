@@ -107,12 +107,12 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_1fr] md:items-end md:py-24">
         <div>
           <p className="text-xs tracking-[0.4em] text-[#a08260]">{t.hero.season}</p>
-          <h1 className="mt-6 font-serif text-4xl leading-[1.15] tracking-tight md:text-7xl md:leading-[1.1]">
+          <h1 className="mt-6 font-serif text-4xl leading-[1.15] tracking-tight md:text-7xl md:leading-[1.1] break-keep text-balance">
             {t.hero.titleA}
             <br className="hidden md:block" />
             <span className="italic text-[#7d6a4d]">{t.hero.titleB}</span>
           </h1>
-          <p className="mt-8 max-w-md text-base leading-relaxed text-[#5b4f3d]">
+          <p className="mt-8 max-w-md text-base leading-relaxed text-[#5b4f3d] break-keep text-pretty">
             {t.hero.body}
           </p>
           <a className="mt-10 inline-block border border-[#2c2620] px-7 py-3 text-xs tracking-widest">
@@ -135,7 +135,7 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
           <div className="flex items-end justify-between">
             <div>
               <p className="text-xs tracking-[0.4em] text-[#a08260]">{t.featured.eyebrow}</p>
-              <h2 className="mt-3 font-serif text-4xl">{t.featured.title}</h2>
+              <h2 className="mt-3 font-serif text-4xl break-keep text-balance">{t.featured.title}</h2>
             </div>
             <a className="hidden text-xs tracking-widest text-[#5b4f3d] md:inline">{t.featured.viewAll}</a>
           </div>
@@ -151,7 +151,7 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
                   />
                 </div>
                 <p className="mt-5 text-[10px] tracking-[0.3em] text-[#a08260]">{c.series}</p>
-                <h3 className="mt-2 font-serif text-2xl">{c.name}</h3>
+                <h3 className="mt-2 font-serif text-2xl break-keep text-balance">{c.name}</h3>
                 <p className="mt-3 text-sm tracking-wider text-[#5b4f3d]">{c.price}</p>
               </article>
             ))}
@@ -171,7 +171,7 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
           </div>
           <div>
             <p className="text-xs tracking-[0.4em] text-[#a08260]">{t.materialsSection.eyebrow}</p>
-            <h2 className="mt-4 font-serif text-4xl leading-tight">
+            <h2 className="mt-4 font-serif text-4xl leading-tight break-keep text-balance">
               {t.materialsSection.title}
             </h2>
             <ul className="mt-10 divide-y divide-[#d8cdb6] border-y border-[#d8cdb6]">
@@ -190,7 +190,7 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-[1fr_1fr] md:items-center">
           <div>
             <p className="text-xs tracking-[0.4em] text-[#c4a47a]">{t.showroom.eyebrow}</p>
-            <h2 className="mt-4 font-serif text-3xl leading-tight md:text-5xl">
+            <h2 className="mt-4 font-serif text-3xl leading-tight md:text-5xl break-keep text-balance">
               {t.showroom.titleA}
               <br className="hidden md:block" />
               {t.showroom.titleB}
@@ -210,7 +210,7 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
       <footer className="bg-[#f5f1ea] py-10">
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 text-xs text-[#5b4f3d] md:flex-row md:items-center md:justify-between">
           <div className="font-serif text-base text-[#2c2620]">wood · stone</div>
-          <div>{t.footer}</div>
+          <div className="break-keep text-pretty">{t.footer}</div>
         </div>
       </footer>
     </div>

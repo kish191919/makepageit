@@ -103,14 +103,14 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
       <section className="border-b-2 border-black">
         <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
           <p className="text-xs font-bold uppercase tracking-[0.4em]">{t.hero.eyebrow}</p>
-          <h1 className="mt-10 text-[15vw] font-black leading-[0.85] tracking-[-0.04em] md:text-[14rem]">
+          <h1 className="mt-10 text-[15vw] font-black leading-[0.85] tracking-[-0.04em] md:text-[14rem] break-keep text-balance">
             {t.hero.brand}
             <br />
             <span className="block text-black/30">{t.hero.brandSub}</span>
           </h1>
           <div className="mt-12 grid gap-6 border-t-2 border-black pt-10 md:grid-cols-[1fr_2fr]">
             <p className="text-xs font-bold uppercase tracking-widest">{t.hero.statementLabel}</p>
-            <p className="text-xl leading-snug md:text-2xl">
+            <p className="text-xl leading-snug md:text-2xl break-keep text-pretty">
               {t.hero.statement}
             </p>
           </div>
@@ -120,7 +120,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
       <section className="border-b-2 border-black">
         <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="flex items-end justify-between border-b-2 border-black pb-6">
-            <h2 className="text-3xl font-black tracking-tight md:text-7xl">{t.selected.title}</h2>
+            <h2 className="text-3xl font-black tracking-tight md:text-7xl break-keep text-balance">{t.selected.title}</h2>
             <span className="hidden text-xs font-bold uppercase tracking-widest md:block">{t.selected.years}</span>
           </div>
           <div className="mt-12 space-y-20">
@@ -136,7 +136,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
                   <div className="border-t-2 border-black pt-4 text-xs font-bold uppercase tracking-widest">
                     {t.projectLabels.numberLabel} {String(i + 1).padStart(2, "0")}
                   </div>
-                  <h3 className="mt-4 text-3xl font-black leading-tight md:text-4xl">{p.name}</h3>
+                  <h3 className="mt-4 text-3xl font-black leading-tight md:text-4xl break-keep text-balance">{p.name}</h3>
                   <dl className="mt-8 space-y-2 text-sm">
                     <div className="flex justify-between border-b border-black/20 py-2">
                       <dt className="font-bold uppercase tracking-widest text-black/50">{t.projectLabels.place}</dt>
@@ -156,7 +156,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
 
       <section className="border-b-2 border-black bg-black text-[#ededed]">
         <div className="mx-auto max-w-7xl px-6 py-24">
-          <h2 className="text-3xl font-black tracking-tight md:text-6xl">{t.awardsTitle}</h2>
+          <h2 className="text-3xl font-black tracking-tight md:text-6xl break-keep text-balance">{t.awardsTitle}</h2>
           <ul className="mt-12 divide-y divide-white/20 border-y border-white/20">
             {t.awards.map(([y, label]) => (
               <li key={label} className="grid grid-cols-[80px_1fr] gap-6 py-5 md:grid-cols-[120px_1fr]">
@@ -172,15 +172,15 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-24 md:grid-cols-2">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.4em]">{t.studio.eyebrow}</p>
-            <h2 className="mt-6 text-3xl font-black leading-tight md:text-6xl">
+            <h2 className="mt-6 text-3xl font-black leading-tight md:text-6xl break-keep text-balance">
               {t.studio.title[0]}
               <br className="hidden md:block" />
               {t.studio.title[1]}
             </h2>
           </div>
           <div className="space-y-4 self-end text-sm leading-relaxed">
-            <p>{t.studio.bodyA}</p>
-            <p>{t.studio.bodyB}</p>
+            <p className="break-keep text-pretty">{t.studio.bodyA}</p>
+            <p className="break-keep text-pretty">{t.studio.bodyB}</p>
           </div>
         </div>
       </section>
@@ -192,12 +192,12 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
             <div key={o.label} className="text-sm">
               <p className="font-bold uppercase tracking-widest">{o.label}</p>
               {o.lines.map((line, i) => (
-                <p key={i} className={i === 0 ? "mt-2 text-black/60" : "text-black/60"}>{line}</p>
+                <p key={i} className={i === 0 ? "mt-2 text-black/60 break-keep text-pretty" : "text-black/60 break-keep text-pretty"}>{line}</p>
               ))}
             </div>
           ))}
         </div>
-        <div className="border-t-2 border-black px-6 py-4 text-center font-mono text-[11px]">
+        <div className="border-t-2 border-black px-6 py-4 text-center font-mono text-[11px] break-keep text-pretty">
           {t.footer.copyright}
         </div>
       </footer>

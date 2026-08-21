@@ -166,10 +166,10 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 sm:py-24 md:grid-cols-[1.15fr_1fr] md:items-center md:py-32">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.hero.eyebrow}</p>
-            <h1 className="mt-6 font-black uppercase leading-[1.05] tracking-tight text-4xl md:text-6xl">
+            <h1 className="mt-6 font-black uppercase leading-[1.05] tracking-tight text-4xl md:text-6xl break-keep text-balance">
               {t.hero.title[0]} <br className="hidden md:block" />{t.hero.title[1]}
             </h1>
-            <p className="mt-6 max-w-md leading-relaxed text-white/70">
+            <p className="mt-6 max-w-md leading-relaxed text-white/70 break-keep text-pretty">
               {t.hero.body}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
@@ -206,12 +206,12 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.capabilitiesSection.eyebrow}</p>
-        <h2 className="mt-3 font-black uppercase tracking-tight text-4xl md:text-5xl">{t.capabilitiesSection.title}</h2>
+        <h2 className="mt-3 font-black uppercase tracking-tight text-4xl md:text-5xl break-keep text-balance">{t.capabilitiesSection.title}</h2>
         <div className="mt-14 grid gap-px overflow-hidden bg-white/10 md:grid-cols-3">
           {t.capabilities.map((c) => (
             <div key={c.title} className="bg-[#23272e] p-8 transition hover:bg-[#2b3038]">
-              <h3 className="font-black uppercase tracking-tight text-xl">{c.title}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-white/60">{c.desc}</p>
+              <h3 className="font-black uppercase tracking-tight text-xl break-keep text-balance">{c.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-white/60 break-keep text-pretty">{c.desc}</p>
             </div>
           ))}
         </div>
@@ -220,7 +220,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
       <section className="border-y border-white/10 bg-[#1b1e24] py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.certSection.eyebrow}</p>
-          <h2 className="mt-3 font-black uppercase tracking-tight text-3xl md:text-5xl">{t.certSection.title}</h2>
+          <h2 className="mt-3 font-black uppercase tracking-tight text-3xl md:text-5xl break-keep text-balance">{t.certSection.title}</h2>
           <div className="mt-10 flex flex-wrap gap-3">
             {t.certs.map((c) => (
               <span key={c} className="border border-[#ff6a13]/50 px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#ff6a13]">
@@ -253,10 +253,10 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.consult.eyebrow}</p>
-            <h2 className="mt-3 font-black uppercase leading-tight tracking-tight text-3xl md:text-5xl">
+            <h2 className="mt-3 font-black uppercase leading-tight tracking-tight text-3xl md:text-5xl break-keep text-balance">
               {t.consult.title[0]} <br className="hidden md:block" />{t.consult.title[1]}
             </h2>
-            <p className="mt-6 leading-relaxed text-white/70">
+            <p className="mt-6 leading-relaxed text-white/70 break-keep text-pretty">
               {t.consult.body}
             </p>
             <dl className="mt-10 space-y-3 border-t border-white/10 pt-8 text-sm">
@@ -269,8 +269,8 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
             </dl>
           </div>
           <form className="border border-[#ff6a13]/40 bg-[#1b1e24] p-6 sm:p-10">
-            <h3 className="font-black uppercase tracking-tight text-2xl">{t.consult.formTitle}</h3>
-            <p className="mt-2 text-xs text-white/50">{t.consult.formNote}</p>
+            <h3 className="font-black uppercase tracking-tight text-2xl break-keep text-balance">{t.consult.formTitle}</h3>
+            <p className="mt-2 text-xs text-white/50 break-keep text-pretty">{t.consult.formNote}</p>
             <div className="mt-8 space-y-4">
               <input placeholder={t.consult.placeholders.company} className="w-full border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/40 outline-none" />
               <input placeholder={t.consult.placeholders.name} className="w-full border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/40 outline-none" />
@@ -294,7 +294,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
       <footer className="border-t border-white/10 bg-[#1b1e24] py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
           <div className="font-black uppercase tracking-tight text-sm text-white">{t.brand.name}</div>
-          <div>{t.footer}</div>
+          <div className="break-keep text-pretty">{t.footer}</div>
         </div>
       </footer>
     </div>

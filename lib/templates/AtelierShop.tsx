@@ -117,7 +117,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent" />
         <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col justify-end px-6 pb-20 text-white">
           <p className="text-xs uppercase tracking-[0.4em]">{t.hero.season}</p>
-          <h1 className="mt-4 max-w-2xl font-serif text-4xl leading-[1.05] md:text-7xl">
+          <h1 className="mt-4 max-w-2xl font-serif text-4xl leading-[1.05] md:text-7xl break-keep text-balance">
             {t.hero.title[0]}<br className="hidden md:block" />{t.hero.title[1]}
           </h1>
           <a className="mt-10 inline-flex w-fit border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em]">
@@ -128,7 +128,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="font-serif text-3xl md:text-4xl">{t.featured.title}</h2>
+          <h2 className="font-serif text-3xl md:text-4xl break-keep text-balance">{t.featured.title}</h2>
           <div className="flex flex-wrap gap-3 text-xs uppercase tracking-widest">
             {t.featured.filters.map((f, i) => (
               <a key={f} className={i === 0 ? "border-b border-[#1f1d1a] pb-0.5" : "text-[#7a7770]"}>
@@ -147,7 +147,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
                 </div>
               </div>
               <div className="mt-4 flex items-baseline justify-between">
-                <h3 className="font-serif text-lg">{p.name}</h3>
+                <h3 className="font-serif text-lg break-keep text-balance">{p.name}</h3>
                 <p className="text-sm tracking-wide">{p.price}</p>
               </div>
             </article>
@@ -167,10 +167,10 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
           </div>
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-[#bcb8aa]">{t.story.eyebrow}</p>
-            <h2 className="mt-4 font-serif text-3xl leading-tight md:text-5xl">
+            <h2 className="mt-4 font-serif text-3xl leading-tight md:text-5xl break-keep text-balance">
               {t.story.title[0]}<br className="hidden md:block" />{t.story.title[1]}
             </h2>
-            <p className="mt-6 leading-relaxed text-[#d3cfc0]">
+            <p className="mt-6 leading-relaxed text-[#d3cfc0] break-keep text-pretty">
               {t.story.body}
             </p>
             <a className="mt-10 inline-flex border-b border-[#bcb8aa] pb-0.5 text-xs uppercase tracking-[0.3em]">
@@ -182,7 +182,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-7xl px-6 py-24">
         <p className="text-center text-xs uppercase tracking-[0.4em] text-[#7a7770]">{t.lookbook.eyebrow}</p>
-        <h2 className="mt-3 text-center font-serif text-4xl">{t.lookbook.title}</h2>
+        <h2 className="mt-3 text-center font-serif text-4xl break-keep text-balance">{t.lookbook.title}</h2>
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
           {lookbookImages.map((src, i) => (
             <div key={i} className={`relative ${i % 2 === 0 ? "aspect-[3/4]" : "aspect-[3/5] md:translate-y-8"} overflow-hidden`}>
@@ -195,8 +195,8 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
       <section className="border-t border-[#ecead9] bg-[#fafaf7] py-20">
         <div className="mx-auto max-w-2xl px-6 text-center">
           <p className="text-xs uppercase tracking-[0.4em] text-[#7a7770]">{t.newsletter.eyebrow}</p>
-          <h2 className="mt-3 font-serif text-3xl">{t.newsletter.title}</h2>
-          <p className="mt-3 text-sm text-[#5b5853]">{t.newsletter.body}</p>
+          <h2 className="mt-3 font-serif text-3xl break-keep text-balance">{t.newsletter.title}</h2>
+          <p className="mt-3 text-sm text-[#5b5853] break-keep text-pretty">{t.newsletter.body}</p>
           <form className="mt-8 flex border-b-2 border-[#1f1d1a]">
             <input
               placeholder={t.newsletter.placeholder}
@@ -210,7 +210,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
       <footer className="bg-[#fafaf7] py-12 text-xs uppercase tracking-widest text-[#7a7770]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
           <div className="font-serif text-base normal-case tracking-[0.4em] text-[#1f1d1a]">ATELIER 22</div>
-          <div>{t.footer}</div>
+          <div className="break-keep text-pretty">{t.footer}</div>
         </div>
       </footer>
     </div>

@@ -11,6 +11,21 @@ const nextConfig = {
       { protocol: "https", hostname: "www.yttmission.org" },
     ],
   },
+  async redirects() {
+    return [
+      { source: "/about", destination: "/", permanent: true },
+      { source: "/services", destination: "/pricing", permanent: true },
+      { source: "/reviews", destination: "/", permanent: true },
+      { source: "/blog", destination: "/", permanent: true },
+      { source: "/blog/:slug*", destination: "/", permanent: true },
+
+      { source: "/ko/about", destination: "/ko", permanent: true },
+      { source: "/ko/services", destination: "/ko/pricing", permanent: true },
+      { source: "/ko/reviews", destination: "/ko", permanent: true },
+      { source: "/ko/blog", destination: "/ko", permanent: true },
+      { source: "/ko/blog/:slug*", destination: "/ko", permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

@@ -200,10 +200,10 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 sm:py-24 md:grid-cols-[1.15fr_1fr] md:items-center md:py-32">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.hero.eyebrow}</p>
-            <h1 className="mt-6 text-4xl font-semibold leading-[1.15] tracking-tight md:text-6xl">
+            <h1 className="mt-6 text-4xl font-semibold leading-[1.15] tracking-tight md:text-6xl break-keep text-balance">
               {t.hero.title[0]} <br className="hidden md:block" />{t.hero.title[1]}
             </h1>
-            <p className="mt-6 max-w-md leading-relaxed text-[#1a2332]/70">
+            <p className="mt-6 max-w-md leading-relaxed text-[#1a2332]/70 break-keep text-pretty">
               {t.hero.body}
             </p>
             <div className="mt-10 flex gap-4">
@@ -250,12 +250,12 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
 
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.servicesSection.eyebrow}</p>
-        <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">{t.servicesSection.title}</h2>
+        <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl break-keep text-balance">{t.servicesSection.title}</h2>
         <div className="mt-14 grid gap-px overflow-hidden rounded-sm bg-[#1a2332]/10 md:grid-cols-3">
           {t.services.map((a) => (
             <div key={a.title} className="bg-[#f7f6f2] p-8 transition hover:bg-white">
-              <h3 className="text-xl font-semibold tracking-tight">{a.title}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-[#1a2332]/70">{a.desc}</p>
+              <h3 className="text-xl font-semibold tracking-tight break-keep text-balance">{a.title}</h3>
+              <p className="mt-4 text-sm leading-relaxed text-[#1a2332]/70 break-keep text-pretty">{a.desc}</p>
               <div className="mt-6 text-xs font-semibold tracking-widest text-[#c99a3b]">{t.viewMore}</div>
             </div>
           ))}
@@ -265,15 +265,15 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
       <section className="bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.advisorsSection.eyebrow}</p>
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">{t.advisorsSection.title}</h2>
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl break-keep text-balance">{t.advisorsSection.title}</h2>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {t.advisors.map((l) => (
               <div key={l.name}>
                 <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#1a2332]/5">
                   <Image src={l.image} alt={l.name} fill className="object-cover" />
                 </div>
-                <h3 className="mt-5 text-xl font-semibold tracking-tight">{l.name}</h3>
-                <p className="mt-1 text-xs text-[#1a2332]/60">{l.role}</p>
+                <h3 className="mt-5 text-xl font-semibold tracking-tight break-keep text-balance">{l.name}</h3>
+                <p className="mt-1 text-xs text-[#1a2332]/60 break-keep text-pretty">{l.role}</p>
               </div>
             ))}
           </div>
@@ -284,10 +284,10 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.consult.eyebrow}</p>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
+            <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight md:text-5xl break-keep text-balance">
               {t.consult.title[0]} <br className="hidden md:block" />{t.consult.title[1]}
             </h2>
-            <p className="mt-6 leading-relaxed text-[#1a2332]/70">
+            <p className="mt-6 leading-relaxed text-[#1a2332]/70 break-keep text-pretty">
               {t.consult.body}
             </p>
             <dl className="mt-10 space-y-3 border-t border-[#1a2332]/10 pt-8 text-sm">
@@ -300,8 +300,8 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
             </dl>
           </div>
           <form className="rounded-sm bg-[#1a2332] p-6 text-white sm:p-10">
-            <h3 className="text-2xl font-semibold tracking-tight">{t.consult.formTitle}</h3>
-            <p className="mt-2 text-xs text-white/60">{t.consult.formNote}</p>
+            <h3 className="text-2xl font-semibold tracking-tight break-keep text-balance">{t.consult.formTitle}</h3>
+            <p className="mt-2 text-xs text-white/60 break-keep text-pretty">{t.consult.formNote}</p>
             <div className="mt-8 space-y-4">
               <input placeholder={t.consult.placeholders.name} className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none" />
               <input placeholder={t.consult.placeholders.phone} className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none" />
@@ -323,7 +323,7 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
       <footer className="border-t border-[#1a2332]/10 bg-[#f7f6f2] py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 text-xs text-[#1a2332]/50 md:flex-row md:items-center md:justify-between">
           <div className="text-sm font-semibold tracking-tight text-[#1a2332]">{t.brand.name}</div>
-          <div className="max-w-xl md:text-right">{t.footer} {t.disclaimer}</div>
+          <div className="max-w-xl md:text-right break-keep text-pretty">{t.footer} {t.disclaimer}</div>
         </div>
       </footer>
     </div>

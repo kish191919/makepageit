@@ -131,11 +131,11 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
             <span className="inline-block rounded-full bg-[#c0681e]/10 px-4 py-1.5 text-xs font-bold text-[#c0681e]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-5 text-4xl font-extrabold leading-[1.15] md:text-6xl md:leading-[1.1]">
+            <h1 className="mt-5 text-4xl font-extrabold leading-[1.15] md:text-6xl md:leading-[1.1] break-keep text-balance">
               {t.hero.titlePre}<br className="hidden md:block" />
               <span className="text-[#c0681e]">{t.hero.titleAccent}</span>{t.hero.titlePost}
             </h1>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-[#5b3e2c]">
+            <p className="mt-5 max-w-md text-lg leading-relaxed text-[#5b3e2c] break-keep text-pretty">
               {t.hero.body}
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
@@ -164,8 +164,8 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
           {t.benefits.map((b) => (
             <div key={b.title} className="text-center">
               <div className="text-4xl">{b.icon}</div>
-              <h3 className="mt-3 font-bold">{b.title}</h3>
-              <p className="mt-1 text-sm text-white/70">{b.desc}</p>
+              <h3 className="mt-3 font-bold break-keep text-balance">{b.title}</h3>
+              <p className="mt-1 text-sm text-white/70 break-keep text-pretty">{b.desc}</p>
             </div>
           ))}
         </div>
@@ -175,7 +175,7 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
         <div className="flex items-end justify-between">
           <div>
             <span className="text-xs font-bold tracking-[0.3em] text-[#c0681e]">{t.todays.eyebrow}</span>
-            <h2 className="mt-2 text-4xl font-extrabold">{t.todays.title}</h2>
+            <h2 className="mt-2 text-4xl font-extrabold break-keep text-balance">{t.todays.title}</h2>
           </div>
           <div className="hidden text-sm font-semibold text-[#c0681e] md:block">{t.todays.viewAll}</div>
         </div>
@@ -190,8 +190,8 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
                 </span>
               </div>
               <div className="p-6">
-                <h3 className="text-lg font-bold">{b.name}</h3>
-                <p className="mt-1 text-sm text-[#7a5a44]">{b.desc}</p>
+                <h3 className="text-lg font-bold break-keep text-balance">{b.name}</h3>
+                <p className="mt-1 text-sm text-[#7a5a44] break-keep text-pretty">{b.desc}</p>
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-lg font-extrabold text-[#c0681e]">{b.price}</span>
                   <button className="rounded-full bg-[#3a2418] px-4 py-1.5 text-xs font-bold text-white">
@@ -216,10 +216,10 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
           </div>
           <div>
             <span className="text-xs font-bold tracking-[0.3em] text-[#c0681e]">{t.story.eyebrow}</span>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl break-keep text-balance">
               {t.story.title[0]}<br className="hidden md:block" />{t.story.title[1]}
             </h2>
-            <p className="mt-6 leading-relaxed text-[#5b3e2c]">
+            <p className="mt-6 leading-relaxed text-[#5b3e2c] break-keep text-pretty">
               {t.story.body}
             </p>
             <a className="mt-8 inline-block font-bold text-[#c0681e] underline">{t.story.cta}</a>
@@ -229,10 +229,10 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
 
       <section className="bg-[#c0681e] py-20 text-white">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-extrabold leading-tight md:text-5xl">
+          <h2 className="text-3xl font-extrabold leading-tight md:text-5xl break-keep text-balance">
             {t.bottomCta.titlePre}<br className="hidden md:block" />{t.bottomCta.titleAccent}
           </h2>
-          <p className="mt-4 text-white/90">{t.bottomCta.body}</p>
+          <p className="mt-4 text-white/90 break-keep text-pretty">{t.bottomCta.body}</p>
           <a className="mt-10 inline-block rounded-full bg-white px-10 py-4 text-base font-extrabold text-[#c0681e]">
             {t.bottomCta.button}
           </a>
@@ -243,9 +243,9 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 md:flex-row md:items-center md:justify-between">
           <div>
             <div className="font-bold text-white">{t.footer.brand}</div>
-            <p className="mt-1 text-xs">{t.footer.address}</p>
+            <p className="mt-1 text-xs break-keep text-pretty">{t.footer.address}</p>
           </div>
-          <p className="text-xs">{t.footer.legal}</p>
+          <p className="text-xs break-keep text-pretty">{t.footer.legal}</p>
         </div>
       </footer>
     </div>

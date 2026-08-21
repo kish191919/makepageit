@@ -142,10 +142,10 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
         <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/60" />
         <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-20 text-white">
           <p className="text-xs tracking-[0.4em]">{t.hero.eyebrow}</p>
-          <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-tight md:text-7xl">
+          <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-tight md:text-7xl break-keep text-balance">
             {t.hero.title[0]}<br className="hidden md:block" />{t.hero.title[1]}
           </h1>
-          <p className="mt-6 max-w-xl text-base text-white/80">
+          <p className="mt-6 max-w-xl text-base text-white/80 break-keep text-pretty">
             {t.hero.body}
           </p>
         </div>
@@ -163,10 +163,10 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
           </div>
           <div>
             <p className="text-xs tracking-[0.4em] text-[#7a6850]">{t.story.eyebrow}</p>
-            <h2 className="mt-4 font-serif text-3xl leading-tight md:text-4xl">
+            <h2 className="mt-4 font-serif text-3xl leading-tight md:text-4xl break-keep text-balance">
               {t.story.title[0]}<br className="hidden md:block" />{t.story.title[1]}
             </h2>
-            <p className="mt-6 leading-relaxed text-[#5b4b39]">
+            <p className="mt-6 leading-relaxed text-[#5b4b39] break-keep text-pretty">
               {t.story.body}
             </p>
             <div className="mt-10 grid grid-cols-3 gap-6 border-t border-[#e7ddcc] pt-8 text-center">
@@ -186,7 +186,7 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
           <div className="flex items-end justify-between">
             <div>
               <p className="text-xs tracking-[0.4em] text-[#7a6850]">{t.week.eyebrow}</p>
-              <h2 className="mt-3 font-serif text-4xl">{t.week.title}</h2>
+              <h2 className="mt-3 font-serif text-4xl break-keep text-balance">{t.week.title}</h2>
             </div>
             <a className="hidden text-xs tracking-widest underline md:inline">{t.week.viewAll}</a>
           </div>
@@ -201,8 +201,8 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
                     className="object-cover transition duration-700 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="mt-5 font-serif text-xl">{m.name}</h3>
-                <p className="mt-2 text-sm text-[#7a6850]">{m.notes}</p>
+                <h3 className="mt-5 font-serif text-xl break-keep text-balance">{m.name}</h3>
+                <p className="mt-2 text-sm text-[#7a6850] break-keep text-pretty">{m.notes}</p>
                 <p className="mt-3 text-sm tracking-widest">{m.price}</p>
               </article>
             ))}
@@ -214,8 +214,8 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
         <div className="grid gap-12 md:grid-cols-2">
           <div>
             <p className="text-xs tracking-[0.4em] text-[#7a6850]">{t.visit.eyebrow}</p>
-            <h2 className="mt-4 font-serif text-4xl leading-tight">{t.visit.title}</h2>
-            <p className="mt-6 leading-relaxed text-[#5b4b39]">
+            <h2 className="mt-4 font-serif text-4xl leading-tight break-keep text-balance">{t.visit.title}</h2>
+            <p className="mt-6 leading-relaxed text-[#5b4b39] break-keep text-pretty">
               {t.visit.body}
             </p>
             <dl className="mt-10 space-y-4 border-t border-[#e7ddcc] pt-8 text-sm">
@@ -241,7 +241,7 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
       <footer className="border-t border-[#e7ddcc] bg-[#2a221a] py-12 text-[#d9cdb8]">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 md:flex-row md:items-center">
           <div className="text-lg font-serif tracking-[0.4em] text-white">NOBLE</div>
-          <p className="text-xs tracking-widest text-[#9c8a6f]">{t.footer}</p>
+          <p className="text-xs tracking-widest text-[#9c8a6f] break-keep text-pretty">{t.footer}</p>
         </div>
       </footer>
     </div>

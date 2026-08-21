@@ -133,7 +133,7 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
             <span className="inline-flex items-center gap-2 rounded-full bg-[#ff5f5f]/10 px-3 py-1 text-xs font-bold text-[#ff5f5f]">
               {t.hero.tag}
             </span>
-            <h1 className="mt-5 text-3xl font-black leading-[1.25] md:text-6xl md:leading-[1.15]">
+            <h1 className="mt-5 text-3xl font-black leading-[1.25] md:text-6xl md:leading-[1.15] break-keep text-balance">
               <span className="rounded bg-yellow-200 px-1.5">{t.hero.titleAccent}</span>,
               <br className="hidden md:block" />
               {t.hero.titleA}
@@ -161,7 +161,7 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
                   {t.hero.submit}
                 </button>
               </form>
-              <p className="mt-2 text-[11px] text-slate-400">{t.hero.note}</p>
+              <p className="mt-2 text-[11px] text-slate-400 break-keep text-pretty">{t.hero.note}</p>
             </div>
           </div>
 
@@ -197,10 +197,10 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <h2 className="text-center text-3xl font-black md:text-4xl">
+        <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">
           <span className="text-[#0091ff]">{t.resultsTitleA}</span>{t.resultsTitleB}
         </h2>
-        <p className="mt-3 text-center text-sm text-slate-500">{t.resultsNote}</p>
+        <p className="mt-3 text-center text-sm text-slate-500 break-keep text-pretty">{t.resultsNote}</p>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {t.beforeAfter.map((b) => (
             <article key={b.name} className="overflow-hidden rounded-3xl bg-white shadow-md ring-1 ring-slate-100">
@@ -221,12 +221,12 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
 
       <section className="bg-slate-50 py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center text-3xl font-black md:text-4xl">{t.reviewsTitle}</h2>
+          <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">{t.reviewsTitle}</h2>
           <div className="mt-12 grid gap-5 md:grid-cols-3">
             {t.reviews.map((r, i) => (
               <div key={i} className="rounded-2xl bg-white p-6 shadow-sm">
                 <div className="text-amber-400">★★★★★</div>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700">“{r.text}”</p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-700 break-keep text-pretty">“{r.text}”</p>
                 <p className="mt-5 text-xs font-semibold text-slate-500">— {r.name}</p>
               </div>
             ))}
@@ -235,15 +235,15 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-3xl px-6 py-20">
-        <h2 className="text-center text-3xl font-black md:text-4xl">{t.faqsTitle}</h2>
+        <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">{t.faqsTitle}</h2>
         <div className="mt-10 space-y-3">
           {t.faqs.map((f) => (
             <details key={f.q} className="rounded-2xl bg-slate-50 p-5 [&_summary]:cursor-pointer">
-              <summary className="flex items-center justify-between font-bold">
+              <summary className="flex items-center justify-between font-bold break-keep text-pretty">
                 {f.q}
                 <span className="text-[#0091ff]">+</span>
               </summary>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">{f.a}</p>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600 break-keep text-pretty">{f.a}</p>
             </details>
           ))}
         </div>
@@ -251,15 +251,15 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
 
       <section className="bg-[#0091ff] py-16 text-white">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-black md:text-5xl">{t.bottomCta.title}</h2>
-          <p className="mt-4 text-white/90">{t.bottomCta.body}</p>
+          <h2 className="text-3xl font-black md:text-5xl break-keep text-balance">{t.bottomCta.title}</h2>
+          <p className="mt-4 text-white/90 break-keep text-pretty">{t.bottomCta.body}</p>
           <a className="mt-8 inline-block rounded-full bg-white px-10 py-4 text-base font-black text-[#0091ff] shadow-2xl">
             {t.bottomCta.button}
           </a>
         </div>
       </section>
 
-      <footer className="bg-slate-900 py-6 text-center text-[11px] text-slate-400">
+      <footer className="bg-slate-900 py-6 text-center text-[11px] text-slate-400 break-keep text-pretty">
         {t.footer}
       </footer>
     </div>

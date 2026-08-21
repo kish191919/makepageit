@@ -110,14 +110,14 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
             <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1 text-xs">
               {t.hero.tag}
             </span>
-            <h1 className="mt-7 text-4xl font-black leading-[1.1] tracking-tight md:text-7xl md:leading-[1]">
+            <h1 className="mt-7 text-4xl font-black leading-[1.1] tracking-tight md:text-7xl md:leading-[1] break-keep text-balance">
               {t.hero.titleA}
               <br className="hidden md:block" />
               <span className="bg-gradient-to-r from-[#ff3d8b] via-[#ffb44a] to-[#6c5cff] bg-clip-text text-transparent">
                 {t.hero.titleB}
               </span>
             </h1>
-            <p className="mt-7 max-w-md text-lg text-white/70">
+            <p className="mt-7 max-w-md text-lg text-white/70 break-keep text-pretty">
               {t.hero.body}
             </p>
             <div className="mt-10 flex flex-wrap gap-3">
@@ -174,8 +174,8 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
               className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-transparent p-8"
             >
               <div className="text-3xl">{f.icon}</div>
-              <h3 className="mt-5 text-xl font-bold">{f.title}</h3>
-              <p className="mt-3 text-sm text-white/60">{f.desc}</p>
+              <h3 className="mt-5 text-xl font-bold break-keep text-balance">{f.title}</h3>
+              <p className="mt-3 text-sm text-white/60 break-keep text-pretty">{f.desc}</p>
             </article>
           ))}
         </div>
@@ -183,7 +183,7 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
 
       <section className="bg-gradient-to-b from-transparent via-[#ff3d8b]/5 to-transparent py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center text-4xl font-black md:text-5xl">{t.realPeopleTitle}</h2>
+          <h2 className="text-center text-4xl font-black md:text-5xl break-keep text-balance">{t.realPeopleTitle}</h2>
           <div className="mt-14 grid gap-5 md:grid-cols-3">
             {t.testimonials.map((tt) => (
               <div key={tt.handle} className="rounded-3xl bg-white/5 p-6 backdrop-blur">
@@ -194,7 +194,7 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
                   height={56}
                   className="h-14 w-14 rounded-full object-cover"
                 />
-                <p className="mt-5 text-sm leading-relaxed text-white/80">“{tt.text}”</p>
+                <p className="mt-5 text-sm leading-relaxed text-white/80 break-keep text-pretty">“{tt.text}”</p>
                 <p className="mt-5 text-xs text-[#ffb44a]">{tt.handle}</p>
               </div>
             ))}
@@ -203,20 +203,20 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
       </section>
 
       <section className="mx-auto max-w-3xl px-6 py-24 text-center">
-        <h2 className="text-3xl font-black leading-tight md:text-6xl">
+        <h2 className="text-3xl font-black leading-tight md:text-6xl break-keep text-balance">
           {t.bottomCta.titleA}
           <br className="hidden md:block" />
           <span className="bg-gradient-to-r from-[#ff3d8b] to-[#ffb44a] bg-clip-text text-transparent">
             {t.bottomCta.titleB}
           </span>
         </h2>
-        <p className="mt-6 text-white/60">{t.bottomCta.body}</p>
+        <p className="mt-6 text-white/60 break-keep text-pretty">{t.bottomCta.body}</p>
         <a className="mt-10 inline-block rounded-full bg-gradient-to-r from-[#ff3d8b] to-[#ffb44a] px-10 py-4 text-base font-black text-black">
           {t.bottomCta.button}
         </a>
       </section>
 
-      <footer className="border-t border-white/10 py-8 text-center text-xs text-white/40">
+      <footer className="border-t border-white/10 py-8 text-center text-xs text-white/40 break-keep text-pretty">
         {t.footer}
       </footer>
     </div>
