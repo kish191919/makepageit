@@ -92,6 +92,8 @@ const copy = {
   },
 } as const;
 
+const navHrefs: Record<string, string> = { index: "#index", work: "#work", about: "#about", contact: "#contact" };
+
 export default function KittWorks({ lang }: { lang: Lang }) {
   const t = copy[lang];
   return (
@@ -101,16 +103,16 @@ export default function KittWorks({ lang }: { lang: Lang }) {
           <div className="font-mono text-sm">{t.domain}</div>
           <nav className="hidden gap-8 font-mono text-xs text-neutral-500 md:flex">
             {t.nav.map((n) => (
-              <a key={n}>{n}</a>
+              <a key={n} href={navHrefs[n]}>{n}</a>
             ))}
           </nav>
-          <a className="font-mono text-xs underline decoration-dotted underline-offset-4">
+          <a href="#contact" className="font-mono text-xs underline decoration-dotted underline-offset-4">
             {t.contactEmail}
           </a>
         </div>
       </header>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="index" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid gap-10 md:grid-cols-12">
           <p className="font-mono text-xs text-neutral-500 md:col-span-3">
             {t.intro.label} <br />
@@ -138,7 +140,7 @@ export default function KittWorks({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="work" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid gap-10 md:grid-cols-12">
           <p className="font-mono text-xs text-neutral-500 md:col-span-3">{t.work.label}</p>
           <div className="md:col-span-9">
@@ -168,7 +170,7 @@ export default function KittWorks({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-y border-neutral-200 bg-neutral-50">
+      <section id="about" className="scroll-mt-24 border-y border-neutral-200 bg-neutral-50">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:grid-cols-12">
           <p className="font-mono text-xs text-neutral-500 md:col-span-3">{t.services.label}</p>
           <div className="md:col-span-9">
@@ -184,7 +186,7 @@ export default function KittWorks({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="contact" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid gap-10 md:grid-cols-12">
           <p className="font-mono text-xs text-neutral-500 md:col-span-3">{t.contact.label}</p>
           <div className="md:col-span-9">

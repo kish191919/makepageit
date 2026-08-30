@@ -129,13 +129,13 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
           <div className="text-xl font-black tracking-tight">
             {t.brand.left}<span className="text-[#ff5e3a]">{t.brand.right}</span>
           </div>
-          <a className="rounded-full bg-[#ff5e3a] px-5 py-2 text-sm font-bold text-white shadow-lg shadow-[#ff5e3a]/30">
+          <a href="#offer" className="rounded-full bg-[#ff5e3a] px-5 py-2 text-sm font-bold text-white shadow-lg shadow-[#ff5e3a]/30">
             {t.cta}
           </a>
         </div>
       </header>
 
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#fff7f3] via-white to-[#ffece4]">
+      <section id="offer" className="relative scroll-mt-24 overflow-hidden bg-gradient-to-br from-[#fff7f3] via-white to-[#ffece4]">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.1fr_1fr] md:items-center md:py-24">
           <div>
             <span className="inline-block rounded-full bg-[#ff5e3a]/10 px-3 py-1 text-xs font-bold text-[#ff5e3a]">

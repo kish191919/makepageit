@@ -74,6 +74,8 @@ const copy = {
   },
 } as const;
 
+const navHrefs: Record<string, string> = { works: "#works", about: "#about", shop: "#services", contact: "#contact" };
+
 export default function JiniIllustration({ lang }: { lang: Lang }) {
   const t = copy[lang];
   return (
@@ -95,18 +97,18 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
           </div>
           <nav className="hidden gap-6 text-sm font-bold md:flex">
             {t.nav.map((n, i) => (
-              <a key={n} className={i === 0 ? "rounded-full bg-[#ffd166] px-3 py-1" : ""}>
+              <a key={n} href={navHrefs[n]} className={i === 0 ? "rounded-full bg-[#ffd166] px-3 py-1" : ""}>
                 {n}
               </a>
             ))}
           </nav>
-          <a className="rounded-full bg-[#3a2e2a] px-5 py-2 text-xs font-bold text-[#fff8ec]">
+          <a href="#contact" className="rounded-full bg-[#3a2e2a] px-5 py-2 text-xs font-bold text-[#fff8ec]">
             {t.cta}
           </a>
         </div>
       </header>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section id="about" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
         <div className="grid items-center gap-10 md:grid-cols-[1.2fr_1fr]">
           <div>
             <span className="inline-block rotate-[-2deg] rounded-full bg-[#06d6a0] px-3 py-1 text-xs font-bold text-white">
@@ -151,7 +153,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section id="works" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-3xl font-black md:text-4xl break-keep text-balance">{t.recentTitle}</h2>
           <a className="text-sm font-bold underline">{t.viewAll}</a>
@@ -179,7 +181,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section id="services" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
         <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">{t.servicesTitle}</h2>
         <div className="mt-12 grid gap-5 md:grid-cols-4">
           {t.services.map(([icon, title, d]) => (
@@ -195,7 +197,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-6 py-20">
+      <section id="contact" className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20">
         <div className="rotate-[-1deg] rounded-3xl border-4 border-[#3a2e2a] bg-[#ef476f] p-10 text-center text-white shadow-[10px_10px_0_#3a2e2a]">
           <h2 className="text-3xl font-black md:text-4xl break-keep text-balance">{t.contact.title}</h2>
           <p className="mt-3 text-white/90 break-keep text-pretty">{t.contact.body}</p>

@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import type { Lang } from "@/lib/i18n";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -184,6 +185,7 @@ const copy = {
 export default function HarborRealty({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const [menuOpen, setMenuOpen] = useState(false);
+  const neighborhoodsPath = localePath(lang, "/portfolio/harbor-realty/neighborhoods");
   const navItems = [t.nav.listings, t.nav.neighborhoods, t.nav.sell, t.nav.agents, t.nav.contact];
   return (
     <div className="bg-[#faf7f2] text-[#1c3829]">
@@ -199,14 +201,14 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
             </div>
           </div>
           <nav className="hidden gap-7 text-sm font-medium text-[#1c3829]/80 md:flex">
-            <a>{t.nav.listings}</a>
-            <a>{t.nav.neighborhoods}</a>
-            <a>{t.nav.sell}</a>
-            <a>{t.nav.agents}</a>
-            <a>{t.nav.contact}</a>
+            <a href="#listings">{t.nav.listings}</a>
+            <Link href={neighborhoodsPath}>{t.nav.neighborhoods}</Link>
+            <a href="#contact">{t.nav.sell}</a>
+            <a href="#agents">{t.nav.agents}</a>
+            <a href="#contact">{t.nav.contact}</a>
           </nav>
           <div className="flex items-center gap-3">
-            <a className="hidden rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white sm:inline-block">
+            <a href="#contact" className="hidden rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white sm:inline-block">
               {t.bookCta}
             </a>
             <button
@@ -225,13 +227,28 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
         {menuOpen && (
           <div className="border-t border-[#1c3829]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#1c3829]/80">
-              {navItems.map((label) => (
-                <a key={label} className="py-2">
-                  {label}
-                </a>
-              ))}
+              {navItems.map((label, i) =>
+                i === 1 ? (
+                  <Link key={label} href={neighborhoodsPath} onClick={() => setMenuOpen(false)} className="py-2">
+                    {label}
+                  </Link>
+                ) : (
+                  <a
+                    key={label}
+                    href={`#${["listings", "listings", "contact", "agents", "contact"][i]}`}
+                    onClick={() => setMenuOpen(false)}
+                    className="py-2"
+                  >
+                    {label}
+                  </a>
+                )
+              )}
             </nav>
-            <a className="mt-3 inline-block rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white">
+            <a
+              href="#contact"
+              onClick={() => setMenuOpen(false)}
+              className="mt-3 inline-block rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
+            >
               {t.bookCta}
             </a>
           </div>
@@ -276,7 +293,7 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section id="listings" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 sm:py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#b08d57]">{t.listingsSection.eyebrow}</p>
         <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.listingsSection.title}</h2>
         <div className="mt-14 grid gap-10 md:grid-cols-3">
@@ -298,7 +315,7 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#f2ead9] py-16 sm:py-24">
+      <section id="agents" className="scroll-mt-24 bg-[#f2ead9] py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#b08d57]">{t.agentsSection.eyebrow}</p>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.agentsSection.title}</h2>
@@ -316,7 +333,7 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section id="contact" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 sm:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#b08d57]">{t.contact.eyebrow}</p>

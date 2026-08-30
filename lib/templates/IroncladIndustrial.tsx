@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import type { Lang } from "@/lib/i18n";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -110,7 +111,14 @@ const copy = {
 export default function IroncladIndustrial({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const [menuOpen, setMenuOpen] = useState(false);
-  const navItems = [t.nav.capabilities, t.nav.products, t.nav.certifications, t.nav.industries, t.nav.contact];
+  const productsPath = localePath(lang, "/portfolio/ironclad-industrial/products");
+  const navItems: [string, string][] = [
+    [t.nav.capabilities, "#capabilities"],
+    [t.nav.products, productsPath],
+    [t.nav.certifications, "#certifications"],
+    [t.nav.industries, "#certifications"],
+    [t.nav.contact, "#contact"],
+  ];
   return (
     <div className="bg-[#23272e] text-[#f2f1ec]">
       <header className="border-b border-white/10 bg-[#1b1e24]">
@@ -123,14 +131,14 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
             </div>
           </div>
           <nav className="hidden gap-7 text-sm font-semibold uppercase tracking-wide text-white/70 md:flex">
-            <a>{t.nav.capabilities}</a>
-            <a>{t.nav.products}</a>
-            <a>{t.nav.certifications}</a>
-            <a>{t.nav.industries}</a>
-            <a>{t.nav.contact}</a>
+            <a href="#capabilities" className="transition hover:text-[#ff6a13]">{t.nav.capabilities}</a>
+            <Link href={productsPath} className="transition hover:text-[#ff6a13]">{t.nav.products}</Link>
+            <a href="#certifications" className="transition hover:text-[#ff6a13]">{t.nav.certifications}</a>
+            <a href="#certifications" className="transition hover:text-[#ff6a13]">{t.nav.industries}</a>
+            <a href="#contact" className="transition hover:text-[#ff6a13]">{t.nav.contact}</a>
           </nav>
           <div className="flex items-center gap-3">
-            <a className="hidden bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24] sm:inline-block">
+            <a href="#contact" className="hidden bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24] sm:inline-block">
               {t.quoteCta}
             </a>
             <button
@@ -149,13 +157,13 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
         {menuOpen && (
           <div className="border-t border-white/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-semibold uppercase tracking-wide text-white/70">
-              {navItems.map((label) => (
-                <a key={label} className="py-2">
+              {navItems.map(([label, href]) => (
+                <a key={label} href={href} onClick={() => setMenuOpen(false)} className="py-2">
                   {label}
                 </a>
               ))}
             </nav>
-            <a className="mt-3 inline-block bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24]">
+            <a href="#contact" onClick={() => setMenuOpen(false)} className="mt-3 inline-block bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24]">
               {t.quoteCta}
             </a>
           </div>
@@ -204,7 +212,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section id="capabilities" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 sm:py-24">
         <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.capabilitiesSection.eyebrow}</p>
         <h2 className="mt-3 font-black uppercase tracking-tight text-4xl md:text-5xl break-keep text-balance">{t.capabilitiesSection.title}</h2>
         <div className="mt-14 grid gap-px overflow-hidden bg-white/10 md:grid-cols-3">
@@ -217,7 +225,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-[#1b1e24] py-16 sm:py-24">
+      <section id="certifications" className="scroll-mt-24 border-y border-white/10 bg-[#1b1e24] py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.certSection.eyebrow}</p>
           <h2 className="mt-3 font-black uppercase tracking-tight text-3xl md:text-5xl break-keep text-balance">{t.certSection.title}</h2>
@@ -249,7 +257,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section id="contact" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 sm:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff6a13]">{t.consult.eyebrow}</p>

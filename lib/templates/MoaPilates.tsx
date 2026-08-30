@@ -112,18 +112,18 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="text-xl font-bold tracking-[0.3em]">{t.brand.short}</div>
           <nav className="hidden gap-7 text-xs uppercase tracking-widest text-white/70 md:flex">
-            <a>{t.nav.programs}</a>
-            <a>{t.nav.trainers}</a>
-            <a>{t.nav.membership}</a>
-            <a>{t.nav.studio}</a>
+            <a href="#programs" className="transition hover:text-white">{t.nav.programs}</a>
+            <a href="#trainers" className="transition hover:text-white">{t.nav.trainers}</a>
+            <a href="#membership" className="transition hover:text-white">{t.nav.membership}</a>
+            <a href="#studio" className="transition hover:text-white">{t.nav.studio}</a>
           </nav>
-          <a className="rounded-full border border-white px-5 py-2 text-xs uppercase tracking-widest">
+          <a href="#booking" className="rounded-full border border-white px-5 py-2 text-xs uppercase tracking-widest">
             {t.bookCta}
           </a>
         </div>
       </header>
 
-      <section className="relative h-[88vh] min-h-[560px] overflow-hidden">
+      <section id="studio" className="relative h-[88vh] min-h-[560px] scroll-mt-24 overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=1800&q=80&auto=format&fit=crop"
           alt={t.brand.full}
@@ -144,7 +144,7 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="programs" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="flex items-end justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">{t.programsSection.eyebrow}</p>
@@ -167,7 +167,7 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-white py-24 text-[#0e0d0c]">
+      <section id="trainers" className="scroll-mt-24 bg-white py-24 text-[#0e0d0c]">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs uppercase tracking-[0.4em] text-black/50">{t.trainersSection.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-light md:text-5xl break-keep text-balance">{t.trainersSection.title}</h2>
@@ -187,7 +187,7 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="membership" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <p className="text-center text-xs uppercase tracking-[0.4em] text-white/50">{t.plansSection.eyebrow}</p>
         <h2 className="mt-3 text-center text-4xl font-light md:text-5xl break-keep text-balance">{t.plansSection.title}</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
@@ -220,7 +220,7 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-[#0e0d0c] py-20">
+      <section id="booking" className="scroll-mt-24 border-t border-white/10 bg-[#0e0d0c] py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-4xl font-light md:text-5xl break-keep text-balance">{t.bottomCta.title}</h2>
           <p className="mt-4 text-white/60 break-keep text-pretty">{t.bottomCta.body}</p>

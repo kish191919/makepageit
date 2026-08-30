@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -103,20 +104,30 @@ const copy = {
 } as const;
 
 const slots = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30"];
+// nav = ["STORY", "MENU", "WINE", "PRESS"]; WINE has no dedicated section, so it points
+// at the closest matching content (menu's wine pairing). PRESS links to its own page.
+const navHrefs = ["#story", "#menu", "#menu"];
 
 export default function VillaToscana({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const pressPath = localePath(lang, "/portfolio/villa-toscana/press");
   return (
     <div className="min-h-screen bg-[#f4ede1] text-[#2b1d12]">
       <header className="border-b border-[#d8c8a9]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
           <div className="font-serif text-2xl italic tracking-wide">Villa Toscana</div>
           <nav className="hidden gap-8 text-[11px] font-medium tracking-[0.3em] text-[#7a6248] md:flex">
-            {t.nav.map((n) => (
-              <a key={n}>{n}</a>
-            ))}
+            {t.nav.map((n, i) =>
+              i === 3 ? (
+                <Link key={n} href={pressPath} className="transition hover:text-[#7d2c1a]">
+                  {n}
+                </Link>
+              ) : (
+                <a key={n} href={navHrefs[i]} className="transition hover:text-[#7d2c1a]">{n}</a>
+              )
+            )}
           </nav>
-          <a className="border border-[#7d2c1a] bg-[#7d2c1a] px-5 py-2 text-[11px] tracking-[0.3em] text-[#f4ede1]">
+          <a href="#reservation" className="border border-[#7d2c1a] bg-[#7d2c1a] px-5 py-2 text-[11px] tracking-[0.3em] text-[#f4ede1]">
             {t.reserveCta}
           </a>
         </div>
@@ -143,7 +154,7 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="story" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid gap-14 md:grid-cols-[1fr_2fr]">
           <p className="text-[11px] tracking-[0.4em] text-[#7d2c1a]">{t.editorial.eyebrow}</p>
           <div>
@@ -167,7 +178,7 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-y border-[#d8c8a9] bg-[#ebe0c8] py-24">
+      <section id="menu" className="scroll-mt-24 border-y border-[#d8c8a9] bg-[#ebe0c8] py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-[11px] tracking-[0.4em] text-[#7d2c1a]">{t.courses.eyebrow}</p>
           <h2 className="mt-3 font-serif text-4xl break-keep text-balance">{t.courses.title}</h2>
@@ -191,7 +202,7 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="reservation" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid gap-12 md:grid-cols-2">
           <div className="relative aspect-[4/5] overflow-hidden">
             <Image

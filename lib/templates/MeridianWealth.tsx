@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import type { Lang } from "@/lib/i18n";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -144,7 +145,14 @@ const copy = {
 export default function MeridianWealth({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const [menuOpen, setMenuOpen] = useState(false);
-  const navItems = [t.nav.services, t.nav.approach, t.nav.advisors, t.nav.insights, t.nav.contact];
+  const insightsPath = localePath(lang, "/portfolio/meridian-wealth/insights");
+  const navItems: [string, string][] = [
+    [t.nav.services, "#services"],
+    [t.nav.approach, "#approach"],
+    [t.nav.advisors, "#advisors"],
+    [t.nav.insights, insightsPath],
+    [t.nav.contact, "#contact"],
+  ];
   return (
     <div className="bg-[#f7f6f2] text-[#1a2332]">
       <header className="border-b border-[#1a2332]/10 bg-[#f7f6f2]">
@@ -157,14 +165,14 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
             </div>
           </div>
           <nav className="hidden gap-7 text-sm font-medium text-[#1a2332]/75 md:flex">
-            <a>{t.nav.services}</a>
-            <a>{t.nav.approach}</a>
-            <a>{t.nav.advisors}</a>
-            <a>{t.nav.insights}</a>
-            <a>{t.nav.contact}</a>
+            <a href="#services" className="transition hover:text-[#c99a3b]">{t.nav.services}</a>
+            <a href="#approach" className="transition hover:text-[#c99a3b]">{t.nav.approach}</a>
+            <a href="#advisors" className="transition hover:text-[#c99a3b]">{t.nav.advisors}</a>
+            <Link href={insightsPath} className="transition hover:text-[#c99a3b]">{t.nav.insights}</Link>
+            <a href="#contact" className="transition hover:text-[#c99a3b]">{t.nav.contact}</a>
           </nav>
           <div className="flex items-center gap-3">
-            <a className="hidden rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
+            <a href="#contact" className="hidden rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
               {t.bookCta}
             </a>
             <button
@@ -183,13 +191,13 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         {menuOpen && (
           <div className="border-t border-[#1a2332]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#1a2332]/75">
-              {navItems.map((label) => (
-                <a key={label} className="py-2">
+              {navItems.map(([label, href]) => (
+                <a key={label} href={href} onClick={() => setMenuOpen(false)} className="py-2">
                   {label}
                 </a>
               ))}
             </nav>
-            <a className="mt-3 inline-block rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
+            <a href="#contact" onClick={() => setMenuOpen(false)} className="mt-3 inline-block rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
               {t.bookCta}
             </a>
           </div>
@@ -237,7 +245,7 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#1a2332] py-16 text-white">
+      <section id="approach" className="scroll-mt-24 bg-[#1a2332] py-16 text-white">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 sm:grid-cols-4">
           {t.stats.map((s) => (
             <div key={s.l} className="border-l border-[#c99a3b]/40 pl-6">
@@ -248,7 +256,7 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section id="services" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 sm:py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.servicesSection.eyebrow}</p>
         <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl break-keep text-balance">{t.servicesSection.title}</h2>
         <div className="mt-14 grid gap-px overflow-hidden rounded-sm bg-[#1a2332]/10 md:grid-cols-3">
@@ -262,7 +270,7 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-24">
+      <section id="advisors" className="scroll-mt-24 bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.advisorsSection.eyebrow}</p>
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl break-keep text-balance">{t.advisorsSection.title}</h2>
@@ -280,7 +288,7 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section id="contact" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 sm:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c99a3b]">{t.consult.eyebrow}</p>

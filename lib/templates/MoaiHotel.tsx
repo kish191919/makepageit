@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -96,17 +97,26 @@ const copy = {
 
 export default function MoaiHotel({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const journalPath = localePath(lang, "/portfolio/moai-hotel/journal");
   return (
     <div className="min-h-screen bg-[#0d0c0a] text-[#f0e9d6]">
       <header className="absolute inset-x-0 top-0 z-30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
           <div className="font-serif text-xl tracking-[0.5em] text-[#d4af37]">{t.brand}</div>
           <nav className="hidden gap-10 text-[11px] font-medium tracking-[0.3em] md:flex">
-            {t.nav.map((n) => (
-              <a key={n}>{n}</a>
-            ))}
+            {t.nav.map((n, i) =>
+              i === 3 ? (
+                <Link key={n} href={journalPath} className="transition hover:text-[#d4af37]">
+                  {n}
+                </Link>
+              ) : (
+                <a key={n} href={["#rooms", "#experiences", "#experiences"][i]} className="transition hover:text-[#d4af37]">
+                  {n}
+                </a>
+              )
+            )}
           </nav>
-          <a className="border border-[#d4af37] px-5 py-2 text-[11px] tracking-[0.3em] text-[#d4af37]">
+          <a href="#reserve" className="border border-[#d4af37] px-5 py-2 text-[11px] tracking-[0.3em] text-[#d4af37]">
             {t.reserveCta}
           </a>
         </div>
@@ -137,7 +147,7 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24">
+      <section id="philosophy" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
         <div className="grid items-center gap-16 md:grid-cols-[1fr_1fr]">
           <div>
             <p className="text-[11px] tracking-[0.4em] text-[#d4af37]">{t.philosophy.eyebrow}</p>
@@ -169,7 +179,7 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-y border-[#d4af37]/20 bg-[#15130f] py-24">
+      <section id="rooms" className="scroll-mt-24 border-y border-[#d4af37]/20 bg-[#15130f] py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex items-end justify-between">
             <div>
@@ -198,7 +208,7 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24">
+      <section id="experiences" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
         <p className="text-[11px] tracking-[0.4em] text-[#d4af37]">{t.experiences.eyebrow}</p>
         <h2 className="mt-4 font-serif text-4xl md:text-5xl break-keep text-balance">{t.experiences.title}</h2>
         <div className="mt-14 grid gap-px bg-[#d4af37]/20 md:grid-cols-2">
@@ -212,7 +222,7 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#15130f] py-24 text-center">
+      <section id="reserve" className="scroll-mt-24 bg-[#15130f] py-24 text-center">
         <div className="mx-auto max-w-3xl px-6">
           <p className="text-[11px] tracking-[0.4em] text-[#d4af37]">{t.reserve.eyebrow}</p>
           <h2 className="mt-6 font-serif text-3xl leading-tight md:text-6xl break-keep text-balance">

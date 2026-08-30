@@ -87,17 +87,17 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
             HALO
           </div>
           <nav className="hidden gap-6 text-sm text-white/70 md:flex">
-            {t.nav.map((n) => (
-              <a key={n}>{n}</a>
+            {t.nav.map((n, i) => (
+              <a key={n} href={`#${["features", "plans", "community"][i]}`}>{n}</a>
             ))}
           </nav>
-          <a className="rounded-full bg-gradient-to-r from-[#ff3d8b] to-[#ffb44a] px-5 py-2 text-sm font-bold text-black">
+          <a href="#hero" className="rounded-full bg-gradient-to-r from-[#ff3d8b] to-[#ffb44a] px-5 py-2 text-sm font-bold text-black">
             {t.cta}
           </a>
         </div>
       </header>
 
-      <section className="relative overflow-hidden">
+      <section id="hero" className="relative scroll-mt-24 overflow-hidden">
         <div
           className="absolute inset-0 opacity-60"
           style={{
@@ -166,7 +166,7 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section id="features" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
         <div className="grid gap-5 md:grid-cols-3">
           {t.features.map((f) => (
             <article
@@ -181,7 +181,7 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-gradient-to-b from-transparent via-[#ff3d8b]/5 to-transparent py-20">
+      <section id="community" className="scroll-mt-24 bg-gradient-to-b from-transparent via-[#ff3d8b]/5 to-transparent py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-4xl font-black md:text-5xl break-keep text-balance">{t.realPeopleTitle}</h2>
           <div className="mt-14 grid gap-5 md:grid-cols-3">
@@ -202,7 +202,7 @@ export default function HaloFitness({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-6 py-24 text-center">
+      <section id="plans" className="mx-auto max-w-3xl scroll-mt-24 px-6 py-24 text-center">
         <h2 className="text-3xl font-black leading-tight md:text-6xl break-keep text-balance">
           {t.bottomCta.titleA}
           <br className="hidden md:block" />

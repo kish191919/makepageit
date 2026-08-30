@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -82,6 +83,7 @@ const slots = ["11:00", "12:30", "14:00", "15:30", "17:00", "18:30"];
 
 export default function MuniHair({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const galleryPath = localePath(lang, "/portfolio/muni-hair/gallery");
   return (
     <div className="min-h-screen bg-[#0d0a14] text-white">
       <header className="border-b border-white/10 bg-[#0d0a14]/80 backdrop-blur">
@@ -92,11 +94,19 @@ export default function MuniHair({ lang }: { lang: Lang }) {
             </span>
           </div>
           <nav className="hidden gap-7 text-xs font-bold uppercase tracking-widest text-white/70 md:flex">
-            {t.nav.map((n) => (
-              <a key={n}>{n}</a>
-            ))}
+            {t.nav.map((n, i) =>
+              i === 1 ? (
+                <Link key={n} href={galleryPath} className="transition hover:text-[#ff9ee5]">
+                  {n}
+                </Link>
+              ) : (
+                <a key={n} href={["#stylists", "#stylists", "#menu", "#booking"][i]} className="transition hover:text-[#ff9ee5]">
+                  {n}
+                </a>
+              )
+            )}
           </nav>
-          <a className="rounded-full bg-gradient-to-r from-[#c0c0ff] via-[#ff9ee5] to-[#a3ffd6] px-4 py-2 text-xs font-bold text-[#0d0a14]">
+          <a href="#booking" className="rounded-full bg-gradient-to-r from-[#c0c0ff] via-[#ff9ee5] to-[#a3ffd6] px-4 py-2 text-xs font-bold text-[#0d0a14]">
             {t.bookCta}
           </a>
         </div>
@@ -129,9 +139,9 @@ export default function MuniHair({ lang }: { lang: Lang }) {
               <a className="rounded-full bg-white px-6 py-3 text-sm font-bold text-[#0d0a14]">
                 {t.hero.ctaPrimary}
               </a>
-              <a className="rounded-full border border-white/40 px-6 py-3 text-sm font-bold">
+              <Link href={galleryPath} className="rounded-full border border-white/40 px-6 py-3 text-sm font-bold">
                 {t.hero.ctaSecondary}
-              </a>
+              </Link>
             </div>
           </div>
           <div className="relative aspect-square overflow-hidden rounded-[3rem] border-4 border-white/20 shadow-2xl shadow-[#ff9ee5]/30">
@@ -146,7 +156,7 @@ export default function MuniHair({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section id="stylists" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
         <h2 className="text-center font-mono text-xs uppercase tracking-[0.5em] text-[#a3ffd6]">
           {t.stylists.eyebrow}
         </h2>
@@ -168,7 +178,7 @@ export default function MuniHair({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-gradient-to-r from-[#c0c0ff]/10 via-[#ff9ee5]/10 to-[#a3ffd6]/10 py-20">
+      <section id="menu" className="scroll-mt-24 bg-gradient-to-r from-[#c0c0ff]/10 via-[#ff9ee5]/10 to-[#a3ffd6]/10 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-4xl font-black italic md:text-5xl break-keep text-balance">{t.menusTitle}</h2>
           <ul className="mx-auto mt-12 max-w-2xl divide-y divide-white/10 border-y border-white/10">
@@ -183,7 +193,7 @@ export default function MuniHair({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-3xl px-6 py-20">
+      <section id="booking" className="mx-auto max-w-3xl scroll-mt-24 px-6 py-20">
         <h2 className="text-center font-mono text-xs uppercase tracking-[0.5em] text-[#a3ffd6]">
           {t.booking.eyebrow}
         </h2>

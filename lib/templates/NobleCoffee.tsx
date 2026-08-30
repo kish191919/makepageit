@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -120,12 +121,14 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="text-lg font-serif tracking-[0.4em]">NOBLE</div>
           <nav className="hidden gap-8 text-xs font-medium tracking-[0.2em] text-[#5b4b39] md:flex">
-            <a>{t.nav.story}</a>
-            <a>{t.nav.coffee}</a>
-            <a>{t.nav.visit}</a>
-            <a>{t.nav.journal}</a>
+            <a href="#story" className="transition hover:text-[#2a221a]">{t.nav.story}</a>
+            <a href="#coffee" className="transition hover:text-[#2a221a]">{t.nav.coffee}</a>
+            <a href="#visit" className="transition hover:text-[#2a221a]">{t.nav.visit}</a>
+            <Link href={localePath(lang, "/portfolio/noble-coffee/journal")} className="transition hover:text-[#2a221a]">
+              {t.nav.journal}
+            </Link>
           </nav>
-          <a className="rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest">
+          <a href="#coffee" className="rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest">
             {t.nav.shop}
           </a>
         </div>
@@ -151,7 +154,7 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="story" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
             <Image
@@ -181,7 +184,7 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#ece2d2] py-24">
+      <section id="coffee" className="scroll-mt-24 bg-[#ece2d2] py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex items-end justify-between">
             <div>
@@ -210,7 +213,7 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="visit" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid gap-12 md:grid-cols-2">
           <div>
             <p className="text-xs tracking-[0.4em] text-[#7a6850]">{t.visit.eyebrow}</p>

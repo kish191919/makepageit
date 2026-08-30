@@ -24,6 +24,10 @@ import HarborRealty from "./HarborRealty";
 import MeridianWealth from "./MeridianWealth";
 import SolsticeInteriors from "./SolsticeInteriors";
 import IroncladIndustrial from "./IroncladIndustrial";
+import WillowbrookDental from "./WillowbrookDental";
+import RidgelineConstruction from "./RidgelineConstruction";
+import AnchorPointLogistics from "./AnchorPointLogistics";
+import HarvestHillChurch from "./HarvestHillChurch";
 
 export const templates: Record<string, ComponentType<{ lang: Lang }>> = {
   "noble-coffee": NobleCoffee,
@@ -50,4 +54,8 @@ export const templates: Record<string, ComponentType<{ lang: Lang }>> = {
   "meridian-wealth": MeridianWealth,
   "solstice-interiors": SolsticeInteriors,
   "ironclad-industrial": IroncladIndustrial,
+  "willowbrook-dental": WillowbrookDental,
+  "ridgeline-construction": RidgelineConstruction,
+  "anchorpoint-logistics": AnchorPointLogistics,
+  "harvesthill-church": HarvestHillChurch,
 };

@@ -90,11 +90,11 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div className="text-2xl font-black tracking-tighter">ARCO/</div>
           <nav className="hidden gap-10 text-xs font-bold uppercase tracking-widest md:flex">
-            {t.nav.map((n) => (
-              <a key={n}>{n}</a>
+            {t.nav.map((n, i) => (
+              <a key={n} href={`#${["work", "practice", "press", "contact"][i]}`}>{n}</a>
             ))}
           </nav>
-          <a className="border-2 border-black bg-black px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#ededed]">
+          <a href="#contact" className="border-2 border-black bg-black px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#ededed]">
             {t.inquireCta}
           </a>
         </div>
@@ -117,7 +117,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-b-2 border-black">
+      <section id="work" className="scroll-mt-24 border-b-2 border-black">
         <div className="mx-auto max-w-7xl px-6 py-20">
           <div className="flex items-end justify-between border-b-2 border-black pb-6">
             <h2 className="text-3xl font-black tracking-tight md:text-7xl break-keep text-balance">{t.selected.title}</h2>
@@ -154,7 +154,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-b-2 border-black bg-black text-[#ededed]">
+      <section id="press" className="scroll-mt-24 border-b-2 border-black bg-black text-[#ededed]">
         <div className="mx-auto max-w-7xl px-6 py-24">
           <h2 className="text-3xl font-black tracking-tight md:text-6xl break-keep text-balance">{t.awardsTitle}</h2>
           <ul className="mt-12 divide-y divide-white/20 border-y border-white/20">
@@ -168,7 +168,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-b-2 border-black">
+      <section id="practice" className="scroll-mt-24 border-b-2 border-black">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-24 md:grid-cols-2">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.4em]">{t.studio.eyebrow}</p>
@@ -185,7 +185,7 @@ export default function ArcoAtelier({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <footer className="bg-[#ededed]">
+      <footer id="contact" className="scroll-mt-24 bg-[#ededed]">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 py-16 md:grid-cols-4">
           <div className="text-3xl font-black tracking-tighter">ARCO/</div>
           {t.footer.offices.map((o) => (

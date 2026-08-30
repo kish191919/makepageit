@@ -87,12 +87,12 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
           <div className="text-2xl font-light tracking-[0.5em]">NOVA</div>
           <nav className="hidden gap-7 text-xs uppercase tracking-[0.3em] text-white/80 md:flex">
-            <a>{t.nav.work}</a>
-            <a>{t.nav.services}</a>
-            <a>{t.nav.studio}</a>
-            <a>{t.nav.journal}</a>
+            <a href="#work" className="transition hover:text-white/60">{t.nav.work}</a>
+            <a href="#services" className="transition hover:text-white/60">{t.nav.services}</a>
+            <a href="#studio" className="transition hover:text-white/60">{t.nav.studio}</a>
+            <a href="#work" className="transition hover:text-white/60">{t.nav.journal}</a>
           </nav>
-          <a className="rounded-none border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em]">
+          <a href="#booking" className="rounded-none border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em]">
             {t.bookCta}
           </a>
         </div>
@@ -118,7 +118,7 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-black py-24">
+      <section id="work" className="scroll-mt-24 bg-black py-24">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex items-end justify-between">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">{t.selected.eyebrow}</p>
@@ -134,7 +134,7 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-white py-24 text-black">
+      <section id="studio" className="scroll-mt-24 bg-white py-24 text-black">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2 md:items-center">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-black/50">{t.studio.eyebrow}</p>
@@ -157,7 +157,7 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-black py-24">
+      <section id="services" className="scroll-mt-24 bg-black py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-center text-xs uppercase tracking-[0.4em] text-white/50">{t.servicesSection.eyebrow}</p>
           <h2 className="mt-3 text-center font-serif text-5xl break-keep text-balance">{t.servicesSection.title}</h2>
@@ -176,7 +176,7 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-black pb-24">
+      <section id="booking" className="scroll-mt-24 bg-black pb-24">
         <div className="mx-auto max-w-3xl px-6">
           <div className="rounded-none border border-white/20 p-10 md:p-14">
             <p className="text-xs uppercase tracking-[0.4em] text-white/50">{t.booking.eyebrow}</p>

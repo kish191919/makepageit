@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -86,6 +87,7 @@ const copy = {
 
 export default function NexusLab({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const changelogPath = localePath(lang, "/portfolio/nexus-lab/changelog");
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white">
       <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur">
@@ -95,17 +97,25 @@ export default function NexusLab({ lang }: { lang: Lang }) {
             nexus<span className="text-[#22d3ee]">.lab</span>
           </div>
           <nav className="hidden gap-8 font-mono text-xs text-white/60 md:flex">
-            {t.nav.map((n) => (
-              <a key={n}>{n}</a>
-            ))}
+            {t.nav.map((n, i) =>
+              i === 3 ? (
+                <Link key={n} href={changelogPath} className="transition hover:text-white">
+                  {n}
+                </Link>
+              ) : (
+                <a key={n} href={["#platform", "#overview", "#team"][i]} className="transition hover:text-white">
+                  {n}
+                </a>
+              )
+            )}
           </nav>
-          <a className="rounded-md bg-white px-4 py-2 font-mono text-xs font-bold text-black">
+          <a href="#overview" className="rounded-md bg-white px-4 py-2 font-mono text-xs font-bold text-black">
             {t.cta}
           </a>
         </div>
       </header>
 
-      <section className="relative overflow-hidden">
+      <section id="overview" className="relative scroll-mt-24 overflow-hidden">
         <div
           className="absolute inset-0 opacity-40"
           style={{
@@ -159,7 +169,7 @@ export default function NexusLab({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="platform" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid gap-3 md:grid-cols-3">
           {t.features.map((f) => (
             <article
@@ -192,7 +202,7 @@ export default function NexusLab({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="team" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-white/10">
             <Image
@@ -218,7 +228,7 @@ export default function NexusLab({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <footer className="border-t border-white/10 py-10">
+      <footer id="footer" className="scroll-mt-24 border-t border-white/10 py-10">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 font-mono text-xs text-white/40 md:flex-row md:items-center md:justify-between">
           <div>{t.footer.copyright}</div>
           <div className="flex gap-5">

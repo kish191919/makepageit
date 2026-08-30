@@ -85,7 +85,7 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
           </div>
           <nav className="hidden gap-7 text-sm font-medium md:flex">
             {t.nav.map((n) => (
-              <a key={n}>{n}</a>
+              <a key={n} href="#shop">{n}</a>
             ))}
           </nav>
           <div className="flex items-center gap-3">
@@ -136,7 +136,7 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16">
+      <section id="shop" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-3xl font-bold md:text-4xl break-keep text-balance">{t.weeklyTitle}</h2>
           <a className="text-sm font-medium text-[#c44569]">{t.viewAll}</a>

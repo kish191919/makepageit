@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -82,8 +83,13 @@ const copy = {
   },
 } as const;
 
+// nav = ["SHOP", "COLLECTIONS", "JOURNAL", "SHOWROOM"]; JOURNAL points at the materials
+// story on this page. COLLECTIONS links to its own page (/collections).
+const navHrefs = ["#shop", "#journal", "#showroom"];
+
 export default function WoodAndStone({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const collectionsPath = localePath(lang, "/portfolio/wood-and-stone/collections");
   return (
     <div className="min-h-screen bg-[#f5f1ea] text-[#2c2620]">
       <header className="border-b border-[#e1d8c8]">
@@ -92,9 +98,17 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
             wood<span className="text-[#a08260]"> · </span>stone
           </div>
           <nav className="hidden gap-8 text-xs font-medium tracking-[0.2em] text-[#5b4f3d] md:flex">
-            {t.nav.map((n) => (
-              <a key={n}>{n}</a>
-            ))}
+            {t.nav.map((n, i) =>
+              i === 1 ? (
+                <Link key={n} href={collectionsPath} className="transition hover:text-[#a08260]">
+                  {n}
+                </Link>
+              ) : (
+                <a key={n} href={navHrefs[i > 1 ? i - 1 : i]} className="transition hover:text-[#a08260]">
+                  {n}
+                </a>
+              )
+            )}
           </nav>
           <div className="flex items-center gap-4 text-xs text-[#5b4f3d]">
             {t.utility.map((u) => (
@@ -115,7 +129,7 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
           <p className="mt-8 max-w-md text-base leading-relaxed text-[#5b4f3d] break-keep text-pretty">
             {t.hero.body}
           </p>
-          <a className="mt-10 inline-block border border-[#2c2620] px-7 py-3 text-xs tracking-widest">
+          <a href="#shop" className="mt-10 inline-block border border-[#2c2620] px-7 py-3 text-xs tracking-widest">
             {t.hero.cta}
           </a>
         </div>
@@ -130,7 +144,7 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="border-y border-[#e1d8c8] bg-[#ece4d3] py-20">
+      <section id="shop" className="scroll-mt-24 border-y border-[#e1d8c8] bg-[#ece4d3] py-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex items-end justify-between">
             <div>
@@ -159,7 +173,7 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24">
+      <section id="journal" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
         <div className="grid items-center gap-14 md:grid-cols-2">
           <div className="relative aspect-square overflow-hidden">
             <Image
@@ -186,7 +200,7 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#2c2620] py-20 text-[#f5f1ea]">
+      <section id="showroom" className="scroll-mt-24 bg-[#2c2620] py-20 text-[#f5f1ea]">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 md:grid-cols-[1fr_1fr] md:items-center">
           <div>
             <p className="text-xs tracking-[0.4em] text-[#c4a47a]">{t.showroom.eyebrow}</p>

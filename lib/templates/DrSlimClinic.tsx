@@ -121,7 +121,7 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
           <div className="text-xl font-black tracking-tight">
             {t.brand.left}<span className="text-[#0091ff]">{t.brand.right}</span>
           </div>
-          <a className="rounded-full bg-[#0091ff] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#0091ff]/30">
+          <a href="#assessment" className="rounded-full bg-[#0091ff] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#0091ff]/30">
             {t.cta}
           </a>
         </div>
@@ -146,7 +146,7 @@ export default function DrSlimClinic({ lang }: { lang: Lang }) {
               ))}
             </ul>
 
-            <div className="mt-8 rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-slate-100">
+            <div id="assessment" className="mt-8 scroll-mt-24 rounded-2xl bg-white p-5 shadow-2xl ring-1 ring-slate-100">
               <p className="text-sm font-bold">{t.hero.cardTitle}</p>
               <form className="mt-3 grid gap-2 sm:grid-cols-[1fr_120px_auto]">
                 <input

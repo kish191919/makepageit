@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import type { Lang } from "@/lib/i18n";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -136,7 +137,14 @@ const copy = {
 export default function SolsticeInteriors({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const [menuOpen, setMenuOpen] = useState(false);
-  const navItems = [t.nav.portfolio, t.nav.services, t.nav.process, t.nav.about, t.nav.contact];
+  const aboutPath = localePath(lang, "/portfolio/solstice-interiors/about");
+  const navItems = [
+    { label: t.nav.portfolio, href: "#portfolio" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.process, href: "#process" },
+    { label: t.nav.about, href: aboutPath },
+    { label: t.nav.contact, href: "#contact" },
+  ];
   return (
     <div className="bg-[#f7f0e6] text-[#2b241d]">
       <header className="border-b border-[#2b241d]/10 bg-[#f7f0e6]">
@@ -151,14 +159,14 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             </div>
           </div>
           <nav className="hidden gap-7 text-sm font-medium text-[#2b241d]/75 md:flex">
-            <a>{t.nav.portfolio}</a>
-            <a>{t.nav.services}</a>
-            <a>{t.nav.process}</a>
-            <a>{t.nav.about}</a>
-            <a>{t.nav.contact}</a>
+            <a href="#portfolio" className="transition hover:text-[#c1652f]">{t.nav.portfolio}</a>
+            <a href="#services" className="transition hover:text-[#c1652f]">{t.nav.services}</a>
+            <a href="#process" className="transition hover:text-[#c1652f]">{t.nav.process}</a>
+            <Link href={aboutPath} className="transition hover:text-[#c1652f]">{t.nav.about}</Link>
+            <a href="#contact" className="transition hover:text-[#c1652f]">{t.nav.contact}</a>
           </nav>
           <div className="flex items-center gap-3">
-            <a className="hidden rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
+            <a href="#contact" className="hidden rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
               {t.bookCta}
             </a>
             <button
@@ -177,20 +185,20 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
         {menuOpen && (
           <div className="border-t border-[#2b241d]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#2b241d]/75">
-              {navItems.map((label) => (
-                <a key={label} className="py-2">
-                  {label}
+              {navItems.map((item) => (
+                <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)} className="py-2">
+                  {item.label}
                 </a>
               ))}
             </nav>
-            <a className="mt-3 inline-block rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
+            <a href="#contact" onClick={() => setMenuOpen(false)} className="mt-3 inline-block rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
               {t.bookCta}
             </a>
           </div>
         )}
       </header>
 
-      <section className="relative overflow-hidden">
+      <section id="services" className="relative scroll-mt-24 overflow-hidden">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-[1.05fr_1fr] md:items-center md:py-28">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.hero.eyebrow}</p>
@@ -221,7 +229,7 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section id="portfolio" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 sm:py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.gallerySection.eyebrow}</p>
         <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.gallerySection.title}</h2>
         <div className="mt-14 grid gap-6 md:grid-cols-6">
@@ -280,7 +288,7 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#efe4d2] py-16 sm:py-24">
+      <section id="process" className="scroll-mt-24 bg-[#efe4d2] py-16 sm:py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.processSection.eyebrow}</p>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.processSection.title}</h2>
@@ -296,7 +304,7 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      <section id="contact" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16 sm:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#c1652f]">{t.consult.eyebrow}</p>

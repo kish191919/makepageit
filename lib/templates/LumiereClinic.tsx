@@ -141,13 +141,13 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
             <span className="text-base font-semibold tracking-wide">{t.brand}</span>
           </div>
           <nav className="hidden gap-7 text-sm text-slate-600 md:flex">
-            <a>{t.nav.treatments}</a>
-            <a>{t.nav.doctors}</a>
-            <a>{t.nav.booking}</a>
-            <a>{t.nav.reviews}</a>
-            <a>{t.nav.visit}</a>
+            <a href="#treatments" className="transition hover:text-[#9b6b4d]">{t.nav.treatments}</a>
+            <a href="#doctors" className="transition hover:text-[#9b6b4d]">{t.nav.doctors}</a>
+            <a href="#booking" className="transition hover:text-[#9b6b4d]">{t.nav.booking}</a>
+            <a href="#reviews" className="transition hover:text-[#9b6b4d]">{t.nav.reviews}</a>
+            <a href="#visit" className="transition hover:text-[#9b6b4d]">{t.nav.visit}</a>
           </nav>
-          <a className="rounded-full bg-[#9b6b4d] px-5 py-2 text-xs font-semibold text-white">
+          <a href="#booking" className="rounded-full bg-[#9b6b4d] px-5 py-2 text-xs font-semibold text-white">
             {t.bookCta}
           </a>
         </div>
@@ -195,7 +195,7 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="treatments" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="text-center">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#9b6b4d]">{t.treatmentsSection.eyebrow}</p>
           <h2 className="mt-3 text-3xl font-bold md:text-4xl break-keep text-balance">{t.treatmentsSection.title}</h2>
@@ -212,7 +212,7 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-24">
+      <section id="doctors" className="scroll-mt-24 bg-slate-50 py-24">
         <div className="mx-auto max-w-6xl px-6">
           <div className="text-center">
             <p className="text-xs font-semibold tracking-[0.3em] text-[#9b6b4d]">{t.doctorsSection.eyebrow}</p>
@@ -234,7 +234,7 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-6 py-24">
+      <section id="booking" className="mx-auto max-w-5xl scroll-mt-24 px-6 py-24">
         <div className="overflow-hidden rounded-3xl bg-gradient-to-br from-[#9b6b4d] to-[#7a4f35] p-10 text-white md:p-14">
           <p className="text-xs font-semibold tracking-[0.3em] text-white/70">{t.booking.eyebrow}</p>
           <h2 className="mt-3 text-3xl font-bold md:text-4xl break-keep text-balance">{t.booking.title}</h2>
@@ -253,7 +253,7 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="reviews" className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-24">
         <h2 className="text-2xl font-bold md:text-3xl break-keep text-balance">{t.reviewsTitle}</h2>
         <div className="mt-8 grid gap-5 md:grid-cols-3">
           {t.reviews.map((r, i) => (
@@ -266,7 +266,7 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <footer className="border-t border-slate-100 bg-slate-900 py-10 text-slate-400">
+      <footer id="visit" className="scroll-mt-24 border-t border-slate-100 bg-slate-900 py-10 text-slate-400">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 text-sm md:flex-row md:items-center md:justify-between">
           <div>
             <div className="font-semibold text-white">{t.brand}</div>

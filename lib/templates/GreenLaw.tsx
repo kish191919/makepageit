@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -148,6 +149,7 @@ const copy = {
 
 export default function GreenLaw({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const insightsPath = localePath(lang, "/portfolio/green-law/insights");
   return (
     <div className="bg-white text-[#0b1a2a]">
       <header className="border-b border-[#0b1a2a]/10 bg-white">
@@ -160,13 +162,13 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
             </div>
           </div>
           <nav className="hidden gap-7 text-sm font-medium text-[#0b1a2a]/80 md:flex">
-            <a>{t.nav.areas}</a>
-            <a>{t.nav.lawyers}</a>
-            <a>{t.nav.cases}</a>
-            <a>{t.nav.insights}</a>
-            <a>{t.nav.visit}</a>
+            <a href="#areas">{t.nav.areas}</a>
+            <a href="#lawyers">{t.nav.lawyers}</a>
+            <a href="#cases">{t.nav.cases}</a>
+            <Link href={insightsPath}>{t.nav.insights}</Link>
+            <a href="#contact">{t.nav.visit}</a>
           </nav>
-          <a className="rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white">
+          <a href="#contact" className="rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white">
             {t.bookCta}
           </a>
         </div>
@@ -203,7 +205,7 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#0b1a2a] py-16 text-white">
+      <section id="cases" className="scroll-mt-24 bg-[#0b1a2a] py-16 text-white">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 sm:grid-cols-4">
           {t.stats.map((s) => (
             <div key={s.l} className="border-l border-white/20 pl-6">
@@ -214,7 +216,7 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="areas" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.areasSection.eyebrow}</p>
         <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.areasSection.title}</h2>
         <div className="mt-14 grid gap-px overflow-hidden rounded-sm bg-[#0b1a2a]/10 md:grid-cols-3">
@@ -228,7 +230,7 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#f5f4ee] py-24">
+      <section id="lawyers" className="scroll-mt-24 bg-[#f5f4ee] py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.lawyersSection.eyebrow}</p>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.lawyersSection.title}</h2>
@@ -246,7 +248,7 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24">
+      <section id="contact" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.consult.eyebrow}</p>

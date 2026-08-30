@@ -92,10 +92,10 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
       <header className="border-b border-[#ecead9] bg-[#fafaf7]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <nav className="hidden gap-6 text-xs font-medium uppercase tracking-[0.2em] md:flex">
-            <a>{t.nav.newIn}</a>
-            <a>{t.nav.outerwear}</a>
-            <a>{t.nav.accessories}</a>
-            <a>{t.nav.lookbook}</a>
+            <a href="#shop">{t.nav.newIn}</a>
+            <a href="#shop">{t.nav.outerwear}</a>
+            <a href="#shop">{t.nav.accessories}</a>
+            <a href="#lookbook">{t.nav.lookbook}</a>
           </nav>
           <div className="text-xl font-serif tracking-[0.4em]">ATELIER 22</div>
           <div className="flex gap-5 text-xs uppercase tracking-widest">
@@ -126,7 +126,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-20">
+      <section id="shop" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-20">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="font-serif text-3xl md:text-4xl break-keep text-balance">{t.featured.title}</h2>
           <div className="flex flex-wrap gap-3 text-xs uppercase tracking-widest">
@@ -180,7 +180,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-24">
+      <section id="lookbook" className="mx-auto max-w-7xl scroll-mt-24 px-6 py-24">
         <p className="text-center text-xs uppercase tracking-[0.4em] text-[#7a7770]">{t.lookbook.eyebrow}</p>
         <h2 className="mt-3 text-center font-serif text-4xl break-keep text-balance">{t.lookbook.title}</h2>
         <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">

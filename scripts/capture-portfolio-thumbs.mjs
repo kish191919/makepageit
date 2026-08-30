@@ -30,6 +30,10 @@ const TEMPLATE_IDS = [
   "meridian-wealth",
   "solstice-interiors",
   "ironclad-industrial",
+  "willowbrook-dental",
+  "ridgeline-construction",
+  "anchorpoint-logistics",
+  "harvesthill-church",
 ];
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";

@@ -109,13 +109,13 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
             <span className="text-lg font-bold">{t.brand}</span>
           </div>
           <nav className="hidden gap-6 text-sm font-medium md:flex">
-            <a>{t.nav.menu}</a>
-            <a>{t.nav.delivery}</a>
-            <a>{t.nav.story}</a>
-            <a>{t.nav.visit}</a>
+            <a href="#menu" className="transition hover:text-[#c0681e]">{t.nav.menu}</a>
+            <a href="#delivery" className="transition hover:text-[#c0681e]">{t.nav.delivery}</a>
+            <a href="#story" className="transition hover:text-[#c0681e]">{t.nav.story}</a>
+            <a href="#visit" className="transition hover:text-[#c0681e]">{t.nav.visit}</a>
           </nav>
           <div className="flex items-center gap-3">
-            <a className="rounded-full bg-[#c0681e] px-5 py-2 text-sm font-bold text-white">
+            <a href="#menu" className="rounded-full bg-[#c0681e] px-5 py-2 text-sm font-bold text-white">
               {t.orderCta}
             </a>
             <span className="rounded-full bg-[#3a2418] px-3 py-1.5 text-xs font-bold text-white">
@@ -159,7 +159,7 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#3a2418] py-12 text-white">
+      <section id="delivery" className="scroll-mt-24 bg-[#3a2418] py-12 text-white">
         <div className="mx-auto grid max-w-6xl gap-6 px-6 sm:grid-cols-3">
           {t.benefits.map((b) => (
             <div key={b.title} className="text-center">
@@ -171,7 +171,7 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section id="menu" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
         <div className="flex items-end justify-between">
           <div>
             <span className="text-xs font-bold tracking-[0.3em] text-[#c0681e]">{t.todays.eyebrow}</span>
@@ -204,7 +204,7 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-[#fff3df] py-20">
+      <section id="story" className="scroll-mt-24 bg-[#fff3df] py-20">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2 md:items-center">
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
             <Image
@@ -239,7 +239,7 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <footer className="bg-[#3a2418] py-10 text-sm text-[#d4b896]">
+      <footer id="visit" className="scroll-mt-24 bg-[#3a2418] py-10 text-sm text-[#d4b896]">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 md:flex-row md:items-center md:justify-between">
           <div>
             <div className="font-bold text-white">{t.footer.brand}</div>
