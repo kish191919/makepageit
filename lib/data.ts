@@ -68,7 +68,7 @@ const servicesEn: Service[] = [
     id: "branding-site",
     title: "Brand site",
     summary: "Make a strong first impression. Translate your brand into design that customers trust at a glance.",
-    bullets: ["Mobile-responsive design", "On-page SEO", "Easy admin panel", "Domain & hosting setup"],
+    bullets: ["Mobile-responsive design", "SEO + AI search (GEO) ready", "Easy admin panel", "Domain & hosting setup"],
     icon: "✦",
   },
   {
@@ -102,8 +102,8 @@ const servicesEn: Service[] = [
   {
     id: "marketing",
     title: "Marketing operations",
-    summary: "Launch isn't the finish line. SEO, content, and ads — handled by the same team that built the site.",
-    bullets: ["SEO consulting", "Blog content", "Google / Meta ads", "Monthly reports"],
+    summary: "Launch isn't the finish line. SEO, GEO, content, and ads — handled by the same team that built the site.",
+    bullets: ["SEO & GEO consulting", "Blog content", "Google / Meta ads", "Monthly reports"],
     icon: "◉",
   },
 ];
@@ -113,7 +113,7 @@ const servicesKo: Service[] = [
     id: "branding-site",
     title: "브랜딩 사이트",
     summary: "회사의 첫인상을 설계합니다. 브랜드 컨셉을 디자인으로 정확하게 전달합니다.",
-    bullets: ["반응형 웹 디자인", "SEO 최적화", "관리자 페이지", "도메인/호스팅 세팅"],
+    bullets: ["반응형 웹 디자인", "SEO + AI 검색(GEO) 최적화", "관리자 페이지", "도메인/호스팅 세팅"],
     icon: "✦",
   },
   {
@@ -147,8 +147,8 @@ const servicesKo: Service[] = [
   {
     id: "marketing",
     title: "마케팅 운영",
-    summary: "사이트만 만들고 끝이 아닙니다. SEO, 블로그, 광고까지 한 팀에서 운영합니다.",
-    bullets: ["SEO 컨설팅", "블로그 콘텐츠", "네이버/구글 광고", "월간 리포트"],
+    summary: "사이트만 만들고 끝이 아닙니다. SEO, GEO(AI 검색 최적화), 블로그, 광고까지 한 팀에서 운영합니다.",
+    bullets: ["SEO · GEO 컨설팅", "블로그 콘텐츠", "네이버/구글 광고", "월간 리포트"],
     icon: "◉",
   },
 ];
@@ -689,7 +689,7 @@ const plansEn: Plan[] = [
     features: [
       "3-page core layout",
       "Template design + mobile-responsive",
-      "Basic SEO setup",
+      "Basic SEO + AI search (GEO) setup",
       "Hosting (server) at $10/mo",
       "Database available as an add-on at $10/mo",
     ],
@@ -714,7 +714,7 @@ const plansEn: Plan[] = [
     features: [
       "5-page core layout",
       "Template design + mobile-responsive",
-      "Basic SEO setup",
+      "Basic SEO + AI search (GEO) setup",
       "Hosting (server) at $10/mo",
       "Database at $20/mo",
       "Two free add-ons (login, blog, gallery)",
@@ -741,7 +741,7 @@ const plansKo: Plan[] = [
     features: [
       "3페이지 기본 구성",
       "템플릿 디자인 + 모바일 반응형",
-      "기본 SEO 세팅",
+      "기본 SEO + AI 검색(GEO) 세팅",
       "호스팅 (서버비용) 월 $10",
       "데이터베이스 선택 추가 시 월 $10",
     ],
@@ -766,7 +766,7 @@ const plansKo: Plan[] = [
     features: [
       "5페이지 기본 구성",
       "템플릿 디자인 + 모바일 반응형",
-      "기본 SEO 세팅",
+      "기본 SEO + AI 검색(GEO) 세팅",
       "호스팅 (서버비용) 월 $10",
       "데이터베이스 월 $20",
       "로그인 · 게시판 · 사진첩 중 2개 무료 추가",
@@ -924,7 +924,11 @@ const faqsEn: FAQ[] = [
   },
   {
     q: "Can you also handle ongoing operations?",
-    a: "Yes — monthly maintenance covers content updates, feature checks, performance monitoring, and basic SEO ($15/mo on LITE, $25/mo built into PRO). We don't run paid ads or blog content as part of these plans, but we'll scope that separately during the consult.",
+    a: "Yes — monthly maintenance covers content updates, feature checks, performance monitoring, and basic SEO/GEO ($15/mo on LITE, $25/mo built into PRO). We don't run paid ads or blog content as part of these plans, but we'll scope that separately during the consult.",
+  },
+  {
+    q: "What is GEO, and do you optimize for it?",
+    a: "GEO (Generative Engine Optimization) is optimizing your site so AI answer engines like ChatGPT, Perplexity, and Google AI Overview cite and recommend it — not just ranking in classic search results. Every site we build ships with structured data (schema.org markup), clear Q&A-formatted content, and fact-based copy that AI models can parse and quote, so you're set up for both traditional SEO and AI search from day one.",
   },
 ];
 
@@ -951,7 +955,11 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "오픈 후 운영도 맡길 수 있나요?",
-    a: "네, 월 유지보수 비용에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO 관리까지 포함되어 있습니다(LITE 월 $15 / PRO 월 $25). 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
+    a: "네, 월 유지보수 비용에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO·GEO 관리까지 포함되어 있습니다(LITE 월 $15 / PRO 월 $25). 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
+  },
+  {
+    q: "GEO가 뭔가요? 저희도 대응되나요?",
+    a: "GEO(생성형 엔진 최적화)는 ChatGPT, Perplexity, 구글 AI 개요처럼 AI가 답변할 때 내 사이트가 인용·추천되도록 만드는 작업이에요. 기존 검색 순위 경쟁과는 다른 영역입니다. 저희가 만드는 모든 사이트는 구조화 데이터(schema.org)와 질문-답변 형태의 명확한 콘텐츠, 사실 기반 카피가 기본 적용되어 있어서 전통적인 SEO는 물론 AI 검색 노출까지 처음부터 대비됩니다.",
   },
 ];
 
