@@ -70,8 +70,9 @@ const copy = {
 export default function VillaToscanaPress({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/villa-toscana");
+  const winePath = localePath(lang, "/portfolio/villa-toscana/wine");
   const pressPath = localePath(lang, "/portfolio/villa-toscana/press");
-  const navHrefs = [`${home}#story`, `${home}#menu`, `${home}#menu`, pressPath];
+  const navHrefs = [`${home}#story`, `${home}#menu`, winePath, pressPath];
 
   return (
     <div className="min-h-screen bg-[#f4ede1] text-[#2b1d12]">

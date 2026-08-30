@@ -112,11 +112,12 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const [menuOpen, setMenuOpen] = useState(false);
   const productsPath = localePath(lang, "/portfolio/ironclad-industrial/products");
+  const industriesPath = localePath(lang, "/portfolio/ironclad-industrial/industries");
   const navItems: [string, string][] = [
     [t.nav.capabilities, "#capabilities"],
     [t.nav.products, productsPath],
     [t.nav.certifications, "#certifications"],
-    [t.nav.industries, "#certifications"],
+    [t.nav.industries, industriesPath],
     [t.nav.contact, "#contact"],
   ];
   return (
@@ -134,7 +135,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
             <a href="#capabilities" className="transition hover:text-[#ff6a13]">{t.nav.capabilities}</a>
             <Link href={productsPath} className="transition hover:text-[#ff6a13]">{t.nav.products}</Link>
             <a href="#certifications" className="transition hover:text-[#ff6a13]">{t.nav.certifications}</a>
-            <a href="#certifications" className="transition hover:text-[#ff6a13]">{t.nav.industries}</a>
+            <Link href={industriesPath} className="transition hover:text-[#ff6a13]">{t.nav.industries}</Link>
             <a href="#contact" className="transition hover:text-[#ff6a13]">{t.nav.contact}</a>
           </nav>
           <div className="flex items-center gap-3">

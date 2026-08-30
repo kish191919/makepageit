@@ -87,8 +87,10 @@ const copy = {
 export default function NexusLabChangelog({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/nexus-lab");
+  const docsPath = localePath(lang, "/portfolio/nexus-lab/docs");
+  const pricingPath = localePath(lang, "/portfolio/nexus-lab/pricing");
   const changelogPath = localePath(lang, "/portfolio/nexus-lab/changelog");
-  const navHrefs = [`${home}#platform`, `${home}#overview`, `${home}#team`, changelogPath];
+  const navHrefs = [`${home}#platform`, docsPath, pricingPath, changelogPath];
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white">

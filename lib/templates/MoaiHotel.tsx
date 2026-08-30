@@ -97,7 +97,9 @@ const copy = {
 
 export default function MoaiHotel({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const spaPath = localePath(lang, "/portfolio/moai-hotel/spa");
   const journalPath = localePath(lang, "/portfolio/moai-hotel/journal");
+  const subpagePaths: Record<number, string> = { 2: spaPath, 3: journalPath };
   return (
     <div className="min-h-screen bg-[#0d0c0a] text-[#f0e9d6]">
       <header className="absolute inset-x-0 top-0 z-30">
@@ -105,12 +107,12 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
           <div className="font-serif text-xl tracking-[0.5em] text-[#d4af37]">{t.brand}</div>
           <nav className="hidden gap-10 text-[11px] font-medium tracking-[0.3em] md:flex">
             {t.nav.map((n, i) =>
-              i === 3 ? (
-                <Link key={n} href={journalPath} className="transition hover:text-[#d4af37]">
+              subpagePaths[i] ? (
+                <Link key={n} href={subpagePaths[i]} className="transition hover:text-[#d4af37]">
                   {n}
                 </Link>
               ) : (
-                <a key={n} href={["#rooms", "#experiences", "#experiences"][i]} className="transition hover:text-[#d4af37]">
+                <a key={n} href={["#rooms", "#experiences"][i]} className="transition hover:text-[#d4af37]">
                   {n}
                 </a>
               )

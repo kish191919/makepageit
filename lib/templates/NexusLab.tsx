@@ -87,7 +87,10 @@ const copy = {
 
 export default function NexusLab({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const docsPath = localePath(lang, "/portfolio/nexus-lab/docs");
+  const pricingPath = localePath(lang, "/portfolio/nexus-lab/pricing");
   const changelogPath = localePath(lang, "/portfolio/nexus-lab/changelog");
+  const subpagePaths: Record<number, string> = { 1: docsPath, 2: pricingPath, 3: changelogPath };
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white">
       <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur">
@@ -98,12 +101,12 @@ export default function NexusLab({ lang }: { lang: Lang }) {
           </div>
           <nav className="hidden gap-8 font-mono text-xs text-white/60 md:flex">
             {t.nav.map((n, i) =>
-              i === 3 ? (
-                <Link key={n} href={changelogPath} className="transition hover:text-white">
+              subpagePaths[i] ? (
+                <Link key={n} href={subpagePaths[i]} className="transition hover:text-white">
                   {n}
                 </Link>
               ) : (
-                <a key={n} href={["#platform", "#overview", "#team"][i]} className="transition hover:text-white">
+                <a key={n} href="#platform" className="transition hover:text-white">
                   {n}
                 </a>
               )

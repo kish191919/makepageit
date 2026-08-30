@@ -104,13 +104,14 @@ const copy = {
 } as const;
 
 const slots = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30"];
-// nav = ["STORY", "MENU", "WINE", "PRESS"]; WINE has no dedicated section, so it points
-// at the closest matching content (menu's wine pairing). PRESS links to its own page.
-const navHrefs = ["#story", "#menu", "#menu"];
+// nav = ["STORY", "MENU", "WINE", "PRESS"]; WINE and PRESS each link to their own page.
+const navHrefs = ["#story", "#menu"];
 
 export default function VillaToscana({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const winePath = localePath(lang, "/portfolio/villa-toscana/wine");
   const pressPath = localePath(lang, "/portfolio/villa-toscana/press");
+  const subpagePaths: Record<number, string> = { 2: winePath, 3: pressPath };
   return (
     <div className="min-h-screen bg-[#f4ede1] text-[#2b1d12]">
       <header className="border-b border-[#d8c8a9]">
@@ -118,8 +119,8 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
           <div className="font-serif text-2xl italic tracking-wide">Villa Toscana</div>
           <nav className="hidden gap-8 text-[11px] font-medium tracking-[0.3em] text-[#7a6248] md:flex">
             {t.nav.map((n, i) =>
-              i === 3 ? (
-                <Link key={n} href={pressPath} className="transition hover:text-[#7d2c1a]">
+              subpagePaths[i] ? (
+                <Link key={n} href={subpagePaths[i]} className="transition hover:text-[#7d2c1a]">
                   {n}
                 </Link>
               ) : (

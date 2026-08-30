@@ -7,26 +7,28 @@ const copy = {
     brand: { name: "IRONCLAD", tag: "INDUSTRIAL SUPPLY" },
     nav: { capabilities: "Capabilities", products: "Products", certifications: "Certifications", industries: "Industries", contact: "Contact" },
     quoteCta: "Request a Quote",
-    eyebrow: "PRODUCTS",
-    title: "What comes off the floor",
-    intro: "A sample of the part families we run in production — every line item ships with full material certification.",
-    products: [
+    eyebrow: "INDUSTRIES",
+    title: "Who we build for",
+    intro: "Four sectors where a missed tolerance or a late shipment isn't an inconvenience — it's a program delay.",
+    industries: [
       {
-        name: "Precision-Machined Housings",
-        spec: "Aluminum & titanium, ±0.0005\" tolerance",
-        desc: "5-axis milled enclosures for avionics and sensor assemblies, finished to Class 1 surface spec.",
+        name: "Aerospace",
+        desc: "AS9100D-compliant parts for structural and avionics assemblies, with full first-article inspection and material traceability on every lot.",
+        image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80&auto=format&fit=crop",
+      },
+      {
+        name: "Defense",
+        desc: "ITAR-registered production for mission-critical components, from prototype runs through multi-year production contracts.",
         image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1200&q=80&auto=format&fit=crop",
       },
       {
-        name: "Structural Brackets & Weldments",
-        spec: "Laser-cut steel, TIG welded",
-        desc: "Load-rated brackets and welded assemblies for heavy-equipment frames and mounting structures.",
+        name: "Heavy Equipment OEMs",
+        desc: "Structural brackets, weldments, and machined housings built to the duty cycles of off-road and industrial equipment.",
         image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80&auto=format&fit=crop",
       },
       {
-        name: "Fastener & Hardware Kits",
-        spec: "Custom BOM, vendor-managed inventory",
-        desc: "Pre-kitted hardware sets matched to your assembly line's work instructions, replenished on a JIT schedule.",
+        name: "Medical & Precision Devices",
+        desc: "Tight-tolerance machining and CMM-verified inspection for components that go into regulated medical and lab equipment.",
         image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&q=80&auto=format&fit=crop",
       },
     ],
@@ -36,26 +38,28 @@ const copy = {
     brand: { name: "IRONCLAD", tag: "아이언클래드 산업" },
     nav: { capabilities: "생산 역량", products: "제품", certifications: "인증", industries: "적용 산업", contact: "문의" },
     quoteCta: "견적 요청",
-    eyebrow: "PRODUCTS",
-    title: "생산 라인에서 나오는 제품들",
-    intro: "실제 양산 중인 부품군 일부입니다. 모든 품목은 재료 인증서와 함께 출고됩니다.",
-    products: [
+    eyebrow: "INDUSTRIES",
+    title: "우리가 함께하는 산업",
+    intro: "공차 하나, 납기 하루가 곧 프로그램 지연으로 이어지는 네 개 산업 분야입니다.",
+    industries: [
       {
-        name: "정밀 가공 하우징",
-        spec: "알루미늄 · 티타늄, ±0.0005인치 공차",
-        desc: "항공전자 및 센서 조립체용 5축 밀링 인클로저, Class 1 표면 사양으로 마감합니다.",
+        name: "항공우주",
+        desc: "AS9100D 기준을 충족하는 구조·항공전자 부품을 생산하며, 모든 로트에 초도품 검사와 재료 이력 추적을 적용합니다.",
+        image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80&auto=format&fit=crop",
+      },
+      {
+        name: "방산",
+        desc: "ITAR 등록 생산 라인에서 시제품부터 다년간의 양산 계약까지, 핵심 부품을 책임지고 제작합니다.",
         image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1200&q=80&auto=format&fit=crop",
       },
       {
-        name: "구조용 브래킷 · 용접 조립품",
-        spec: "레이저 절단 스틸, TIG 용접",
-        desc: "중장비 프레임과 마운팅 구조물을 위한 하중 등급 브래킷 및 용접 조립품입니다.",
+        name: "중장비 OEM",
+        desc: "오프로드·산업용 장비의 가혹한 듀티 사이클을 견디는 구조용 브래킷, 용접 조립품, 가공 하우징을 제작합니다.",
         image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&q=80&auto=format&fit=crop",
       },
       {
-        name: "체결 부품 · 하드웨어 키트",
-        spec: "맞춤 BOM, VMI 재고관리",
-        desc: "고객사 작업지시서에 맞춘 하드웨어 세트를 사전 키팅해 JIT 일정으로 보충합니다.",
+        name: "의료·정밀 기기",
+        desc: "규제 대상 의료·실험 장비에 들어가는 부품을 위해, 정밀 공차 가공과 CMM 검증 검사를 수행합니다.",
         image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&q=80&auto=format&fit=crop",
       },
     ],
@@ -63,7 +67,7 @@ const copy = {
   },
 } as const;
 
-export default function IroncladIndustrialProducts({ lang }: { lang: Lang }) {
+export default function IroncladIndustrialIndustries({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/ironclad-industrial");
   const productsPath = localePath(lang, "/portfolio/ironclad-industrial/products");
@@ -84,9 +88,9 @@ export default function IroncladIndustrialProducts({ lang }: { lang: Lang }) {
           </Link>
           <nav className="hidden gap-7 text-sm font-semibold uppercase tracking-wide text-white/70 md:flex">
             <Link href={`${home}#capabilities`} className="transition hover:text-[#ff6a13]">{t.nav.capabilities}</Link>
-            <Link href={productsPath} className="text-[#ff6a13]">{t.nav.products}</Link>
+            <Link href={productsPath} className="transition hover:text-[#ff6a13]">{t.nav.products}</Link>
             <Link href={`${home}#certifications`} className="transition hover:text-[#ff6a13]">{t.nav.certifications}</Link>
-            <Link href={industriesPath} className="transition hover:text-[#ff6a13]">{t.nav.industries}</Link>
+            <Link href={industriesPath} className="text-[#ff6a13]">{t.nav.industries}</Link>
             <Link href={`${home}#contact`} className="transition hover:text-[#ff6a13]">{t.nav.contact}</Link>
           </nav>
           <Link
@@ -106,15 +110,14 @@ export default function IroncladIndustrialProducts({ lang }: { lang: Lang }) {
         <p className="mt-6 max-w-xl leading-relaxed text-white/70 break-keep text-pretty">{t.intro}</p>
 
         <div className="mt-16 grid gap-16 border-t border-white/10 pt-16">
-          {t.products.map((p) => (
-            <article key={p.name} className="grid gap-10 md:grid-cols-2 md:items-center">
+          {t.industries.map((ind) => (
+            <article key={ind.name} className="grid gap-10 md:grid-cols-2 md:items-center">
               <div className="relative aspect-[4/3] overflow-hidden border border-white/10">
-                <Image src={p.image} alt={p.name} fill className="object-cover" />
+                <Image src={ind.image} alt={ind.name} fill className="object-cover" />
               </div>
               <div>
-                <h2 className="font-black uppercase tracking-tight text-2xl break-keep text-balance">{p.name}</h2>
-                <p className="mt-2 text-xs font-bold uppercase tracking-widest text-[#ff6a13]">{p.spec}</p>
-                <p className="mt-4 text-sm leading-relaxed text-white/70 break-keep text-pretty">{p.desc}</p>
+                <h2 className="font-black uppercase tracking-tight text-2xl break-keep text-balance">{ind.name}</h2>
+                <p className="mt-4 text-sm leading-relaxed text-white/70 break-keep text-pretty">{ind.desc}</p>
               </div>
             </article>
           ))}
