@@ -4,6 +4,7 @@ import type { Lang } from "@/lib/i18n";
 const copy = {
   en: {
     brand: { left: "BrightPath ", right: "Tutoring" },
+    nav: { why: "Why Us", curriculum: "Curriculum", reviews: "Reviews", faq: "FAQ" },
     cta: "Get a Free Plan →",
     hero: {
       tag: "⚡ 3.2× ad conversion verified",
@@ -58,10 +59,14 @@ const copy = {
       body: "Free diagnostic seats are limited to 30 per week.",
       button: "Request a Free Call →",
     },
-    footer: "© 2025 BrightPath Tutoring · NYC test-prep studio.",
+    footer: {
+      address: "148 W 37th St, New York, NY 10018 · Mon–Sat 10am–9pm",
+      legal: "© 2025 BrightPath Tutoring · NYC test-prep studio.",
+    },
   },
   ko: {
     brand: { left: "하루", right: "영어" },
+    nav: { why: "특징", curriculum: "커리큘럼", reviews: "후기", faq: "FAQ" },
     cta: "무료 상담 신청 →",
     hero: {
       tag: "⚡ 광고 전환율 3.2배 검증",
@@ -116,7 +121,10 @@ const copy = {
       body: "무료 진단 상담은 일주일 단 30명 한정입니다.",
       button: "무료 상담 신청하기 →",
     },
-    footer: "© 2025 하루영어학원. 등록 제2025-수원-XXX호.",
+    footer: {
+      address: "경기 수원시 영통구 하루로 148 · 평일 10:00–21:00, 토요일 10:00–18:00",
+      legal: "© 2025 하루영어학원. 등록 제2025-수원-XXX호.",
+    },
   },
 } as const;
 
@@ -124,11 +132,17 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
   const t = copy[lang];
   return (
     <div className="bg-white text-slate-900">
-      <header className="border-b border-slate-100 bg-white">
+      <header className="sticky top-0 z-30 border-b border-slate-100 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="text-xl font-black tracking-tight">
+          <div className="flex items-center gap-2 text-xl font-black tracking-tight">
             {t.brand.left}<span className="text-[#ff5e3a]">{t.brand.right}</span>
           </div>
+          <nav className="hidden gap-7 text-sm font-semibold text-slate-600 md:flex">
+            <a href="#why" className="transition hover:text-[#ff5e3a]">{t.nav.why}</a>
+            <a href="#curriculum" className="transition hover:text-[#ff5e3a]">{t.nav.curriculum}</a>
+            <a href="#reviews" className="transition hover:text-[#ff5e3a]">{t.nav.reviews}</a>
+            <a href="#faq" className="transition hover:text-[#ff5e3a]">{t.nav.faq}</a>
+          </nav>
           <a href="#offer" className="rounded-full bg-[#ff5e3a] px-5 py-2 text-sm font-bold text-white shadow-lg shadow-[#ff5e3a]/30">
             {t.cta}
           </a>
@@ -180,7 +194,7 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-20">
+      <section id="why" className="scroll-mt-24 bg-slate-50 py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">
             {t.why.title[0]}<span className="text-[#ff5e3a]">{t.why.title[1]}</span>
@@ -197,7 +211,7 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section id="curriculum" className="scroll-mt-24 mx-auto max-w-6xl px-6 py-20">
         <div className="rounded-3xl bg-gradient-to-br from-slate-900 to-slate-700 p-10 text-white md:p-14">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#ff5e3a]">{t.curriculum.eyebrow}</p>
           <h2 className="mt-3 text-3xl font-black md:text-4xl break-keep text-balance">{t.curriculum.title}</h2>
@@ -213,7 +227,7 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-20">
+      <section id="reviews" className="scroll-mt-24 mx-auto max-w-6xl px-6 py-20">
         <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">{t.reviews.title}</h2>
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {t.reviews.items.map((r, i) => (
@@ -226,7 +240,7 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-20">
+      <section id="faq" className="scroll-mt-24 bg-slate-50 py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2 className="text-center text-3xl font-black md:text-4xl break-keep text-balance">{t.faqsTitle}</h2>
           <div className="mt-10 space-y-3">
@@ -253,8 +267,9 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <footer className="bg-slate-900 py-8 text-center text-xs text-slate-400 break-keep text-pretty">
-        {t.footer}
+      <footer id="visit" className="scroll-mt-24 bg-slate-900 py-10 text-center text-xs text-slate-400 break-keep text-pretty">
+        <p>{t.footer.address}</p>
+        <p className="mt-2">{t.footer.legal}</p>
       </footer>
     </div>
   );

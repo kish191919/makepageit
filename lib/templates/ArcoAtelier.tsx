@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -84,19 +85,28 @@ const copy = {
 
 export default function ArcoAtelier({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const workPath = localePath(lang, "/portfolio/arco-atelier/work");
+  const practicePath = localePath(lang, "/portfolio/arco-atelier/practice");
+  const pressPath = localePath(lang, "/portfolio/arco-atelier/press");
+  const contactPath = localePath(lang, "/portfolio/arco-atelier/contact");
+  const subpagePaths: Record<number, string> = { 0: workPath, 1: practicePath, 2: pressPath, 3: contactPath };
   return (
     <div className="min-h-screen bg-[#ededed] text-black">
       <header className="border-b-2 border-black bg-[#ededed]">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <div className="text-2xl font-black tracking-tighter">ARCO/</div>
           <nav className="hidden gap-10 text-xs font-bold uppercase tracking-widest md:flex">
-            {t.nav.map((n, i) => (
-              <a key={n} href={`#${["work", "practice", "press", "contact"][i]}`}>{n}</a>
-            ))}
+            {t.nav.map((n, i) =>
+              subpagePaths[i] ? (
+                <Link key={n} href={subpagePaths[i]}>{n}</Link>
+              ) : (
+                <a key={n} href={`#${["work", "practice", "press", "contact"][i]}`}>{n}</a>
+              )
+            )}
           </nav>
-          <a href="#contact" className="border-2 border-black bg-black px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#ededed]">
+          <Link href={contactPath} className="border-2 border-black bg-black px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#ededed]">
             {t.inquireCta}
-          </a>
+          </Link>
         </div>
       </header>
 

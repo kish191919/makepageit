@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -30,10 +31,10 @@ const copy = {
     breads: [
       { name: "Butter Croissant", desc: "24 layers of Isigny butter", price: "$4.50", image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&q=80&auto=format&fit=crop" },
       { name: "Sourdough Country", desc: "5-day starter · 30% rye", price: "$11.00", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80&auto=format&fit=crop" },
-      { name: "Pain au Chocolat", desc: "Two squares of Valrhona dark", price: "$5.00", image: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=900&q=80&auto=format&fit=crop" },
-      { name: "Cheese Pullman", desc: "Gouda + mozzarella, generous", price: "$13.50", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80&auto=format&fit=crop" },
-      { name: "Whole-wheat Bagel", desc: "Organic whole wheat · no sugar", price: "$3.50", image: "https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?w=900&q=80&auto=format&fit=crop" },
-      { name: "Pumpkin Pullman", desc: "35% locally grown kabocha", price: "$9.50", image: "https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=900&q=80&auto=format&fit=crop" },
+      { name: "Pain au Chocolat", desc: "Two squares of Valrhona dark", price: "$5.00", image: "https://images.unsplash.com/photo-1597528662465-55ece5734101?w=900&q=80&auto=format&fit=crop" },
+      { name: "Cheese Pullman", desc: "Gouda + mozzarella, generous", price: "$13.50", image: "https://images.unsplash.com/photo-1663904460424-91895028aa9e?w=900&q=80&auto=format&fit=crop" },
+      { name: "Whole-wheat Bagel", desc: "Organic whole wheat · no sugar", price: "$3.50", image: "https://images.unsplash.com/photo-1687175452217-e4f8e523b5b5?w=900&q=80&auto=format&fit=crop" },
+      { name: "Pumpkin Pullman", desc: "35% locally grown kabocha", price: "$9.50", image: "https://images.unsplash.com/photo-1696177723470-5063e94f555f?w=900&q=80&auto=format&fit=crop" },
     ],
     story: {
       eyebrow: "OUR STORY",
@@ -77,10 +78,10 @@ const copy = {
     breads: [
       { name: "버터 크루아상", desc: "프랑스 이즈니 버터 24겹", price: "4,200원", image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&q=80&auto=format&fit=crop" },
       { name: "발효종 캄파뉴", desc: "5일 천연발효종 · 호밀 30%", price: "9,800원", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80&auto=format&fit=crop" },
-      { name: "초콜릿 뺑오쇼콜라", desc: "발로나 다크 초콜릿 2조각", price: "4,800원", image: "https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=900&q=80&auto=format&fit=crop" },
-      { name: "치즈 식빵", desc: "고다 + 모짜렐라 치즈 듬뿍", price: "12,500원", image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80&auto=format&fit=crop" },
-      { name: "통밀 베이글", desc: "유기농 통밀 · 무설탕", price: "3,500원", image: "https://images.unsplash.com/photo-1551892374-ecf8754cf8b0?w=900&q=80&auto=format&fit=crop" },
-      { name: "단호박 식빵", desc: "국산 단호박 35% 함유", price: "8,500원", image: "https://images.unsplash.com/photo-1568254183919-78a4f43a2877?w=900&q=80&auto=format&fit=crop" },
+      { name: "초콜릿 뺑오쇼콜라", desc: "발로나 다크 초콜릿 2조각", price: "4,800원", image: "https://images.unsplash.com/photo-1597528662465-55ece5734101?w=900&q=80&auto=format&fit=crop" },
+      { name: "치즈 식빵", desc: "고다 + 모짜렐라 치즈 듬뿍", price: "12,500원", image: "https://images.unsplash.com/photo-1663904460424-91895028aa9e?w=900&q=80&auto=format&fit=crop" },
+      { name: "통밀 베이글", desc: "유기농 통밀 · 무설탕", price: "3,500원", image: "https://images.unsplash.com/photo-1687175452217-e4f8e523b5b5?w=900&q=80&auto=format&fit=crop" },
+      { name: "단호박 식빵", desc: "국산 단호박 35% 함유", price: "8,500원", image: "https://images.unsplash.com/photo-1696177723470-5063e94f555f?w=900&q=80&auto=format&fit=crop" },
     ],
     story: {
       eyebrow: "OUR STORY",
@@ -100,6 +101,10 @@ const copy = {
 
 export default function SeoulBakery({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const menuPath = localePath(lang, "/portfolio/seoul-bakery/menu");
+  const deliveryPath = localePath(lang, "/portfolio/seoul-bakery/delivery");
+  const storyPath = localePath(lang, "/portfolio/seoul-bakery/story");
+  const visitPath = localePath(lang, "/portfolio/seoul-bakery/visit");
   return (
     <div className="bg-[#fffaf2] text-[#3a2418]">
       <header className="border-b border-[#e8d6bc] bg-[#fffaf2]/95 backdrop-blur">
@@ -109,15 +114,15 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
             <span className="text-lg font-bold">{t.brand}</span>
           </div>
           <nav className="hidden gap-6 text-sm font-medium md:flex">
-            <a href="#menu" className="transition hover:text-[#c0681e]">{t.nav.menu}</a>
-            <a href="#delivery" className="transition hover:text-[#c0681e]">{t.nav.delivery}</a>
-            <a href="#story" className="transition hover:text-[#c0681e]">{t.nav.story}</a>
-            <a href="#visit" className="transition hover:text-[#c0681e]">{t.nav.visit}</a>
+            <Link href={menuPath} className="transition hover:text-[#c0681e]">{t.nav.menu}</Link>
+            <Link href={deliveryPath} className="transition hover:text-[#c0681e]">{t.nav.delivery}</Link>
+            <Link href={storyPath} className="transition hover:text-[#c0681e]">{t.nav.story}</Link>
+            <Link href={visitPath} className="transition hover:text-[#c0681e]">{t.nav.visit}</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#menu" className="rounded-full bg-[#c0681e] px-5 py-2 text-sm font-bold text-white">
+            <Link href={menuPath} className="rounded-full bg-[#c0681e] px-5 py-2 text-sm font-bold text-white">
               {t.orderCta}
-            </a>
+            </Link>
             <span className="rounded-full bg-[#3a2418] px-3 py-1.5 text-xs font-bold text-white">
               🛒 2
             </span>
@@ -177,7 +182,7 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
             <span className="text-xs font-bold tracking-[0.3em] text-[#c0681e]">{t.todays.eyebrow}</span>
             <h2 className="mt-2 text-4xl font-extrabold break-keep text-balance">{t.todays.title}</h2>
           </div>
-          <div className="hidden text-sm font-semibold text-[#c0681e] md:block">{t.todays.viewAll}</div>
+          <Link href={menuPath} className="hidden text-sm font-semibold text-[#c0681e] md:block">{t.todays.viewAll}</Link>
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -208,7 +213,7 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
         <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2 md:items-center">
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
             <Image
-              src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=1200&q=80&auto=format&fit=crop"
+              src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=1200&q=80&auto=format&fit=crop"
               alt="Story"
               fill
               className="object-cover"
@@ -222,7 +227,7 @@ export default function SeoulBakery({ lang }: { lang: Lang }) {
             <p className="mt-6 leading-relaxed text-[#5b3e2c] break-keep text-pretty">
               {t.story.body}
             </p>
-            <a className="mt-8 inline-block font-bold text-[#c0681e] underline">{t.story.cta}</a>
+            <Link href={storyPath} className="mt-8 inline-block font-bold text-[#c0681e] underline">{t.story.cta}</Link>
           </div>
         </div>
       </section>

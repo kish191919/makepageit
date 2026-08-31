@@ -1,5 +1,6 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -81,16 +82,20 @@ const gallery = [
 
 export default function NovaStudio({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const workPath = localePath(lang, "/portfolio/nova-studio/work");
+  const servicesPath = localePath(lang, "/portfolio/nova-studio/services");
+  const studioPath = localePath(lang, "/portfolio/nova-studio/studio");
+  const journalPath = localePath(lang, "/portfolio/nova-studio/journal");
   return (
     <div className="bg-black text-white">
       <header className="absolute left-0 right-0 top-0 z-30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
           <div className="text-2xl font-light tracking-[0.5em]">NOVA</div>
           <nav className="hidden gap-7 text-xs uppercase tracking-[0.3em] text-white/80 md:flex">
-            <a href="#work" className="transition hover:text-white/60">{t.nav.work}</a>
-            <a href="#services" className="transition hover:text-white/60">{t.nav.services}</a>
-            <a href="#studio" className="transition hover:text-white/60">{t.nav.studio}</a>
-            <a href="#work" className="transition hover:text-white/60">{t.nav.journal}</a>
+            <Link href={workPath} className="transition hover:text-white/60">{t.nav.work}</Link>
+            <Link href={servicesPath} className="transition hover:text-white/60">{t.nav.services}</Link>
+            <Link href={studioPath} className="transition hover:text-white/60">{t.nav.studio}</Link>
+            <Link href={journalPath} className="transition hover:text-white/60">{t.nav.journal}</Link>
           </nav>
           <a href="#booking" className="rounded-none border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em]">
             {t.bookCta}

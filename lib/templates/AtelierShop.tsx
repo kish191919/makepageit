@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
@@ -16,12 +20,12 @@ const copy = {
       quickAdd: "Quick Add",
     },
     products: [
-      { name: "Linen Wrap Coat", price: "$348", image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=900&q=80&auto=format&fit=crop" },
-      { name: "Hand-stitched Tote", price: "$156", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=900&q=80&auto=format&fit=crop" },
-      { name: "Cotton Wide Trouser", price: "$138", image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=900&q=80&auto=format&fit=crop" },
-      { name: "Silk Scarf · Bloom", price: "$78", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=900&q=80&auto=format&fit=crop" },
-      { name: "Knit Vest · Ivory", price: "$118", image: "https://images.unsplash.com/photo-1551803091-e20673f15770?w=900&q=80&auto=format&fit=crop" },
-      { name: "Wool Berét", price: "$62", image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=900&q=80&auto=format&fit=crop" },
+      { name: "Linen Wrap Coat", price: "$348", category: "Outerwear", image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=900&q=80&auto=format&fit=crop" },
+      { name: "Hand-stitched Tote", price: "$156", category: "Accessories", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=900&q=80&auto=format&fit=crop" },
+      { name: "Cotton Wide Trouser", price: "$138", category: null, image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=900&q=80&auto=format&fit=crop" },
+      { name: "Silk Scarf · Bloom", price: "$78", category: "Accessories", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=900&q=80&auto=format&fit=crop" },
+      { name: "Knit Vest · Ivory", price: "$118", category: "Knit", image: "https://images.unsplash.com/photo-1551803091-e20673f15770?w=900&q=80&auto=format&fit=crop" },
+      { name: "Wool Berét", price: "$62", category: "Accessories", image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=900&q=80&auto=format&fit=crop" },
     ],
     story: {
       eyebrow: "Our Story",
@@ -53,12 +57,12 @@ const copy = {
       quickAdd: "Quick Add",
     },
     products: [
-      { name: "Linen Wrap Coat", price: "428,000원", image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=900&q=80&auto=format&fit=crop" },
-      { name: "Hand-stitched Tote", price: "192,000원", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=900&q=80&auto=format&fit=crop" },
-      { name: "Cotton Wide Trouser", price: "168,000원", image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=900&q=80&auto=format&fit=crop" },
-      { name: "Silk Scarf · Bloom", price: "98,000원", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=900&q=80&auto=format&fit=crop" },
-      { name: "Knit Vest · Ivory", price: "148,000원", image: "https://images.unsplash.com/photo-1551803091-e20673f15770?w=900&q=80&auto=format&fit=crop" },
-      { name: "Wool Berét", price: "78,000원", image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=900&q=80&auto=format&fit=crop" },
+      { name: "Linen Wrap Coat", price: "428,000원", category: "Outerwear", image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=900&q=80&auto=format&fit=crop" },
+      { name: "Hand-stitched Tote", price: "192,000원", category: "Accessories", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=900&q=80&auto=format&fit=crop" },
+      { name: "Cotton Wide Trouser", price: "168,000원", category: null, image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=900&q=80&auto=format&fit=crop" },
+      { name: "Silk Scarf · Bloom", price: "98,000원", category: "Accessories", image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=900&q=80&auto=format&fit=crop" },
+      { name: "Knit Vest · Ivory", price: "148,000원", category: "Knit", image: "https://images.unsplash.com/photo-1551803091-e20673f15770?w=900&q=80&auto=format&fit=crop" },
+      { name: "Wool Berét", price: "78,000원", category: "Accessories", image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=900&q=80&auto=format&fit=crop" },
     ],
     story: {
       eyebrow: "Our Story",
@@ -87,15 +91,23 @@ const lookbookImages = [
 
 export default function AtelierShop({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const [activeFilter, setActiveFilter] = useState("All");
+  const visibleProducts =
+    activeFilter === "All" ? t.products : t.products.filter((p) => p.category === activeFilter);
+
+  const outerwearPath = localePath(lang, "/portfolio/atelier-shop/outerwear");
+  const accessoriesPath = localePath(lang, "/portfolio/atelier-shop/accessories");
+  const lookbookPath = localePath(lang, "/portfolio/atelier-shop/lookbook");
+
   return (
     <div className="bg-[#fafaf7] text-[#1f1d1a]">
       <header className="border-b border-[#ecead9] bg-[#fafaf7]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <nav className="hidden gap-6 text-xs font-medium uppercase tracking-[0.2em] md:flex">
-            <a href="#shop">{t.nav.newIn}</a>
-            <a href="#shop">{t.nav.outerwear}</a>
-            <a href="#shop">{t.nav.accessories}</a>
-            <a href="#lookbook">{t.nav.lookbook}</a>
+            <a href="#shop" className="font-semibold">{t.nav.newIn}</a>
+            <Link href={outerwearPath}>{t.nav.outerwear}</Link>
+            <Link href={accessoriesPath}>{t.nav.accessories}</Link>
+            <Link href={lookbookPath}>{t.nav.lookbook}</Link>
           </nav>
           <div className="text-xl font-serif tracking-[0.4em]">ATELIER 22</div>
           <div className="flex gap-5 text-xs uppercase tracking-widest">
@@ -120,7 +132,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
           <h1 className="mt-4 max-w-2xl font-serif text-4xl leading-[1.05] md:text-7xl break-keep text-balance">
             {t.hero.title[0]}<br className="hidden md:block" />{t.hero.title[1]}
           </h1>
-          <a className="mt-10 inline-flex w-fit border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em]">
+          <a href="#shop" className="mt-10 inline-flex w-fit border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em]">
             {t.hero.cta}
           </a>
         </div>
@@ -130,15 +142,20 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="font-serif text-3xl md:text-4xl break-keep text-balance">{t.featured.title}</h2>
           <div className="flex flex-wrap gap-3 text-xs uppercase tracking-widest">
-            {t.featured.filters.map((f, i) => (
-              <a key={f} className={i === 0 ? "border-b border-[#1f1d1a] pb-0.5" : "text-[#7a7770]"}>
+            {t.featured.filters.map((f) => (
+              <button
+                key={f}
+                type="button"
+                onClick={() => setActiveFilter(f)}
+                className={activeFilter === f ? "border-b border-[#1f1d1a] pb-0.5" : "text-[#7a7770]"}
+              >
                 {f}
-              </a>
+              </button>
             ))}
           </div>
         </div>
         <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-          {t.products.map((p) => (
+          {visibleProducts.map((p) => (
             <article key={p.name} className="group">
               <div className="relative aspect-[3/4] overflow-hidden bg-[#ecead9]">
                 <Image src={p.image} alt={p.name} fill className="object-cover transition duration-700 group-hover:scale-105" />
@@ -173,9 +190,12 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
             <p className="mt-6 leading-relaxed text-[#d3cfc0] break-keep text-pretty">
               {t.story.body}
             </p>
-            <a className="mt-10 inline-flex border-b border-[#bcb8aa] pb-0.5 text-xs uppercase tracking-[0.3em]">
+            <Link
+              href={localePath(lang, "/portfolio/atelier-shop/journal")}
+              className="mt-10 inline-flex border-b border-[#bcb8aa] pb-0.5 text-xs uppercase tracking-[0.3em]"
+            >
               {t.story.cta}
-            </a>
+            </Link>
           </div>
         </div>
       </section>

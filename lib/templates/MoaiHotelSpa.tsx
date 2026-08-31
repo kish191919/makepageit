@@ -66,9 +66,10 @@ const copy = {
 export default function MoaiHotelSpa({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/moai-hotel");
+  const dinePath = localePath(lang, "/portfolio/moai-hotel/dine");
   const spaPath = localePath(lang, "/portfolio/moai-hotel/spa");
   const journalPath = localePath(lang, "/portfolio/moai-hotel/journal");
-  const navHrefs = [`${home}#rooms`, `${home}#experiences`, spaPath, journalPath];
+  const navHrefs = [`${home}#rooms`, dinePath, spaPath, journalPath];
 
   return (
     <div className="min-h-screen bg-[#0d0c0a] text-[#f0e9d6]">

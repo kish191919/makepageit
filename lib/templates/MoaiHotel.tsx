@@ -97,9 +97,10 @@ const copy = {
 
 export default function MoaiHotel({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const dinePath = localePath(lang, "/portfolio/moai-hotel/dine");
   const spaPath = localePath(lang, "/portfolio/moai-hotel/spa");
   const journalPath = localePath(lang, "/portfolio/moai-hotel/journal");
-  const subpagePaths: Record<number, string> = { 2: spaPath, 3: journalPath };
+  const subpagePaths: Record<number, string> = { 1: dinePath, 2: spaPath, 3: journalPath };
   return (
     <div className="min-h-screen bg-[#0d0c0a] text-[#f0e9d6]">
       <header className="absolute inset-x-0 top-0 z-30">

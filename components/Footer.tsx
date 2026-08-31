@@ -10,7 +10,7 @@ export default function Footer() {
   const lang = detectLangFromPath(pathname);
   const dict = getDict(lang);
 
-  if (/^\/(?:ko\/)?portfolio\/[^/]+$/.test(pathname ?? "")) return null;
+  if (/^\/(?:ko\/)?portfolio\/[^/]+(\/.*)?$/.test(pathname ?? "")) return null;
 
   const year = new Date().getFullYear();
   const servicesLinks = [

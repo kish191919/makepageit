@@ -30,7 +30,7 @@ export default function Header() {
     };
   }, [open]);
 
-  if (/^\/(?:ko\/)?portfolio\/[^/]+$/.test(pathname ?? "")) return null;
+  if (/^\/(?:ko\/)?portfolio\/[^/]+(\/.*)?$/.test(pathname ?? "")) return null;
 
   const nav = [
     { label: dict.nav.home, href: localePath(lang, "/") },
