@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -78,6 +82,7 @@ const navHrefs: Record<string, string> = { works: "#works", about: "#about", sho
 
 export default function JiniIllustration({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   return (
     <div
       className="min-h-screen text-[#3a2e2a]"
@@ -89,7 +94,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
         backgroundPosition: "0 0, 10px 10px",
       }}
     >
-      <header className="border-b-2 border-dashed border-[#3a2e2a]/20 bg-[#fff8ec]/80 backdrop-blur">
+      <header ref={ref} className="border-b-2 border-dashed border-[#3a2e2a]/20 bg-[#fff8ec]/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2 text-2xl font-black tracking-tight">
             <span>🖍️</span> {t.brand}
@@ -102,10 +107,39 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
               </a>
             ))}
           </nav>
-          <a href="#contact" className="rounded-full bg-[#3a2e2a] px-5 py-2 text-xs font-bold text-[#fff8ec]">
-            {t.cta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#contact" className="rounded-full bg-[#3a2e2a] px-5 py-2 text-xs font-bold text-[#fff8ec]">
+              {t.cta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#3a2e2a] md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t-2 border-dashed border-[#3a2e2a]/20 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-bold">
+              {t.nav.map((n) => (
+                <a key={n} href={navHrefs[n]} onClick={() => setOpen(false)} className="py-2">
+                  {n}
+                </a>
+              ))}
+            </nav>
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full bg-[#3a2e2a] px-5 py-2 text-xs font-bold text-[#fff8ec]"
+            >
+              {t.cta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section id="about" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">

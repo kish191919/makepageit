@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -96,9 +100,10 @@ const navHrefs: Record<string, string> = { index: "#index", work: "#work", about
 
 export default function KittWorks({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   return (
     <div className="min-h-screen bg-white text-neutral-900">
-      <header className="border-b border-neutral-200">
+      <header ref={ref} className="border-b border-neutral-200">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="font-mono text-sm">{t.domain}</div>
           <nav className="hidden gap-8 font-mono text-xs text-neutral-500 md:flex">
@@ -106,10 +111,39 @@ export default function KittWorks({ lang }: { lang: Lang }) {
               <a key={n} href={navHrefs[n]}>{n}</a>
             ))}
           </nav>
-          <a href="#contact" className="font-mono text-xs underline decoration-dotted underline-offset-4">
-            {t.contactEmail}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#contact" className="font-mono text-xs underline decoration-dotted underline-offset-4">
+              {t.contactEmail}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center border border-neutral-300 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-neutral-200 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 font-mono text-xs text-neutral-500">
+              {t.nav.map((n) => (
+                <a key={n} href={navHrefs[n]} onClick={() => setOpen(false)} className="py-2">
+                  {n}
+                </a>
+              ))}
+            </nav>
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block font-mono text-xs underline decoration-dotted underline-offset-4"
+            >
+              {t.contactEmail}
+            </a>
+          </div>
+        )}
       </header>
 
       <section id="index" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-24">

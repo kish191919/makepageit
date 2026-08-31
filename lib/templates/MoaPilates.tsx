@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -75,12 +79,13 @@ const copy = {
 
 export default function MoaPilates({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const programsPath = localePath(lang, "/portfolio/moa-pilates/programs");
   const trainersPath = localePath(lang, "/portfolio/moa-pilates/trainers");
   const membershipPath = localePath(lang, "/portfolio/moa-pilates/membership");
   return (
     <div className="bg-[#0e0d0c] text-white">
-      <header className="border-b border-white/10 bg-[#0e0d0c]/80 backdrop-blur">
+      <header ref={ref} className="border-b border-white/10 bg-[#0e0d0c]/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="text-xl font-bold tracking-[0.3em]">{t.brand.short}</div>
           <nav className="hidden gap-7 text-xs uppercase tracking-widest text-white/70 md:flex">
@@ -88,10 +93,37 @@ export default function MoaPilates({ lang }: { lang: Lang }) {
             <Link href={trainersPath} className="transition hover:text-white">{t.nav.trainers}</Link>
             <Link href={membershipPath} className="transition hover:text-white">{t.nav.membership}</Link>
           </nav>
-          <a href="#booking" className="rounded-full border border-white px-5 py-2 text-xs uppercase tracking-widest">
-            {t.bookCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#booking" className="rounded-full border border-white px-5 py-2 text-xs uppercase tracking-widest">
+              {t.bookCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-white/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-xs uppercase tracking-widest text-white/70">
+              <Link href={programsPath} onClick={() => setOpen(false)} className="py-2">{t.nav.programs}</Link>
+              <Link href={trainersPath} onClick={() => setOpen(false)} className="py-2">{t.nav.trainers}</Link>
+              <Link href={membershipPath} onClick={() => setOpen(false)} className="py-2">{t.nav.membership}</Link>
+            </nav>
+            <a
+              href="#booking"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full border border-white px-5 py-2 text-xs uppercase tracking-widest"
+            >
+              {t.bookCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="relative h-[88vh] min-h-[560px] overflow-hidden">

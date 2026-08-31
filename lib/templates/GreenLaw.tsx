@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -149,10 +153,11 @@ const copy = {
 
 export default function GreenLaw({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const insightsPath = localePath(lang, "/portfolio/green-law/insights");
   return (
     <div className="bg-white text-[#0b1a2a]">
-      <header className="border-b border-[#0b1a2a]/10 bg-white">
+      <header ref={ref} className="border-b border-[#0b1a2a]/10 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-[#0b1a2a] font-serif text-base text-white">G</span>
@@ -168,10 +173,39 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
             <Link href={insightsPath}>{t.nav.insights}</Link>
             <a href="#contact">{t.nav.visit}</a>
           </nav>
-          <a href="#contact" className="rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white">
-            {t.bookCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#contact" className="rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white">
+              {t.bookCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-sm border border-[#0b1a2a]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-[#0b1a2a]/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-medium text-[#0b1a2a]/80">
+              <a href="#areas" onClick={() => setOpen(false)} className="py-2">{t.nav.areas}</a>
+              <a href="#lawyers" onClick={() => setOpen(false)} className="py-2">{t.nav.lawyers}</a>
+              <a href="#cases" onClick={() => setOpen(false)} className="py-2">{t.nav.cases}</a>
+              <Link href={insightsPath} onClick={() => setOpen(false)} className="py-2">{t.nav.insights}</Link>
+              <a href="#contact" onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</a>
+            </nav>
+            <a
+              href="#contact"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
+            >
+              {t.bookCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="relative overflow-hidden bg-gradient-to-b from-white to-[#f5f4ee]">

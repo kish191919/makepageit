@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -132,9 +136,10 @@ const copy = {
 
 export default function LumiereClinic({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   return (
     <div className="bg-white text-slate-900">
-      <header className="sticky top-0 z-30 border-b border-slate-100 bg-white/90 backdrop-blur">
+      <header ref={ref} className="sticky top-0 z-30 border-b border-slate-100 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#9b6b4d] text-xs font-bold text-white">L</span>
@@ -147,10 +152,39 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
             <a href="#reviews" className="transition hover:text-[#9b6b4d]">{t.nav.reviews}</a>
             <a href="#visit" className="transition hover:text-[#9b6b4d]">{t.nav.visit}</a>
           </nav>
-          <a href="#booking" className="rounded-full bg-[#9b6b4d] px-5 py-2 text-xs font-semibold text-white">
-            {t.bookCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#booking" className="rounded-full bg-[#9b6b4d] px-5 py-2 text-xs font-semibold text-white">
+              {t.bookCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-slate-100 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm text-slate-600">
+              <a href="#treatments" onClick={() => setOpen(false)} className="py-2">{t.nav.treatments}</a>
+              <a href="#doctors" onClick={() => setOpen(false)} className="py-2">{t.nav.doctors}</a>
+              <a href="#booking" onClick={() => setOpen(false)} className="py-2">{t.nav.booking}</a>
+              <a href="#reviews" onClick={() => setOpen(false)} className="py-2">{t.nav.reviews}</a>
+              <a href="#visit" onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</a>
+            </nav>
+            <a
+              href="#booking"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full bg-[#9b6b4d] px-5 py-2 text-xs font-semibold text-white"
+            >
+              {t.bookCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="bg-gradient-to-br from-[#f9f3ee] via-white to-[#f5ebe2]">

@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -93,6 +97,7 @@ const copy = {
 
 export default function ArcoAtelierPress({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/arco-atelier");
   const workPath = localePath(lang, "/portfolio/arco-atelier/work");
   const practicePath = localePath(lang, "/portfolio/arco-atelier/practice");
@@ -102,7 +107,7 @@ export default function ArcoAtelierPress({ lang }: { lang: Lang }) {
 
   return (
     <div className="min-h-screen bg-[#ededed] text-black">
-      <header className="border-b-2 border-black bg-[#ededed]">
+      <header ref={ref} className="border-b-2 border-black bg-[#ededed]">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <Link href={home} className="text-2xl font-black tracking-tighter">ARCO/</Link>
           <nav className="hidden gap-10 text-xs font-bold uppercase tracking-widest md:flex">
@@ -114,10 +119,44 @@ export default function ArcoAtelierPress({ lang }: { lang: Lang }) {
               )
             )}
           </nav>
-          <Link href={contactPath} className="border-2 border-black bg-black px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#ededed]">
-            {t.inquireCta}
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href={contactPath} className="border-2 border-black bg-black px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#ededed]">
+              {t.inquireCta}
+            </Link>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center border-2 border-black md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t-2 border-black px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-xs font-bold uppercase tracking-widest">
+              {t.nav.map((n, i) => (
+                <Link
+                  key={n}
+                  href={navPaths[i]}
+                  onClick={() => setOpen(false)}
+                  className={navPaths[i] === pressPath ? "py-2 underline underline-offset-4" : "py-2"}
+                >
+                  {n}
+                </Link>
+              ))}
+            </nav>
+            <Link
+              href={contactPath}
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block border-2 border-black bg-black px-4 py-2 text-xs font-bold uppercase tracking-widest text-[#ededed]"
+            >
+              {t.inquireCta}
+            </Link>
+          </div>
+        )}
       </header>
 
       <section className="border-b-2 border-black">

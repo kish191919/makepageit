@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -43,6 +47,7 @@ const copy = {
 
 export default function BloomCosmeticsSkincare({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/bloom-cosmetics");
   const skincarePath = localePath(lang, "/portfolio/bloom-cosmetics/skincare");
   const bodycarePath = localePath(lang, "/portfolio/bloom-cosmetics/bodycare");
@@ -51,7 +56,7 @@ export default function BloomCosmeticsSkincare({ lang }: { lang: Lang }) {
 
   return (
     <div className="min-h-screen bg-[#fff5f3] text-[#3a2530]">
-      <header className="bg-[#fff5f3]/90 backdrop-blur">
+      <header ref={ref} className="bg-[#fff5f3]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link href={home} className="text-2xl font-bold tracking-tight">
             bloom<span className="text-[#ff8aa3]">·</span>
@@ -67,8 +72,33 @@ export default function BloomCosmeticsSkincare({ lang }: { lang: Lang }) {
             <a className="rounded-full bg-[#ff8aa3] px-5 py-2 text-xs font-bold text-white shadow-lg shadow-[#ff8aa3]/30">
               {t.cart}
             </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#3a2530]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
           </div>
         </div>
+        {open && (
+          <div className="border-t border-[#ffd6e0] px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-medium">
+              <Link href={skincarePath} onClick={() => setOpen(false)} className="py-2 text-[#c44569] font-semibold">{t.nav.skincare}</Link>
+              <Link href={bodycarePath} onClick={() => setOpen(false)} className="py-2">{t.nav.bodycare}</Link>
+              <Link href={lipPath} onClick={() => setOpen(false)} className="py-2">{t.nav.lip}</Link>
+              <Link href={setsPath} onClick={() => setOpen(false)} className="py-2">{t.nav.sets}</Link>
+            </nav>
+            <a
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full bg-[#ff8aa3] px-5 py-2 text-xs font-bold text-white shadow-lg shadow-[#ff8aa3]/30"
+            >
+              {t.cart}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-16">

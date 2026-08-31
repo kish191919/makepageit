@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -82,13 +86,14 @@ const gallery = [
 
 export default function NovaStudio({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const workPath = localePath(lang, "/portfolio/nova-studio/work");
   const servicesPath = localePath(lang, "/portfolio/nova-studio/services");
   const studioPath = localePath(lang, "/portfolio/nova-studio/studio");
   const journalPath = localePath(lang, "/portfolio/nova-studio/journal");
   return (
     <div className="bg-black text-white">
-      <header className="absolute left-0 right-0 top-0 z-30">
+      <header ref={ref} className="absolute left-0 right-0 top-0 z-30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
           <div className="text-2xl font-light tracking-[0.5em]">NOVA</div>
           <nav className="hidden gap-7 text-xs uppercase tracking-[0.3em] text-white/80 md:flex">
@@ -97,10 +102,38 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
             <Link href={studioPath} className="transition hover:text-white/60">{t.nav.studio}</Link>
             <Link href={journalPath} className="transition hover:text-white/60">{t.nav.journal}</Link>
           </nav>
-          <a href="#booking" className="rounded-none border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em]">
-            {t.bookCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#booking" className="hidden rounded-none border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em] sm:inline-block">
+              {t.bookCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center border border-white/30 text-white md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-white/10 bg-black/95 px-6 py-4 backdrop-blur md:hidden">
+            <nav className="flex flex-col gap-1 text-xs uppercase tracking-[0.3em] text-white/80">
+              <Link href={workPath} onClick={() => setOpen(false)} className="py-2">{t.nav.work}</Link>
+              <Link href={servicesPath} onClick={() => setOpen(false)} className="py-2">{t.nav.services}</Link>
+              <Link href={studioPath} onClick={() => setOpen(false)} className="py-2">{t.nav.studio}</Link>
+              <Link href={journalPath} onClick={() => setOpen(false)} className="py-2">{t.nav.journal}</Link>
+            </nav>
+            <a
+              href="#booking"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-none border-b-2 border-white pb-1 text-xs uppercase tracking-[0.3em]"
+            >
+              {t.bookCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="relative h-screen min-h-[640px] w-full overflow-hidden">

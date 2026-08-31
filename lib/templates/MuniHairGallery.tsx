@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -42,10 +46,11 @@ export default function MuniHairGallery({ lang }: { lang: Lang }) {
   const home = localePath(lang, "/portfolio/muni-hair");
   const galleryPath = localePath(lang, "/portfolio/muni-hair/gallery");
   const navHrefs = [`${home}#stylists`, galleryPath, `${home}#menu`, `${home}#booking`];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
 
   return (
     <div className="min-h-screen bg-[#0d0a14] text-white">
-      <header className="border-b border-white/10 bg-[#0d0a14]/80 backdrop-blur">
+      <header ref={ref} className="border-b border-white/10 bg-[#0d0a14]/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link href={home} className="text-xl font-black italic tracking-tighter">
             <span className="bg-gradient-to-r from-[#c0c0ff] via-[#ff9ee5] to-[#a3ffd6] bg-clip-text text-transparent">
@@ -63,7 +68,32 @@ export default function MuniHairGallery({ lang }: { lang: Lang }) {
               </Link>
             ))}
           </nav>
+          <button
+            type="button"
+            aria-label="menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 md:hidden"
+          >
+            <MenuIcon open={open} />
+          </button>
         </div>
+        {open && (
+          <div className="border-t border-white/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-xs font-bold uppercase tracking-widest text-white/70">
+              {t.nav.map((n, i) => (
+                <Link
+                  key={n}
+                  href={navHrefs[i]}
+                  onClick={() => setOpen(false)}
+                  className={i === 1 ? "py-2 text-[#ff9ee5]" : "py-2"}
+                >
+                  {n}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-20">

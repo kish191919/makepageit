@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -42,6 +46,7 @@ const copy = {
 
 export default function SeoulBakeryVisit({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/seoul-bakery");
   const menuPath = localePath(lang, "/portfolio/seoul-bakery/menu");
   const deliveryPath = localePath(lang, "/portfolio/seoul-bakery/delivery");
@@ -50,7 +55,7 @@ export default function SeoulBakeryVisit({ lang }: { lang: Lang }) {
 
   return (
     <div className="bg-[#fffaf2] text-[#3a2418]">
-      <header className="border-b border-[#e8d6bc] bg-[#fffaf2]/95 backdrop-blur">
+      <header ref={ref} className="border-b border-[#e8d6bc] bg-[#fffaf2]/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link href={home} className="flex items-center gap-2">
             <span className="text-2xl">🥐</span>
@@ -62,10 +67,38 @@ export default function SeoulBakeryVisit({ lang }: { lang: Lang }) {
             <Link href={storyPath} className="transition hover:text-[#c0681e]">{t.nav.story}</Link>
             <Link href={visitPath} className="font-semibold text-[#c0681e]">{t.nav.visit}</Link>
           </nav>
-          <Link href={menuPath} className="rounded-full bg-[#c0681e] px-5 py-2 text-sm font-bold text-white">
-            {t.orderCta}
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href={menuPath} className="rounded-full bg-[#c0681e] px-5 py-2 text-sm font-bold text-white">
+              {t.orderCta}
+            </Link>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#3a2418]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-[#e8d6bc] px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-medium">
+              <Link href={menuPath} onClick={() => setOpen(false)} className="py-2">{t.nav.menu}</Link>
+              <Link href={deliveryPath} onClick={() => setOpen(false)} className="py-2">{t.nav.delivery}</Link>
+              <Link href={storyPath} onClick={() => setOpen(false)} className="py-2">{t.nav.story}</Link>
+              <Link href={visitPath} onClick={() => setOpen(false)} className="py-2 font-semibold text-[#c0681e]">{t.nav.visit}</Link>
+            </nav>
+            <Link
+              href={menuPath}
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full bg-[#c0681e] px-5 py-2 text-sm font-bold text-white"
+            >
+              {t.orderCta}
+            </Link>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-5xl px-6 py-16">

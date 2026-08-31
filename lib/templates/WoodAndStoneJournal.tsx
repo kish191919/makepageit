@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -75,6 +79,7 @@ const copy = {
 
 export default function WoodAndStoneJournal({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/wood-and-stone");
   const shopPath = localePath(lang, "/portfolio/wood-and-stone/shop");
   const collectionsPath = localePath(lang, "/portfolio/wood-and-stone/collections");
@@ -84,7 +89,7 @@ export default function WoodAndStoneJournal({ lang }: { lang: Lang }) {
 
   return (
     <div className="min-h-screen bg-[#f5f1ea] text-[#2c2620]">
-      <header className="border-b border-[#e1d8c8]">
+      <header ref={ref} className="border-b border-[#e1d8c8]">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <Link href={home} className="font-serif text-xl tracking-wide">
             wood<span className="text-[#a08260]"> · </span>stone
@@ -100,12 +105,39 @@ export default function WoodAndStoneJournal({ lang }: { lang: Lang }) {
               </Link>
             ))}
           </nav>
-          <div className="flex items-center gap-4 text-xs text-[#5b4f3d]">
-            {t.utility.map((u) => (
-              <span key={u}>{u}</span>
-            ))}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4 text-xs text-[#5b4f3d]">
+              {t.utility.map((u) => (
+                <span key={u}>{u}</span>
+              ))}
+            </div>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#2c2620]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
           </div>
         </div>
+        {open && (
+          <div className="border-t border-[#e1d8c8] px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-xs font-medium tracking-[0.2em] text-[#5b4f3d]">
+              {t.nav.map((n, i) => (
+                <Link
+                  key={n}
+                  href={navHrefs[i]}
+                  onClick={() => setOpen(false)}
+                  className={i === 2 ? "py-2 text-[#a08260]" : "py-2"}
+                >
+                  {n}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">

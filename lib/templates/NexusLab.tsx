@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -106,6 +108,7 @@ export default function NexusLab({ lang }: { lang: Lang }) {
   const pricingPath = localePath(lang, "/portfolio/nexus-lab/pricing");
   const changelogPath = localePath(lang, "/portfolio/nexus-lab/changelog");
   const subpagePaths: Record<number, string> = { 1: docsPath, 2: pricingPath, 3: changelogPath };
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
 
   const fullTerminalText = t.terminal.output + t.terminal.url;
   const [typedCount, setTypedCount] = useState(0);
@@ -182,7 +185,7 @@ export default function NexusLab({ lang }: { lang: Lang }) {
 
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white">
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur">
+      <header ref={ref} className="sticky top-0 z-30 border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2 font-mono text-sm font-bold tracking-tight">
             <span className="inline-block h-3 w-3 rounded-sm bg-gradient-to-br from-[#7c5cff] to-[#22d3ee]" />
@@ -201,10 +204,45 @@ export default function NexusLab({ lang }: { lang: Lang }) {
               )
             )}
           </nav>
-          <a href="#overview" className="rounded-md bg-white px-4 py-2 font-mono text-xs font-bold text-black">
-            {t.cta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#overview" className="rounded-md bg-white px-4 py-2 font-mono text-xs font-bold text-black">
+              {t.cta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-md border border-white/15 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-white/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 font-mono text-xs text-white/60">
+              {t.nav.map((n, i) =>
+                subpagePaths[i] ? (
+                  <Link key={n} href={subpagePaths[i]} onClick={() => setOpen(false)} className="py-2">
+                    {n}
+                  </Link>
+                ) : (
+                  <a key={n} href="#platform" onClick={() => setOpen(false)} className="py-2">
+                    {n}
+                  </a>
+                )
+              )}
+            </nav>
+            <a
+              href="#overview"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-md bg-white px-4 py-2 font-mono text-xs font-bold text-black"
+            >
+              {t.cta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section id="overview" className="relative scroll-mt-24 overflow-hidden">

@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -141,7 +142,7 @@ const copy = {
 
 export default function RidgelineConstruction({ lang }: { lang: Lang }) {
   const t = copy[lang];
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const navItems = [
     { label: t.nav.services, href: "#services" },
     { label: t.nav.projects, href: "#projects" },
@@ -151,7 +152,7 @@ export default function RidgelineConstruction({ lang }: { lang: Lang }) {
   ];
   return (
     <div className="bg-[#211f1c] text-[#f4f1ea]">
-      <header className="border-b border-white/10 bg-[#1a1815]">
+      <header ref={ref} className="border-b border-white/10 bg-[#1a1815]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center bg-[#d97f2e] font-black text-base text-[#1a1815]">R</span>
@@ -174,28 +175,26 @@ export default function RidgelineConstruction({ lang }: { lang: Lang }) {
             <button
               type="button"
               aria-label="menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
               className="flex h-9 w-9 items-center justify-center border border-white/20 md:hidden"
             >
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-              </svg>
+              <MenuIcon open={open} />
             </button>
           </div>
         </div>
-        {menuOpen && (
+        {open && (
           <div className="border-t border-white/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-semibold uppercase tracking-wide text-white/70">
               {navItems.map((item) => (
-                <a key={item.label} href={item.href} className="py-2" onClick={() => setMenuOpen(false)}>
+                <a key={item.label} href={item.href} className="py-2" onClick={() => setOpen(false)}>
                   {item.label}
                 </a>
               ))}
             </nav>
             <a
               href="#contact"
-              onClick={() => setMenuOpen(false)}
+              onClick={() => setOpen(false)}
               className="mt-3 inline-block bg-[#d97f2e] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1a1815]"
             >
               {t.quoteCta}

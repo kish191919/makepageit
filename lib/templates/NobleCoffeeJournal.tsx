@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -69,10 +73,11 @@ export default function NobleCoffeeJournal({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/noble-coffee");
   const journalPath = localePath(lang, "/portfolio/noble-coffee/journal");
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
 
   return (
     <div className="bg-[#f6f1ea] text-[#2a221a]">
-      <header className="border-b border-[#e7ddcc] bg-[#f6f1ea]/90 backdrop-blur">
+      <header ref={ref} className="border-b border-[#e7ddcc] bg-[#f6f1ea]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link href={home} className="text-lg font-serif tracking-[0.4em]">
             NOBLE
@@ -91,13 +96,49 @@ export default function NobleCoffeeJournal({ lang }: { lang: Lang }) {
               {t.nav.journal}
             </Link>
           </nav>
-          <Link
-            href={`${home}#coffee`}
-            className="rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest"
-          >
-            {t.nav.shop}
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href={`${home}#coffee`}
+              className="rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest"
+            >
+              {t.nav.shop}
+            </Link>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#2a221a]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-[#e7ddcc] px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-xs font-medium tracking-[0.2em] text-[#5b4b39]">
+              <Link href={`${home}#story`} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.story}
+              </Link>
+              <Link href={`${home}#coffee`} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.coffee}
+              </Link>
+              <Link href={`${home}#visit`} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.visit}
+              </Link>
+              <Link href={journalPath} onClick={() => setOpen(false)} className="py-2 text-[#2a221a]">
+                {t.nav.journal}
+              </Link>
+            </nav>
+            <Link
+              href={`${home}#coffee`}
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest"
+            >
+              {t.nav.shop}
+            </Link>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-24">

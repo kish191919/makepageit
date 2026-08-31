@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -144,7 +145,7 @@ const copy = {
 
 export default function MeridianWealth({ lang }: { lang: Lang }) {
   const t = copy[lang];
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const insightsPath = localePath(lang, "/portfolio/meridian-wealth/insights");
   const navItems: [string, string][] = [
     [t.nav.services, "#services"],
@@ -155,7 +156,7 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
   ];
   return (
     <div className="bg-[#f7f6f2] text-[#1a2332]">
-      <header className="border-b border-[#1a2332]/10 bg-[#f7f6f2]">
+      <header ref={ref} className="border-b border-[#1a2332]/10 bg-[#f7f6f2]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1a2332] text-base font-semibold text-[#c99a3b]">M</span>
@@ -178,26 +179,24 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
             <button
               type="button"
               aria-label="menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
               className="flex h-9 w-9 items-center justify-center rounded-full border border-[#1a2332]/20 md:hidden"
             >
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-              </svg>
+              <MenuIcon open={open} />
             </button>
           </div>
         </div>
-        {menuOpen && (
+        {open && (
           <div className="border-t border-[#1a2332]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#1a2332]/75">
               {navItems.map(([label, href]) => (
-                <a key={label} href={href} onClick={() => setMenuOpen(false)} className="py-2">
+                <a key={label} href={href} onClick={() => setOpen(false)} className="py-2">
                   {label}
                 </a>
               ))}
             </nav>
-            <a href="#contact" onClick={() => setMenuOpen(false)} className="mt-3 inline-block rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
+            <a href="#contact" onClick={() => setOpen(false)} className="mt-3 inline-block rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
               {t.bookCta}
             </a>
           </div>

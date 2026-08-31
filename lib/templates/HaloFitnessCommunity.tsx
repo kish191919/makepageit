@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -55,6 +59,7 @@ const copy = {
 
 export default function HaloFitnessCommunity({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/halo-fitness");
   const featuresPath = localePath(lang, "/portfolio/halo-fitness/features");
   const plansPath = localePath(lang, "/portfolio/halo-fitness/plans");
@@ -62,7 +67,7 @@ export default function HaloFitnessCommunity({ lang }: { lang: Lang }) {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <header className="border-b border-white/10 bg-black/80 backdrop-blur">
+      <header ref={ref} className="border-b border-white/10 bg-black/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link href={home} className="flex items-center gap-2 text-lg font-black tracking-tight">
             <span className="inline-block h-3 w-3 rounded-full bg-gradient-to-br from-[#ff3d8b] to-[#ffb44a]" />
@@ -73,10 +78,37 @@ export default function HaloFitnessCommunity({ lang }: { lang: Lang }) {
             <Link href={plansPath} className="transition hover:text-white">{t.nav.plans}</Link>
             <Link href={communityPath} className="font-semibold text-white">{t.nav.community}</Link>
           </nav>
-          <Link href={`${home}#hero`} className="rounded-full bg-gradient-to-r from-[#ff3d8b] to-[#ffb44a] px-5 py-2 text-sm font-bold text-black">
-            {t.cta}
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href={`${home}#hero`} className="rounded-full bg-gradient-to-r from-[#ff3d8b] to-[#ffb44a] px-5 py-2 text-sm font-bold text-black">
+              {t.cta}
+            </Link>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-white/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm text-white/70">
+              <Link href={featuresPath} onClick={() => setOpen(false)} className="py-2">{t.nav.features}</Link>
+              <Link href={plansPath} onClick={() => setOpen(false)} className="py-2">{t.nav.plans}</Link>
+              <Link href={communityPath} onClick={() => setOpen(false)} className="py-2 font-semibold text-white">{t.nav.community}</Link>
+            </nav>
+            <Link
+              href={`${home}#hero`}
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full bg-gradient-to-r from-[#ff3d8b] to-[#ffb44a] px-5 py-2 text-sm font-bold text-black"
+            >
+              {t.cta}
+            </Link>
+          </div>
+        )}
       </header>
 
       <section className="relative overflow-hidden bg-gradient-to-b from-transparent via-[#ff3d8b]/5 to-transparent">

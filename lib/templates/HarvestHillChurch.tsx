@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -132,9 +136,10 @@ const copy = {
 
 export default function HarvestHillChurch({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   return (
     <div className="bg-white text-slate-900">
-      <header className="sticky top-0 z-30 border-b border-slate-100 bg-white/90 backdrop-blur">
+      <header ref={ref} className="sticky top-0 z-30 border-b border-slate-100 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#a4762f] text-xs font-bold text-white">H</span>
@@ -147,10 +152,39 @@ export default function HarvestHillChurch({ lang }: { lang: Lang }) {
             <a href="#give" className="transition hover:text-[#a4762f]">{t.nav.give}</a>
             <a href="#visit" className="transition hover:text-[#a4762f]">{t.nav.visit}</a>
           </nav>
-          <a href="#visit" className="rounded-full bg-[#a4762f] px-5 py-2 text-xs font-semibold text-white">
-            {t.visitCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#visit" className="rounded-full bg-[#a4762f] px-5 py-2 text-xs font-semibold text-white">
+              {t.visitCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-slate-100 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm text-slate-600">
+              <a href="#times" onClick={() => setOpen(false)} className="py-2">{t.nav.times}</a>
+              <a href="#ministries" onClick={() => setOpen(false)} className="py-2">{t.nav.ministries}</a>
+              <a href="#sermons" onClick={() => setOpen(false)} className="py-2">{t.nav.sermons}</a>
+              <a href="#give" onClick={() => setOpen(false)} className="py-2">{t.nav.give}</a>
+              <a href="#visit" onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</a>
+            </nav>
+            <a
+              href="#visit"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full bg-[#a4762f] px-5 py-2 text-xs font-semibold text-white"
+            >
+              {t.visitCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="bg-gradient-to-br from-[#faf5ec] via-white to-[#f5ede0]">

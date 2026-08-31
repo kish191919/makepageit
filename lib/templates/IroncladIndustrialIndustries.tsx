@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -72,10 +76,11 @@ export default function IroncladIndustrialIndustries({ lang }: { lang: Lang }) {
   const home = localePath(lang, "/portfolio/ironclad-industrial");
   const productsPath = localePath(lang, "/portfolio/ironclad-industrial/products");
   const industriesPath = localePath(lang, "/portfolio/ironclad-industrial/industries");
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
 
   return (
     <div className="bg-[#23272e] text-[#f2f1ec]">
-      <header className="border-b border-white/10 bg-[#1b1e24]">
+      <header ref={ref} className="border-b border-white/10 bg-[#1b1e24]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link href={home} className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center bg-[#ff6a13] font-black text-base text-[#1b1e24]">
@@ -93,13 +98,42 @@ export default function IroncladIndustrialIndustries({ lang }: { lang: Lang }) {
             <Link href={industriesPath} className="text-[#ff6a13]">{t.nav.industries}</Link>
             <Link href={`${home}#contact`} className="transition hover:text-[#ff6a13]">{t.nav.contact}</Link>
           </nav>
-          <Link
-            href={`${home}#contact`}
-            className="hidden bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24] sm:inline-block"
-          >
-            {t.quoteCta}
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href={`${home}#contact`}
+              className="hidden bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24] sm:inline-block"
+            >
+              {t.quoteCta}
+            </Link>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center border border-white/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-white/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-semibold uppercase tracking-wide text-white/70">
+              <Link href={`${home}#capabilities`} onClick={() => setOpen(false)} className="py-2">{t.nav.capabilities}</Link>
+              <Link href={productsPath} onClick={() => setOpen(false)} className="py-2">{t.nav.products}</Link>
+              <Link href={`${home}#certifications`} onClick={() => setOpen(false)} className="py-2">{t.nav.certifications}</Link>
+              <Link href={industriesPath} onClick={() => setOpen(false)} className="py-2 text-[#ff6a13]">{t.nav.industries}</Link>
+              <Link href={`${home}#contact`} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
+            </nav>
+            <Link
+              href={`${home}#contact`}
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24]"
+            >
+              {t.quoteCta}
+            </Link>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">

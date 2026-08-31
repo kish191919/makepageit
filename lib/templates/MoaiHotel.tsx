@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -97,13 +101,14 @@ const copy = {
 
 export default function MoaiHotel({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const dinePath = localePath(lang, "/portfolio/moai-hotel/dine");
   const spaPath = localePath(lang, "/portfolio/moai-hotel/spa");
   const journalPath = localePath(lang, "/portfolio/moai-hotel/journal");
   const subpagePaths: Record<number, string> = { 1: dinePath, 2: spaPath, 3: journalPath };
   return (
     <div className="min-h-screen bg-[#0d0c0a] text-[#f0e9d6]">
-      <header className="absolute inset-x-0 top-0 z-30">
+      <header ref={ref} className="absolute inset-x-0 top-0 z-30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
           <div className="font-serif text-xl tracking-[0.5em] text-[#d4af37]">{t.brand}</div>
           <nav className="hidden gap-10 text-[11px] font-medium tracking-[0.3em] md:flex">
@@ -119,10 +124,45 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
               )
             )}
           </nav>
-          <a href="#reserve" className="border border-[#d4af37] px-5 py-2 text-[11px] tracking-[0.3em] text-[#d4af37]">
-            {t.reserveCta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#reserve" className="border border-[#d4af37] px-5 py-2 text-[11px] tracking-[0.3em] text-[#d4af37]">
+              {t.reserveCta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center border border-[#d4af37]/50 text-[#d4af37] md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-[#d4af37]/20 bg-[#0d0c0a] px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-[11px] font-medium tracking-[0.3em]">
+              {t.nav.map((n, i) =>
+                subpagePaths[i] ? (
+                  <Link key={n} href={subpagePaths[i]} onClick={() => setOpen(false)} className="py-2">
+                    {n}
+                  </Link>
+                ) : (
+                  <a key={n} href={["#rooms", "#experiences"][i]} onClick={() => setOpen(false)} className="py-2">
+                    {n}
+                  </a>
+                )
+              )}
+            </nav>
+            <a
+              href="#reserve"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block border border-[#d4af37] px-5 py-2 text-[11px] tracking-[0.3em] text-[#d4af37]"
+            >
+              {t.reserveCta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="relative h-[100vh] min-h-[640px] overflow-hidden">

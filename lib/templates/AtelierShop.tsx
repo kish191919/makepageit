@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -94,6 +96,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
   const [activeFilter, setActiveFilter] = useState("All");
   const visibleProducts =
     activeFilter === "All" ? t.products : t.products.filter((p) => p.category === activeFilter);
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
 
   const newInPath = localePath(lang, "/portfolio/atelier-shop/new-in");
   const outerwearPath = localePath(lang, "/portfolio/atelier-shop/outerwear");
@@ -102,7 +105,7 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
 
   return (
     <div className="bg-[#fafaf7] text-[#1f1d1a]">
-      <header className="border-b border-[#ecead9] bg-[#fafaf7]/95 backdrop-blur">
+      <header ref={ref} className="border-b border-[#ecead9] bg-[#fafaf7]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <nav className="hidden gap-6 text-xs font-medium uppercase tracking-[0.2em] md:flex">
             <Link href={newInPath}>{t.nav.newIn}</Link>
@@ -111,12 +114,39 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
             <Link href={lookbookPath}>{t.nav.lookbook}</Link>
           </nav>
           <div className="text-xl font-serif tracking-[0.4em]">ATELIER 22</div>
-          <div className="flex gap-5 text-xs uppercase tracking-widest">
+          <div className="flex items-center gap-5 text-xs uppercase tracking-widest">
             <a>{t.utility.search}</a>
             <a>{t.utility.account}</a>
             <a className="font-semibold">{t.utility.cart}</a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#1f1d1a]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
           </div>
         </div>
+        {open && (
+          <div className="border-t border-[#ecead9] px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-xs font-medium uppercase tracking-[0.2em]">
+              <Link href={newInPath} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.newIn}
+              </Link>
+              <Link href={outerwearPath} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.outerwear}
+              </Link>
+              <Link href={accessoriesPath} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.accessories}
+              </Link>
+              <Link href={lookbookPath} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.lookbook}
+              </Link>
+            </nav>
+          </div>
+        )}
       </header>
 
       <section className="relative h-[88vh] min-h-[560px] overflow-hidden">

@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -64,12 +68,13 @@ const copy = {
 
 export default function GreenLawInsights({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/green-law");
   const insightsPath = localePath(lang, "/portfolio/green-law/insights");
 
   return (
     <div className="bg-white text-[#0b1a2a]">
-      <header className="border-b border-[#0b1a2a]/10 bg-white">
+      <header ref={ref} className="border-b border-[#0b1a2a]/10 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link href={home} className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-[#0b1a2a] font-serif text-base text-white">
@@ -89,13 +94,44 @@ export default function GreenLawInsights({ lang }: { lang: Lang }) {
             </Link>
             <Link href={`${home}#contact`}>{t.nav.visit}</Link>
           </nav>
-          <Link
-            href={`${home}#contact`}
-            className="rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
-          >
-            {t.bookCta}
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href={`${home}#contact`}
+              className="rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
+            >
+              {t.bookCta}
+            </Link>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-sm border border-[#0b1a2a]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-[#0b1a2a]/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-medium text-[#0b1a2a]/80">
+              <Link href={`${home}#areas`} onClick={() => setOpen(false)} className="py-2">{t.nav.areas}</Link>
+              <Link href={`${home}#lawyers`} onClick={() => setOpen(false)} className="py-2">{t.nav.lawyers}</Link>
+              <Link href={`${home}#cases`} onClick={() => setOpen(false)} className="py-2">{t.nav.cases}</Link>
+              <Link href={insightsPath} onClick={() => setOpen(false)} className="py-2 text-[#0b1a2a]">
+                {t.nav.insights}
+              </Link>
+              <Link href={`${home}#contact`} onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</Link>
+            </nav>
+            <Link
+              href={`${home}#contact`}
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
+            >
+              {t.bookCta}
+            </Link>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-24">

@@ -1,5 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import type { Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -130,9 +134,10 @@ const copy = {
 
 export default function HaruAcademy({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   return (
     <div className="bg-white text-slate-900">
-      <header className="sticky top-0 z-30 border-b border-slate-100 bg-white/90 backdrop-blur">
+      <header ref={ref} className="sticky top-0 z-30 border-b border-slate-100 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2 text-xl font-black tracking-tight">
             {t.brand.left}<span className="text-[#ff5e3a]">{t.brand.right}</span>
@@ -143,10 +148,38 @@ export default function HaruAcademy({ lang }: { lang: Lang }) {
             <a href="#reviews" className="transition hover:text-[#ff5e3a]">{t.nav.reviews}</a>
             <a href="#faq" className="transition hover:text-[#ff5e3a]">{t.nav.faq}</a>
           </nav>
-          <a href="#offer" className="rounded-full bg-[#ff5e3a] px-5 py-2 text-sm font-bold text-white shadow-lg shadow-[#ff5e3a]/30">
-            {t.cta}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#offer" className="rounded-full bg-[#ff5e3a] px-5 py-2 text-sm font-bold text-white shadow-lg shadow-[#ff5e3a]/30">
+              {t.cta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-slate-100 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-semibold text-slate-600">
+              <a href="#why" onClick={() => setOpen(false)} className="py-2">{t.nav.why}</a>
+              <a href="#curriculum" onClick={() => setOpen(false)} className="py-2">{t.nav.curriculum}</a>
+              <a href="#reviews" onClick={() => setOpen(false)} className="py-2">{t.nav.reviews}</a>
+              <a href="#faq" onClick={() => setOpen(false)} className="py-2">{t.nav.faq}</a>
+            </nav>
+            <a
+              href="#offer"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full bg-[#ff5e3a] px-5 py-2 text-sm font-bold text-white shadow-lg shadow-[#ff5e3a]/30"
+            >
+              {t.cta}
+            </a>
+          </div>
+        )}
       </header>
 
       <section id="offer" className="relative scroll-mt-24 overflow-hidden bg-gradient-to-br from-[#fff7f3] via-white to-[#ffece4]">

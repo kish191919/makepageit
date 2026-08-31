@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -66,10 +70,11 @@ export default function MeridianWealthInsights({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/meridian-wealth");
   const insightsPath = localePath(lang, "/portfolio/meridian-wealth/insights");
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
 
   return (
     <div className="bg-[#f7f6f2] text-[#1a2332]">
-      <header className="border-b border-[#1a2332]/10 bg-[#f7f6f2]">
+      <header ref={ref} className="border-b border-[#1a2332]/10 bg-[#f7f6f2]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link href={home} className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1a2332] text-base font-semibold text-[#c99a3b]">
@@ -87,13 +92,42 @@ export default function MeridianWealthInsights({ lang }: { lang: Lang }) {
             <Link href={insightsPath} className="text-[#c99a3b]">{t.nav.insights}</Link>
             <Link href={`${home}#contact`} className="transition hover:text-[#c99a3b]">{t.nav.contact}</Link>
           </nav>
-          <Link
-            href={`${home}#contact`}
-            className="hidden rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block"
-          >
-            {t.bookCta}
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href={`${home}#contact`}
+              className="hidden rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block"
+            >
+              {t.bookCta}
+            </Link>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#1a2332]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-[#1a2332]/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-medium text-[#1a2332]/75">
+              <Link href={`${home}#services`} onClick={() => setOpen(false)} className="py-2">{t.nav.services}</Link>
+              <Link href={`${home}#approach`} onClick={() => setOpen(false)} className="py-2">{t.nav.approach}</Link>
+              <Link href={`${home}#advisors`} onClick={() => setOpen(false)} className="py-2">{t.nav.advisors}</Link>
+              <Link href={insightsPath} onClick={() => setOpen(false)} className="py-2 text-[#c99a3b]">{t.nav.insights}</Link>
+              <Link href={`${home}#contact`} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
+            </nav>
+            <Link
+              href={`${home}#contact`}
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white"
+            >
+              {t.bookCta}
+            </Link>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">

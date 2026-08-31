@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -43,12 +47,13 @@ const copy = {
 
 export default function SolsticeInteriorsAbout({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/solstice-interiors");
   const aboutPath = localePath(lang, "/portfolio/solstice-interiors/about");
 
   return (
     <div className="bg-[#f7f0e6] text-[#2b241d]">
-      <header className="border-b border-[#2b241d]/10 bg-[#f7f0e6]">
+      <header ref={ref} className="border-b border-[#2b241d]/10 bg-[#f7f0e6]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link href={home} className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#c1652f] font-serif text-base text-white">
@@ -66,13 +71,42 @@ export default function SolsticeInteriorsAbout({ lang }: { lang: Lang }) {
             <Link href={aboutPath} className="text-[#c1652f]">{t.nav.about}</Link>
             <Link href={`${home}#contact`} className="transition hover:text-[#c1652f]">{t.nav.contact}</Link>
           </nav>
-          <Link
-            href={`${home}#contact`}
-            className="hidden rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block"
-          >
-            {t.bookCta}
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link
+              href={`${home}#contact`}
+              className="hidden rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block"
+            >
+              {t.bookCta}
+            </Link>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#2b241d]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-[#2b241d]/10 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-medium text-[#2b241d]/75">
+              <Link href={`${home}#portfolio`} onClick={() => setOpen(false)} className="py-2">{t.nav.portfolio}</Link>
+              <Link href={`${home}#services`} onClick={() => setOpen(false)} className="py-2">{t.nav.services}</Link>
+              <Link href={`${home}#process`} onClick={() => setOpen(false)} className="py-2">{t.nav.process}</Link>
+              <Link href={aboutPath} onClick={() => setOpen(false)} className="py-2 text-[#c1652f]">{t.nav.about}</Link>
+              <Link href={`${home}#contact`} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
+            </nav>
+            <Link
+              href={`${home}#contact`}
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white"
+            >
+              {t.bookCta}
+            </Link>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-16 sm:py-24">

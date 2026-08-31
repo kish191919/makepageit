@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -184,12 +185,12 @@ const copy = {
 
 export default function HarborRealty({ lang }: { lang: Lang }) {
   const t = copy[lang];
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const neighborhoodsPath = localePath(lang, "/portfolio/harbor-realty/neighborhoods");
   const navItems = [t.nav.listings, t.nav.neighborhoods, t.nav.sell, t.nav.agents, t.nav.contact];
   return (
     <div className="bg-[#faf7f2] text-[#1c3829]">
-      <header className="border-b border-[#1c3829]/10 bg-[#faf7f2]">
+      <header ref={ref} className="border-b border-[#1c3829]/10 bg-[#faf7f2]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1c3829] font-serif text-base text-[#faf7f2]">
@@ -214,29 +215,27 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
             <button
               type="button"
               aria-label="menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
               className="flex h-9 w-9 items-center justify-center rounded-full border border-[#1c3829]/20 md:hidden"
             >
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-              </svg>
+              <MenuIcon open={open} />
             </button>
           </div>
         </div>
-        {menuOpen && (
+        {open && (
           <div className="border-t border-[#1c3829]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#1c3829]/80">
               {navItems.map((label, i) =>
                 i === 1 ? (
-                  <Link key={label} href={neighborhoodsPath} onClick={() => setMenuOpen(false)} className="py-2">
+                  <Link key={label} href={neighborhoodsPath} onClick={() => setOpen(false)} className="py-2">
                     {label}
                   </Link>
                 ) : (
                   <a
                     key={label}
                     href={`#${["listings", "listings", "contact", "agents", "contact"][i]}`}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => setOpen(false)}
                     className="py-2"
                   >
                     {label}
@@ -246,7 +245,7 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
             </nav>
             <a
               href="#contact"
-              onClick={() => setMenuOpen(false)}
+              onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
             >
               {t.bookCta}

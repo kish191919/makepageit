@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -57,10 +61,11 @@ export default function VinSecretSommelier({ lang }: { lang: Lang }) {
   const journalPath = localePath(lang, "/portfolio/vin-secret/journal");
   const sommelierPath = localePath(lang, "/portfolio/vin-secret/sommelier");
   const navHrefs = [cellarPath, clubPath, journalPath, sommelierPath];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
 
   return (
     <div className="min-h-screen bg-[#1a0d10] text-[#f3e7d7]">
-      <header className="border-b border-[#3a1f25] bg-[#1a0d10]/95 backdrop-blur">
+      <header ref={ref} className="border-b border-[#3a1f25] bg-[#1a0d10]/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link href={home} className="font-serif text-xl italic tracking-wide text-[#d4a574]">
             Vin Secret
@@ -76,7 +81,32 @@ export default function VinSecretSommelier({ lang }: { lang: Lang }) {
               </Link>
             ))}
           </nav>
+          <button
+            type="button"
+            aria-label="menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d4a574]/40 text-[#d4a574] md:hidden"
+          >
+            <MenuIcon open={open} />
+          </button>
         </div>
+        {open && (
+          <div className="border-t border-[#3a1f25] px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-xs tracking-[0.3em] text-[#c8b896]">
+              {t.nav.map((n, i) => (
+                <Link
+                  key={n}
+                  href={navHrefs[i]}
+                  onClick={() => setOpen(false)}
+                  className={i === 3 ? "py-2 text-[#d4a574]" : "py-2"}
+                >
+                  {n}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-6xl px-6 py-24">

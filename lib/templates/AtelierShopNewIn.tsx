@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -99,6 +103,7 @@ const copy = {
 
 export default function AtelierShopNewIn({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/atelier-shop");
   const newInPath = localePath(lang, "/portfolio/atelier-shop/new-in");
   const outerwearPath = localePath(lang, "/portfolio/atelier-shop/outerwear");
@@ -108,7 +113,7 @@ export default function AtelierShopNewIn({ lang }: { lang: Lang }) {
 
   return (
     <div className="bg-[#fafaf7] text-[#1f1d1a]">
-      <header className="border-b border-[#ecead9] bg-[#fafaf7]/95 backdrop-blur">
+      <header ref={ref} className="border-b border-[#ecead9] bg-[#fafaf7]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <nav className="hidden gap-6 text-xs font-medium uppercase tracking-[0.2em] md:flex">
             <Link href={newInPath} className="font-semibold">
@@ -122,8 +127,40 @@ export default function AtelierShopNewIn({ lang }: { lang: Lang }) {
           <Link href={home} className="text-xl font-serif tracking-[0.4em]">
             ATELIER 22
           </Link>
-          <div className="w-[120px]" aria-hidden />
+          <div className="flex items-center gap-3">
+            <div className="hidden w-[120px] md:block" aria-hidden />
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#1f1d1a]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-[#ecead9] px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-xs font-medium uppercase tracking-[0.2em]">
+              <Link href={newInPath} onClick={() => setOpen(false)} className="py-2 font-semibold">
+                {t.nav.newIn}
+              </Link>
+              <Link href={outerwearPath} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.outerwear}
+              </Link>
+              <Link href={accessoriesPath} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.accessories}
+              </Link>
+              <Link href={lookbookPath} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.lookbook}
+              </Link>
+              <Link href={journalPath} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.journal}
+              </Link>
+            </nav>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-5xl px-6 py-24">

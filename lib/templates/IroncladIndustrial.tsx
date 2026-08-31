@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -110,7 +111,7 @@ const copy = {
 
 export default function IroncladIndustrial({ lang }: { lang: Lang }) {
   const t = copy[lang];
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const productsPath = localePath(lang, "/portfolio/ironclad-industrial/products");
   const industriesPath = localePath(lang, "/portfolio/ironclad-industrial/industries");
   const navItems: [string, string][] = [
@@ -122,7 +123,7 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
   ];
   return (
     <div className="bg-[#23272e] text-[#f2f1ec]">
-      <header className="border-b border-white/10 bg-[#1b1e24]">
+      <header ref={ref} className="border-b border-white/10 bg-[#1b1e24]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center bg-[#ff6a13] font-black text-base text-[#1b1e24]">I</span>
@@ -145,26 +146,24 @@ export default function IroncladIndustrial({ lang }: { lang: Lang }) {
             <button
               type="button"
               aria-label="menu"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
               className="flex h-9 w-9 items-center justify-center border border-white/20 md:hidden"
             >
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M3 6h14M3 10h14M3 14h14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-              </svg>
+              <MenuIcon open={open} />
             </button>
           </div>
         </div>
-        {menuOpen && (
+        {open && (
           <div className="border-t border-white/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-semibold uppercase tracking-wide text-white/70">
               {navItems.map(([label, href]) => (
-                <a key={label} href={href} onClick={() => setMenuOpen(false)} className="py-2">
+                <a key={label} href={href} onClick={() => setOpen(false)} className="py-2">
                   {label}
                 </a>
               ))}
             </nav>
-            <a href="#contact" onClick={() => setMenuOpen(false)} className="mt-3 inline-block bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24]">
+            <a href="#contact" onClick={() => setOpen(false)} className="mt-3 inline-block bg-[#ff6a13] px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-[#1b1e24]">
               {t.quoteCta}
             </a>
           </div>

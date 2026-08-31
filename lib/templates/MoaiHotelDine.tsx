@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -63,6 +67,7 @@ const copy = {
 
 export default function MoaiHotelDine({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/moai-hotel");
   const dinePath = localePath(lang, "/portfolio/moai-hotel/dine");
   const spaPath = localePath(lang, "/portfolio/moai-hotel/spa");
@@ -71,7 +76,7 @@ export default function MoaiHotelDine({ lang }: { lang: Lang }) {
 
   return (
     <div className="min-h-screen bg-[#0d0c0a] text-[#f0e9d6]">
-      <header className="border-b border-[#d4af37]/20 bg-[#0d0c0a]">
+      <header ref={ref} className="border-b border-[#d4af37]/20 bg-[#0d0c0a]">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
           <Link href={home} className="font-serif text-xl tracking-[0.5em] text-[#d4af37]">
             {t.brand}
@@ -87,7 +92,32 @@ export default function MoaiHotelDine({ lang }: { lang: Lang }) {
               </Link>
             ))}
           </nav>
+          <button
+            type="button"
+            aria-label="menu"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-9 w-9 items-center justify-center border border-[#d4af37]/50 text-[#d4af37] md:hidden"
+          >
+            <MenuIcon open={open} />
+          </button>
         </div>
+        {open && (
+          <div className="border-t border-[#d4af37]/20 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-[11px] font-medium tracking-[0.3em]">
+              {t.nav.map((n, i) => (
+                <Link
+                  key={n}
+                  href={navHrefs[i]}
+                  onClick={() => setOpen(false)}
+                  className={i === 1 ? "py-2 text-[#d4af37]" : "py-2"}
+                >
+                  {n}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
       </header>
 
       <section className="mx-auto max-w-7xl px-6 py-24">

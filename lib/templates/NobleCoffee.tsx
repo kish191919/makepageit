@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
@@ -115,23 +119,55 @@ const copy = {
 
 export default function NobleCoffee({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
+  const journalPath = localePath(lang, "/portfolio/noble-coffee/journal");
   return (
     <div className="bg-[#f6f1ea] text-[#2a221a]">
-      <header className="border-b border-[#e7ddcc] bg-[#f6f1ea]/90 backdrop-blur">
+      <header ref={ref} className="border-b border-[#e7ddcc] bg-[#f6f1ea]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="text-lg font-serif tracking-[0.4em]">NOBLE</div>
           <nav className="hidden gap-8 text-xs font-medium tracking-[0.2em] text-[#5b4b39] md:flex">
             <a href="#story" className="transition hover:text-[#2a221a]">{t.nav.story}</a>
             <a href="#coffee" className="transition hover:text-[#2a221a]">{t.nav.coffee}</a>
             <a href="#visit" className="transition hover:text-[#2a221a]">{t.nav.visit}</a>
-            <Link href={localePath(lang, "/portfolio/noble-coffee/journal")} className="transition hover:text-[#2a221a]">
+            <Link href={journalPath} className="transition hover:text-[#2a221a]">
               {t.nav.journal}
             </Link>
           </nav>
-          <a href="#coffee" className="rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest">
-            {t.nav.shop}
-          </a>
+          <div className="flex items-center gap-3">
+            <a href="#coffee" className="hidden rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest sm:inline-block">
+              {t.nav.shop}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-[#2a221a]/20 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
+          </div>
         </div>
+        {open && (
+          <div className="border-t border-[#e7ddcc] px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-xs font-medium tracking-[0.2em] text-[#5b4b39]">
+              <a href="#story" onClick={() => setOpen(false)} className="py-2">{t.nav.story}</a>
+              <a href="#coffee" onClick={() => setOpen(false)} className="py-2">{t.nav.coffee}</a>
+              <a href="#visit" onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</a>
+              <Link href={journalPath} onClick={() => setOpen(false)} className="py-2">
+                {t.nav.journal}
+              </Link>
+            </nav>
+            <a
+              href="#coffee"
+              onClick={() => setOpen(false)}
+              className="mt-3 inline-block rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest"
+            >
+              {t.nav.shop}
+            </a>
+          </div>
+        )}
       </header>
 
       <section className="relative h-[80vh] min-h-[520px] overflow-hidden">
