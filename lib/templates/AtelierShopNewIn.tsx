@@ -5,11 +5,17 @@ import { localePath, type Lang } from "@/lib/i18n";
 const copy = {
   en: {
     nav: { newIn: "New In", outerwear: "Outerwear", accessories: "Accessories", lookbook: "Lookbook", journal: "Journal" },
-    eyebrow: "Accessories",
-    title: "Small pieces, worn daily",
+    eyebrow: "New In",
+    title: "Just landed",
     intro:
-      "The details that carry a look through a season — a tote that softens with use, a scarf that goes everywhere, a hat that never feels precious.",
+      "This week's arrivals, in one place — coats, knits, and the small pieces that finish a look. Everything here is fresh off the workroom table.",
     products: [
+      {
+        name: "Linen Wrap Coat",
+        price: "$348",
+        desc: "A single-layer wrap coat in heavyweight Belgian linen. Ties at the waist, drapes past the knee.",
+        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1200&q=80&auto=format&fit=crop",
+      },
       {
         name: "Hand-stitched Tote",
         price: "$156",
@@ -17,10 +23,22 @@ const copy = {
         image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=1200&q=80&auto=format&fit=crop",
       },
       {
+        name: "Cotton Wide Trouser",
+        price: "$138",
+        desc: "A relaxed, high-rise trouser in washed cotton twill. Cut wide through the leg for full range of motion.",
+        image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=1200&q=80&auto=format&fit=crop",
+      },
+      {
         name: "Silk Scarf · Bloom",
         price: "$78",
         desc: "A hand-rolled edge on 100% mulberry silk, printed with an original floral study from our archive.",
         image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1200&q=80&auto=format&fit=crop",
+      },
+      {
+        name: "Knit Vest · Ivory",
+        price: "$118",
+        desc: "A cropped, ribbed vest in undyed merino wool. Layers over a blouse or straight against the skin.",
+        image: "https://images.unsplash.com/photo-1551803091-e20673f15770?w=1200&q=80&auto=format&fit=crop",
       },
       {
         name: "Wool Berét",
@@ -33,10 +51,17 @@ const copy = {
   },
   ko: {
     nav: { newIn: "New In", outerwear: "Outerwear", accessories: "Accessories", lookbook: "Lookbook", journal: "Journal" },
-    eyebrow: "Accessories",
-    title: "매일 곁에 두는 작은 것들",
-    intro: "한 시즌의 룩을 완성하는 디테일 — 쓸수록 부드러워지는 토트백, 어디에나 어울리는 스카프, 부담 없이 매일 쓰는 모자.",
+    eyebrow: "New In",
+    title: "이번 주 신상",
+    intro:
+      "이번 주에 도착한 신상품을 한자리에 모았습니다 — 코트, 니트, 그리고 룩을 완성하는 작은 아이템까지, 모두 공방에서 막 나온 것들입니다.",
     products: [
+      {
+        name: "Linen Wrap Coat",
+        price: "428,000원",
+        desc: "두꺼운 벨기에산 리넨으로 만든 싱글 레이어 랩 코트. 허리에서 묶어 무릎 아래까지 떨어집니다.",
+        image: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=1200&q=80&auto=format&fit=crop",
+      },
       {
         name: "Hand-stitched Tote",
         price: "192,000원",
@@ -44,10 +69,22 @@ const copy = {
         image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=1200&q=80&auto=format&fit=crop",
       },
       {
+        name: "Cotton Wide Trouser",
+        price: "168,000원",
+        desc: "워싱 코튼 트윌로 만든 하이라이즈 와이드 팬츠. 다리를 넓게 재단해 움직임이 편합니다.",
+        image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=1200&q=80&auto=format&fit=crop",
+      },
+      {
         name: "Silk Scarf · Bloom",
         price: "98,000원",
         desc: "100% 멀버리 실크에 아카이브 속 플로럴 드로잉을 프린트하고, 가장자리를 손으로 말아 마감했습니다.",
         image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=1200&q=80&auto=format&fit=crop",
+      },
+      {
+        name: "Knit Vest · Ivory",
+        price: "148,000원",
+        desc: "무염색 메리노 울로 짠 크롭 리브 베스트. 블라우스 위에 겹쳐 입거나 맨살에 바로 입을 수 있습니다.",
+        image: "https://images.unsplash.com/photo-1551803091-e20673f15770?w=1200&q=80&auto=format&fit=crop",
       },
       {
         name: "Wool Berét",
@@ -60,7 +97,7 @@ const copy = {
   },
 } as const;
 
-export default function AtelierShopAccessories({ lang }: { lang: Lang }) {
+export default function AtelierShopNewIn({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/atelier-shop");
   const newInPath = localePath(lang, "/portfolio/atelier-shop/new-in");
@@ -74,11 +111,11 @@ export default function AtelierShopAccessories({ lang }: { lang: Lang }) {
       <header className="border-b border-[#ecead9] bg-[#fafaf7]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <nav className="hidden gap-6 text-xs font-medium uppercase tracking-[0.2em] md:flex">
-            <Link href={newInPath}>{t.nav.newIn}</Link>
-            <Link href={outerwearPath}>{t.nav.outerwear}</Link>
-            <Link href={accessoriesPath} className="font-semibold">
-              {t.nav.accessories}
+            <Link href={newInPath} className="font-semibold">
+              {t.nav.newIn}
             </Link>
+            <Link href={outerwearPath}>{t.nav.outerwear}</Link>
+            <Link href={accessoriesPath}>{t.nav.accessories}</Link>
             <Link href={lookbookPath}>{t.nav.lookbook}</Link>
             <Link href={journalPath}>{t.nav.journal}</Link>
           </nav>

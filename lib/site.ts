@@ -1,7 +1,7 @@
 export const site = {
   name: "MAKEPAGE",
   nameKo: "메이크페이지",
-  email: "kish1919@gmail.com",
+  email: "admin@makepageit.com",
   phone: "205-734-9654",
   phoneIntl: "+12057349654",
   kakao: "@makepage",
@@ -16,6 +16,6 @@ export const site = {
     operator: "CloudMasterIT LLC",
     operatorNote: "MAKEPAGE는 CloudMasterIT LLC가 운영하는 서비스입니다.",
     operatorNoteEn: "MAKEPAGE is a service operated by CloudMasterIT LLC.",
-    contactEmail: "kish1919@gmail.com",
+    contactEmail: "admin@makepageit.com",
   },
 };

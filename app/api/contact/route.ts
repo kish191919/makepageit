@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const FROM = "MAKEPAGE <noreply@makepageit.com>";
-const TO = process.env.CONTACT_TO_EMAIL ?? "kish1919@gmail.com";
+const TO = process.env.CONTACT_TO_EMAIL ?? "admin@makepageit.com";
 
 export async function POST(request: Request) {
   try {

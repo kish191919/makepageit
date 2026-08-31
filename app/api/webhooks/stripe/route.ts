@@ -8,7 +8,7 @@ import type Stripe from "stripe";
 export const runtime = "nodejs";
 
 const FROM = "MAKEPAGE <noreply@makepageit.com>";
-const TO = process.env.ADMIN_TO_EMAIL ?? "admin@cloudmasterit.com";
+const TO = process.env.ADMIN_TO_EMAIL ?? "admin@makepageit.com";
 
 export async function POST(request: Request) {
   const secret = process.env.STRIPE_WEBHOOK_SECRET;

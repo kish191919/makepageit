@@ -31,6 +31,7 @@ const lookbookImages = [
 export default function AtelierShopLookbook({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/atelier-shop");
+  const newInPath = localePath(lang, "/portfolio/atelier-shop/new-in");
   const outerwearPath = localePath(lang, "/portfolio/atelier-shop/outerwear");
   const accessoriesPath = localePath(lang, "/portfolio/atelier-shop/accessories");
   const lookbookPath = localePath(lang, "/portfolio/atelier-shop/lookbook");
@@ -41,7 +42,7 @@ export default function AtelierShopLookbook({ lang }: { lang: Lang }) {
       <header className="border-b border-[#ecead9] bg-[#fafaf7]/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
           <nav className="hidden gap-6 text-xs font-medium uppercase tracking-[0.2em] md:flex">
-            <Link href={home}>{t.nav.newIn}</Link>
+            <Link href={newInPath}>{t.nav.newIn}</Link>
             <Link href={outerwearPath}>{t.nav.outerwear}</Link>
             <Link href={accessoriesPath}>{t.nav.accessories}</Link>
             <Link href={lookbookPath} className="font-semibold">

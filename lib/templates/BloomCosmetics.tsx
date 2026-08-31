@@ -1,9 +1,10 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
-    nav: ["Skincare", "Bodycare", "Lip", "Sets"],
+    nav: { skincare: "Skincare", bodycare: "Bodycare", lip: "Lip", sets: "Sets" },
     login: "Sign in",
     cart: "Cart (0)",
     hero: {
@@ -38,7 +39,7 @@ const copy = {
     footer: "© 2025 BLOOM Cosmetics. All rights reserved.",
   },
   ko: {
-    nav: ["Skincare", "Bodycare", "Lip", "Set"],
+    nav: { skincare: "Skincare", bodycare: "Bodycare", lip: "Lip", sets: "Set" },
     login: "로그인",
     cart: "장바구니 (0)",
     hero: {
@@ -76,6 +77,10 @@ const copy = {
 
 export default function BloomCosmetics({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const skincarePath = localePath(lang, "/portfolio/bloom-cosmetics/skincare");
+  const bodycarePath = localePath(lang, "/portfolio/bloom-cosmetics/bodycare");
+  const lipPath = localePath(lang, "/portfolio/bloom-cosmetics/lip");
+  const setsPath = localePath(lang, "/portfolio/bloom-cosmetics/sets");
   return (
     <div className="min-h-screen bg-[#fff5f3] text-[#3a2530]">
       <header className="bg-[#fff5f3]/90 backdrop-blur">
@@ -84,9 +89,10 @@ export default function BloomCosmetics({ lang }: { lang: Lang }) {
             bloom<span className="text-[#ff8aa3]">·</span>
           </div>
           <nav className="hidden gap-7 text-sm font-medium md:flex">
-            {t.nav.map((n) => (
-              <a key={n} href="#shop">{n}</a>
-            ))}
+            <Link href={skincarePath}>{t.nav.skincare}</Link>
+            <Link href={bodycarePath}>{t.nav.bodycare}</Link>
+            <Link href={lipPath}>{t.nav.lip}</Link>
+            <Link href={setsPath}>{t.nav.sets}</Link>
           </nav>
           <div className="flex items-center gap-3">
             <a className="hidden text-xs text-[#7a5f6a] md:inline">{t.login}</a>

@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
@@ -85,12 +88,98 @@ const copy = {
   },
 } as const;
 
+function parseStat(raw: string): { target: number; decimals: number; suffix: string } {
+  const match = raw.match(/^(-?\d+(?:\.\d+)?)(.*)$/);
+  if (!match) return { target: 0, decimals: 0, suffix: raw };
+  const [, numStr, suffix] = match;
+  const decimals = numStr.includes(".") ? numStr.split(".")[1].length : 0;
+  return { target: parseFloat(numStr), decimals, suffix };
+}
+
+function formatStat(value: number, decimals: number, suffix: string): string {
+  return `${value.toFixed(decimals)}${suffix}`;
+}
+
 export default function NexusLab({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const docsPath = localePath(lang, "/portfolio/nexus-lab/docs");
   const pricingPath = localePath(lang, "/portfolio/nexus-lab/pricing");
   const changelogPath = localePath(lang, "/portfolio/nexus-lab/changelog");
   const subpagePaths: Record<number, string> = { 1: docsPath, 2: pricingPath, 3: changelogPath };
+
+  const fullTerminalText = t.terminal.output + t.terminal.url;
+  const [typedCount, setTypedCount] = useState(0);
+  const [cursorOn, setCursorOn] = useState(true);
+
+  useEffect(() => {
+    let i = 0;
+    let timeoutId: ReturnType<typeof setTimeout>;
+    setTypedCount(0);
+
+    const tick = () => {
+      i += 1;
+      setTypedCount(i);
+      if (i < fullTerminalText.length) {
+        timeoutId = setTimeout(tick, 28);
+      } else {
+        timeoutId = setTimeout(() => {
+          i = 0;
+          setTypedCount(0);
+          timeoutId = setTimeout(tick, 28);
+        }, 1800);
+      }
+    };
+    timeoutId = setTimeout(tick, 28);
+
+    return () => clearTimeout(timeoutId);
+  }, [fullTerminalText]);
+
+  useEffect(() => {
+    const id = setInterval(() => setCursorOn((v) => !v), 500);
+    return () => clearInterval(id);
+  }, []);
+
+  const typedOutput = fullTerminalText.slice(0, Math.min(typedCount, t.terminal.output.length));
+  const typedUrl = fullTerminalText.slice(t.terminal.output.length, typedCount);
+
+  const statsRef = useRef<HTMLDivElement>(null);
+  const [statsVisible, setStatsVisible] = useState(false);
+  const parsedStats = useMemo(() => t.stats.map((s) => parseStat(s.v)), [t.stats]);
+  const [displayValues, setDisplayValues] = useState<number[]>(() => t.stats.map(() => 0));
+
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStatsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!statsVisible) return;
+    const duration = 1400;
+    const start = performance.now();
+    let rafId: number;
+
+    const frame = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayValues(parsedStats.map((p) => p.target * eased));
+      if (progress < 1) rafId = requestAnimationFrame(frame);
+    };
+    rafId = requestAnimationFrame(frame);
+
+    return () => cancelAnimationFrame(rafId);
+  }, [statsVisible, parsedStats]);
+
   return (
     <div className="min-h-screen bg-[#0a0a0f] text-white">
       <header className="sticky top-0 z-30 border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur">
@@ -158,7 +247,7 @@ export default function NexusLab({ lang }: { lang: Lang }) {
               <span className="ml-3">{t.terminal.label}</span>
             </div>
             <pre className="mt-4 leading-7 text-white/80">
-{t.terminal.output}<span className="text-[#22d3ee]">{t.terminal.url}</span>
+{typedOutput}<span className="text-[#22d3ee]">{typedUrl}</span><span className={cursorOn ? "opacity-100" : "opacity-0"}>▌</span>
             </pre>
           </div>
         </div>
@@ -192,11 +281,11 @@ export default function NexusLab({ lang }: { lang: Lang }) {
 
       <section className="bg-gradient-to-b from-transparent via-[#7c5cff]/5 to-transparent py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {t.stats.map((s) => (
+          <div ref={statsRef} className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            {t.stats.map((s, i) => (
               <div key={s.l} className="text-center">
                 <div className="bg-gradient-to-r from-[#7c5cff] to-[#22d3ee] bg-clip-text font-mono text-4xl font-black text-transparent md:text-5xl">
-                  {s.v}
+                  {formatStat(displayValues[i], parsedStats[i].decimals, parsedStats[i].suffix)}
                 </div>
                 <div className="mt-2 font-mono text-xs text-white/50">{s.l}</div>
               </div>

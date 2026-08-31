@@ -619,7 +619,7 @@ const en: Dict = {
       "Need to cancel monthly maintenance, update your card, or stop your domain renewal? You can do all of that anytime from your account page.",
     customerEmailManageCta: "Manage my subscription",
     customerEmailFooter:
-      "If you didn't make this purchase, please contact us right away at kish1919@gmail.com.",
+      "If you didn't make this purchase, please contact us right away at admin@makepageit.com.",
     cancelEmailSubject: "Your MAKEPAGE subscription has been canceled",
     cancelEmailHeading: "Your subscription has been canceled",
     cancelEmailBody:
@@ -987,7 +987,7 @@ const ko: Dict = {
       "월 유지보수 취소, 결제 수단 변경, 도메인 갱신 거절이 필요하실 때는 언제든 내 계정 페이지에서 처리하실 수 있습니다.",
     customerEmailManageCta: "내 구독 관리하기",
     customerEmailFooter:
-      "본인이 결제하지 않으셨다면 즉시 kish1919@gmail.com 으로 연락 주세요.",
+      "본인이 결제하지 않으셨다면 즉시 admin@makepageit.com 으로 연락 주세요.",
     cancelEmailSubject: "메이크페이지 구독이 취소되었습니다",
     cancelEmailHeading: "구독이 취소되었습니다",
     cancelEmailBody:

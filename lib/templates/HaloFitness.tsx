@@ -1,9 +1,10 @@
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 
 const copy = {
   en: {
-    nav: ["features", "plans", "community"],
+    nav: { features: "Features", plans: "Plans", community: "Community" },
     cta: "Get app ↓",
     hero: {
       tag: "⭐ 4.8 · 120K downloads",
@@ -39,7 +40,7 @@ const copy = {
     footer: "© 2025 HALO Fitness. Built for the everyday athlete.",
   },
   ko: {
-    nav: ["features", "plans", "community"],
+    nav: { features: "Features", plans: "Plans", community: "Community" },
     cta: "Get app ↓",
     hero: {
       tag: "⭐ 4.8 · 12만 다운로드",
@@ -78,18 +79,22 @@ const copy = {
 
 export default function HaloFitness({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const home = localePath(lang, "/portfolio/halo-fitness");
+  const featuresPath = localePath(lang, "/portfolio/halo-fitness/features");
+  const plansPath = localePath(lang, "/portfolio/halo-fitness/plans");
+  const communityPath = localePath(lang, "/portfolio/halo-fitness/community");
   return (
     <div className="min-h-screen bg-black text-white">
       <header className="border-b border-white/10 bg-black/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-2 text-lg font-black tracking-tight">
+          <Link href={home} className="flex items-center gap-2 text-lg font-black tracking-tight">
             <span className="inline-block h-3 w-3 rounded-full bg-gradient-to-br from-[#ff3d8b] to-[#ffb44a]" />
             HALO
-          </div>
+          </Link>
           <nav className="hidden gap-6 text-sm text-white/70 md:flex">
-            {t.nav.map((n, i) => (
-              <a key={n} href={`#${["features", "plans", "community"][i]}`}>{n}</a>
-            ))}
+            <Link href={featuresPath} className="transition hover:text-white">{t.nav.features}</Link>
+            <Link href={plansPath} className="transition hover:text-white">{t.nav.plans}</Link>
+            <Link href={communityPath} className="transition hover:text-white">{t.nav.community}</Link>
           </nav>
           <a href="#hero" className="rounded-full bg-gradient-to-r from-[#ff3d8b] to-[#ffb44a] px-5 py-2 text-sm font-bold text-black">
             {t.cta}
