@@ -83,13 +83,13 @@ const copy = {
   },
 } as const;
 
-// nav = ["SHOP", "COLLECTIONS", "JOURNAL", "SHOWROOM"]; JOURNAL points at the materials
-// story on this page. COLLECTIONS links to its own page (/collections).
-const navHrefs = ["#shop", "#journal", "#showroom"];
-
 export default function WoodAndStone({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const shopPath = localePath(lang, "/portfolio/wood-and-stone/shop");
   const collectionsPath = localePath(lang, "/portfolio/wood-and-stone/collections");
+  const journalPath = localePath(lang, "/portfolio/wood-and-stone/journal");
+  const showroomPath = localePath(lang, "/portfolio/wood-and-stone/showroom");
+  const navHrefs = [shopPath, collectionsPath, journalPath, showroomPath];
   return (
     <div className="min-h-screen bg-[#f5f1ea] text-[#2c2620]">
       <header className="border-b border-[#e1d8c8]">
@@ -98,17 +98,11 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
             wood<span className="text-[#a08260]"> · </span>stone
           </div>
           <nav className="hidden gap-8 text-xs font-medium tracking-[0.2em] text-[#5b4f3d] md:flex">
-            {t.nav.map((n, i) =>
-              i === 1 ? (
-                <Link key={n} href={collectionsPath} className="transition hover:text-[#a08260]">
-                  {n}
-                </Link>
-              ) : (
-                <a key={n} href={navHrefs[i > 1 ? i - 1 : i]} className="transition hover:text-[#a08260]">
-                  {n}
-                </a>
-              )
-            )}
+            {t.nav.map((n, i) => (
+              <Link key={n} href={navHrefs[i]} className="transition hover:text-[#a08260]">
+                {n}
+              </Link>
+            ))}
           </nav>
           <div className="flex items-center gap-4 text-xs text-[#5b4f3d]">
             {t.utility.map((u) => (
@@ -151,7 +145,9 @@ export default function WoodAndStone({ lang }: { lang: Lang }) {
               <p className="text-xs tracking-[0.4em] text-[#a08260]">{t.featured.eyebrow}</p>
               <h2 className="mt-3 font-serif text-4xl break-keep text-balance">{t.featured.title}</h2>
             </div>
-            <a className="hidden text-xs tracking-widest text-[#5b4f3d] md:inline">{t.featured.viewAll}</a>
+            <Link href={shopPath} className="hidden text-xs tracking-widest text-[#5b4f3d] transition hover:text-[#a08260] md:inline">
+              {t.featured.viewAll}
+            </Link>
           </div>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {t.collections.map((c) => (
