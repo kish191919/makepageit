@@ -79,13 +79,13 @@ const copy = {
   },
 } as const;
 
-// nav = ["CELLAR", "CLUB", "JOURNAL", "SOMMELIER"]; JOURNAL now links to its own page
-// (/portfolio/vin-secret/journal); the rest stay anchored to on-page sections.
-const navHrefs = ["#cellar", "#club", "#sommelier"];
-
 export default function VinSecret({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const cellarPath = localePath(lang, "/portfolio/vin-secret/cellar");
+  const clubPath = localePath(lang, "/portfolio/vin-secret/club");
   const journalPath = localePath(lang, "/portfolio/vin-secret/journal");
+  const sommelierPath = localePath(lang, "/portfolio/vin-secret/sommelier");
+  const navHrefs = [cellarPath, clubPath, journalPath, sommelierPath];
   return (
     <div className="min-h-screen bg-[#1a0d10] text-[#f3e7d7]">
       <header className="border-b border-[#3a1f25] bg-[#1a0d10]/95 backdrop-blur">
@@ -94,19 +94,15 @@ export default function VinSecret({ lang }: { lang: Lang }) {
             Vin Secret
           </div>
           <nav className="hidden gap-8 text-xs tracking-[0.3em] text-[#c8b896] md:flex">
-            {t.nav.map((n, i) =>
-              i === 2 ? (
-                <Link key={n} href={journalPath} className="transition hover:text-[#d4a574]">
-                  {n}
-                </Link>
-              ) : (
-                <a key={n} href={navHrefs[i]} className="transition hover:text-[#d4a574]">{n}</a>
-              )
-            )}
+            {t.nav.map((n, i) => (
+              <Link key={n} href={navHrefs[i]} className="transition hover:text-[#d4a574]">
+                {n}
+              </Link>
+            ))}
           </nav>
-          <a href="#club" className="border border-[#d4a574] px-5 py-2 text-xs tracking-[0.3em] text-[#d4a574]">
+          <Link href={clubPath} className="border border-[#d4a574] px-5 py-2 text-xs tracking-[0.3em] text-[#d4a574]">
             {t.joinCta}
-          </a>
+          </Link>
         </div>
       </header>
 

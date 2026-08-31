@@ -68,8 +68,11 @@ const copy = {
 export default function VinSecretJournal({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/vin-secret");
+  const cellarPath = localePath(lang, "/portfolio/vin-secret/cellar");
+  const clubPath = localePath(lang, "/portfolio/vin-secret/club");
   const journalPath = localePath(lang, "/portfolio/vin-secret/journal");
-  const navHrefs = [`${home}#cellar`, `${home}#club`, journalPath, `${home}#sommelier`];
+  const sommelierPath = localePath(lang, "/portfolio/vin-secret/sommelier");
+  const navHrefs = [cellarPath, clubPath, journalPath, sommelierPath];
 
   return (
     <div className="min-h-screen bg-[#1a0d10] text-[#f3e7d7]">
