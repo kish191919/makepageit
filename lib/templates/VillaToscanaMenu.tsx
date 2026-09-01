@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
 import { useMobileNav } from "@/lib/useMobileNav";
@@ -10,27 +9,43 @@ const copy = {
   en: {
     nav: ["STORY", "MENU", "WINE", "PRESS"],
     reserveCta: "RESERVE",
-    eyebrow: "— WINE LIST",
-    title: "320 labels, chosen to be poured",
-    intro: "Our sommelier builds the list around what's in season on the menu — not the other way around. A few of the bottles guests ask for by name.",
-    wines: [
+    eyebrow: "— DEGUSTAZIONE",
+    title: "The complete tasting menu",
+    intro:
+      "Seven courses, served over roughly two and a half hours. Every dish is available on its own request during service, but we recommend the full menu — it's how it's meant to be read.",
+    footer1: "Tasting Menu — $198 / per person · Wine pairing + $120",
+    winePathLabel: "See the full wine list →",
+    courses: [
       {
-        name: "Barolo Cannubi, Piedmont",
-        pairing: "Paired with Bistecca Fiorentina",
-        note: "Tannic and structured — decanted 90 minutes before service to soften into the char of the steak.",
-        image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=80&auto=format&fit=crop",
+        name: "Antipasti",
+        items: [
+          { name: "Burrata di Andria · Tomato confit", price: "$26" },
+          { name: "Vitello Tonnato · veal tenderloin", price: "$28" },
+          { name: "Carpaccio di Manzo · aged parmesan, arugula", price: "$24" },
+        ],
       },
       {
-        name: "Vermentino di Gallura, Sardinia",
-        pairing: "Paired with Branzino al Forno",
-        note: "Sharp acidity and a saline finish that keeps up with the whole roast fish rather than disappearing under it.",
-        image: "https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=1200&q=80&auto=format&fit=crop",
+        name: "Primi Piatti",
+        items: [
+          { name: "Tagliolini al Tartufo Bianco", price: "$42" },
+          { name: "Risotto Milanese · 24-month saffron", price: "$34" },
+          { name: "Tortellini in Brodo · Parmigiano broth", price: "$32" },
+        ],
       },
       {
-        name: "Brunello di Montalcino Riserva",
-        pairing: "Paired with Tagliolini al Tartufo Bianco",
-        note: "Held back a vintage longer than most lists dare, so the truffle doesn't have to compete with young tannin.",
-        image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=1200&q=80&auto=format&fit=crop",
+        name: "Secondi",
+        items: [
+          { name: "Bistecca Fiorentina T-Bone", price: "$68" },
+          { name: "Branzino al Forno · whole roast", price: "$44" },
+          { name: "Osso Buco alla Milanese", price: "$46" },
+        ],
+      },
+      {
+        name: "Dolci",
+        items: [
+          { name: "Tiramisu della Casa", price: "$16" },
+          { name: "Panna Cotta al Caffè", price: "$14" },
+        ],
       },
     ],
     footer: { address: "22 East 14th St, New York NY 10003 · (212) 555-1011", copyright: "© 2025 — Cucina Toscana, NYC" },
@@ -38,34 +53,50 @@ const copy = {
   ko: {
     nav: ["STORY", "MENU", "WINE", "PRESS"],
     reserveCta: "RESERVE",
-    eyebrow: "— WINE LIST",
-    title: "320종, 오직 따르기 위해 고른 와인",
-    intro: "저희 소믈리에는 그날 메뉴에 오른 계절 재료를 기준으로 와인 리스트를 구성합니다. 손님들이 이름으로 찾는 대표적인 몇 병을 소개합니다.",
-    wines: [
+    eyebrow: "— DEGUSTAZIONE",
+    title: "전체 테이스팅 메뉴",
+    intro:
+      "일곱 코스, 약 두 시간 반에 걸쳐 서빙됩니다. 서비스 중 각 요리를 개별 주문하실 수도 있지만, 전체 메뉴로 즐기시길 권해드립니다 — 그렇게 설계되었습니다.",
+    footer1: "Tasting Menu — ₩ 198,000 / per person · 와인 페어링 + ₩ 120,000",
+    winePathLabel: "전체 와인 리스트 보기 →",
+    courses: [
       {
-        name: "Barolo Cannubi, Piedmont",
-        pairing: "비스테카 피오렌티나와 페어링",
-        note: "탄닌이 강하고 구조감 있는 와인. 서빙 90분 전 디캔팅하여 스테이크의 그을린 풍미와 부드럽게 어우러지도록 합니다.",
-        image: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=80&auto=format&fit=crop",
+        name: "Antipasti",
+        items: [
+          { name: "Burrata di Andria · 토마토 콘피", price: "₩ 34,000" },
+          { name: "Vitello Tonnato · 송아지 안심", price: "₩ 36,000" },
+          { name: "Carpaccio di Manzo · 숙성 파르메산, 루꼴라", price: "₩ 32,000" },
+        ],
       },
       {
-        name: "Vermentino di Gallura, Sardinia",
-        pairing: "브란지노 알 포르노와 페어링",
-        note: "날카로운 산미와 짭조름한 여운으로, 통오븐구이 생선의 풍미에 묻히지 않고 끝까지 함께 갑니다.",
-        image: "https://images.unsplash.com/photo-1547595628-c61a29f496f0?w=1200&q=80&auto=format&fit=crop",
+        name: "Primi Piatti",
+        items: [
+          { name: "Tagliolini al Tartufo Bianco", price: "₩ 55,000" },
+          { name: "Risotto Milanese · 사프란 24개월", price: "₩ 44,000" },
+          { name: "Tortellini in Brodo · 파르미지아노 브로스", price: "₩ 42,000" },
+        ],
       },
       {
-        name: "Brunello di Montalcino Riserva",
-        pairing: "화이트 트러플 탈리올리니와 페어링",
-        note: "대부분의 리스트보다 한 빈티지 더 숙성시켜, 어린 탄닌이 트러플의 향과 경쟁하지 않도록 했습니다.",
-        image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=1200&q=80&auto=format&fit=crop",
+        name: "Secondi",
+        items: [
+          { name: "Bistecca Fiorentina T-Bone", price: "₩ 89,000" },
+          { name: "Branzino al Forno · 통오븐구이", price: "₩ 58,000" },
+          { name: "Osso Buco alla Milanese", price: "₩ 60,000" },
+        ],
+      },
+      {
+        name: "Dolci",
+        items: [
+          { name: "Tiramisu della Casa", price: "₩ 21,000" },
+          { name: "Panna Cotta al Caffè", price: "₩ 18,000" },
+        ],
       },
     ],
     footer: { address: "서울 종로구 북촌로 14길 22 · 02 555 1011", copyright: "© 2025 — Cucina Toscana, Seoul" },
   },
 } as const;
 
-export default function VillaToscanaWine({ lang }: { lang: Lang }) {
+export default function VillaToscanaMenu({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/villa-toscana");
@@ -87,7 +118,7 @@ export default function VillaToscanaWine({ lang }: { lang: Lang }) {
               <Link
                 key={n}
                 href={navHrefs[i]}
-                className={i === 2 ? "text-[#7d2c1a]" : "transition hover:text-[#7d2c1a]"}
+                className={i === 1 ? "text-[#7d2c1a]" : "transition hover:text-[#7d2c1a]"}
               >
                 {n}
               </Link>
@@ -119,7 +150,7 @@ export default function VillaToscanaWine({ lang }: { lang: Lang }) {
                   key={n}
                   href={navHrefs[i]}
                   onClick={() => setOpen(false)}
-                  className={i === 2 ? "py-2 text-[#7d2c1a]" : "py-2"}
+                  className={i === 1 ? "py-2 text-[#7d2c1a]" : "py-2"}
                 >
                   {n}
                 </Link>
@@ -143,20 +174,32 @@ export default function VillaToscanaWine({ lang }: { lang: Lang }) {
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-[#5b4a36] break-keep text-pretty">{t.intro}</p>
 
-        <div className="mt-16 grid gap-16 border-t border-[#d8c8a9] pt-16">
-          {t.wines.map((w) => (
-            <article key={w.name} className="grid gap-10 md:grid-cols-2 md:items-center">
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image src={w.image} alt={w.name} fill className="object-cover" />
-              </div>
-              <div>
-                <h2 className="font-serif text-2xl italic break-keep text-balance">{w.name}</h2>
-                <p className="mt-2 text-[11px] tracking-widest text-[#7a6248]">{w.pairing.toUpperCase()}</p>
-                <p className="mt-4 leading-relaxed text-[#5b4a36] break-keep text-pretty">{w.note}</p>
-              </div>
+        <div className="mt-16 grid gap-14 border-t border-[#d8c8a9] pt-16 md:grid-cols-2">
+          {t.courses.map((c) => (
+            <article key={c.name}>
+              <h2 className="border-b border-[#7d2c1a] pb-3 font-serif text-2xl italic text-[#7d2c1a] break-keep text-balance">
+                {c.name}
+              </h2>
+              <ul className="mt-5 space-y-3 text-sm leading-relaxed text-[#3d3022]">
+                {c.items.map((it) => (
+                  <li key={it.name} className="flex items-baseline justify-between gap-4">
+                    <span className="break-keep text-pretty">{it.name}</span>
+                    <span className="shrink-0 tracking-widest text-[#7a6248]">{it.price}</span>
+                  </li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
+
+        <p className="mt-14 text-center font-serif text-base italic text-[#7a6248] break-keep text-pretty">
+          {t.footer1}
+        </p>
+        <p className="mt-4 text-center">
+          <Link href={winePath} className="text-[11px] tracking-[0.3em] text-[#7d2c1a] hover:underline">
+            {t.winePathLabel}
+          </Link>
+        </p>
       </section>
 
       <footer className="border-t border-[#d8c8a9] py-10">

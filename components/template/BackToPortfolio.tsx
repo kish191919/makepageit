@@ -10,10 +10,10 @@ export default function BackToPortfolio() {
   const dict = getDict(lang);
 
   return (
-    <div className="fixed left-4 top-4 z-[100] sm:left-6 sm:top-6">
+    <div className="sticky top-0 z-[100] w-full bg-ink-900/90 backdrop-blur-md">
       <Link
         href={localePath(lang, "/portfolio")}
-        className="flex items-center gap-2 rounded-full bg-ink-900/85 px-4 py-2.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md transition hover:bg-ink-900 sm:text-sm"
+        className="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-ink-900 sm:px-6 sm:text-sm"
       >
         <span aria-hidden>←</span>
         <span className="hidden sm:inline">{dict.backToPortfolio.long}</span>

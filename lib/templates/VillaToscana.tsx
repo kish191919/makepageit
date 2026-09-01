@@ -108,30 +108,27 @@ const copy = {
 } as const;
 
 const slots = ["18:00", "18:30", "19:00", "19:30", "20:00", "20:30"];
-// nav = ["STORY", "MENU", "WINE", "PRESS"]; WINE and PRESS each link to their own page.
-const navHrefs = ["#story", "#menu"];
+// nav = ["STORY", "MENU", "WINE", "PRESS"]; every item links to its own page.
 
 export default function VillaToscana({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
+  const storyPath = localePath(lang, "/portfolio/villa-toscana/story");
+  const menuPath = localePath(lang, "/portfolio/villa-toscana/menu");
   const winePath = localePath(lang, "/portfolio/villa-toscana/wine");
   const pressPath = localePath(lang, "/portfolio/villa-toscana/press");
-  const subpagePaths: Record<number, string> = { 2: winePath, 3: pressPath };
+  const subpagePaths: Record<number, string> = { 0: storyPath, 1: menuPath, 2: winePath, 3: pressPath };
   return (
     <div className="min-h-screen bg-[#f4ede1] text-[#2b1d12]">
       <header ref={ref} className="border-b border-[#d8c8a9]">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
           <div className="font-serif text-2xl italic tracking-wide">Villa Toscana</div>
           <nav className="hidden gap-8 text-[11px] font-medium tracking-[0.3em] text-[#7a6248] md:flex">
-            {t.nav.map((n, i) =>
-              subpagePaths[i] ? (
-                <Link key={n} href={subpagePaths[i]} className="transition hover:text-[#7d2c1a]">
-                  {n}
-                </Link>
-              ) : (
-                <a key={n} href={navHrefs[i]} className="transition hover:text-[#7d2c1a]">{n}</a>
-              )
-            )}
+            {t.nav.map((n, i) => (
+              <Link key={n} href={subpagePaths[i]} className="transition hover:text-[#7d2c1a]">
+                {n}
+              </Link>
+            ))}
           </nav>
           <div className="flex items-center gap-3">
             <a href="#reservation" className="border border-[#7d2c1a] bg-[#7d2c1a] px-5 py-2 text-[11px] tracking-[0.3em] text-[#f4ede1]">
@@ -151,15 +148,11 @@ export default function VillaToscana({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-[#d8c8a9] px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-[11px] font-medium tracking-[0.3em] text-[#7a6248]">
-              {t.nav.map((n, i) =>
-                subpagePaths[i] ? (
-                  <Link key={n} href={subpagePaths[i]} onClick={() => setOpen(false)} className="py-2">
-                    {n}
-                  </Link>
-                ) : (
-                  <a key={n} href={navHrefs[i]} onClick={() => setOpen(false)} className="py-2">{n}</a>
-                )
-              )}
+              {t.nav.map((n, i) => (
+                <Link key={n} href={subpagePaths[i]} onClick={() => setOpen(false)} className="py-2">
+                  {n}
+                </Link>
+              ))}
             </nav>
             <a
               href="#reservation"

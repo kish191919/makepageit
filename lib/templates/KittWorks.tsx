@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 import { useMobileNav } from "@/lib/useMobileNav";
 import { MenuIcon } from "@/components/MenuIcon";
 
@@ -96,11 +97,14 @@ const copy = {
   },
 } as const;
 
-const navHrefs: Record<string, string> = { index: "#index", work: "#work", about: "#about", contact: "#contact" };
-
 export default function KittWorks({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
+  const home = localePath(lang, "/portfolio/kitt-works");
+  const workPath = localePath(lang, "/portfolio/kitt-works/work");
+  const aboutPath = localePath(lang, "/portfolio/kitt-works/about");
+  const contactPath = localePath(lang, "/portfolio/kitt-works/contact");
+  const navPaths: Record<string, string> = { index: home, work: workPath, about: aboutPath, contact: contactPath };
   return (
     <div className="min-h-screen bg-white text-neutral-900">
       <header ref={ref} className="border-b border-neutral-200">
@@ -108,13 +112,15 @@ export default function KittWorks({ lang }: { lang: Lang }) {
           <div className="font-mono text-sm">{t.domain}</div>
           <nav className="hidden gap-8 font-mono text-xs text-neutral-500 md:flex">
             {t.nav.map((n) => (
-              <a key={n} href={navHrefs[n]}>{n}</a>
+              <Link key={n} href={navPaths[n]} className="transition hover:text-neutral-900">
+                {n}
+              </Link>
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#contact" className="font-mono text-xs underline decoration-dotted underline-offset-4">
+            <Link href={contactPath} className="font-mono text-xs underline decoration-dotted underline-offset-4">
               {t.contactEmail}
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="menu"
@@ -130,18 +136,18 @@ export default function KittWorks({ lang }: { lang: Lang }) {
           <div className="border-t border-neutral-200 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 font-mono text-xs text-neutral-500">
               {t.nav.map((n) => (
-                <a key={n} href={navHrefs[n]} onClick={() => setOpen(false)} className="py-2">
+                <Link key={n} href={navPaths[n]} onClick={() => setOpen(false)} className="py-2">
                   {n}
-                </a>
+                </Link>
               ))}
             </nav>
-            <a
-              href="#contact"
+            <Link
+              href={contactPath}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block font-mono text-xs underline decoration-dotted underline-offset-4"
             >
               {t.contactEmail}
-            </a>
+            </Link>
           </div>
         )}
       </header>
@@ -230,12 +236,18 @@ export default function KittWorks({ lang }: { lang: Lang }) {
               {t.contact.titlePost}
             </h2>
             <div className="mt-10 grid gap-4 md:max-w-md">
-              <a className="border border-neutral-900 px-5 py-3 text-center font-mono text-xs uppercase tracking-widest">
+              <a
+                href={`mailto:${t.contactEmail}`}
+                className="border border-neutral-900 px-5 py-3 text-center font-mono text-xs uppercase tracking-widest"
+              >
                 {t.contactEmail}
               </a>
-              <a className="border border-neutral-300 px-5 py-3 text-center font-mono text-xs uppercase tracking-widest text-neutral-600">
+              <Link
+                href={contactPath}
+                className="border border-neutral-300 px-5 py-3 text-center font-mono text-xs uppercase tracking-widest text-neutral-600"
+              >
                 {t.contact.ctaSecondary}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

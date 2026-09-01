@@ -75,9 +75,11 @@ export default function VillaToscanaPress({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/villa-toscana");
+  const storyPath = localePath(lang, "/portfolio/villa-toscana/story");
+  const menuPath = localePath(lang, "/portfolio/villa-toscana/menu");
   const winePath = localePath(lang, "/portfolio/villa-toscana/wine");
   const pressPath = localePath(lang, "/portfolio/villa-toscana/press");
-  const navHrefs = [`${home}#story`, `${home}#menu`, winePath, pressPath];
+  const navHrefs = [storyPath, menuPath, winePath, pressPath];
 
   return (
     <div className="min-h-screen bg-[#f4ede1] text-[#2b1d12]">

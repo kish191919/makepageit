@@ -1,9 +1,15 @@
+"use client";
+
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
+import { useMobileNav } from "@/lib/useMobileNav";
+import { MenuIcon } from "@/components/MenuIcon";
 
 const copy = {
   en: {
     brand: { left: "CONTOUR", right: "WELLNESS" },
+    nav: { program: "Program", doctor: "Our Director", location: "Visit Us" },
     cta: "☎ Free 1:1 Call",
     hero: {
       tag: "🔥 April only — 80% off intake visit",
@@ -34,7 +40,7 @@ const copy = {
     weekResults: "result",
     beforeAfter: [
       { name: "K., 30s, professional", weeks: "8 weeks", drop: "-20 lbs", img: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=900&q=80&auto=format&fit=crop" },
-      { name: "P., 40s, parent of two", weeks: "12 weeks", drop: "-32 lbs", img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=80&auto=format&fit=crop" },
+      { name: "P., 40s, parent of two", weeks: "12 weeks", drop: "-32 lbs", img: "https://images.unsplash.com/photo-1550345332-09e3ac987658?w=900&q=80&auto=format&fit=crop" },
       { name: "J., 20s, student", weeks: "6 weeks", drop: "-15 lbs", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80&auto=format&fit=crop" },
     ],
     reviewsTitle: "Real reviews",
@@ -58,6 +64,7 @@ const copy = {
   },
   ko: {
     brand: { left: "DR.", right: "SLIM" },
+    nav: { program: "프로그램", doctor: "원장 소개", location: "오시는길" },
     cta: "☎ 무료 상담 1:1",
     hero: {
       tag: "🔥 4월 한정 — 초진 80% 할인",
@@ -88,7 +95,7 @@ const copy = {
     weekResults: "결과",
     beforeAfter: [
       { name: "30대 직장인 K님", weeks: "8주", drop: "-9.2kg", img: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=900&q=80&auto=format&fit=crop" },
-      { name: "40대 주부 P님", weeks: "12주", drop: "-14.8kg", img: "https://images.unsplash.com/photo-1518611012118-696072aa579a?w=900&q=80&auto=format&fit=crop" },
+      { name: "40대 주부 P님", weeks: "12주", drop: "-14.8kg", img: "https://images.unsplash.com/photo-1550345332-09e3ac987658?w=900&q=80&auto=format&fit=crop" },
       { name: "20대 학생 J님", weeks: "6주", drop: "-7.1kg", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=900&q=80&auto=format&fit=crop" },
     ],
     reviewsTitle: "실제 후기",
@@ -114,17 +121,50 @@ const copy = {
 
 export default function DrSlimClinic({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const { open, setOpen, ref } = useMobileNav<HTMLElement>();
+  const home = localePath(lang, "/portfolio/dr-slim-clinic");
+  const programPath = localePath(lang, "/portfolio/dr-slim-clinic/program");
+  const doctorPath = localePath(lang, "/portfolio/dr-slim-clinic/doctor");
+  const locationPath = localePath(lang, "/portfolio/dr-slim-clinic/location");
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <header className="bg-white shadow-sm">
+      <header ref={ref} className="bg-white shadow-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-          <div className="text-xl font-black tracking-tight">
+          <Link href={home} className="text-xl font-black tracking-tight">
             {t.brand.left}<span className="text-[#0091ff]">{t.brand.right}</span>
+          </Link>
+          <nav className="hidden gap-7 text-sm font-semibold text-slate-600 md:flex">
+            <Link href={programPath} className="transition hover:text-[#0091ff]">{t.nav.program}</Link>
+            <Link href={doctorPath} className="transition hover:text-[#0091ff]">{t.nav.doctor}</Link>
+            <Link href={locationPath} className="transition hover:text-[#0091ff]">{t.nav.location}</Link>
+          </nav>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <a
+              href="#assessment"
+              className="rounded-full bg-[#0091ff] px-3.5 py-2 text-xs font-bold text-white shadow-lg shadow-[#0091ff]/30 sm:px-5 sm:py-2.5 sm:text-sm"
+            >
+              {t.cta}
+            </a>
+            <button
+              type="button"
+              aria-label="menu"
+              aria-expanded={open}
+              onClick={() => setOpen((v) => !v)}
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-700 md:hidden"
+            >
+              <MenuIcon open={open} />
+            </button>
           </div>
-          <a href="#assessment" className="rounded-full bg-[#0091ff] px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-[#0091ff]/30">
-            {t.cta}
-          </a>
         </div>
+        {open && (
+          <div className="border-t border-slate-100 px-6 py-4 md:hidden">
+            <nav className="flex flex-col gap-1 text-sm font-semibold text-slate-600">
+              <Link href={programPath} onClick={() => setOpen(false)} className="py-2">{t.nav.program}</Link>
+              <Link href={doctorPath} onClick={() => setOpen(false)} className="py-2">{t.nav.doctor}</Link>
+              <Link href={locationPath} onClick={() => setOpen(false)} className="py-2">{t.nav.location}</Link>
+            </nav>
+          </div>
+        )}
       </header>
 
       <section className="relative overflow-hidden bg-gradient-to-br from-[#e7f4ff] via-white to-[#fff7e6]">
