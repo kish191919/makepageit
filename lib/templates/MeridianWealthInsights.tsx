@@ -69,7 +69,13 @@ const copy = {
 export default function MeridianWealthInsights({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/meridian-wealth");
-  const insightsPath = localePath(lang, "/portfolio/meridian-wealth/insights");
+  const navPaths = {
+    services: localePath(lang, "/portfolio/meridian-wealth/services"),
+    approach: localePath(lang, "/portfolio/meridian-wealth/approach"),
+    advisors: localePath(lang, "/portfolio/meridian-wealth/advisors"),
+    insights: localePath(lang, "/portfolio/meridian-wealth/insights"),
+    contact: localePath(lang, "/portfolio/meridian-wealth/contact"),
+  } as const;
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
 
   return (
@@ -86,15 +92,15 @@ export default function MeridianWealthInsights({ lang }: { lang: Lang }) {
             </div>
           </Link>
           <nav className="hidden gap-7 text-sm font-medium text-[#1a2332]/75 md:flex">
-            <Link href={`${home}#services`} className="transition hover:text-[#c99a3b]">{t.nav.services}</Link>
-            <Link href={`${home}#approach`} className="transition hover:text-[#c99a3b]">{t.nav.approach}</Link>
-            <Link href={`${home}#advisors`} className="transition hover:text-[#c99a3b]">{t.nav.advisors}</Link>
-            <Link href={insightsPath} className="text-[#c99a3b]">{t.nav.insights}</Link>
-            <Link href={`${home}#contact`} className="transition hover:text-[#c99a3b]">{t.nav.contact}</Link>
+            <Link href={navPaths.services} className="transition hover:text-[#c99a3b]">{t.nav.services}</Link>
+            <Link href={navPaths.approach} className="transition hover:text-[#c99a3b]">{t.nav.approach}</Link>
+            <Link href={navPaths.advisors} className="transition hover:text-[#c99a3b]">{t.nav.advisors}</Link>
+            <Link href={navPaths.insights} className="text-[#c99a3b]">{t.nav.insights}</Link>
+            <Link href={navPaths.contact} className="transition hover:text-[#c99a3b]">{t.nav.contact}</Link>
           </nav>
           <div className="flex items-center gap-3">
             <Link
-              href={`${home}#contact`}
+              href={navPaths.contact}
               className="hidden rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block"
             >
               {t.bookCta}
@@ -113,14 +119,14 @@ export default function MeridianWealthInsights({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-[#1a2332]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#1a2332]/75">
-              <Link href={`${home}#services`} onClick={() => setOpen(false)} className="py-2">{t.nav.services}</Link>
-              <Link href={`${home}#approach`} onClick={() => setOpen(false)} className="py-2">{t.nav.approach}</Link>
-              <Link href={`${home}#advisors`} onClick={() => setOpen(false)} className="py-2">{t.nav.advisors}</Link>
-              <Link href={insightsPath} onClick={() => setOpen(false)} className="py-2 text-[#c99a3b]">{t.nav.insights}</Link>
-              <Link href={`${home}#contact`} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
+              <Link href={navPaths.services} onClick={() => setOpen(false)} className="py-2">{t.nav.services}</Link>
+              <Link href={navPaths.approach} onClick={() => setOpen(false)} className="py-2">{t.nav.approach}</Link>
+              <Link href={navPaths.advisors} onClick={() => setOpen(false)} className="py-2">{t.nav.advisors}</Link>
+              <Link href={navPaths.insights} onClick={() => setOpen(false)} className="py-2 text-[#c99a3b]">{t.nav.insights}</Link>
+              <Link href={navPaths.contact} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
             </nav>
             <Link
-              href={`${home}#contact`}
+              href={navPaths.contact}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white"
             >

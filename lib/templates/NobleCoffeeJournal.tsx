@@ -72,7 +72,11 @@ const copy = {
 export default function NobleCoffeeJournal({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const home = localePath(lang, "/portfolio/noble-coffee");
+  const storyPath = localePath(lang, "/portfolio/noble-coffee/story");
+  const menuPath = localePath(lang, "/portfolio/noble-coffee/menu");
+  const visitPath = localePath(lang, "/portfolio/noble-coffee/visit");
   const journalPath = localePath(lang, "/portfolio/noble-coffee/journal");
+  const shopPath = localePath(lang, "/portfolio/noble-coffee/shop");
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
 
   return (
@@ -83,13 +87,13 @@ export default function NobleCoffeeJournal({ lang }: { lang: Lang }) {
             NOBLE
           </Link>
           <nav className="hidden gap-8 text-xs font-medium tracking-[0.2em] text-[#5b4b39] md:flex">
-            <Link href={`${home}#story`} className="transition hover:text-[#2a221a]">
+            <Link href={storyPath} className="transition hover:text-[#2a221a]">
               {t.nav.story}
             </Link>
-            <Link href={`${home}#coffee`} className="transition hover:text-[#2a221a]">
+            <Link href={menuPath} className="transition hover:text-[#2a221a]">
               {t.nav.coffee}
             </Link>
-            <Link href={`${home}#visit`} className="transition hover:text-[#2a221a]">
+            <Link href={visitPath} className="transition hover:text-[#2a221a]">
               {t.nav.visit}
             </Link>
             <Link href={journalPath} className="text-[#2a221a]">
@@ -98,7 +102,7 @@ export default function NobleCoffeeJournal({ lang }: { lang: Lang }) {
           </nav>
           <div className="flex items-center gap-3">
             <Link
-              href={`${home}#coffee`}
+              href={shopPath}
               className="rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest"
             >
               {t.nav.shop}
@@ -117,13 +121,13 @@ export default function NobleCoffeeJournal({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-[#e7ddcc] px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-xs font-medium tracking-[0.2em] text-[#5b4b39]">
-              <Link href={`${home}#story`} onClick={() => setOpen(false)} className="py-2">
+              <Link href={storyPath} onClick={() => setOpen(false)} className="py-2">
                 {t.nav.story}
               </Link>
-              <Link href={`${home}#coffee`} onClick={() => setOpen(false)} className="py-2">
+              <Link href={menuPath} onClick={() => setOpen(false)} className="py-2">
                 {t.nav.coffee}
               </Link>
-              <Link href={`${home}#visit`} onClick={() => setOpen(false)} className="py-2">
+              <Link href={visitPath} onClick={() => setOpen(false)} className="py-2">
                 {t.nav.visit}
               </Link>
               <Link href={journalPath} onClick={() => setOpen(false)} className="py-2 text-[#2a221a]">
@@ -131,7 +135,7 @@ export default function NobleCoffeeJournal({ lang }: { lang: Lang }) {
               </Link>
             </nav>
             <Link
-              href={`${home}#coffee`}
+              href={shopPath}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest"
             >

@@ -49,7 +49,11 @@ export default function SolsticeInteriorsAbout({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/solstice-interiors");
+  const portfolioPath = localePath(lang, "/portfolio/solstice-interiors/portfolio");
+  const servicesPath = localePath(lang, "/portfolio/solstice-interiors/services");
+  const processPath = localePath(lang, "/portfolio/solstice-interiors/process");
   const aboutPath = localePath(lang, "/portfolio/solstice-interiors/about");
+  const contactPath = localePath(lang, "/portfolio/solstice-interiors/contact");
 
   return (
     <div className="bg-[#f7f0e6] text-[#2b241d]">
@@ -65,15 +69,15 @@ export default function SolsticeInteriorsAbout({ lang }: { lang: Lang }) {
             </div>
           </Link>
           <nav className="hidden gap-7 text-sm font-medium text-[#2b241d]/75 md:flex">
-            <Link href={`${home}#portfolio`} className="transition hover:text-[#c1652f]">{t.nav.portfolio}</Link>
-            <Link href={`${home}#services`} className="transition hover:text-[#c1652f]">{t.nav.services}</Link>
-            <Link href={`${home}#process`} className="transition hover:text-[#c1652f]">{t.nav.process}</Link>
+            <Link href={portfolioPath} className="transition hover:text-[#c1652f]">{t.nav.portfolio}</Link>
+            <Link href={servicesPath} className="transition hover:text-[#c1652f]">{t.nav.services}</Link>
+            <Link href={processPath} className="transition hover:text-[#c1652f]">{t.nav.process}</Link>
             <Link href={aboutPath} className="text-[#c1652f]">{t.nav.about}</Link>
-            <Link href={`${home}#contact`} className="transition hover:text-[#c1652f]">{t.nav.contact}</Link>
+            <Link href={contactPath} className="transition hover:text-[#c1652f]">{t.nav.contact}</Link>
           </nav>
           <div className="flex items-center gap-3">
             <Link
-              href={`${home}#contact`}
+              href={contactPath}
               className="hidden rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block"
             >
               {t.bookCta}
@@ -92,14 +96,14 @@ export default function SolsticeInteriorsAbout({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-[#2b241d]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#2b241d]/75">
-              <Link href={`${home}#portfolio`} onClick={() => setOpen(false)} className="py-2">{t.nav.portfolio}</Link>
-              <Link href={`${home}#services`} onClick={() => setOpen(false)} className="py-2">{t.nav.services}</Link>
-              <Link href={`${home}#process`} onClick={() => setOpen(false)} className="py-2">{t.nav.process}</Link>
+              <Link href={portfolioPath} onClick={() => setOpen(false)} className="py-2">{t.nav.portfolio}</Link>
+              <Link href={servicesPath} onClick={() => setOpen(false)} className="py-2">{t.nav.services}</Link>
+              <Link href={processPath} onClick={() => setOpen(false)} className="py-2">{t.nav.process}</Link>
               <Link href={aboutPath} onClick={() => setOpen(false)} className="py-2 text-[#c1652f]">{t.nav.about}</Link>
-              <Link href={`${home}#contact`} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
+              <Link href={contactPath} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
             </nav>
             <Link
-              href={`${home}#contact`}
+              href={contactPath}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white"
             >

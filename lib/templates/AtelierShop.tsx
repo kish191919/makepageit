@@ -115,9 +115,9 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
           </nav>
           <div className="text-xl font-serif tracking-[0.4em]">ATELIER 22</div>
           <div className="flex items-center gap-5 text-xs uppercase tracking-widest">
-            <a>{t.utility.search}</a>
-            <a>{t.utility.account}</a>
-            <a className="font-semibold">{t.utility.cart}</a>
+            <a className="hidden md:inline">{t.utility.search}</a>
+            <a className="hidden md:inline">{t.utility.account}</a>
+            <a className="hidden font-semibold md:inline">{t.utility.cart}</a>
             <button
               type="button"
               aria-label="menu"
@@ -145,6 +145,17 @@ export default function AtelierShop({ lang }: { lang: Lang }) {
                 {t.nav.lookbook}
               </Link>
             </nav>
+            <div className="mt-4 flex flex-col gap-1 border-t border-[#ecead9] pt-4 text-xs uppercase tracking-widest">
+              <a onClick={() => setOpen(false)} className="py-2">
+                {t.utility.search}
+              </a>
+              <a onClick={() => setOpen(false)} className="py-2">
+                {t.utility.account}
+              </a>
+              <a onClick={() => setOpen(false)} className="py-2 font-semibold">
+                {t.utility.cart}
+              </a>
+            </div>
           </div>
         )}
       </header>

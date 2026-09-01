@@ -120,24 +120,28 @@ const copy = {
 export default function NobleCoffee({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
+  const storyPath = localePath(lang, "/portfolio/noble-coffee/story");
+  const menuPath = localePath(lang, "/portfolio/noble-coffee/menu");
+  const visitPath = localePath(lang, "/portfolio/noble-coffee/visit");
   const journalPath = localePath(lang, "/portfolio/noble-coffee/journal");
+  const shopPath = localePath(lang, "/portfolio/noble-coffee/shop");
   return (
     <div className="bg-[#f6f1ea] text-[#2a221a]">
       <header ref={ref} className="border-b border-[#e7ddcc] bg-[#f6f1ea]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="text-lg font-serif tracking-[0.4em]">NOBLE</div>
           <nav className="hidden gap-8 text-xs font-medium tracking-[0.2em] text-[#5b4b39] md:flex">
-            <a href="#story" className="transition hover:text-[#2a221a]">{t.nav.story}</a>
-            <a href="#coffee" className="transition hover:text-[#2a221a]">{t.nav.coffee}</a>
-            <a href="#visit" className="transition hover:text-[#2a221a]">{t.nav.visit}</a>
+            <Link href={storyPath} className="transition hover:text-[#2a221a]">{t.nav.story}</Link>
+            <Link href={menuPath} className="transition hover:text-[#2a221a]">{t.nav.coffee}</Link>
+            <Link href={visitPath} className="transition hover:text-[#2a221a]">{t.nav.visit}</Link>
             <Link href={journalPath} className="transition hover:text-[#2a221a]">
               {t.nav.journal}
             </Link>
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#coffee" className="hidden rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest sm:inline-block">
+            <Link href={shopPath} className="hidden rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest sm:inline-block">
               {t.nav.shop}
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="menu"
@@ -152,20 +156,20 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-[#e7ddcc] px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-xs font-medium tracking-[0.2em] text-[#5b4b39]">
-              <a href="#story" onClick={() => setOpen(false)} className="py-2">{t.nav.story}</a>
-              <a href="#coffee" onClick={() => setOpen(false)} className="py-2">{t.nav.coffee}</a>
-              <a href="#visit" onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</a>
+              <Link href={storyPath} onClick={() => setOpen(false)} className="py-2">{t.nav.story}</Link>
+              <Link href={menuPath} onClick={() => setOpen(false)} className="py-2">{t.nav.coffee}</Link>
+              <Link href={visitPath} onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</Link>
               <Link href={journalPath} onClick={() => setOpen(false)} className="py-2">
                 {t.nav.journal}
               </Link>
             </nav>
-            <a
-              href="#coffee"
+            <Link
+              href={shopPath}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full border border-[#2a221a] px-4 py-2 text-xs tracking-widest"
             >
               {t.nav.shop}
-            </a>
+            </Link>
           </div>
         )}
       </header>
@@ -227,7 +231,7 @@ export default function NobleCoffee({ lang }: { lang: Lang }) {
               <p className="text-xs tracking-[0.4em] text-[#7a6850]">{t.week.eyebrow}</p>
               <h2 className="mt-3 font-serif text-4xl break-keep text-balance">{t.week.title}</h2>
             </div>
-            <a className="hidden text-xs tracking-widest underline md:inline">{t.week.viewAll}</a>
+            <Link href={menuPath} className="hidden text-xs tracking-widest underline md:inline">{t.week.viewAll}</Link>
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {t.menu.map((m) => (

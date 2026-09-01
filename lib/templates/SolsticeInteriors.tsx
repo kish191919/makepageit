@@ -17,8 +17,9 @@ const copy = {
       body: "Solstice Interiors is a full-service design and remodeling studio for homeowners who want their space to feel considered, warm, and unmistakably theirs — from a single sunlit corner to a whole-house renovation.",
       ctaPrimary: "Book a Consult",
       ctaSecondary: "View Portfolio",
+      servicesLink: "Explore our services",
     },
-    gallerySection: { eyebrow: "FEATURED PROJECTS", title: "Recent transformations" },
+    gallerySection: { eyebrow: "FEATURED PROJECTS", title: "Recent transformations", viewAll: "View full portfolio" },
     projects: [
       {
         name: "The Cedar Park Kitchen",
@@ -41,7 +42,7 @@ const copy = {
         image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80&auto=format&fit=crop",
       },
     ],
-    processSection: { eyebrow: "PROCESS", title: "How a project comes together" },
+    processSection: { eyebrow: "PROCESS", title: "How a project comes together", viewAll: "See our full process" },
     process: [
       { n: "01", title: "Discover", desc: "We walk your home, listen to how you actually live, and set a scope and budget together." },
       { n: "02", title: "Design", desc: "Concept boards, floor plans, and 3D renders — refined with you until every room feels right." },
@@ -80,8 +81,9 @@ const copy = {
       body: "솔스티스 인테리어는 공간이 근사해 보이는 것을 넘어, 그 안에 사는 사람의 이야기를 담기를 바라는 분들을 위한 종합 인테리어·리모델링 스튜디오입니다. 햇살 드는 작은 구석부터 집 전체 리모델링까지 함께합니다.",
       ctaPrimary: "상담 예약하기",
       ctaSecondary: "포트폴리오 보기",
+      servicesLink: "서비스 살펴보기",
     },
-    gallerySection: { eyebrow: "FEATURED PROJECTS", title: "최근 프로젝트" },
+    gallerySection: { eyebrow: "FEATURED PROJECTS", title: "최근 프로젝트", viewAll: "전체 포트폴리오 보기" },
     projects: [
       {
         name: "시더파크의 주방",
@@ -104,7 +106,7 @@ const copy = {
         image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80&auto=format&fit=crop",
       },
     ],
-    processSection: { eyebrow: "PROCESS", title: "프로젝트는 이렇게 진행됩니다" },
+    processSection: { eyebrow: "PROCESS", title: "프로젝트는 이렇게 진행됩니다", viewAll: "전체 프로세스 보기" },
     process: [
       { n: "01", title: "발견", desc: "댁을 직접 둘러보고 실제 생활 방식을 들으며, 함께 범위와 예산을 정합니다." },
       { n: "02", title: "디자인", desc: "컨셉 보드, 평면도, 3D 렌더링을 통해 모든 공간이 마음에 들 때까지 함께 다듬습니다." },
@@ -138,13 +140,17 @@ const copy = {
 export default function SolsticeInteriors({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
+  const portfolioPath = localePath(lang, "/portfolio/solstice-interiors/portfolio");
+  const servicesPath = localePath(lang, "/portfolio/solstice-interiors/services");
+  const processPath = localePath(lang, "/portfolio/solstice-interiors/process");
   const aboutPath = localePath(lang, "/portfolio/solstice-interiors/about");
+  const contactPath = localePath(lang, "/portfolio/solstice-interiors/contact");
   const navItems = [
-    { label: t.nav.portfolio, href: "#portfolio" },
-    { label: t.nav.services, href: "#services" },
-    { label: t.nav.process, href: "#process" },
+    { label: t.nav.portfolio, href: portfolioPath },
+    { label: t.nav.services, href: servicesPath },
+    { label: t.nav.process, href: processPath },
     { label: t.nav.about, href: aboutPath },
-    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.contact, href: contactPath },
   ];
   return (
     <div className="bg-[#f7f0e6] text-[#2b241d]">
@@ -160,16 +166,16 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             </div>
           </div>
           <nav className="hidden gap-7 text-sm font-medium text-[#2b241d]/75 md:flex">
-            <a href="#portfolio" className="transition hover:text-[#c1652f]">{t.nav.portfolio}</a>
-            <a href="#services" className="transition hover:text-[#c1652f]">{t.nav.services}</a>
-            <a href="#process" className="transition hover:text-[#c1652f]">{t.nav.process}</a>
+            <Link href={portfolioPath} className="transition hover:text-[#c1652f]">{t.nav.portfolio}</Link>
+            <Link href={servicesPath} className="transition hover:text-[#c1652f]">{t.nav.services}</Link>
+            <Link href={processPath} className="transition hover:text-[#c1652f]">{t.nav.process}</Link>
             <Link href={aboutPath} className="transition hover:text-[#c1652f]">{t.nav.about}</Link>
-            <a href="#contact" className="transition hover:text-[#c1652f]">{t.nav.contact}</a>
+            <Link href={contactPath} className="transition hover:text-[#c1652f]">{t.nav.contact}</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#contact" className="hidden rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
+            <Link href={contactPath} className="hidden rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
               {t.bookCta}
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="menu"
@@ -185,14 +191,14 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
           <div className="border-t border-[#2b241d]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#2b241d]/75">
               {navItems.map((item) => (
-                <a key={item.label} href={item.href} onClick={() => setOpen(false)} className="py-2">
+                <Link key={item.label} href={item.href} onClick={() => setOpen(false)} className="py-2">
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
-            <a href="#contact" onClick={() => setOpen(false)} className="mt-3 inline-block rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
+            <Link href={contactPath} onClick={() => setOpen(false)} className="mt-3 inline-block rounded-full bg-[#c1652f] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
               {t.bookCta}
-            </a>
+            </Link>
           </div>
         )}
       </header>
@@ -208,13 +214,16 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             </h1>
             <p className="mt-6 max-w-md leading-relaxed text-[#2b241d]/70 break-keep text-pretty">{t.hero.body}</p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <a className="rounded-full bg-[#c1652f] px-7 py-3.5 text-sm font-semibold text-white">
+              <Link href={contactPath} className="rounded-full bg-[#c1652f] px-7 py-3.5 text-sm font-semibold text-white">
                 {t.hero.ctaPrimary}
-              </a>
-              <a className="rounded-full border border-[#2b241d]/30 px-7 py-3.5 text-sm font-semibold">
+              </Link>
+              <Link href={portfolioPath} className="rounded-full border border-[#2b241d]/30 px-7 py-3.5 text-sm font-semibold">
                 {t.hero.ctaSecondary}
-              </a>
+              </Link>
             </div>
+            <Link href={servicesPath} className="mt-6 inline-block text-sm font-semibold text-[#c1652f] hover:underline">
+              {t.hero.servicesLink} →
+            </Link>
           </div>
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
             <Image
@@ -285,6 +294,9 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
             </div>
           </a>
         </div>
+        <Link href={portfolioPath} className="mt-10 inline-block text-sm font-semibold text-[#c1652f] hover:underline">
+          {t.gallerySection.viewAll} →
+        </Link>
       </section>
 
       <section id="process" className="scroll-mt-24 bg-[#efe4d2] py-16 sm:py-24">
@@ -300,6 +312,9 @@ export default function SolsticeInteriors({ lang }: { lang: Lang }) {
               </div>
             ))}
           </div>
+          <Link href={processPath} className="mt-10 inline-block text-sm font-semibold text-[#c1652f] hover:underline">
+            {t.processSection.viewAll} →
+          </Link>
         </div>
       </section>
 

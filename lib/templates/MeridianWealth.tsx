@@ -146,13 +146,19 @@ const copy = {
 export default function MeridianWealth({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
-  const insightsPath = localePath(lang, "/portfolio/meridian-wealth/insights");
+  const navPaths = {
+    services: localePath(lang, "/portfolio/meridian-wealth/services"),
+    approach: localePath(lang, "/portfolio/meridian-wealth/approach"),
+    advisors: localePath(lang, "/portfolio/meridian-wealth/advisors"),
+    insights: localePath(lang, "/portfolio/meridian-wealth/insights"),
+    contact: localePath(lang, "/portfolio/meridian-wealth/contact"),
+  } as const;
   const navItems: [string, string][] = [
-    [t.nav.services, "#services"],
-    [t.nav.approach, "#approach"],
-    [t.nav.advisors, "#advisors"],
-    [t.nav.insights, insightsPath],
-    [t.nav.contact, "#contact"],
+    [t.nav.services, navPaths.services],
+    [t.nav.approach, navPaths.approach],
+    [t.nav.advisors, navPaths.advisors],
+    [t.nav.insights, navPaths.insights],
+    [t.nav.contact, navPaths.contact],
   ];
   return (
     <div className="bg-[#f7f6f2] text-[#1a2332]">
@@ -166,16 +172,16 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
             </div>
           </div>
           <nav className="hidden gap-7 text-sm font-medium text-[#1a2332]/75 md:flex">
-            <a href="#services" className="transition hover:text-[#c99a3b]">{t.nav.services}</a>
-            <a href="#approach" className="transition hover:text-[#c99a3b]">{t.nav.approach}</a>
-            <a href="#advisors" className="transition hover:text-[#c99a3b]">{t.nav.advisors}</a>
-            <Link href={insightsPath} className="transition hover:text-[#c99a3b]">{t.nav.insights}</Link>
-            <a href="#contact" className="transition hover:text-[#c99a3b]">{t.nav.contact}</a>
+            <Link href={navPaths.services} className="transition hover:text-[#c99a3b]">{t.nav.services}</Link>
+            <Link href={navPaths.approach} className="transition hover:text-[#c99a3b]">{t.nav.approach}</Link>
+            <Link href={navPaths.advisors} className="transition hover:text-[#c99a3b]">{t.nav.advisors}</Link>
+            <Link href={navPaths.insights} className="transition hover:text-[#c99a3b]">{t.nav.insights}</Link>
+            <Link href={navPaths.contact} className="transition hover:text-[#c99a3b]">{t.nav.contact}</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#contact" className="hidden rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
+            <Link href={navPaths.contact} className="hidden rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white sm:inline-block">
               {t.bookCta}
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="menu"
@@ -191,14 +197,14 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
           <div className="border-t border-[#1a2332]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#1a2332]/75">
               {navItems.map(([label, href]) => (
-                <a key={label} href={href} onClick={() => setOpen(false)} className="py-2">
+                <Link key={label} href={href} onClick={() => setOpen(false)} className="py-2">
                   {label}
-                </a>
+                </Link>
               ))}
             </nav>
-            <a href="#contact" onClick={() => setOpen(false)} className="mt-3 inline-block rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
+            <Link href={navPaths.contact} onClick={() => setOpen(false)} className="mt-3 inline-block rounded-full bg-[#1a2332] px-5 py-2.5 text-xs font-semibold tracking-wide text-white">
               {t.bookCta}
-            </a>
+            </Link>
           </div>
         )}
       </header>
@@ -214,12 +220,12 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
               {t.hero.body}
             </p>
             <div className="mt-10 flex gap-4">
-              <a className="rounded-full bg-[#1a2332] px-7 py-3.5 text-sm font-semibold text-white">
+              <Link href={navPaths.contact} className="rounded-full bg-[#1a2332] px-7 py-3.5 text-sm font-semibold text-white">
                 {t.hero.ctaPrimary}
-              </a>
-              <a className="rounded-full border border-[#1a2332] px-7 py-3.5 text-sm font-semibold">
+              </Link>
+              <Link href={navPaths.approach} className="rounded-full border border-[#1a2332] px-7 py-3.5 text-sm font-semibold">
                 {t.hero.ctaSecondary}
-              </a>
+              </Link>
             </div>
             <svg viewBox="0 0 320 80" className="mt-12 h-16 w-full max-w-sm text-[#c99a3b]" fill="none">
               <polyline
@@ -260,11 +266,11 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
         <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl break-keep text-balance">{t.servicesSection.title}</h2>
         <div className="mt-14 grid gap-px overflow-hidden rounded-sm bg-[#1a2332]/10 md:grid-cols-3">
           {t.services.map((a) => (
-            <div key={a.title} className="bg-[#f7f6f2] p-8 transition hover:bg-white">
+            <Link key={a.title} href={navPaths.services} className="block bg-[#f7f6f2] p-8 transition hover:bg-white">
               <h3 className="text-xl font-semibold tracking-tight break-keep text-balance">{a.title}</h3>
               <p className="mt-4 text-sm leading-relaxed text-[#1a2332]/70 break-keep text-pretty">{a.desc}</p>
               <div className="mt-6 text-xs font-semibold tracking-widest text-[#c99a3b]">{t.viewMore}</div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -275,13 +281,13 @@ export default function MeridianWealth({ lang }: { lang: Lang }) {
           <h2 className="mt-3 text-4xl font-semibold tracking-tight md:text-5xl break-keep text-balance">{t.advisorsSection.title}</h2>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {t.advisors.map((l) => (
-              <div key={l.name}>
+              <Link key={l.name} href={navPaths.advisors} className="block">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#1a2332]/5">
                   <Image src={l.image} alt={l.name} fill className="object-cover" />
                 </div>
                 <h3 className="mt-5 text-xl font-semibold tracking-tight break-keep text-balance">{l.name}</h3>
                 <p className="mt-1 text-xs text-[#1a2332]/60 break-keep text-pretty">{l.role}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
