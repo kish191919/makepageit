@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 import { useMobileNav } from "@/lib/useMobileNav";
 import { MenuIcon } from "@/components/MenuIcon";
 
@@ -78,11 +79,14 @@ const copy = {
   },
 } as const;
 
-const navHrefs: Record<string, string> = { works: "#works", about: "#about", shop: "#services", contact: "#contact" };
-
 export default function JiniIllustration({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
+  const worksPath = localePath(lang, "/portfolio/jini-illustration/works");
+  const aboutPath = localePath(lang, "/portfolio/jini-illustration/about");
+  const shopPath = localePath(lang, "/portfolio/jini-illustration/shop");
+  const contactPath = localePath(lang, "/portfolio/jini-illustration/contact");
+  const navPaths: Record<string, string> = { works: worksPath, about: aboutPath, shop: shopPath, contact: contactPath };
   return (
     <div
       className="min-h-screen text-[#3a2e2a]"
@@ -101,16 +105,16 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
             <span className="text-[#ef476f]">.</span>
           </div>
           <nav className="hidden gap-6 text-sm font-bold md:flex">
-            {t.nav.map((n, i) => (
-              <a key={n} href={navHrefs[n]} className={i === 0 ? "rounded-full bg-[#ffd166] px-3 py-1" : ""}>
+            {t.nav.map((n) => (
+              <Link key={n} href={navPaths[n]} className="transition hover:opacity-70">
                 {n}
-              </a>
+              </Link>
             ))}
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#contact" className="rounded-full bg-[#3a2e2a] px-5 py-2 text-xs font-bold text-[#fff8ec]">
+            <Link href={contactPath} className="rounded-full bg-[#3a2e2a] px-5 py-2 text-xs font-bold text-[#fff8ec]">
               {t.cta}
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="menu"
@@ -126,18 +130,18 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
           <div className="border-t-2 border-dashed border-[#3a2e2a]/20 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-bold">
               {t.nav.map((n) => (
-                <a key={n} href={navHrefs[n]} onClick={() => setOpen(false)} className="py-2">
+                <Link key={n} href={navPaths[n]} onClick={() => setOpen(false)} className="py-2">
                   {n}
-                </a>
+                </Link>
               ))}
             </nav>
-            <a
-              href="#contact"
+            <Link
+              href={contactPath}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full bg-[#3a2e2a] px-5 py-2 text-xs font-bold text-[#fff8ec]"
             >
               {t.cta}
-            </a>
+            </Link>
           </div>
         )}
       </header>
@@ -163,12 +167,12 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
               {t.hero.body}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a className="rounded-full bg-[#ef476f] px-6 py-3 text-sm font-bold text-white">
+              <Link href={worksPath} className="rounded-full bg-[#ef476f] px-6 py-3 text-sm font-bold text-white">
                 {t.hero.ctaPrimary}
-              </a>
-              <a className="rounded-full border-2 border-[#3a2e2a] bg-white px-6 py-3 text-sm font-bold">
+              </Link>
+              <Link href={shopPath} className="rounded-full border-2 border-[#3a2e2a] bg-white px-6 py-3 text-sm font-bold">
                 {t.hero.ctaSecondary}
-              </a>
+              </Link>
             </div>
           </div>
           <div className="relative">
@@ -190,7 +194,7 @@ export default function JiniIllustration({ lang }: { lang: Lang }) {
       <section id="works" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-16">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-3xl font-black md:text-4xl break-keep text-balance">{t.recentTitle}</h2>
-          <a className="text-sm font-bold underline">{t.viewAll}</a>
+          <Link href={worksPath} className="text-sm font-bold underline">{t.viewAll}</Link>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-2">
           {t.works.map((w) => (

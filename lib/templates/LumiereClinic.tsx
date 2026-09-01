@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 import { useMobileNav } from "@/lib/useMobileNav";
 import { MenuIcon } from "@/components/MenuIcon";
 
@@ -137,6 +138,13 @@ const copy = {
 export default function LumiereClinic({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
+  const navPaths = {
+    treatments: localePath(lang, "/portfolio/lumiere-clinic/treatments"),
+    doctors: localePath(lang, "/portfolio/lumiere-clinic/doctors"),
+    booking: localePath(lang, "/portfolio/lumiere-clinic/booking"),
+    reviews: localePath(lang, "/portfolio/lumiere-clinic/reviews"),
+    visit: localePath(lang, "/portfolio/lumiere-clinic/visit"),
+  } as const;
   return (
     <div className="bg-white text-slate-900">
       <header ref={ref} className="sticky top-0 z-30 border-b border-slate-100 bg-white/90 backdrop-blur">
@@ -146,16 +154,16 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
             <span className="text-base font-semibold tracking-wide">{t.brand}</span>
           </div>
           <nav className="hidden gap-7 text-sm text-slate-600 md:flex">
-            <a href="#treatments" className="transition hover:text-[#9b6b4d]">{t.nav.treatments}</a>
-            <a href="#doctors" className="transition hover:text-[#9b6b4d]">{t.nav.doctors}</a>
-            <a href="#booking" className="transition hover:text-[#9b6b4d]">{t.nav.booking}</a>
-            <a href="#reviews" className="transition hover:text-[#9b6b4d]">{t.nav.reviews}</a>
-            <a href="#visit" className="transition hover:text-[#9b6b4d]">{t.nav.visit}</a>
+            <Link href={navPaths.treatments} className="transition hover:text-[#9b6b4d]">{t.nav.treatments}</Link>
+            <Link href={navPaths.doctors} className="transition hover:text-[#9b6b4d]">{t.nav.doctors}</Link>
+            <Link href={navPaths.booking} className="transition hover:text-[#9b6b4d]">{t.nav.booking}</Link>
+            <Link href={navPaths.reviews} className="transition hover:text-[#9b6b4d]">{t.nav.reviews}</Link>
+            <Link href={navPaths.visit} className="transition hover:text-[#9b6b4d]">{t.nav.visit}</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#booking" className="rounded-full bg-[#9b6b4d] px-5 py-2 text-xs font-semibold text-white">
+            <Link href={navPaths.booking} className="rounded-full bg-[#9b6b4d] px-5 py-2 text-xs font-semibold text-white">
               {t.bookCta}
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="menu"
@@ -170,19 +178,19 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-slate-100 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm text-slate-600">
-              <a href="#treatments" onClick={() => setOpen(false)} className="py-2">{t.nav.treatments}</a>
-              <a href="#doctors" onClick={() => setOpen(false)} className="py-2">{t.nav.doctors}</a>
-              <a href="#booking" onClick={() => setOpen(false)} className="py-2">{t.nav.booking}</a>
-              <a href="#reviews" onClick={() => setOpen(false)} className="py-2">{t.nav.reviews}</a>
-              <a href="#visit" onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</a>
+              <Link href={navPaths.treatments} onClick={() => setOpen(false)} className="py-2">{t.nav.treatments}</Link>
+              <Link href={navPaths.doctors} onClick={() => setOpen(false)} className="py-2">{t.nav.doctors}</Link>
+              <Link href={navPaths.booking} onClick={() => setOpen(false)} className="py-2">{t.nav.booking}</Link>
+              <Link href={navPaths.reviews} onClick={() => setOpen(false)} className="py-2">{t.nav.reviews}</Link>
+              <Link href={navPaths.visit} onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</Link>
             </nav>
-            <a
-              href="#booking"
+            <Link
+              href={navPaths.booking}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full bg-[#9b6b4d] px-5 py-2 text-xs font-semibold text-white"
             >
               {t.bookCta}
-            </a>
+            </Link>
           </div>
         )}
       </header>
@@ -201,12 +209,12 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
               {t.hero.body}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white">
+              <Link href={navPaths.booking} className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white">
                 {t.hero.ctaPrimary}
-              </a>
-              <a className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold">
+              </Link>
+              <Link href={navPaths.treatments} className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold">
                 {t.hero.ctaSecondary}
-              </a>
+              </Link>
             </div>
             <div className="mt-10 grid grid-cols-3 gap-6 border-t border-slate-200 pt-6">
               {t.hero.stats.map((s) => (
@@ -281,9 +289,9 @@ export default function LumiereClinic({ lang }: { lang: Lang }) {
               </label>
             ))}
           </div>
-          <button className="mt-6 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900">
+          <Link href={navPaths.booking} className="mt-6 inline-block rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900">
             {t.booking.submit}
-          </button>
+          </Link>
         </div>
       </section>
 
