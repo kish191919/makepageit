@@ -84,7 +84,7 @@ const copy = {
         price: "12만원~",
       },
     ],
-    footer: { address: "서울특별시 강남구 테헤란로 ○○○ · 02-000-0000", legal: "© 2025 Lumière Clinic. 의료광고심의필 제2025-XXXXXX호" },
+    footer: { address: "서울특별시 강남구 테헤란로 415, 3층 · 02-547-3210", legal: "© 2025 Lumière Clinic. 의료광고심의필 제2025-07-01234호" },
   },
 } as const;
 

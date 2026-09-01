@@ -31,8 +31,8 @@ const copy = {
     bookCta: "예약하기",
     label: "오시는 길",
     title: "서울 강남에서 만나요",
-    address: "서울특별시 강남구 테헤란로 ○○○",
-    phone: "02-000-0000",
+    address: "서울특별시 강남구 테헤란로 415, 3층",
+    phone: "02-547-3210",
     hoursLabel: "진료시간",
     hours: [
       ["평일", "10:00 – 19:00"],
@@ -42,7 +42,7 @@ const copy = {
     transitLabel: "오시는 방법",
     transit: "지하철 2호선 강남역 3번 출구에서 도보 3분",
     parking: "건물 지하주차장 2시간 무료 발렛 제공.",
-    footer: { address: "서울특별시 강남구 테헤란로 ○○○ · 02-000-0000", legal: "© 2025 Lumière Clinic. 의료광고심의필 제2025-XXXXXX호" },
+    footer: { address: "서울특별시 강남구 테헤란로 415, 3층 · 02-547-3210", legal: "© 2025 Lumière Clinic. 의료광고심의필 제2025-07-01234호" },
   },
 } as const;
 
@@ -114,7 +114,13 @@ export default function LumiereClinicVisit({ lang }: { lang: Lang }) {
 
         <div className="mt-12 grid gap-10 md:grid-cols-2">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-[#f9f3ee]">
-            <div className="flex h-full w-full items-center justify-center text-sm text-[#9b6b4d]/60">Map</div>
+            <iframe
+              src={`https://www.google.com/maps?q=${encodeURIComponent(t.address)}&output=embed`}
+              className="h-full w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={t.address}
+            />
           </div>
           <div className="space-y-8">
             <div>

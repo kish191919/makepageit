@@ -65,7 +65,13 @@ export default function HarborRealtyNeighborhoods({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/harbor-realty");
-  const neighborhoodsPath = localePath(lang, "/portfolio/harbor-realty/neighborhoods");
+  const navPaths = {
+    listings: localePath(lang, "/portfolio/harbor-realty/listings"),
+    neighborhoods: localePath(lang, "/portfolio/harbor-realty/neighborhoods"),
+    sell: localePath(lang, "/portfolio/harbor-realty/sell"),
+    agents: localePath(lang, "/portfolio/harbor-realty/agents"),
+    contact: localePath(lang, "/portfolio/harbor-realty/contact"),
+  } as const;
 
   return (
     <div className="bg-[#faf7f2] text-[#1c3829]">
@@ -81,15 +87,15 @@ export default function HarborRealtyNeighborhoods({ lang }: { lang: Lang }) {
             </div>
           </Link>
           <nav className="hidden gap-7 text-sm font-medium text-[#1c3829]/80 md:flex">
-            <Link href={`${home}#listings`}>{t.nav.listings}</Link>
-            <Link href={neighborhoodsPath} className="font-semibold">{t.nav.neighborhoods}</Link>
-            <Link href={`${home}#contact`}>{t.nav.sell}</Link>
-            <Link href={`${home}#agents`}>{t.nav.agents}</Link>
-            <Link href={`${home}#contact`}>{t.nav.contact}</Link>
+            <Link href={navPaths.listings}>{t.nav.listings}</Link>
+            <Link href={navPaths.neighborhoods} className="font-semibold">{t.nav.neighborhoods}</Link>
+            <Link href={navPaths.sell}>{t.nav.sell}</Link>
+            <Link href={navPaths.agents}>{t.nav.agents}</Link>
+            <Link href={navPaths.contact}>{t.nav.contact}</Link>
           </nav>
           <div className="flex items-center gap-3">
             <Link
-              href={`${home}#contact`}
+              href={navPaths.contact}
               className="hidden rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white sm:inline-block"
             >
               {t.bookCta}
@@ -108,14 +114,14 @@ export default function HarborRealtyNeighborhoods({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-[#1c3829]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#1c3829]/80">
-              <Link href={`${home}#listings`} onClick={() => setOpen(false)} className="py-2">{t.nav.listings}</Link>
-              <Link href={neighborhoodsPath} onClick={() => setOpen(false)} className="py-2 font-semibold">{t.nav.neighborhoods}</Link>
-              <Link href={`${home}#contact`} onClick={() => setOpen(false)} className="py-2">{t.nav.sell}</Link>
-              <Link href={`${home}#agents`} onClick={() => setOpen(false)} className="py-2">{t.nav.agents}</Link>
-              <Link href={`${home}#contact`} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
+              <Link href={navPaths.listings} onClick={() => setOpen(false)} className="py-2">{t.nav.listings}</Link>
+              <Link href={navPaths.neighborhoods} onClick={() => setOpen(false)} className="py-2 font-semibold">{t.nav.neighborhoods}</Link>
+              <Link href={navPaths.sell} onClick={() => setOpen(false)} className="py-2">{t.nav.sell}</Link>
+              <Link href={navPaths.agents} onClick={() => setOpen(false)} className="py-2">{t.nav.agents}</Link>
+              <Link href={navPaths.contact} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
             </nav>
             <Link
-              href={`${home}#contact`}
+              href={navPaths.contact}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
             >

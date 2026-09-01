@@ -186,8 +186,13 @@ const copy = {
 export default function HarborRealty({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
-  const neighborhoodsPath = localePath(lang, "/portfolio/harbor-realty/neighborhoods");
-  const navItems = [t.nav.listings, t.nav.neighborhoods, t.nav.sell, t.nav.agents, t.nav.contact];
+  const navPaths = {
+    listings: localePath(lang, "/portfolio/harbor-realty/listings"),
+    neighborhoods: localePath(lang, "/portfolio/harbor-realty/neighborhoods"),
+    sell: localePath(lang, "/portfolio/harbor-realty/sell"),
+    agents: localePath(lang, "/portfolio/harbor-realty/agents"),
+    contact: localePath(lang, "/portfolio/harbor-realty/contact"),
+  } as const;
   return (
     <div className="bg-[#faf7f2] text-[#1c3829]">
       <header ref={ref} className="border-b border-[#1c3829]/10 bg-[#faf7f2]">
@@ -202,16 +207,16 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
             </div>
           </div>
           <nav className="hidden gap-7 text-sm font-medium text-[#1c3829]/80 md:flex">
-            <a href="#listings">{t.nav.listings}</a>
-            <Link href={neighborhoodsPath}>{t.nav.neighborhoods}</Link>
-            <a href="#contact">{t.nav.sell}</a>
-            <a href="#agents">{t.nav.agents}</a>
-            <a href="#contact">{t.nav.contact}</a>
+            <Link href={navPaths.listings}>{t.nav.listings}</Link>
+            <Link href={navPaths.neighborhoods}>{t.nav.neighborhoods}</Link>
+            <Link href={navPaths.sell}>{t.nav.sell}</Link>
+            <Link href={navPaths.agents}>{t.nav.agents}</Link>
+            <Link href={navPaths.contact}>{t.nav.contact}</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#contact" className="hidden rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white sm:inline-block">
+            <Link href={navPaths.contact} className="hidden rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white sm:inline-block">
               {t.bookCta}
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="menu"
@@ -226,30 +231,19 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-[#1c3829]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#1c3829]/80">
-              {navItems.map((label, i) =>
-                i === 1 ? (
-                  <Link key={label} href={neighborhoodsPath} onClick={() => setOpen(false)} className="py-2">
-                    {label}
-                  </Link>
-                ) : (
-                  <a
-                    key={label}
-                    href={`#${["listings", "listings", "contact", "agents", "contact"][i]}`}
-                    onClick={() => setOpen(false)}
-                    className="py-2"
-                  >
-                    {label}
-                  </a>
-                )
-              )}
+              <Link href={navPaths.listings} onClick={() => setOpen(false)} className="py-2">{t.nav.listings}</Link>
+              <Link href={navPaths.neighborhoods} onClick={() => setOpen(false)} className="py-2">{t.nav.neighborhoods}</Link>
+              <Link href={navPaths.sell} onClick={() => setOpen(false)} className="py-2">{t.nav.sell}</Link>
+              <Link href={navPaths.agents} onClick={() => setOpen(false)} className="py-2">{t.nav.agents}</Link>
+              <Link href={navPaths.contact} onClick={() => setOpen(false)} className="py-2">{t.nav.contact}</Link>
             </nav>
-            <a
-              href="#contact"
+            <Link
+              href={navPaths.contact}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full bg-[#b08d57] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
             >
               {t.bookCta}
-            </a>
+            </Link>
           </div>
         )}
       </header>
@@ -271,12 +265,12 @@ export default function HarborRealty({ lang }: { lang: Lang }) {
           </h1>
           <p className="mt-6 max-w-md leading-relaxed text-white/80 break-keep text-pretty">{t.hero.body}</p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a className="rounded-full bg-[#b08d57] px-7 py-3.5 text-sm font-semibold text-white">
+            <Link href={navPaths.listings} className="rounded-full bg-[#b08d57] px-7 py-3.5 text-sm font-semibold text-white">
               {t.hero.ctaPrimary}
-            </a>
-            <a className="rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white">
+            </Link>
+            <Link href={navPaths.contact} className="rounded-full border border-white/70 px-7 py-3.5 text-sm font-semibold text-white">
               {t.hero.ctaSecondary}
-            </a>
+            </Link>
           </div>
         </div>
       </section>

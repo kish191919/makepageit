@@ -33,7 +33,7 @@ const copy = {
           "We still see companies build a brand for a year before running a clearance search. Here's the two-week process that avoids a rename after launch.",
       },
     ],
-    footer: "© 2025 Greene Law Group. Attorney advertising.",
+    footer: "© 2025 Greene Law Group. Attorney advertising. NY Bar Attorney Advertising Review No. 2024-11087.",
   },
   ko: {
     brand: { name: "GREEN LAW", tag: "법률사무소" },
@@ -62,7 +62,7 @@ const copy = {
           "1년간 브랜드를 만든 뒤에야 상표 조사를 하는 회사를 여전히 자주 봅니다. 출시 후 리네이밍을 피하는 2주짜리 사전 절차를 소개합니다.",
       },
     ],
-    footer: "© 2025 그린 법률사무소. 변호사 광고 심의필.",
+    footer: "© 2025 그린 법률사무소. 변호사 광고 심의필. 대한변호사협회 광고심사 제2024-000123호.",
   },
 } as const;
 
@@ -70,15 +70,21 @@ export default function GreenLawInsights({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
   const home = localePath(lang, "/portfolio/green-law");
-  const insightsPath = localePath(lang, "/portfolio/green-law/insights");
+  const navPaths = {
+    areas: localePath(lang, "/portfolio/green-law/areas"),
+    cases: localePath(lang, "/portfolio/green-law/cases"),
+    lawyers: localePath(lang, "/portfolio/green-law/lawyers"),
+    insights: localePath(lang, "/portfolio/green-law/insights"),
+    visit: localePath(lang, "/portfolio/green-law/visit"),
+  } as const;
 
   return (
     <div className="bg-white text-[#0b1a2a]">
       <header ref={ref} className="border-b border-[#0b1a2a]/10 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link href={home} className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-[#0b1a2a] font-serif text-base text-white">
-              G
+            <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-[#0b1a2a] font-serif text-sm text-white">
+              GL
             </span>
             <div>
               <div className="font-serif text-lg leading-none tracking-wide">{t.brand.name}</div>
@@ -86,17 +92,17 @@ export default function GreenLawInsights({ lang }: { lang: Lang }) {
             </div>
           </Link>
           <nav className="hidden gap-7 text-sm font-medium text-[#0b1a2a]/80 md:flex">
-            <Link href={`${home}#areas`}>{t.nav.areas}</Link>
-            <Link href={`${home}#lawyers`}>{t.nav.lawyers}</Link>
-            <Link href={`${home}#cases`}>{t.nav.cases}</Link>
-            <Link href={insightsPath} className="text-[#0b1a2a]">
+            <Link href={navPaths.areas}>{t.nav.areas}</Link>
+            <Link href={navPaths.cases}>{t.nav.cases}</Link>
+            <Link href={navPaths.lawyers}>{t.nav.lawyers}</Link>
+            <Link href={navPaths.insights} className="text-[#0b1a2a]">
               {t.nav.insights}
             </Link>
-            <Link href={`${home}#contact`}>{t.nav.visit}</Link>
+            <Link href={navPaths.visit}>{t.nav.visit}</Link>
           </nav>
           <div className="flex items-center gap-3">
             <Link
-              href={`${home}#contact`}
+              href={navPaths.visit}
               className="rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
             >
               {t.bookCta}
@@ -115,16 +121,16 @@ export default function GreenLawInsights({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-[#0b1a2a]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#0b1a2a]/80">
-              <Link href={`${home}#areas`} onClick={() => setOpen(false)} className="py-2">{t.nav.areas}</Link>
-              <Link href={`${home}#lawyers`} onClick={() => setOpen(false)} className="py-2">{t.nav.lawyers}</Link>
-              <Link href={`${home}#cases`} onClick={() => setOpen(false)} className="py-2">{t.nav.cases}</Link>
-              <Link href={insightsPath} onClick={() => setOpen(false)} className="py-2 text-[#0b1a2a]">
+              <Link href={navPaths.areas} onClick={() => setOpen(false)} className="py-2">{t.nav.areas}</Link>
+              <Link href={navPaths.cases} onClick={() => setOpen(false)} className="py-2">{t.nav.cases}</Link>
+              <Link href={navPaths.lawyers} onClick={() => setOpen(false)} className="py-2">{t.nav.lawyers}</Link>
+              <Link href={navPaths.insights} onClick={() => setOpen(false)} className="py-2 text-[#0b1a2a]">
                 {t.nav.insights}
               </Link>
-              <Link href={`${home}#contact`} onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</Link>
+              <Link href={navPaths.visit} onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</Link>
             </nav>
             <Link
-              href={`${home}#contact`}
+              href={navPaths.visit}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
             >

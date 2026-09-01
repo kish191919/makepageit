@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, type Lang } from "@/lib/i18n";
@@ -34,27 +35,73 @@ const copy = {
       { title: "White Collar", desc: "Corporate criminal defense, financial-fraud cases, investigation response." },
     ],
     viewMore: "VIEW MORE →",
+    casesSection: { eyebrow: "NOTABLE CASES", title: "Results, not just billing hours" },
+    cases: [
+      {
+        tag: "Corporate · M&A",
+        title: "Series B down-round restructuring for a SaaS company",
+        result: "Closed in 6 weeks",
+        desc: "Renegotiated liquidation preferences across three investor classes without triggering a change-of-control clause.",
+      },
+      {
+        tag: "Intellectual Property",
+        title: "Trademark infringement — mid-market apparel brand",
+        result: "Full win, no appeal",
+        desc: "Secured a preliminary injunction within 30 days and a full judgment before the case reached discovery.",
+      },
+      {
+        tag: "Employment & Labor",
+        title: "Multi-plaintiff wrongful-termination defense",
+        result: "Dismissed pre-trial",
+        desc: "Built a documentation record that got all four claims dismissed on summary judgment.",
+      },
+      {
+        tag: "White Collar",
+        title: "Corporate fraud investigation response",
+        result: "No charges filed",
+        desc: "Ran the internal investigation and coordinated with regulators before any indictment was sought.",
+      },
+    ],
     lawyersSection: { eyebrow: "LAWYERS", title: "The team" },
     lawyers: [
       {
         name: "Jonathan Greene",
         role: "Managing Partner · Harvard Law",
-        image: "https://images.unsplash.com/photo-1543132220-4bf3de6e10ae?w=600&q=80&auto=format&fit=crop",
+        bio: "Leads the firm's corporate and M&A practice; former general counsel at two venture-backed startups.",
+        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Sarah Cho",
         role: "Corporate · 12 yrs",
-        image: "https://images.unsplash.com/photo-1665224752136-4dbe2dfc8195?w=600&q=80&auto=format&fit=crop",
+        bio: "Structures financing rounds and M&A deals for founders who'd rather not learn deal terms the hard way.",
+        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Daniel Park",
         role: "Litigation · 9 yrs",
-        image: "https://images.unsplash.com/photo-1736939561648-bafddedd9f5e?w=600&q=80&auto=format&fit=crop",
+        bio: "Tries commercial disputes to verdict; has argued before three state appellate courts.",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Sofia Lee",
         role: "Employment & Antitrust · 7 yrs",
-        image: "https://images.unsplash.com/photo-1736939666674-9e481e249366?w=600&q=80&auto=format&fit=crop",
+        bio: "Rewrites employment agreements and advertising claims so they survive the next regulatory cycle.",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&auto=format&fit=crop",
+      },
+    ],
+    testimonialsSection: { eyebrow: "CLIENT NOTES", title: "What it's like to work with us" },
+    testimonials: [
+      {
+        quote: "They told us in the first call which two clauses actually mattered. Everything else we could negotiate away.",
+        attribution: "Founder, seed-stage SaaS company",
+      },
+      {
+        quote: "Greene Law caught a non-compete gap in our employment agreements before it became a lawsuit, not after.",
+        attribution: "COO, regional retail chain",
+      },
+      {
+        quote: "Flat answers, no billing-hour theater. We knew the likely outcome before we decided to file.",
+        attribution: "Managing partner, design studio",
       },
     ],
     consult: {
@@ -66,6 +113,7 @@ const copy = {
         { label: "EMAIL", value: "contact@greenelaw.com" },
         { label: "ADDRESS", value: "1290 Avenue of the Americas, 9th Fl, New York NY 10104" },
       ],
+      mapQuery: "1290 Avenue of the Americas, New York, NY 10104",
       formTitle: "Request a Consultation",
       formNote: "An attorney will follow up within 24 hours.",
       placeholders: {
@@ -74,9 +122,13 @@ const copy = {
         area: { default: "Select practice area", a1: "Corporate Counsel", a2: "Intellectual Property" },
         details: "Brief case overview",
       },
+      consent: "I consent to Greene Law Group collecting and using the information above to respond to my inquiry. Records are kept for up to 1 year after the matter closes.",
       submit: "Submit Request",
+      submitting: "Sending...",
+      successTitle: "Request received.",
+      successBody: "An attorney will follow up within 24 hours. Need it sooner? Call (212) 555-0188.",
     },
-    footer: "© 2025 Greene Law Group. Attorney advertising.",
+    footer: "© 2025 Greene Law Group. Attorney advertising. NY Bar Attorney Advertising Review No. 2024-11087.",
   },
   ko: {
     brand: { name: "GREEN LAW", tag: "법률사무소" },
@@ -105,27 +157,73 @@ const copy = {
       { title: "형사", desc: "기업 형사, 경제범죄, 수사 단계 변호." },
     ],
     viewMore: "VIEW MORE →",
+    casesSection: { eyebrow: "NOTABLE CASES", title: "숫자가 아니라 결과로" },
+    cases: [
+      {
+        tag: "기업 자문 · M&A",
+        title: "중견 IT기업 투자유치 다운라운드 구조조정",
+        result: "6주 만에 종결",
+        desc: "투자자 3개 그룹의 우선청산권 조건을 경영권 변동 없이 재조정해 딜을 성사시켰습니다.",
+      },
+      {
+        tag: "지식재산권",
+        title: "패션 브랜드 상표권 침해 소송",
+        result: "1심 전부 승소",
+        desc: "제소 30일 만에 가처분 인용을 받아냈고, 본안 소송 없이 조기 종결로 이어졌습니다.",
+      },
+      {
+        tag: "노동·인사",
+        title: "집단 부당해고 구제 신청 대응",
+        result: "전건 기각",
+        desc: "해고 절차 기록을 체계적으로 정리해 4건의 청구를 노동위 단계에서 모두 기각시켰습니다.",
+      },
+      {
+        tag: "형사",
+        title: "기업 횡령·배임 내사 대응",
+        result: "불기소 처분",
+        desc: "내부 조사를 직접 수행하고 수사기관과 조율해 기소 전 단계에서 사건을 종결했습니다.",
+      },
+    ],
     lawyersSection: { eyebrow: "LAWYERS", title: "구성원" },
     lawyers: [
       {
         name: "한지훈 대표변호사",
         role: "사법연수원 39기 · 서울대 법대",
-        image: "https://images.unsplash.com/photo-1543132220-4bf3de6e10ae?w=600&q=80&auto=format&fit=crop",
+        bio: "기업 자문·M&A 총괄. 벤처투자사 2곳에서 사내변호사로 근무한 경험을 바탕으로 투자 계약을 봅니다.",
+        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "조서린 변호사",
         role: "기업법무 · 12년차",
-        image: "https://images.unsplash.com/photo-1665224752136-4dbe2dfc8195?w=600&q=80&auto=format&fit=crop",
+        bio: "투자 라운드와 M&A 딜 구조를 설계합니다. 계약서 조항 하나가 나중에 어떻게 돌아오는지 압니다.",
+        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "윤재훈 변호사",
         role: "분쟁·소송 · 9년차",
-        image: "https://images.unsplash.com/photo-1736939561648-bafddedd9f5e?w=600&q=80&auto=format&fit=crop",
+        bio: "상사 소송을 판결까지 끌고 가는 소송 변호사. 항소심에서도 다수 승소 경험이 있습니다.",
+        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "임소연 변호사",
         role: "노동·공정거래 · 7년차",
-        image: "https://images.unsplash.com/photo-1736939666674-9e481e249366?w=600&q=80&auto=format&fit=crop",
+        bio: "근로계약과 광고 표시 조항을 다음 심사 주기까지 버티도록 다시 씁니다.",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&auto=format&fit=crop",
+      },
+    ],
+    testimonialsSection: { eyebrow: "CLIENT NOTES", title: "함께 일해본 분들의 이야기" },
+    testimonials: [
+      {
+        quote: "첫 상담에서 정말 중요한 조항 두 개만 짚어주셨어요. 나머지는 협상해도 되는 것들이었습니다.",
+        attribution: "시드 단계 SaaS 스타트업 대표",
+      },
+      {
+        quote: "근로계약서의 경업금지 조항 공백을 소송이 되기 전에 먼저 찾아주셨습니다.",
+        attribution: "지역 유통 체인 COO",
+      },
+      {
+        quote: "화려한 말 대신 결과를 먼저 보여주셨어요. 소송 여부를 결정하기 전에 이미 예상 결과를 알 수 있었습니다.",
+        attribution: "디자인 스튜디오 대표",
       },
     ],
     consult: {
@@ -133,10 +231,11 @@ const copy = {
       title: ["가장 빠른 길은,", "가장 정확한 상담입니다."],
       body: "30분 무료 초기 상담을 통해 사건의 큰 흐름을 함께 정리합니다. 시간이 지나면 손해가 되는 사건이 많습니다.",
       rows: [
-        { label: "CALL", value: "02-XXX-XXXX" },
+        { label: "CALL", value: "02-6952-4871" },
         { label: "EMAIL", value: "contact@greenlaw.kr" },
-        { label: "ADDRESS", value: "서울 서초구 법원로 ○○ 그린빌딩 9층" },
+        { label: "ADDRESS", value: "서울 서초구 법원로 15, 정림빌딩 8층" },
       ],
+      mapQuery: "서울 서초구 법원로 15",
       formTitle: "상담 신청서",
       formNote: "담당 변호사가 24시간 내 연락드립니다.",
       placeholders: {
@@ -145,38 +244,60 @@ const copy = {
         area: { default: "사건 분야 선택", a1: "기업 자문", a2: "지식재산권" },
         details: "간단한 사건 개요",
       },
+      consent: "개인정보 수집·이용에 동의합니다. (수집 항목: 성함, 연락처 / 보유기간: 상담 종료 후 1년)",
       submit: "상담 신청하기",
+      submitting: "접수 중...",
+      successTitle: "상담 신청이 접수되었습니다",
+      successBody: "담당 변호사가 24시간 내 연락드립니다. 급하신 경우 02-6952-4871로 전화 주세요.",
     },
-    footer: "© 2025 그린 법률사무소. 변호사 광고 심의필.",
+    footer: "© 2025 그린 법률사무소. 변호사 광고 심의필. 대한변호사협회 광고심사 제2024-000123호.",
   },
 } as const;
 
 export default function GreenLaw({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
-  const insightsPath = localePath(lang, "/portfolio/green-law/insights");
+  const navPaths = {
+    areas: localePath(lang, "/portfolio/green-law/areas"),
+    cases: localePath(lang, "/portfolio/green-law/cases"),
+    lawyers: localePath(lang, "/portfolio/green-law/lawyers"),
+    insights: localePath(lang, "/portfolio/green-law/insights"),
+    visit: localePath(lang, "/portfolio/green-law/visit"),
+  } as const;
+  const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  function handleConsultSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+    window.setTimeout(() => {
+      setSubmitting(false);
+      setSubmitted(true);
+    }, 700);
+  }
+
   return (
     <div className="bg-white text-[#0b1a2a]">
       <header ref={ref} className="border-b border-[#0b1a2a]/10 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-[#0b1a2a] font-serif text-base text-white">G</span>
+            <span className="flex h-9 w-9 items-center justify-center rounded-sm bg-[#0b1a2a] font-serif text-sm text-white">GL</span>
             <div>
               <div className="font-serif text-lg leading-none tracking-wide">{t.brand.name}</div>
               <div className="mt-0.5 text-[10px] tracking-[0.3em] text-[#0b1a2a]/60">{t.brand.tag}</div>
             </div>
           </div>
           <nav className="hidden gap-7 text-sm font-medium text-[#0b1a2a]/80 md:flex">
-            <a href="#areas">{t.nav.areas}</a>
-            <a href="#lawyers">{t.nav.lawyers}</a>
-            <a href="#cases">{t.nav.cases}</a>
-            <Link href={insightsPath}>{t.nav.insights}</Link>
-            <a href="#contact">{t.nav.visit}</a>
+            <Link href={navPaths.areas} className="transition hover:text-[#0b1a2a]">{t.nav.areas}</Link>
+            <Link href={navPaths.cases} className="transition hover:text-[#0b1a2a]">{t.nav.cases}</Link>
+            <Link href={navPaths.lawyers} className="transition hover:text-[#0b1a2a]">{t.nav.lawyers}</Link>
+            <Link href={navPaths.insights} className="transition hover:text-[#0b1a2a]">{t.nav.insights}</Link>
+            <Link href={navPaths.visit} className="transition hover:text-[#0b1a2a]">{t.nav.visit}</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#contact" className="rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white">
+            <Link href={navPaths.visit} className="rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white transition hover:bg-[#152a42]">
               {t.bookCta}
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="menu"
@@ -191,19 +312,19 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-[#0b1a2a]/10 px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm font-medium text-[#0b1a2a]/80">
-              <a href="#areas" onClick={() => setOpen(false)} className="py-2">{t.nav.areas}</a>
-              <a href="#lawyers" onClick={() => setOpen(false)} className="py-2">{t.nav.lawyers}</a>
-              <a href="#cases" onClick={() => setOpen(false)} className="py-2">{t.nav.cases}</a>
-              <Link href={insightsPath} onClick={() => setOpen(false)} className="py-2">{t.nav.insights}</Link>
-              <a href="#contact" onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</a>
+              <Link href={navPaths.areas} onClick={() => setOpen(false)} className="py-2">{t.nav.areas}</Link>
+              <Link href={navPaths.cases} onClick={() => setOpen(false)} className="py-2">{t.nav.cases}</Link>
+              <Link href={navPaths.lawyers} onClick={() => setOpen(false)} className="py-2">{t.nav.lawyers}</Link>
+              <Link href={navPaths.insights} onClick={() => setOpen(false)} className="py-2">{t.nav.insights}</Link>
+              <Link href={navPaths.visit} onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</Link>
             </nav>
-            <a
-              href="#contact"
+            <Link
+              href={navPaths.visit}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-sm bg-[#0b1a2a] px-5 py-2.5 text-xs font-semibold tracking-widest text-white"
             >
               {t.bookCta}
-            </a>
+            </Link>
           </div>
         )}
       </header>
@@ -219,12 +340,12 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
               {t.hero.body}
             </p>
             <div className="mt-10 flex gap-4">
-              <a className="rounded-sm bg-[#0b1a2a] px-7 py-3.5 text-sm font-semibold text-white">
+              <Link href={navPaths.visit} className="rounded-sm bg-[#0b1a2a] px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-[#152a42]">
                 {t.hero.ctaPrimary}
-              </a>
-              <a className="rounded-sm border border-[#0b1a2a] px-7 py-3.5 text-sm font-semibold">
+              </Link>
+              <Link href={navPaths.areas} className="rounded-sm border border-[#0b1a2a] px-7 py-3.5 text-sm font-semibold transition hover:bg-[#0b1a2a] hover:text-white">
                 {t.hero.ctaSecondary}
-              </a>
+              </Link>
             </div>
           </div>
           <div className="relative aspect-[4/5] overflow-hidden">
@@ -239,7 +360,7 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section id="cases" className="scroll-mt-24 bg-[#0b1a2a] py-16 text-white">
+      <section className="bg-[#0b1a2a] py-16 text-white">
         <div className="mx-auto grid max-w-6xl gap-8 px-6 sm:grid-cols-4">
           {t.stats.map((s) => (
             <div key={s.l} className="border-l border-white/20 pl-6">
@@ -264,7 +385,28 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      <section id="lawyers" className="scroll-mt-24 bg-[#f5f4ee] py-24">
+      <section id="cases" className="scroll-mt-24 bg-[#f5f4ee] py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.casesSection.eyebrow}</p>
+          <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.casesSection.title}</h2>
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {t.cases.map((c) => (
+              <div key={c.title} className="rounded-sm border border-[#0b1a2a]/10 bg-white p-8">
+                <div className="flex items-start justify-between gap-4">
+                  <p className="text-xs font-semibold tracking-widest text-[#7c8c47]">{c.tag}</p>
+                  <span className="shrink-0 rounded-full bg-[#0b1a2a] px-3 py-1 text-[10px] font-semibold tracking-widest text-white">
+                    {c.result}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-serif text-xl leading-snug break-keep text-balance">{c.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#0b1a2a]/70 break-keep text-pretty">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="lawyers" className="scroll-mt-24 bg-white py-24">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.lawyersSection.eyebrow}</p>
           <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.lawyersSection.title}</h2>
@@ -276,7 +418,27 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
                 </div>
                 <h3 className="mt-5 font-serif text-xl break-keep text-balance">{l.name}</h3>
                 <p className="mt-1 text-xs text-[#0b1a2a]/60">{l.role}</p>
+                <p className="mt-2 text-xs leading-relaxed text-[#0b1a2a]/60 break-keep text-pretty">{l.bio}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f5f4ee] py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs font-semibold tracking-[0.3em] text-[#7c8c47]">{t.testimonialsSection.eyebrow}</p>
+          <h2 className="mt-3 font-serif text-4xl md:text-5xl break-keep text-balance">{t.testimonialsSection.title}</h2>
+          <div className="mt-14 grid gap-8 md:grid-cols-3">
+            {t.testimonials.map((q) => (
+              <figure key={q.attribution} className="rounded-sm bg-white p-8">
+                <blockquote className="font-serif text-lg leading-snug break-keep text-balance">
+                  “{q.quote}”
+                </blockquote>
+                <figcaption className="mt-5 text-xs font-semibold tracking-widest text-[#0b1a2a]/60">
+                  {q.attribution}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
@@ -300,24 +462,71 @@ export default function GreenLaw({ lang }: { lang: Lang }) {
                 </div>
               ))}
             </dl>
-          </div>
-          <form className="rounded-sm bg-[#0b1a2a] p-10 text-white">
-            <h3 className="font-serif text-2xl break-keep text-balance">{t.consult.formTitle}</h3>
-            <p className="mt-2 text-xs text-white/60 break-keep text-pretty">{t.consult.formNote}</p>
-            <div className="mt-8 space-y-4">
-              <input placeholder={t.consult.placeholders.name} className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none" />
-              <input placeholder={t.consult.placeholders.phone} className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none" />
-              <select className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm text-white/70 outline-none">
-                <option className="text-[#0b1a2a]">{t.consult.placeholders.area.default}</option>
-                <option className="text-[#0b1a2a]">{t.consult.placeholders.area.a1}</option>
-                <option className="text-[#0b1a2a]">{t.consult.placeholders.area.a2}</option>
-              </select>
-              <textarea rows={3} placeholder={t.consult.placeholders.details} className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none" />
+            <div className="mt-8 aspect-video overflow-hidden rounded-sm border border-[#0b1a2a]/10">
+              <iframe
+                title={t.consult.rows[2].value}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(t.consult.mapQuery)}&output=embed`}
+                className="h-full w-full grayscale"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
-            <button className="mt-8 w-full bg-white py-3.5 text-xs font-semibold tracking-[0.3em] text-[#0b1a2a]">
-              {t.consult.submit}
-            </button>
-          </form>
+          </div>
+          {submitted ? (
+            <div className="rounded-sm bg-[#0b1a2a] p-10 text-white">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#7c8c47] text-xl">✓</div>
+              <h3 className="mt-6 font-serif text-2xl break-keep text-balance">{t.consult.successTitle}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/70 break-keep text-pretty">{t.consult.successBody}</p>
+            </div>
+          ) : (
+            <form onSubmit={handleConsultSubmit} className="rounded-sm bg-[#0b1a2a] p-10 text-white">
+              <h3 className="font-serif text-2xl break-keep text-balance">{t.consult.formTitle}</h3>
+              <p className="mt-2 text-xs text-white/60 break-keep text-pretty">{t.consult.formNote}</p>
+              <div className="mt-8 space-y-4">
+                <input
+                  required
+                  name="name"
+                  placeholder={t.consult.placeholders.name}
+                  className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none"
+                />
+                <input
+                  required
+                  type="tel"
+                  name="phone"
+                  placeholder={t.consult.placeholders.phone}
+                  className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none"
+                />
+                <select
+                  required
+                  name="area"
+                  defaultValue=""
+                  className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm text-white/70 outline-none"
+                >
+                  <option value="" disabled className="text-[#0b1a2a]">{t.consult.placeholders.area.default}</option>
+                  <option className="text-[#0b1a2a]">{t.consult.placeholders.area.a1}</option>
+                  <option className="text-[#0b1a2a]">{t.consult.placeholders.area.a2}</option>
+                </select>
+                <textarea
+                  required
+                  rows={3}
+                  name="details"
+                  placeholder={t.consult.placeholders.details}
+                  className="w-full rounded-none border-b border-white/30 bg-transparent py-3 text-sm placeholder:text-white/50 outline-none"
+                />
+              </div>
+              <label className="mt-6 flex items-start gap-3 text-xs leading-relaxed text-white/60">
+                <input required type="checkbox" className="mt-0.5 h-4 w-4 shrink-0 border-white/30 bg-transparent" />
+                <span>{t.consult.consent}</span>
+              </label>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="mt-8 w-full bg-white py-3.5 text-xs font-semibold tracking-[0.3em] text-[#0b1a2a] transition hover:bg-white/90 disabled:cursor-wait disabled:opacity-70"
+              >
+                {submitting ? t.consult.submitting : t.consult.submit}
+              </button>
+            </form>
+          )}
         </div>
       </section>
 

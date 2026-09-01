@@ -25,7 +25,7 @@ const copy = {
         name: "Dr. Marcus Chen",
         role: "Laser Lead",
         bio: "Focuses exclusively on laser toning and resurfacing, with a caseload of over 3,000 pigmentation treatments.",
-        image: "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Dr. Yuna Cho",
@@ -54,7 +54,7 @@ const copy = {
         name: "박민호 원장",
         role: "레이저 시술 전담의",
         bio: "레이저 토닝과 리서페이싱만을 전담하며, 3,000건 이상의 색소 치료 경험을 보유하고 있습니다.",
-        image: "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "정유나 원장",
@@ -63,7 +63,7 @@ const copy = {
         image: "/images/lumiere/jung-yuna.jpg",
       },
     ],
-    footer: { address: "서울특별시 강남구 테헤란로 ○○○ · 02-000-0000", legal: "© 2025 Lumière Clinic. 의료광고심의필 제2025-XXXXXX호" },
+    footer: { address: "서울특별시 강남구 테헤란로 415, 3층 · 02-547-3210", legal: "© 2025 Lumière Clinic. 의료광고심의필 제2025-07-01234호" },
   },
 } as const;
 

@@ -42,7 +42,7 @@ const copy = {
       {
         name: "Dr. Marcus Chen",
         role: "Laser Lead",
-        image: "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "Dr. Yuna Cho",
@@ -56,7 +56,7 @@ const copy = {
       body: "Pick a treatment, time, and provider — confirm with a tap.",
       fields: [
         { label: "Treatment", value: "Hydrating Boost ▾" },
-        { label: "Date & Time", value: "Aug 12, 2025 (Tue) · 2:30 PM" },
+        { label: "Date & Time", value: "Choose a date & time ▾" },
         { label: "Provider", value: "Dr. Lauren Park" },
         { label: "Phone", value: "(212) ***-****" },
       ],
@@ -105,7 +105,7 @@ const copy = {
       {
         name: "박민호 원장",
         role: "레이저 시술 전담의",
-        image: "https://images.unsplash.com/photo-1622902046580-2b47f47f5471?w=600&q=80&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80&auto=format&fit=crop",
       },
       {
         name: "정유나 원장",
@@ -119,7 +119,7 @@ const copy = {
       body: "시술 선택부터 결제까지 1분이면 완료됩니다.",
       fields: [
         { label: "희망 시술", value: "스킨 부스터 ▾" },
-        { label: "희망 일시", value: "2025-08-12 (화) 14:30" },
+        { label: "희망 일시", value: "날짜와 시간을 선택하세요 ▾" },
         { label: "담당 의료진", value: "이수진 원장" },
         { label: "연락처", value: "010-****-****" },
       ],
@@ -131,7 +131,7 @@ const copy = {
       { rating: 5, text: "친절하게 상담해주시고 무리한 시술 권유가 없어 신뢰가 갑니다.", who: "40대 여성 · 리프팅" },
       { rating: 5, text: "노쇼 알림톡까지 자동으로 와서 일정 관리가 편했어요.", who: "20대 여성 · 토닝" },
     ],
-    footer: { address: "서울특별시 강남구 테헤란로 ○○○ · 02-000-0000", legal: "© 2025 Lumière Clinic. 의료광고심의필 제2025-XXXXXX호" },
+    footer: { address: "서울특별시 강남구 테헤란로 415, 3층 · 02-547-3210", legal: "© 2025 Lumière Clinic. 의료광고심의필 제2025-07-01234호" },
   },
 } as const;
 
