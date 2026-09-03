@@ -189,7 +189,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
 
         <div
           ref={scrollerRef}
-          className={`mx-auto max-w-4xl ${hideHeading ? "" : "mt-11"} -mx-4 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto px-4 pb-2 [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:grid-cols-2 md:gap-6 md:snap-none md:overflow-visible md:px-0 md:pb-0`}
+          className={`mx-auto max-w-4xl ${hideHeading ? "" : "mt-11"} -mx-4 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto px-4 pb-2 pt-4 [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:grid-cols-2 md:gap-6 md:snap-none md:overflow-visible md:px-0 md:pb-0 md:pt-0`}
           style={{ scrollbarWidth: "none" }}
         >
           {plans.map((p) => {

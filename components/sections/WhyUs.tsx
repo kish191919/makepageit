@@ -43,14 +43,15 @@ export default function WhyUs({ lang }: { lang: Lang }) {
           ))}
         </div>
 
-        <div className="mt-12 overflow-hidden sm:hidden">
-          <div className="flex w-max animate-marquee-ltr gap-4 motion-reduce:animate-none">
-            {[...items, ...items].map((item, i) => (
-              <div key={`${item.title}-${i}`} className="w-64 shrink-0">
-                <StatCard item={item} />
-              </div>
-            ))}
-          </div>
+        <div
+          className="-mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:hidden [&::-webkit-scrollbar]:hidden"
+          style={{ scrollbarWidth: "none" }}
+        >
+          {items.map((item) => (
+            <div key={item.title} className="shrink-0 basis-[80%] snap-center">
+              <StatCard item={item} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
