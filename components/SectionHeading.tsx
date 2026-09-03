@@ -18,7 +18,7 @@ export default function SectionHeading({
   const alignment = align === "center" ? "text-center mx-auto" : "text-left";
   const eyebrowClass =
     theme === "dark"
-      ? "text-sm font-semibold uppercase tracking-[0.2em] text-accent-400"
+      ? "text-sm font-semibold uppercase tracking-[0.2em] text-brand-400"
       : "eyebrow";
   const titleClass =
     theme === "dark"

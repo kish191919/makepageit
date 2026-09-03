@@ -155,10 +155,9 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
   }
 
   return (
-    <section className="section relative overflow-hidden bg-gradient-to-b from-white via-brand-50/50 to-white">
+    <section className="section relative overflow-hidden bg-ink-900">
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/15 blur-[120px]" />
-        <div className="absolute inset-0 bg-hero-grid opacity-[0.15] [background-size:26px_26px] [mask-image:radial-gradient(ellipse_60%_55%_at_50%_45%,black,transparent)]" />
+        <div className="absolute inset-0 bg-hero-grid opacity-40 [background-size:26px_26px] [mask-image:radial-gradient(ellipse_60%_55%_at_50%_45%,black,transparent)]" />
       </div>
       <div className="container-custom relative z-10">
         {showCanceled && (
@@ -169,6 +168,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
         {!hideHeading && (
           <SectionHeading
             align="center"
+            theme="dark"
             eyebrow={dict.pricing.eyebrow}
             title={
               <>
@@ -217,19 +217,19 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               data-carousel-item
               className={`relative flex h-full flex-col rounded-3xl border transition duration-300 snap-center shrink-0 basis-[85%] md:shrink md:basis-auto ${
                 p.best
-                  ? "border-white/10 bg-ink-900 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_0_50px_-10px_rgba(249,115,22,0.3),0_25px_50px_-12px_rgba(0,0,0,0.8)]"
+                  ? "border-white/10 bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_25px_50px_-12px_rgba(0,0,0,0.6)]"
                   : "overflow-hidden border-ink-200 bg-white text-ink-900 shadow-[0_2px_4px_rgba(15,23,42,0.04),0_14px_32px_-12px_rgba(15,23,42,0.10)] hover:-translate-y-1 hover:border-brand-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(79,70,229,0.20)]"
               }`}
             >
               {p.best && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent-500 px-4 py-1 text-xs font-bold uppercase tracking-widest text-white">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1 text-xs font-bold uppercase tracking-widest text-brand-700 shadow-[0_4px_12px_rgba(0,0,0,0.18)]">
                   {p.badge ?? "BEST CHOICE"}
                 </span>
               )}
               <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-8">
               <h3
                 className={`text-sm font-bold uppercase tracking-[0.25em] ${
-                  p.best ? "text-accent-400" : "text-brand-700"
+                  p.best ? "text-white" : "text-brand-700"
                 }`}
               >
                 {p.name}
@@ -253,7 +253,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                   <li key={f} className={`flex items-start gap-2 ${p.best ? "" : "text-ink-700"}`}>
                     <span
                       className={`mt-1 inline-flex h-4 w-4 flex-none items-center justify-center rounded-full ${
-                        p.best ? "bg-accent-500 text-white" : "bg-brand-600 text-white"
+                        p.best ? "bg-white text-brand-600" : "bg-brand-600 text-white"
                       }`}
                     >
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -277,7 +277,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                       ref={(el) => {
                         customizePanelRefs.current.set(p.id, el);
                       }}
-                      className="flex flex-col rounded-2xl bg-ink-900 p-4 ring-1 ring-white/10"
+                      className="flex flex-col rounded-2xl bg-brand-900 p-4 ring-1 ring-white/10"
                     >
                       <button
                         type="button"
@@ -335,13 +335,13 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
 
                           <div className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2 text-sm ring-1 ring-white/10">
                             <span className="text-white/70">{dict.pricing.yearTotal}</span>
-                            <span className="text-base font-extrabold text-accent-400">
+                            <span className="text-base font-extrabold text-brand-300">
                               {formatUsd(firstYearTotal)}
                             </span>
                           </div>
                           <div className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2 text-sm ring-1 ring-white/10">
                             <span className="text-white/70">{dict.pricing.yearAfter}</span>
-                            <span className="text-base font-bold text-accent-400">
+                            <span className="text-base font-bold text-brand-300">
                               {formatUsd(yearTwoOnward)}
                             </span>
                           </div>
@@ -444,11 +444,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
 
                     <Link
                       href={localePath(lang, "/contact")}
-                      className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition sm:text-base ${
-                        p.best
-                          ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
-                          : "bg-ink-900 text-white hover:bg-brand-700"
-                      }`}
+                      className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-900 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-700 sm:text-base"
                     >
                       {dict.pricing.quoteCta}
                     </Link>
@@ -457,11 +453,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               })() : (
                 <Link
                   href={localePath(lang, "/contact")}
-                  className={`mt-9 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition sm:text-base ${
-                    p.best
-                      ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
-                      : "bg-ink-900 text-white hover:bg-brand-700"
-                  }`}
+                  className="mt-9 inline-flex items-center justify-center gap-2 rounded-full bg-brand-900 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-700 sm:text-base"
                 >
                   {p.cta}
                 </Link>
@@ -513,7 +505,7 @@ function ToggleRow({
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="mt-1 h-4 w-4 flex-none accent-accent-500"
+        className="mt-1 h-4 w-4 flex-none accent-brand-500"
       />
       <span className="flex flex-1 flex-wrap items-start justify-between gap-x-3 gap-y-1 text-left">
         <span className="flex flex-col">
@@ -552,7 +544,7 @@ function EmailRow({
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked ? 1 : 0)}
-        className="mt-1 h-4 w-4 flex-none accent-accent-500"
+        className="mt-1 h-4 w-4 flex-none accent-brand-500"
         aria-label={label}
       />
       <div className="flex flex-1 flex-col gap-2">
@@ -616,7 +608,7 @@ function ExtraPageRow({
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked ? 1 : 0)}
-        className="mt-1 h-4 w-4 flex-none accent-accent-500"
+        className="mt-1 h-4 w-4 flex-none accent-brand-500"
         aria-label={label}
       />
       <div className="flex flex-1 flex-col gap-2">

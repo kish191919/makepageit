@@ -21,7 +21,7 @@ export default function PricingView({ lang }: { lang: Lang }) {
 
       <Pricing lang={lang} hideHeading />
 
-      <section className="section bg-ink-50">
+      <section className="section bg-white">
         <div className="container-custom">
           <p className="eyebrow">{compare.eyebrow}</p>
           <h2 className="mt-3 h-section">{compare.title}</h2>

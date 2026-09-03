@@ -8,7 +8,7 @@ export default function WhyUs({ lang }: { lang: Lang }) {
   const items = dict.whyUs.items;
 
   return (
-    <section className="section bg-brand-50/40">
+    <section className="section border-t border-ink-100 bg-white">
       <div className="container-custom">
         <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2">
           {trust.map((s) => (
@@ -32,7 +32,7 @@ export default function WhyUs({ lang }: { lang: Lang }) {
           {items.map((item) => (
             <div
               key={item.title}
-              className="rounded-3xl border border-ink-100 bg-white p-6 shadow-[0_2px_4px_rgba(15,23,42,0.04),0_14px_32px_-12px_rgba(15,23,42,0.08)]"
+              className="rounded-3xl border border-ink-100 bg-ink-50/60 p-6 shadow-[0_2px_4px_rgba(15,23,42,0.04),0_14px_32px_-12px_rgba(15,23,42,0.08)]"
             >
               <div className="text-2xl font-extrabold text-brand-600 sm:text-3xl">{item.title}</div>
               <p className="mt-2 text-sm leading-relaxed text-ink-500">{item.desc}</p>

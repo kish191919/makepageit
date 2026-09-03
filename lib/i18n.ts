@@ -325,7 +325,7 @@ const en: Dict = {
     description: "Fast, transparent, and built so you can get back to running your business.",
     items: [
       { title: "7 days", desc: "Average time to your first draft" },
-      { title: "Unlimited", desc: "Revisions included, no extra fees" },
+      { title: "2 rounds", desc: "Free revisions after launch" },
       { title: "All-in-one", desc: "Domain, hosting, and mobile — handled for you" },
       { title: "Korean support", desc: "Talk to a real person, in Korean" },
     ],
@@ -694,7 +694,7 @@ const ko: Dict = {
     description: "빠르고 투명하게 진행하니, 사장님은 사업에만 집중하시면 됩니다.",
     items: [
       { title: "7일", desc: "평균 첫 시안까지 걸리는 시간" },
-      { title: "무제한", desc: "추가 비용 없이 수정 횟수 제한 없음" },
+      { title: "2회", desc: "완성 후 무료 수정 2회 제공" },
       { title: "올인원", desc: "도메인·호스팅·모바일까지 한 번에" },
       { title: "한국어 상담", desc: "언제든 편하게 문의하세요" },
     ],
