@@ -308,10 +308,10 @@ const en: Dict = {
   hero: {
     titleA: "You run the business.",
     titleHighlight: "We build",
-    titleB: "the website that",
-    titleBrandWord: "wins customers.",
+    titleB: "the website—",
+    titleBrandWord: "live in 2 weeks.",
     titleC: "",
-    body: "Strategy, design, development, and ongoing care from one team. Most sites go live in under two weeks.\nFree 30-minute consult, no pressure.",
+    body: "Strategy, design, development, and ongoing care from one team.\nFree 30-minute consult, no pressure.",
   },
   process: {
     eyebrow: "How it works",
@@ -666,10 +666,10 @@ const ko: Dict = {
   hero: {
     titleA: "사장님은 ",
     titleHighlight: "사업만",
-    titleB: " 하세요.\n홈페이지는 ",
-    titleBrandWord: "메이크페이지",
-    titleC: "가 만듭니다.",
-    body: "기획·디자인·개발·운영을 한 팀에서. 평균 2주 안에 사장님 비즈니스에 꼭 맞는 홈페이지를 오픈해드립니다.\n무료 상담은 언제나 환영입니다.",
+    titleB: " 하세요.\n",
+    titleBrandWord: "2주",
+    titleC: " 안에, 이런 홈페이지가 완성됩니다.",
+    body: "기획·디자인·개발·운영을 한 팀에서 책임집니다.\n무료 상담은 언제나 환영입니다.",
   },
   process: {
     eyebrow: "프로세스",
