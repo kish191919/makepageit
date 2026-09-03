@@ -1,6 +1,7 @@
 import Hero from "@/components/sections/Hero";
 import Process from "@/components/sections/Process";
 import Portfolio from "@/components/sections/Portfolio";
+import Reviews from "@/components/sections/Reviews";
 import Pricing from "@/components/sections/Pricing";
 import AdditionalOptions from "@/components/sections/AdditionalOptions";
 import FAQ from "@/components/sections/FAQ";
@@ -19,6 +20,7 @@ export default function HomeView({ lang }: { lang: Lang }) {
       <script {...jsonLdScriptProps(serviceOfferCatalogSchema(plans, lang))} />
       <Hero lang={lang} />
       <Portfolio lang={lang} limit={6} />
+      <Reviews lang={lang} />
       <Process lang={lang} />
       <Pricing lang={lang} />
       <AdditionalOptions lang={lang} />

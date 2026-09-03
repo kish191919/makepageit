@@ -23,14 +23,6 @@ export default function CTA({ lang }: { lang: Lang }) {
     <section className="section bg-white">
       <div className="container-custom">
         <div className="relative overflow-hidden rounded-[32px] bg-ink-900 px-6 py-10 text-center sm:px-16 sm:py-24">
-          <div
-            aria-hidden
-            className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-brand-600 opacity-30 blur-3xl"
-          />
-          <div
-            aria-hidden
-            className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent-500 opacity-30 blur-3xl"
-          />
           <span className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-400">
             {dict.cta_section.eyebrow}
           </span>

@@ -191,7 +191,7 @@ export default async function OpengraphImage() {
           }}
         >
           <span>makepageit.com</span>
-          <span>320+ sites · 4.9 / 5 rating</span>
+          <span>4.9 / 5 rating · 98% repeat clients</span>
         </div>
       </div>
     ),

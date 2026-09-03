@@ -18,6 +18,7 @@ import HarborRealty from "./HarborRealty";
 import MeridianWealth from "./MeridianWealth";
 import SolsticeInteriors from "./SolsticeInteriors";
 import WillowbrookDental from "./WillowbrookDental";
+import DenverHanin from "./DenverHanin";
 
 export const templates: Record<string, ComponentType<{ lang: Lang }>> = {
   "noble-coffee": NobleCoffee,
@@ -38,4 +39,5 @@ export const templates: Record<string, ComponentType<{ lang: Lang }>> = {
   "meridian-wealth": MeridianWealth,
   "solstice-interiors": SolsticeInteriors,
   "willowbrook-dental": WillowbrookDental,
+  "denver-hanin": DenverHanin,
 };

@@ -70,7 +70,7 @@ export default function RootLayout({
 
   return (
     <html lang={lang}>
-      <body className="bg-white text-ink-900 antialiased">
+      <body className="bg-white text-ink-900 antialiased" suppressHydrationWarning>
         <script {...jsonLdScriptProps(professionalServiceSchema(lang))} />
         <script {...jsonLdScriptProps(websiteSchema())} />
         <Header />

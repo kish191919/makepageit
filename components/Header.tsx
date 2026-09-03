@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { detectLangFromPath, getDict, localePath, type Lang } from "@/lib/i18n";
+import { site } from "@/lib/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className="sticky top-0 z-50 border-b border-ink-200/60 bg-white/80 backdrop-blur-md"
+      className="sticky top-0 z-50 border-b border-ink-200 bg-white shadow-sm"
     >
       <div className="container-custom flex h-16 items-center justify-between sm:h-20">
         <Link href={localePath(lang, "/")} className="flex items-center gap-2">
@@ -66,10 +67,24 @@ export default function Header() {
               </Link>
             ))}
           </nav>
+          <a
+            href={`tel:${site.phoneIntl}`}
+            className="hidden items-center gap-1.5 text-sm font-semibold text-ink-700 transition hover:text-brand-600 lg:flex"
+          >
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M4 3h3l1.5 4-2 1.5a10 10 0 0 0 5 5l1.5-2 4 1.5v3a1 1 0 0 1-1 1A13 13 0 0 1 3 4a1 1 0 0 1 1-1Z"
+                stroke="currentColor"
+                strokeWidth="1.4"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {site.phone}
+          </a>
           <div
             role="group"
             aria-label={dict.langSwitch.label}
-            className="hidden lg:inline-flex items-center gap-0.5 rounded-full border border-ink-200/80 bg-ink-50/60 p-0.5 text-xs font-bold tracking-wide shadow-sm backdrop-blur"
+            className="hidden lg:inline-flex items-center gap-0.5 rounded-full border border-ink-200 bg-ink-50 p-0.5 text-xs font-bold tracking-wide"
           >
             <Link
               href={lang === "ko" ? pathname ?? "/ko" : swapLocaleInPath(pathname ?? "/", "en", "ko")}
@@ -154,6 +169,21 @@ export default function Header() {
       {open && (
         <div className="border-t border-ink-200 bg-white lg:hidden">
           <div className="container-custom flex flex-col py-4">
+            <a
+              href={`tel:${site.phoneIntl}`}
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-1.5 border-b border-ink-100 py-3 text-base font-semibold text-brand-600"
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <path
+                  d="M4 3h3l1.5 4-2 1.5a10 10 0 0 0 5 5l1.5-2 4 1.5v3a1 1 0 0 1-1 1A13 13 0 0 1 3 4a1 1 0 0 1 1-1Z"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {site.phone}
+            </a>
             {nav.map((item) => (
               <Link
                 key={item.href}

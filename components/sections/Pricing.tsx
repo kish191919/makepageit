@@ -155,11 +155,8 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
   }
 
   return (
-    <section className="section relative overflow-hidden bg-ink-100">
-      <div className="pointer-events-none absolute -right-32 top-24 hidden h-[400px] w-[400px] rounded-full bg-accent-400 opacity-20 blur-3xl md:block" />
-      <div className="pointer-events-none absolute -left-32 bottom-16 hidden h-[420px] w-[420px] rounded-full bg-brand-200 opacity-30 blur-3xl md:block" />
-
-      <div className="container-custom relative z-10">
+    <section className="section bg-[linear-gradient(to_bottom,white,theme(colors.ink.100)_15%,theme(colors.ink.100)_85%,white)]">
+      <div className="container-custom">
         {showCanceled && (
           <div className="mb-8 rounded-2xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
             {dict.pricing.canceledNotice}
@@ -224,12 +221,6 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent-500 px-4 py-1 text-xs font-bold uppercase tracking-widest text-white">
                   {p.badge ?? "BEST CHOICE"}
                 </span>
-              )}
-              {!p.best && (
-                <>
-                  <span aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-blue-300/40 blur-3xl" />
-                  <span aria-hidden="true" className="pointer-events-none absolute -bottom-24 -left-16 h-52 w-52 rounded-full bg-accent-500/20 blur-3xl" />
-                </>
               )}
               <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-8">
               <h3

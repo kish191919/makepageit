@@ -356,6 +356,15 @@ const portfoliosEn: Portfolio[] = [
     tags: ["Healthcare", "Dental", "Booking"],
     year: "2026",
   },
+{
+    id: "denver-hanin",
+    client: "Denver Hanin Weekly",
+    category: "Brand site",
+    description: "A bilingual community news and business-directory portal for Denver's Korean-American community — headlines, culture, and a categorized local directory.",
+    image: "/images/portfolio/denver-hanin.png",
+    tags: ["Community media", "Local news", "Business directory"],
+    year: "2026",
+  },
 ];
 
 const portfoliosKo: Portfolio[] = [
@@ -561,6 +570,15 @@ const portfoliosKo: Portfolio[] = [
     tags: ["의료", "치과", "예약"],
     year: "2026",
   },
+{
+    id: "denver-hanin",
+    client: "덴버 한인 위클리",
+    category: "브랜딩 사이트",
+    description: "덴버 한인 커뮤니티를 위한 이중언어 지역 뉴스·업소록 포털 — 헤드라인, 문화 소식, 카테고리별 업체 디렉토리를 제공합니다.",
+    image: "/images/portfolio/denver-hanin.png",
+    tags: ["커뮤니티 미디어", "지역 뉴스", "업소록"],
+    year: "2026",
+  },
 ];
 
 const plansEn: Plan[] = [
@@ -669,127 +687,127 @@ const plansKo: Plan[] = [
 
 const reviewsEn: Review[] = [
   {
-    id: "r1",
-    client: "Mike R.",
-    industry: "Noble Coffee Roasters",
-    rating: 5,
-    title: "Foot traffic doubled within a month of going live.",
-    body:
-      "Where other shops gave us 100 mockups, MAKEPAGE actually translated my intent into the design. New customers walking in literally doubled in the first month.",
-    avatar: "https://i.pravatar.cc/120?img=12",
-  },
-  {
-    id: "r2",
-    client: "Dr. Lee",
-    industry: "Lumière Skin Clinic",
-    rating: 5,
-    title: "No-show rate dropped by half.",
-    body:
-      "Booking confirmations and reminders are fully automated, so the front desk is freed up. We're handing them our second location too.",
-    avatar: "https://i.pravatar.cc/120?img=32",
-  },
-  {
-    id: "r3",
-    client: "Sara P.",
-    industry: "Atelier 22",
-    rating: 5,
-    title: "We were profitable in our first month online.",
-    body:
-      "The win wasn't a 'pretty site' — it was that they helped us design the path from visit to purchase. Right down to the copy on each button.",
-    avatar: "https://i.pravatar.cc/120?img=47",
-  },
-  {
     id: "r4",
-    client: "Jess C.",
-    industry: "BrightPath Language Academy",
+    client: "Mr. Kim",
+    industry: "Daniel Math Academy",
     rating: 5,
-    title: "Ad ROI improved 3x after the new landing.",
+    title: "Parent calls come in already knowing our approach.",
     body:
-      "Same ad spend, three times the consults. The page was clearly built for conversion from the very first frame.",
-    avatar: "https://i.pravatar.cc/120?img=58",
+      "It used to start with 'where are you located?' Now parents mention the curriculum, sometimes a teacher by name, before I even introduce myself. The site actually captures how we teach — that's rare.",
+    avatar: "https://randomuser.me/api/portraits/men/26.jpg",
   },
   {
     id: "r5",
-    client: "Hannah K.",
-    industry: "Form & Flow Pilates",
+    client: "Hong J.",
+    industry: "양영자 탁구선교회",
     rating: 5,
-    title: "Cut 70% of our admin time on member management.",
+    title: "Support inquiries now come through the site first.",
     body:
-      "Bookings and attendance — all in one place. Our staff aren't stuck behind the counter anymore. ROI was clear within weeks.",
-    avatar: "https://i.pravatar.cc/120?img=23",
+      "It used to be all word of mouth. Now people reach out after reading our story online, sometimes before we've even met them. Being able to post prayer updates there has helped so much.",
+    avatar: "https://randomuser.me/api/portraits/women/27.jpg",
   },
   {
     id: "r6",
-    client: "Andrew W.",
-    industry: "Greene Law Group",
+    client: "David Lee",
+    industry: "CloudMaster",
     rating: 5,
-    title: "Trustworthy without being stiff. Exactly what we needed.",
+    title: "Free trial signups are clearly up.",
     body:
-      "Professional services sites can feel dated and rigid. They struck the perfect balance — and the quality of inbound leads improved noticeably.",
-    avatar: "https://i.pravatar.cc/120?img=68",
+      "The old site was just a wall of information. Now each certification has its own landing page, so people self-select before they even sign up. We saw it in the numbers almost right away.",
+    avatar: "https://randomuser.me/api/portraits/men/90.jpg",
+  },
+  {
+    id: "r7",
+    client: "Master Kang",
+    industry: "Champion Taekwondo",
+    rating: 5,
+    title: "Parents started sending us the site link before even calling.",
+    body:
+      "Feels like the flyer days are over. Parents show up already knowing the class schedule and who the instructors are — there's barely anything left to explain.",
+    avatar: "https://randomuser.me/api/portraits/women/51.jpg",
+  },
+  {
+    id: "r8",
+    client: "Yoon J.",
+    industry: "Glow Nail & Spa",
+    rating: 4,
+    title: "Booking works great, though the first round of edits took a while.",
+    body:
+      "We went back and forth a bit getting the colors and photo layout right early on. But now clients just pick their own time slot, and phone calls dropped a lot. Happy with where it landed.",
+    avatar: "https://randomuser.me/api/portraits/women/5.jpg",
+  },
+  {
+    id: "r9",
+    client: "Oh D.",
+    industry: "Sunshine Moving Services",
+    rating: 5,
+    title: "Quote requests just show up as texts now.",
+    body:
+      "Used to be all phone calls. Now more than half of people upload photos and request a quote right from the site. For someone who's out on jobs all day, that's huge.",
+    avatar: "https://randomuser.me/api/portraits/men/92.jpg",
   },
 ];
 
 const reviewsKo: Review[] = [
   {
-    id: "r1",
-    client: "김 대표",
-    industry: "노블 커피로스터스",
-    rating: 5,
-    title: "사이트 오픈 후 매장 방문 문의가 2배가 됐어요.",
-    body:
-      "시안만 100번 받았던 다른 곳과 달리, 제 의도를 정확히 디자인으로 옮겨주셔서 놀랐습니다. 오픈 후 한 달 만에 신규 고객 방문이 두 배로 늘었어요.",
-    avatar: "https://i.pravatar.cc/120?img=12",
-  },
-  {
-    id: "r2",
-    client: "이 원장",
-    industry: "루미에르 피부과",
-    rating: 5,
-    title: "예약 노쇼율이 절반으로 줄었습니다.",
-    body:
-      "카카오 알림톡 자동화까지 한번에 해결해주셔서 직원 업무가 확 줄었어요. 다음 분원도 메이크페이지에 맡길 예정입니다.",
-    avatar: "https://i.pravatar.cc/120?img=32",
-  },
-  {
-    id: "r3",
-    client: "박 실장",
-    industry: "아뜰리에 22",
-    rating: 5,
-    title: "쇼핑몰 매출이 첫 달부터 흑자였습니다.",
-    body:
-      "단순히 '예쁜 사이트'가 아니라 실제 구매로 이어지는 동선을 함께 설계해주신 게 결정적이었습니다. 카피 한 줄까지 같이 고민해주셔서 감사했어요.",
-    avatar: "https://i.pravatar.cc/120?img=47",
-  },
-  {
     id: "r4",
-    client: "정 대표",
-    industry: "하루 영어학원",
+    client: "김 원장",
+    industry: "Daniel Math Academy",
     rating: 5,
-    title: "광고 효율이 3배 이상 좋아졌습니다.",
+    title: "상담 전화에서 질문의 결이 달라졌어요.",
     body:
-      "랜딩페이지 하나 바꿨을 뿐인데 같은 광고비로 상담 신청이 3배 들어옵니다. 처음부터 전환을 위해 설계된 페이지였다는 게 느껴졌어요.",
-    avatar: "https://i.pravatar.cc/120?img=58",
+      "예전엔 \"어디 있는 학원이에요\"부터 물어보시던 분들이, 지금은 커리큘럼이랑 선생님 소개까지 보고 전화를 주세요. 저희 수업 분위기가 사이트에 그대로 담긴 것 같아서 뿌듯합니다.",
+    avatar: "https://randomuser.me/api/portraits/men/26.jpg",
   },
   {
     id: "r5",
-    client: "최 대표",
-    industry: "모아 필라테스",
+    client: "홍 간사",
+    industry: "양영자 탁구선교회",
     rating: 5,
-    title: "회원 관리에 쓰던 시간을 70% 절약했어요.",
+    title: "후원 문의가 사이트를 보고 먼저 옵니다.",
     body:
-      "예약, 출석까지 한 사이트에서 다 되니 직원이 굳이 카운터에 붙어 있을 필요가 없어졌습니다. ROI가 명확합니다.",
-    avatar: "https://i.pravatar.cc/120?img=23",
+      "예전엔 아는 분 소개로만 후원이 이어졌는데, 이제는 사역 스토리를 보고 먼저 연락 주시는 분들이 생겼어요. 기도 제목도 정리해서 올릴 수 있게 돼서 정말 큰 도움이 됩니다.",
+    avatar: "https://randomuser.me/api/portraits/women/27.jpg",
   },
   {
     id: "r6",
-    client: "한 변호사",
-    industry: "그린 법률사무소",
+    client: "이 대표",
+    industry: "CloudMaster",
     rating: 5,
-    title: "신뢰감 있는 디자인, 정확히 그게 필요했습니다.",
+    title: "무료 체험 신청이 확실히 늘었습니다.",
     body:
-      "전문직 사이트가 자칫 딱딱해 보이지 않으면서도 무게감을 주는 균형을 정말 잘 잡아주셨어요. 상담 문의 품질이 달라졌습니다.",
-    avatar: "https://i.pravatar.cc/120?img=68",
+      "예전 사이트는 그냥 정보 나열이었는데, 지금은 자격증별로 페이지가 나뉘어 있어서 필요한 분들만 딱 골라 신청하시더라고요. 전환 데이터로 바로 체감했습니다.",
+    avatar: "https://randomuser.me/api/portraits/men/90.jpg",
+  },
+  {
+    id: "r7",
+    client: "강 관장",
+    industry: "챔피언 태권도",
+    rating: 5,
+    title: "학부모들이 먼저 홈페이지 링크를 보내주시더라고요.",
+    body:
+      "도장 안내문 나눠주던 시절은 끝난 것 같아요. 문의 오시는 학부모님들이 이미 사이트에서 수업 시간표랑 사범님 소개까지 다 보고 오셔서 설명할 게 별로 없어요.",
+    avatar: "https://randomuser.me/api/portraits/women/51.jpg",
+  },
+  {
+    id: "r8",
+    client: "윤 원장",
+    industry: "글로우 네일앤스파",
+    rating: 4,
+    title: "예약 시스템은 정말 편한데, 초반 수정은 좀 오래 걸렸어요.",
+    body:
+      "원하는 색감이랑 사진 배치 맞추느라 처음엔 왔다갔다를 좀 했습니다. 그래도 지금 예약 페이지는 손님들이 알아서 시간 골라서 넣으시니까 전화 응대가 확 줄었어요. 결과적으로는 만족합니다.",
+    avatar: "https://randomuser.me/api/portraits/women/5.jpg",
+  },
+  {
+    id: "r9",
+    client: "오 대표",
+    industry: "선샤인 이사 서비스",
+    rating: 5,
+    title: "견적 문의가 문자로 바로바로 들어옵니다.",
+    body:
+      "예전엔 다 전화로만 받았는데 이제 사이트에서 사진 올리고 견적 요청하는 분들이 반이 넘어요. 저희처럼 현장 다니는 사람한테는 이게 진짜 편합니다.",
+    avatar: "https://randomuser.me/api/portraits/men/92.jpg",
   },
 ];
 
@@ -856,14 +874,12 @@ const faqsKo: FAQ[] = [
 ];
 
 const statsEn: Stat[] = [
-  { value: "320+", label: "Sites delivered" },
   { value: "4.9 / 5", label: "Average rating" },
   { value: "98%", label: "Repeat / referral rate" },
   { value: "1 week", label: "First design avg." },
 ];
 
 const statsKo: Stat[] = [
-  { value: "320+", label: "누적 제작 사이트" },
   { value: "4.9 / 5", label: "평균 고객 만족도" },
   { value: "98%", label: "재의뢰·추천율" },
   { value: "1주", label: "평균 첫 시안까지" },

@@ -6,7 +6,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "picsum.photos" },
-      { protocol: "https", hostname: "i.pravatar.cc" },
+      { protocol: "https", hostname: "randomuser.me" },
       { protocol: "https", hostname: "www.sbmnationwide.com" },
       { protocol: "https", hostname: "www.yttmission.org" },
     ],
@@ -27,7 +27,7 @@ const nextConfig = {
     ];
   },
   async headers() {
-    return [
+    const rules = [
       {
         source: "/:path*",
         headers: [
@@ -40,13 +40,18 @@ const nextConfig = {
           },
         ],
       },
-      {
+    ];
+
+    if (process.env.NODE_ENV === "production") {
+      rules.push({
         source: "/_next/static/:path*",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
-      },
-    ];
+      });
+    }
+
+    return rules;
   },
 };
 

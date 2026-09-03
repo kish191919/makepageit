@@ -12,10 +12,8 @@ export default function FAQ({ lang }: { lang: Lang }) {
   const faqs = getFaqs(lang);
 
   return (
-    <section className="section relative overflow-hidden bg-brand-50">
-      <div className="pointer-events-none absolute -right-40 bottom-0 hidden h-[500px] w-[500px] rounded-full bg-brand-200 opacity-25 blur-3xl lg:block" />
-
-      <div className="container-custom relative z-10">
+    <section className="section bg-[linear-gradient(to_bottom,white,theme(colors.brand.100)_15%,theme(colors.brand.100)_85%,white)]">
+      <div className="container-custom">
         <div className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.6fr] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading

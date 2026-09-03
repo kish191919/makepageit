@@ -10,11 +10,8 @@ export default function Process({ lang }: { lang: Lang }) {
   const steps = dict.process.steps;
 
   return (
-    <section className="section relative overflow-hidden bg-white">
-      <div className="pointer-events-none absolute -left-32 top-20 hidden h-[420px] w-[420px] rounded-full bg-brand-200 opacity-30 blur-3xl lg:block" />
-      <div className="pointer-events-none absolute -right-24 bottom-10 hidden h-[360px] w-[360px] rounded-full bg-accent-400 opacity-20 blur-3xl lg:block" />
-
-      <div className="container-custom relative z-10">
+    <section className="section bg-white">
+      <div className="container-custom">
         <SectionHeading
           align="center"
           eyebrow={dict.process.eyebrow}
@@ -33,8 +30,6 @@ export default function Process({ lang }: { lang: Lang }) {
                   onClick={() => setAllOpen((prev) => !prev)}
                   className="group relative flex w-[85vw] shrink-0 cursor-pointer snap-center flex-col overflow-hidden rounded-3xl border border-blue-500/60 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-[0_2px_4px_rgba(15,23,42,0.06),0_14px_32px_-12px_rgba(37,99,235,0.35)] transition duration-300 hover:-translate-y-1.5 hover:border-blue-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(37,99,235,0.50)] sm:w-[60%] sm:snap-start md:w-auto md:cursor-default"
                 >
-                  <span aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-blue-300/40 blur-3xl" />
-                  <span aria-hidden="true" className="pointer-events-none absolute -bottom-20 -left-16 h-44 w-44 rounded-full bg-accent-500/20 blur-3xl" />
                   <span aria-hidden="true" className="pointer-events-none absolute bottom-0 right-2 select-none text-[140px] font-black leading-none tracking-tighter text-white/[0.07] translate-y-4">
                     {s.n}
                   </span>
