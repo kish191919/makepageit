@@ -92,7 +92,7 @@ export default function NovaStudio({ lang }: { lang: Lang }) {
   const studioPath = localePath(lang, "/portfolio/nova-studio/studio");
   const journalPath = localePath(lang, "/portfolio/nova-studio/journal");
   return (
-    <div className="bg-black text-white">
+    <div className="relative bg-black text-white">
       <header ref={ref} className="absolute left-0 right-0 top-0 z-30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
           <div className="text-2xl font-light tracking-[0.5em]">NOVA</div>

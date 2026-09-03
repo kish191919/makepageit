@@ -40,6 +40,12 @@ type Dict = {
     titleC: string;
     body: string;
   };
+  whyUs: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: { title: string; desc: string }[];
+  };
   process: {
     eyebrow: string;
     title: string;
@@ -312,6 +318,17 @@ const en: Dict = {
     titleBrandWord: "live in 2 weeks.",
     titleC: "",
     body: "Strategy, design, development, and ongoing care from one team.\nFree 30-minute consult, no pressure.",
+  },
+  whyUs: {
+    eyebrow: "Why MAKEPAGE",
+    title: "Stop waiting months\nfor a website",
+    description: "Fast, transparent, and built so you can get back to running your business.",
+    items: [
+      { title: "7 days", desc: "Average time to your first draft" },
+      { title: "Unlimited", desc: "Revisions included, no extra fees" },
+      { title: "All-in-one", desc: "Domain, hosting, and mobile — handled for you" },
+      { title: "Korean support", desc: "Talk to a real person, in Korean" },
+    ],
   },
   process: {
     eyebrow: "How it works",
@@ -670,6 +687,17 @@ const ko: Dict = {
     titleBrandWord: "2주",
     titleC: " 안에, 이런 홈페이지가 완성됩니다.",
     body: "기획·디자인·개발·운영을 한 팀에서 책임집니다.\n무료 상담은 언제나 환영입니다.",
+  },
+  whyUs: {
+    eyebrow: "왜 메이크페이지인가요?",
+    title: "웹사이트 때문에\n몇 달씩 기다리지 마세요",
+    description: "빠르고 투명하게 진행하니, 사장님은 사업에만 집중하시면 됩니다.",
+    items: [
+      { title: "7일", desc: "평균 첫 시안까지 걸리는 시간" },
+      { title: "무제한", desc: "추가 비용 없이 수정 횟수 제한 없음" },
+      { title: "올인원", desc: "도메인·호스팅·모바일까지 한 번에" },
+      { title: "한국어 상담", desc: "언제든 편하게 문의하세요" },
+    ],
   },
   process: {
     eyebrow: "프로세스",

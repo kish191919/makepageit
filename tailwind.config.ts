@@ -64,11 +64,16 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
+        "float-soft": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-5px)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.7s ease-out forwards",
         "fade-in": "fade-in 0.5s ease-out forwards",
         float: "float 3s ease-in-out infinite",
+        "float-soft": "float-soft 5s ease-in-out infinite",
       },
     },
   },

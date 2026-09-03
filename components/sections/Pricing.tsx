@@ -155,9 +155,9 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
   }
 
   return (
-    <section className="section relative overflow-hidden bg-[linear-gradient(to_bottom,white,theme(colors.ink.900)_15%,theme(colors.ink.900)_85%,white)]">
+    <section className="section relative overflow-hidden bg-gradient-to-b from-white via-brand-50/50 to-white">
       <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/25 blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/15 blur-[120px]" />
         <div className="absolute inset-0 bg-hero-grid opacity-[0.15] [background-size:26px_26px] [mask-image:radial-gradient(ellipse_60%_55%_at_50%_45%,black,transparent)]" />
       </div>
       <div className="container-custom relative z-10">
@@ -169,7 +169,6 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
         {!hideHeading && (
           <SectionHeading
             align="center"
-            theme="dark"
             eyebrow={dict.pricing.eyebrow}
             title={
               <>
@@ -190,7 +189,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
 
         <div
           ref={scrollerRef}
-          className={`mx-auto max-w-4xl ${hideHeading ? "" : "mt-14"} -mx-4 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto px-4 pb-2 [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:grid-cols-2 md:gap-6 md:snap-none md:overflow-visible md:px-0 md:pb-0`}
+          className={`mx-auto max-w-4xl ${hideHeading ? "" : "mt-11"} -mx-4 flex snap-x snap-mandatory items-stretch gap-4 overflow-x-auto px-4 pb-2 [&::-webkit-scrollbar]:hidden md:mx-auto md:grid md:grid-cols-2 md:gap-6 md:snap-none md:overflow-visible md:px-0 md:pb-0`}
           style={{ scrollbarWidth: "none" }}
         >
           {plans.map((p) => {
@@ -219,7 +218,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               className={`relative flex h-full flex-col rounded-3xl border transition duration-300 snap-center shrink-0 basis-[85%] md:shrink md:basis-auto ${
                 p.best
                   ? "border-white/10 bg-ink-900 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_0_50px_-10px_rgba(249,115,22,0.3),0_25px_50px_-12px_rgba(0,0,0,0.8)]"
-                  : "overflow-hidden border-blue-500/60 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-[0_2px_4px_rgba(15,23,42,0.06),0_14px_32px_-12px_rgba(37,99,235,0.35)] hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(37,99,235,0.50)]"
+                  : "overflow-hidden border-ink-200 bg-white text-ink-900 shadow-[0_2px_4px_rgba(15,23,42,0.04),0_14px_32px_-12px_rgba(15,23,42,0.10)] hover:-translate-y-1 hover:border-brand-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(79,70,229,0.20)]"
               }`}
             >
               {p.best && (
@@ -230,99 +229,31 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               <div className="relative z-10 flex flex-1 flex-col p-6 sm:p-8">
               <h3
                 className={`text-sm font-bold uppercase tracking-[0.25em] ${
-                  p.best ? "text-accent-400" : "text-white"
+                  p.best ? "text-accent-400" : "text-brand-700"
                 }`}
               >
                 {p.name}
               </h3>
-              <p
-                className={`mt-2 text-xs font-semibold uppercase tracking-wider ${
-                  p.best ? "text-ink-200" : "text-white/60"
-                }`}
-              >
+
+              <div className="mt-4 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                <span className={`text-4xl font-extrabold sm:text-5xl ${p.best ? "text-white" : "text-ink-900"}`}>
+                  {formatUsd(setupTotal)}
+                </span>
+                <span className={`text-sm ${p.best ? "text-ink-200" : "text-ink-400"}`}>
+                  {p.pricing.oneTimeNote}
+                </span>
+              </div>
+
+              <p className={`mt-3 text-base font-semibold ${p.best ? "text-white" : "text-ink-900"}`}>
                 {p.audience}
               </p>
-              <p
-                className={`mt-3 text-sm ${p.best ? "text-ink-200" : "text-white/80"}`}
-              >
-                {p.description}
-              </p>
 
-              <div className="mt-6">
-                <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                  <span className="text-4xl font-extrabold sm:text-5xl">
-                    {formatUsd(setupTotal)}
-                  </span>
-                  <span
-                    className={`text-sm ${p.best ? "text-ink-200" : "text-white/70"}`}
-                  >
-                    {p.pricing.oneTimeNote}
-                  </span>
-                </div>
-                <div
-                  className={`mt-3 space-y-1 text-sm ${
-                    p.best ? "text-ink-200" : "text-white/90"
-                  }`}
-                >
-                  <p>
-                    <span className="font-semibold">{p.pricing.monthly}{monthlyLabel}</span>
-                    <span className={p.best ? "text-ink-200" : "text-white/60"}>
-                      {" "}· {p.pricing.monthlyNote}
-                    </span>
-                  </p>
-                  <p>
-                    <span className="font-semibold">{p.pricing.annual}{yearlyLabel}</span>
-                    <span className={p.best ? "text-ink-200" : "text-white/60"}>
-                      {" "}· {p.pricing.annualNote}
-                    </span>
-                  </p>
-                </div>
-              </div>
-
-              <div
-                className={`mt-5 flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold ${
-                  p.best
-                    ? "bg-accent-500/20 text-white ring-1 ring-accent-400"
-                    : "bg-white text-ink-900 ring-1 ring-white/40"
-                }`}
-              >
-                <span className={p.best ? "text-ink-200" : "text-ink-500"}>
-                  {dict.pricing.yearTotal}
-                </span>
-                <span
-                  className={`text-lg font-extrabold ${
-                    p.best ? "text-accent-400" : "text-blue-900"
-                  }`}
-                >
-                  {formatUsd(firstYearTotal)}
-                </span>
-              </div>
-
-              <div
-                className={`mt-2 flex items-center justify-between rounded-2xl px-4 py-2.5 text-sm ${
-                  p.best
-                    ? "bg-white/5 text-ink-200 ring-1 ring-white/10"
-                    : "bg-white text-ink-500 ring-1 ring-white/40"
-                }`}
-              >
-                <span className={p.best ? "text-ink-200" : "text-ink-500"}>
-                  {dict.pricing.yearAfter}
-                </span>
-                <span
-                  className={`text-base font-bold ${
-                    p.best ? "text-accent-400" : "text-blue-900"
-                  }`}
-                >
-                  {formatUsd(yearTwoOnward)}
-                </span>
-              </div>
-
-              <ul className="mt-8 flex-1 space-y-3 text-sm">
+              <ul className="mt-6 flex-1 space-y-3 text-sm">
                 {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2">
+                  <li key={f} className={`flex items-start gap-2 ${p.best ? "" : "text-ink-700"}`}>
                     <span
                       className={`mt-1 inline-flex h-4 w-4 flex-none items-center justify-center rounded-full ${
-                        p.best ? "bg-accent-500 text-white" : "bg-white text-blue-900"
+                        p.best ? "bg-accent-500 text-white" : "bg-brand-600 text-white"
                       }`}
                     >
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -346,11 +277,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                       ref={(el) => {
                         customizePanelRefs.current.set(p.id, el);
                       }}
-                      className={`flex flex-col rounded-2xl p-4 ring-1 ${
-                        p.best
-                          ? "bg-white/5 ring-white/15"
-                          : "bg-white/15 ring-white/30"
-                      }`}
+                      className="flex flex-col rounded-2xl bg-ink-900 p-4 ring-1 ring-white/10"
                     >
                       <button
                         type="button"
@@ -395,6 +322,30 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                       </button>
                       {isCustomizeOpen && (
                         <div className="mt-3 space-y-2.5">
+                          <div className="space-y-1 text-sm text-white/80">
+                            <p>
+                              <span className="font-semibold text-white">{p.pricing.monthly}{monthlyLabel}</span>
+                              <span className="text-white/50"> · {p.pricing.monthlyNote}</span>
+                            </p>
+                            <p>
+                              <span className="font-semibold text-white">{p.pricing.annual}{yearlyLabel}</span>
+                              <span className="text-white/50"> · {p.pricing.annualNote}</span>
+                            </p>
+                          </div>
+
+                          <div className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2 text-sm ring-1 ring-white/10">
+                            <span className="text-white/70">{dict.pricing.yearTotal}</span>
+                            <span className="text-base font-extrabold text-accent-400">
+                              {formatUsd(firstYearTotal)}
+                            </span>
+                          </div>
+                          <div className="flex items-center justify-between rounded-xl bg-white/5 px-3 py-2 text-sm ring-1 ring-white/10">
+                            <span className="text-white/70">{dict.pricing.yearAfter}</span>
+                            <span className="text-base font-bold text-accent-400">
+                              {formatUsd(yearTwoOnward)}
+                            </span>
+                          </div>
+
                           {hasMonthlyBreakdown ? (
                             <>
                               <ToggleRow
@@ -496,7 +447,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                       className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition sm:text-base ${
                         p.best
                           ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
-                          : "bg-ink-900 text-white hover:bg-blue-700"
+                          : "bg-ink-900 text-white hover:bg-brand-700"
                       }`}
                     >
                       {dict.pricing.quoteCta}
@@ -509,7 +460,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                   className={`mt-9 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition sm:text-base ${
                     p.best
                       ? "bg-white text-ink-900 hover:bg-accent-500 hover:text-white"
-                      : "bg-ink-900 text-white hover:bg-blue-700"
+                      : "bg-ink-900 text-white hover:bg-brand-700"
                   }`}
                 >
                   {p.cta}
@@ -531,7 +482,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               aria-selected={i === activeIndex}
               onClick={() => scrollToIndex(i)}
               className={`h-2 rounded-full transition-all ${
-                i === activeIndex ? "w-6 bg-blue-500" : "w-2 bg-white/25"
+                i === activeIndex ? "w-6 bg-brand-500" : "w-2 bg-white/25"
               }`}
             />
           ))}

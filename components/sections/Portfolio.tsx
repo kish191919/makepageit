@@ -22,7 +22,7 @@ export default function Portfolio({ lang, limit = 6 }: { lang: Lang; limit?: num
           </Link>
         </div>
 
-        <div className="mt-14 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 scrollbar-hide sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
+        <div className="mt-11 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 scrollbar-hide sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
           {items.map((p) => {
             const cardProps = p.url
               ? { href: p.url, target: "_blank", rel: "noopener noreferrer" }

@@ -19,7 +19,7 @@ export default function Process({ lang }: { lang: Lang }) {
           description={dict.process.description}
         />
 
-        <div className="relative mt-16">
+        <div className="relative mt-12">
           <ConnectorLine />
 
           <div className="relative -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[7.5vw] pb-4 scrollbar-hide sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-4">

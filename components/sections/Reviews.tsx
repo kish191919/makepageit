@@ -26,7 +26,7 @@ export default function Reviews({ lang }: { lang: Lang }) {
           description={dict.reviews.description}
         />
 
-        <div className="mt-14 grid gap-6 sm:grid-cols-3">
+        <div className="mt-11 grid gap-6 sm:grid-cols-3">
           {items.map((r) => (
             <div key={r.id} className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-ink-200">
               <Stars rating={r.rating} />

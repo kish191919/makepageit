@@ -107,7 +107,7 @@ export default function MoaiHotel({ lang }: { lang: Lang }) {
   const journalPath = localePath(lang, "/portfolio/moai-hotel/journal");
   const subpagePaths: Record<number, string> = { 1: dinePath, 2: spaPath, 3: journalPath };
   return (
-    <div className="min-h-screen bg-[#0d0c0a] text-[#f0e9d6]">
+    <div className="relative min-h-screen bg-[#0d0c0a] text-[#f0e9d6]">
       <header ref={ref} className="absolute inset-x-0 top-0 z-30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6">
           <div className="font-serif text-xl tracking-[0.5em] text-[#d4af37]">{t.brand}</div>

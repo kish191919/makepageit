@@ -44,7 +44,7 @@ export default function PortfolioFilterGrid({ lang, portfolios, categories }: Pr
         })}
       </div>
 
-      <div className="mt-12 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 scrollbar-hide sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
+      <div className="mt-10 -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 scrollbar-hide sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
         {filtered.map((p) => {
           const cardProps = p.url
             ? { href: p.url, target: "_blank", rel: "noopener noreferrer" }
@@ -104,7 +104,7 @@ export default function PortfolioFilterGrid({ lang, portfolios, categories }: Pr
         })}
       </div>
 
-      <p className="mt-12 text-center text-sm text-ink-500">{dict.portfolio.nondisclosed}</p>
+      <p className="mt-10 text-center text-sm text-ink-500">{dict.portfolio.nondisclosed}</p>
     </>
   );
 }
