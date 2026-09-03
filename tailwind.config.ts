@@ -68,12 +68,17 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-5px)" },
         },
+        "marquee-ltr": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.7s ease-out forwards",
         "fade-in": "fade-in 0.5s ease-out forwards",
         float: "float 3s ease-in-out infinite",
         "float-soft": "float-soft 5s ease-in-out infinite",
+        "marquee-ltr": "marquee-ltr 28s linear infinite",
       },
     },
   },
