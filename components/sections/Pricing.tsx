@@ -155,8 +155,12 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
   }
 
   return (
-    <section className="section bg-[linear-gradient(to_bottom,white,theme(colors.ink.100)_15%,theme(colors.ink.100)_85%,white)]">
-      <div className="container-custom">
+    <section className="section relative overflow-hidden bg-[linear-gradient(to_bottom,white,theme(colors.ink.900)_15%,theme(colors.ink.900)_85%,white)]">
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute left-1/2 top-1/2 h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/25 blur-[120px]" />
+        <div className="absolute inset-0 bg-hero-grid opacity-[0.15] [background-size:26px_26px] [mask-image:radial-gradient(ellipse_60%_55%_at_50%_45%,black,transparent)]" />
+      </div>
+      <div className="container-custom relative z-10">
         {showCanceled && (
           <div className="mb-8 rounded-2xl border border-amber-300 bg-amber-50 px-5 py-4 text-sm text-amber-900">
             {dict.pricing.canceledNotice}
@@ -165,6 +169,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
         {!hideHeading && (
           <SectionHeading
             align="center"
+            theme="dark"
             eyebrow={dict.pricing.eyebrow}
             title={
               <>
@@ -213,7 +218,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               data-carousel-item
               className={`relative flex h-full flex-col rounded-3xl border transition duration-300 snap-center shrink-0 basis-[85%] md:shrink md:basis-auto ${
                 p.best
-                  ? "border-ink-900 bg-ink-900 text-white shadow-2xl"
+                  ? "border-white/10 bg-ink-900 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_0_50px_-10px_rgba(249,115,22,0.3),0_25px_50px_-12px_rgba(0,0,0,0.8)]"
                   : "overflow-hidden border-blue-500/60 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-[0_2px_4px_rgba(15,23,42,0.06),0_14px_32px_-12px_rgba(37,99,235,0.35)] hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(37,99,235,0.50)]"
               }`}
             >
@@ -526,7 +531,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               aria-selected={i === activeIndex}
               onClick={() => scrollToIndex(i)}
               className={`h-2 rounded-full transition-all ${
-                i === activeIndex ? "w-6 bg-blue-600" : "w-2 bg-ink-200"
+                i === activeIndex ? "w-6 bg-blue-500" : "w-2 bg-white/25"
               }`}
             />
           ))}

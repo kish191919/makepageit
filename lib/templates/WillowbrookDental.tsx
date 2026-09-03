@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import type { Lang } from "@/lib/i18n";
+import Link from "next/link";
+import { localePath, type Lang } from "@/lib/i18n";
 import { useMobileNav } from "@/lib/useMobileNav";
 import { MenuIcon } from "@/components/MenuIcon";
 
@@ -137,6 +138,13 @@ const copy = {
 export default function WillowbrookDental({ lang }: { lang: Lang }) {
   const t = copy[lang];
   const { open, setOpen, ref } = useMobileNav<HTMLElement>();
+  const navPaths = {
+    services: localePath(lang, "/portfolio/willowbrook-dental/services"),
+    team: localePath(lang, "/portfolio/willowbrook-dental/team"),
+    booking: localePath(lang, "/portfolio/willowbrook-dental/booking"),
+    reviews: localePath(lang, "/portfolio/willowbrook-dental/reviews"),
+    visit: localePath(lang, "/portfolio/willowbrook-dental/visit"),
+  } as const;
   return (
     <div className="bg-white text-slate-900">
       <header ref={ref} className="sticky top-0 z-30 border-b border-slate-100 bg-white/90 backdrop-blur">
@@ -146,16 +154,16 @@ export default function WillowbrookDental({ lang }: { lang: Lang }) {
             <span className="text-base font-semibold tracking-wide">{t.brand}</span>
           </div>
           <nav className="hidden gap-7 text-sm text-slate-600 md:flex">
-            <a href="#services" className="transition hover:text-[#2f7d6b]">{t.nav.services}</a>
-            <a href="#team" className="transition hover:text-[#2f7d6b]">{t.nav.team}</a>
-            <a href="#booking" className="transition hover:text-[#2f7d6b]">{t.nav.booking}</a>
-            <a href="#reviews" className="transition hover:text-[#2f7d6b]">{t.nav.reviews}</a>
-            <a href="#visit" className="transition hover:text-[#2f7d6b]">{t.nav.visit}</a>
+            <Link href={navPaths.services} className="transition hover:text-[#2f7d6b]">{t.nav.services}</Link>
+            <Link href={navPaths.team} className="transition hover:text-[#2f7d6b]">{t.nav.team}</Link>
+            <Link href={navPaths.booking} className="transition hover:text-[#2f7d6b]">{t.nav.booking}</Link>
+            <Link href={navPaths.reviews} className="transition hover:text-[#2f7d6b]">{t.nav.reviews}</Link>
+            <Link href={navPaths.visit} className="transition hover:text-[#2f7d6b]">{t.nav.visit}</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <a href="#booking" className="rounded-full bg-[#2f7d6b] px-5 py-2 text-xs font-semibold text-white">
+            <Link href={navPaths.booking} className="rounded-full bg-[#2f7d6b] px-5 py-2 text-xs font-semibold text-white">
               {t.bookCta}
-            </a>
+            </Link>
             <button
               type="button"
               aria-label="menu"
@@ -170,19 +178,19 @@ export default function WillowbrookDental({ lang }: { lang: Lang }) {
         {open && (
           <div className="border-t border-slate-100 bg-white px-6 py-4 md:hidden">
             <nav className="flex flex-col gap-1 text-sm text-slate-600">
-              <a href="#services" onClick={() => setOpen(false)} className="py-2">{t.nav.services}</a>
-              <a href="#team" onClick={() => setOpen(false)} className="py-2">{t.nav.team}</a>
-              <a href="#booking" onClick={() => setOpen(false)} className="py-2">{t.nav.booking}</a>
-              <a href="#reviews" onClick={() => setOpen(false)} className="py-2">{t.nav.reviews}</a>
-              <a href="#visit" onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</a>
+              <Link href={navPaths.services} onClick={() => setOpen(false)} className="py-2">{t.nav.services}</Link>
+              <Link href={navPaths.team} onClick={() => setOpen(false)} className="py-2">{t.nav.team}</Link>
+              <Link href={navPaths.booking} onClick={() => setOpen(false)} className="py-2">{t.nav.booking}</Link>
+              <Link href={navPaths.reviews} onClick={() => setOpen(false)} className="py-2">{t.nav.reviews}</Link>
+              <Link href={navPaths.visit} onClick={() => setOpen(false)} className="py-2">{t.nav.visit}</Link>
             </nav>
-            <a
-              href="#booking"
+            <Link
+              href={navPaths.booking}
               onClick={() => setOpen(false)}
               className="mt-3 inline-block rounded-full bg-[#2f7d6b] px-5 py-2 text-xs font-semibold text-white"
             >
               {t.bookCta}
-            </a>
+            </Link>
           </div>
         )}
       </header>
