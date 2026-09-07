@@ -56,7 +56,7 @@ export type Review = {
   rating: number;
   title: string;
   body: string;
-  avatar: string;
+  avatar?: string;
 };
 
 export type FAQ = { q: string; a: string };
@@ -693,18 +693,18 @@ const reviewsEn: Review[] = [
     rating: 5,
     title: "Parent calls come in already knowing our approach.",
     body:
-      "It used to start with 'where are you located?' Now parents mention the curriculum, sometimes a teacher by name, before I even introduce myself. The site actually captures how we teach — that's rare.",
+      "It used to start with 'where are you located?' Now parents mention the curriculum, sometimes the level-test process, before I even introduce myself. The site actually captures how we teach — that's rare.",
     avatar: "https://randomuser.me/api/portraits/men/26.jpg",
   },
   {
     id: "r5",
-    client: "Hong J.",
+    client: "Yang Young-ja · Former National Table Tennis Player",
     industry: "양영자 탁구선교회",
     rating: 5,
     title: "Support inquiries now come through the site first.",
     body:
-      "It used to be all word of mouth. Now people reach out after reading our story online, sometimes before we've even met them. Being able to post prayer updates there has helped so much.",
-    avatar: "https://randomuser.me/api/portraits/women/27.jpg",
+      "It used to be all word of mouth. Now people reach out after reading our story online, sometimes before we've even met them. Being able to keep our training schedule and mission updates organized there has helped so much.",
+    avatar: "/images/avatars/yttm.png",
   },
   {
     id: "r6",
@@ -717,44 +717,13 @@ const reviewsEn: Review[] = [
     avatar: "https://randomuser.me/api/portraits/men/90.jpg",
   },
   {
-    id: "r7",
-    client: "Master Kang",
-    industry: "Champion Taekwondo",
-    rating: 5,
-    title: "Parents started sending us the site link before even calling.",
-    body:
-      "Feels like the flyer days are over. Parents show up already knowing the class schedule and who the instructors are — there's barely anything left to explain.",
-    avatar: "https://randomuser.me/api/portraits/women/51.jpg",
-  },
-  {
-    id: "r8",
-    client: "Yoon J.",
-    industry: "Glow Nail & Spa",
-    rating: 4,
-    title: "Booking works great, though the first round of edits took a while.",
-    body:
-      "We went back and forth a bit getting the colors and photo layout right early on. But now clients just pick their own time slot, and phone calls dropped a lot. Happy with where it landed.",
-    avatar: "https://randomuser.me/api/portraits/women/5.jpg",
-  },
-  {
-    id: "r9",
-    client: "Oh D.",
-    industry: "Sunshine Moving Services",
-    rating: 5,
-    title: "Quote requests just show up as texts now.",
-    body:
-      "Used to be all phone calls. Now more than half of people upload photos and request a quote right from the site. For someone who's out on jobs all day, that's huge.",
-    avatar: "https://randomuser.me/api/portraits/men/92.jpg",
-  },
-  {
     id: "r10",
-    client: "Mark T.",
+    client: "Sam",
     industry: "SBM Nationwide",
     rating: 5,
-    title: "We're getting shortlisted for RFPs we never used to see.",
+    title: "Fast turnaround, exactly what we wanted.",
     body:
-      "Procurement teams used to ask us to send a deck before they'd even consider us. Now the site does that job — they show up already knowing our coverage and capabilities.",
-    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+      "I didn't expect the site to come together this quickly. We asked for a handful of small tweaks after the first draft, and it landed exactly where we wanted it. Really happy with it.",
   },
 ];
 
@@ -766,18 +735,18 @@ const reviewsKo: Review[] = [
     rating: 5,
     title: "상담 전화에서 질문의 결이 달라졌어요.",
     body:
-      "예전엔 \"어디 있는 학원이에요\"부터 물어보시던 분들이, 지금은 커리큘럼이랑 선생님 소개까지 보고 전화를 주세요. 저희 수업 분위기가 사이트에 그대로 담긴 것 같아서 뿌듯합니다.",
+      "예전엔 \"어디 있는 학원이에요\"부터 물어보시던 분들이, 지금은 커리큘럼이랑 레벨테스트 안내까지 꼼꼼히 보고 전화를 주세요. 저희 수업 방식이 사이트에 그대로 담긴 것 같아서 뿌듯합니다.",
     avatar: "https://randomuser.me/api/portraits/men/26.jpg",
   },
   {
     id: "r5",
-    client: "홍 간사",
+    client: "양영자 선교사 · 전 탁구 국가대표선수",
     industry: "양영자 탁구선교회",
     rating: 5,
     title: "후원 문의가 사이트를 보고 먼저 옵니다.",
     body:
-      "예전엔 아는 분 소개로만 후원이 이어졌는데, 이제는 사역 스토리를 보고 먼저 연락 주시는 분들이 생겼어요. 기도 제목도 정리해서 올릴 수 있게 돼서 정말 큰 도움이 됩니다.",
-    avatar: "https://randomuser.me/api/portraits/women/27.jpg",
+      "예전엔 아는 분 소개로만 후원이 이어졌는데, 이제는 사역 스토리를 보고 먼저 연락 주시는 분들이 생겼어요. 훈련 일정이랑 사역지 소식도 한눈에 정리할 수 있게 돼서 정말 큰 도움이 됩니다.",
+    avatar: "/images/avatars/yttm.png",
   },
   {
     id: "r6",
@@ -790,44 +759,13 @@ const reviewsKo: Review[] = [
     avatar: "https://randomuser.me/api/portraits/men/90.jpg",
   },
   {
-    id: "r7",
-    client: "강 관장",
-    industry: "챔피언 태권도",
-    rating: 5,
-    title: "학부모들이 먼저 홈페이지 링크를 보내주시더라고요.",
-    body:
-      "도장 안내문 나눠주던 시절은 끝난 것 같아요. 문의 오시는 학부모님들이 이미 사이트에서 수업 시간표랑 사범님 소개까지 다 보고 오셔서 설명할 게 별로 없어요.",
-    avatar: "https://randomuser.me/api/portraits/women/51.jpg",
-  },
-  {
-    id: "r8",
-    client: "윤 원장",
-    industry: "글로우 네일앤스파",
-    rating: 4,
-    title: "예약 시스템은 정말 편한데, 초반 수정은 좀 오래 걸렸어요.",
-    body:
-      "원하는 색감이랑 사진 배치 맞추느라 처음엔 왔다갔다를 좀 했습니다. 그래도 지금 예약 페이지는 손님들이 알아서 시간 골라서 넣으시니까 전화 응대가 확 줄었어요. 결과적으로는 만족합니다.",
-    avatar: "https://randomuser.me/api/portraits/women/5.jpg",
-  },
-  {
-    id: "r9",
-    client: "오 대표",
-    industry: "선샤인 이사 서비스",
-    rating: 5,
-    title: "견적 문의가 문자로 바로바로 들어옵니다.",
-    body:
-      "예전엔 다 전화로만 받았는데 이제 사이트에서 사진 올리고 견적 요청하는 분들이 반이 넘어요. 저희처럼 현장 다니는 사람한테는 이게 진짜 편합니다.",
-    avatar: "https://randomuser.me/api/portraits/men/92.jpg",
-  },
-  {
     id: "r10",
-    client: "Sam K.",
+    client: "Sam",
     industry: "SBM Nationwide",
     rating: 5,
-    title: "이제 입찰 제안서 단계에서부터 저희를 먼저 찾습니다.",
+    title: "빠르게 만들어졌는데 원하던 그대로예요.",
     body:
-      "예전엔 저희 소개 자료부터 보내달라는 요청이 먼저였는데, 지금은 사이트만 보고도 서비스 범위랑 역량을 다 파악하신 상태로 연락을 주세요.",
-    avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+      "회사 홈페이지가 이렇게 빨리 나올 줄 몰랐어요. 시안 받고 몇 군데만 수정 요청드렸는데 그 정도로 딱 저희가 원하던 모습이 됐습니다. 만족스럽습니다.",
   },
 ];
 

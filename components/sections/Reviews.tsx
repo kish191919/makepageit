@@ -20,7 +20,13 @@ function ReviewCard({ review }: { review: Review }) {
       <p className="mt-2 text-sm leading-relaxed text-ink-500">{review.body}</p>
       <div className="mt-5 flex items-center gap-3">
         <div className="relative h-10 w-10 overflow-hidden rounded-full bg-ink-100">
-          <Image src={review.avatar} alt={review.client} fill sizes="40px" className="object-cover" />
+          {review.avatar ? (
+            <Image src={review.avatar} alt={review.client} fill sizes="40px" className="object-cover" />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-sm font-semibold text-ink-500">
+              {review.client.charAt(0)}
+            </div>
+          )}
         </div>
         <div>
           <p className="text-sm font-semibold text-ink-900">{review.client}</p>
