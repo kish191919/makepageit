@@ -56,7 +56,7 @@ export default function PricingView({ lang }: { lang: Lang }) {
                               } ${isSub ? "bg-ink-50/40" : ""}`}
                             >
                               <span
-                                className={`${isSub ? "pl-6" : ""} ${
+                                className={`min-w-0 flex-1 break-keep ${isSub ? "pl-6" : ""} ${
                                   isYearTotal
                                     ? "font-bold text-brand-700"
                                     : isSub
@@ -67,7 +67,7 @@ export default function PricingView({ lang }: { lang: Lang }) {
                                 {row.item}
                               </span>
                               <span
-                                className={`text-right ${
+                                className={`min-w-0 flex-1 break-keep text-right ${
                                   isYearTotal
                                     ? "font-bold text-brand-700"
                                     : isSub

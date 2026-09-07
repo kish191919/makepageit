@@ -567,7 +567,7 @@ const en: Dict = {
     eyebrow: "Pricing",
     headerTitle: "All-inclusive pricing. No surprises.",
     headerDescription:
-      "Every package bundles domain, hosting, SEO, SSL, and mobile-responsive design — with one-time and monthly costs side by side. Not sure which to pick? Book a free 20-minute consult.",
+      "Every package bundles domain, hosting, SEO, SSL, and mobile-responsive design — with one-time and monthly costs side by side. Not sure which to pick? Book a free 30-minute consult.",
   },
   legal: {
     privacy: {
@@ -778,7 +778,7 @@ const ko: Dict = {
       eyebrow: "상세 비교",
       headers: { item: "항목", lite: "PORTFOLIO LITE", pro: "PORTFOLIO PRO" },
       rows: [
-        { item: "추천 대상", lite: "개인 포트폴리오", pro: "프리랜서·강사" },
+        { item: "추천 대상", lite: "사업 홍보 목적의 홈페이지가 필요하신 분", pro: "홍보와 함께 회원·게시물·예약 등 고객관리 기능이 필요하신 분" },
         { item: "홈페이지 제작비용 (일회성)", lite: "$399", pro: "$649" },
         { item: "월 결제 번들 (기본값)", lite: "$25", pro: "$55" },
         { item: "└ 호스팅", lite: "$10/월 포함", pro: "$10/월 포함", isSub: true },
@@ -947,7 +947,7 @@ const ko: Dict = {
     eyebrow: "가격 안내",
     headerTitle: "모두 포함된 가격. 숨겨진 비용 없음.",
     headerDescription:
-      "도메인·호스팅·SEO·SSL·모바일 반응형까지 전부 포함. 일회성 비용과 월 구독을 한 화면에서 비교하세요. 어떤 패키지가 맞는지 모르겠다면 20분 무료 상담을 신청해주세요.",
+      "도메인·호스팅·SEO·SSL·모바일 반응형까지 전부 포함. 일회성 비용과 월 구독을 한 화면에서 비교하세요. 어떤 패키지가 맞는지 모르겠다면 30분 무료 상담을 신청해주세요.",
   },
   legal: {
     privacy: {
