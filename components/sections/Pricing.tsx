@@ -243,6 +243,9 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
                   {p.pricing.oneTimeNote}
                 </span>
               </div>
+              <p className={`mt-1.5 text-sm font-semibold ${p.best ? "text-white/90" : "text-brand-700"}`}>
+                {dict.pricing.monthlyFeeNote(p.pricing.monthly)}
+              </p>
 
               <p className={`mt-3 text-base font-semibold ${p.best ? "text-white" : "text-ink-900"}`}>
                 {p.audience}

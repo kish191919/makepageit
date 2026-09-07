@@ -101,6 +101,7 @@ type Dict = {
     customizeHideOptions: string;
     todayLabel: string;
     monthlyAfterLabel: (amount: string) => string;
+    monthlyFeeNote: (amount: string) => string;
     subscribeCta: (amount: string) => string;
     payOnceCta: (amount: string) => string;
     quoteCta: string;
@@ -390,6 +391,7 @@ const en: Dict = {
     customizeHideOptions: "Hide options",
     todayLabel: "Pay today",
     monthlyAfterLabel: (amount) => `then ${amount}/mo from next month`,
+    monthlyFeeNote: (amount) => `+ ${amount}/mo management fee`,
     subscribeCta: (amount) => `Subscribe — ${amount} today`,
     payOnceCta: (amount) => `Pay ${amount}`,
     quoteCta: "Request a consultation",
@@ -762,6 +764,7 @@ const ko: Dict = {
     customizeHideOptions: "옵션 접기",
     todayLabel: "오늘 결제",
     monthlyAfterLabel: (amount) => `다음 달부터 매월 ${amount}`,
+    monthlyFeeNote: (amount) => `+ 월 ${amount} 관리비용`,
     subscribeCta: (amount) => `${amount} 결제하고 구독 시작`,
     payOnceCta: (amount) => `${amount} 결제하기`,
     quoteCta: "상담 요청하기",

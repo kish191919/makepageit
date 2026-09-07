@@ -51,14 +51,12 @@ export default function Reviews({ lang }: { lang: Lang }) {
           ))}
         </div>
 
-        <div className="mt-11 overflow-hidden sm:hidden">
-          <div className="flex w-max animate-marquee-ltr gap-6 motion-reduce:animate-none">
-            {[...items, ...items].map((r, i) => (
-              <div key={`${r.id}-${i}`} className="w-72 shrink-0">
-                <ReviewCard review={r} />
-              </div>
-            ))}
-          </div>
+        <div className="-mx-5 mt-11 flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-4 scrollbar-hide sm:hidden">
+          {items.map((r) => (
+            <div key={r.id} className="w-72 shrink-0 snap-center">
+              <ReviewCard review={r} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
