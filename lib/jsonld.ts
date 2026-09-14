@@ -32,7 +32,7 @@ export function professionalServiceSchema(lang: Lang) {
   const url = lang === "ko" ? `${BASE_URL}/ko` : BASE_URL;
   const description =
     lang === "ko"
-      ? "MAKEPAGE는 소상공인과 프리랜서를 위한 홈페이지 제작 스튜디오입니다. 브랜딩, 쇼핑몰, 랜딩페이지, 예약 시스템까지 한 팀이 만들며, SEO와 AI 검색(GEO) 최적화가 기본 적용됩니다."
+      ? "MAKEPAGE는 미주 한인 사업자와 소상공인을 위한 홈페이지 제작 스튜디오입니다. 브랜딩, 쇼핑몰, 랜딩페이지, 예약 시스템까지 한 팀이 만들며, SEO와 AI 검색(GEO) 최적화가 기본 적용됩니다."
       : "MAKEPAGE is a web design studio for small businesses and creators. Brand sites, e-commerce, landing pages, and booking systems built by one team, with SEO and AI search (GEO) optimization built in.";
   return {
     "@context": "https://schema.org",
@@ -48,7 +48,8 @@ export function professionalServiceSchema(lang: Lang) {
     description,
     priceRange: "$$",
     areaServed: ["United States", "South Korea", "Worldwide"],
-    serviceType: "Web Design & Development",
+    serviceType: lang === "ko" ? "홈페이지 제작" : "Web Design & Development",
+    ...(lang === "ko" ? { keywords: "한인 홈페이지 제작, 미주 한인 사업자, 홈페이지 제작" } : {}),
     sameAs: [site.social.instagram, site.social.youtube, site.social.blog].filter(Boolean),
   };
 }

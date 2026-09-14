@@ -600,8 +600,6 @@ const plansEn: Plan[] = [
       "3-page core layout",
       "Template design + mobile-responsive",
       "Basic SEO + AI search (GEO) setup",
-      "Hosting (server) at $10/mo",
-      "Database available as an add-on at $10/mo",
     ],
     cta: "Get a quote",
   },
@@ -625,8 +623,6 @@ const plansEn: Plan[] = [
       "5-page core layout",
       "Template design + mobile-responsive",
       "Basic SEO + AI search (GEO) setup",
-      "Hosting (server) at $10/mo",
-      "Database at $20/mo",
       "Two free add-ons (login, blog, gallery)",
     ],
     cta: "Get a quote",
@@ -636,7 +632,7 @@ const plansEn: Plan[] = [
 const plansKo: Plan[] = [
   {
     id: "portfolio-lite",
-    name: "PORTFOLIO LITE",
+    name: "기본형",
     audience: "홈페이지만 깔끔하게 있으면 되는 분",
     pricing: {
       oneTime: "$399",
@@ -652,14 +648,12 @@ const plansKo: Plan[] = [
       "3페이지 기본 구성",
       "템플릿 디자인 + 모바일 반응형",
       "기본 SEO + AI 검색(GEO) 세팅",
-      "호스팅 (서버비용) 월 $10",
-      "데이터베이스 선택 추가 시 월 $10",
     ],
     cta: "견적 문의하기",
   },
   {
     id: "portfolio-pro",
-    name: "PORTFOLIO PRO",
+    name: "고급형",
     best: true,
     badge: "추천",
     audience: "예약·문의까지 실제 비즈니스를 운영하는 분",
@@ -677,8 +671,6 @@ const plansKo: Plan[] = [
       "5페이지 기본 구성",
       "템플릿 디자인 + 모바일 반응형",
       "기본 SEO + AI 검색(GEO) 세팅",
-      "호스팅 (서버비용) 월 $10",
-      "데이터베이스 월 $20",
       "로그인 · 게시판 · 사진첩 중 2개 무료 추가",
     ],
     cta: "견적 문의하기",
@@ -775,6 +767,10 @@ const faqsEn: FAQ[] = [
     a: "Most sites launch in about two weeks. PORTFOLIO LITE (3 pages) is roughly 2 weeks; PORTFOLIO PRO (5 pages) is 3–4 weeks. Adding extra pages or booking integration may extend the timeline. You'll see your first design within a week of kickoff.",
   },
   {
+    q: "Do you build websites for Korean-American business owners?",
+    a: "Yes — MAKEPAGE specializes in building websites for Korean-American business owners and small businesses across the US. You can consult with us in Korean, and we handle US domain, hosting, and payment setup end-to-end.",
+  },
+  {
     q: "Do you handle the domain and hosting?",
     a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $25/year; PORTFOLIO LITE is $25/month for hosting + maintenance (database is an optional $10/month add-on); PORTFOLIO PRO is $55/month for hosting + DB + maintenance.",
   },
@@ -803,11 +799,15 @@ const faqsEn: FAQ[] = [
 const faqsKo: FAQ[] = [
   {
     q: "제작 기간은 얼마나 걸리나요?",
-    a: "평균 2주 안에 오픈을 목표로 진행해드립니다. PORTFOLIO LITE(3페이지)는 약 2주, PORTFOLIO PRO(5페이지)는 약 3~4주 정도이며, 추가 페이지나 예약 연동을 추가하시면 일정이 늘어날 수 있어요. 첫 시안은 의뢰 후 평균 1주 안에 보여드립니다.",
+    a: "평균 2주 안에 오픈을 목표로 진행해드립니다. 기본형(3페이지)은 약 2주, 고급형(5페이지)은 약 3~4주 정도이며, 추가 페이지나 예약 연동을 추가하시면 일정이 늘어날 수 있어요. 첫 시안은 의뢰 후 평균 1주 안에 보여드립니다.",
+  },
+  {
+    q: "미주에서 한인 사업자를 위한 홈페이지 제작도 가능한가요?",
+    a: "네, 메이크페이지는 미국 전역의 한인 사업자와 소상공인을 위한 홈페이지 제작을 전문으로 합니다. 한국어로 편하게 상담하실 수 있고, 미국 도메인·호스팅·결제 시스템까지 한 번에 세팅해드립니다.",
   },
   {
     q: "도메인과 호스팅도 맡아주시나요?",
-    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, PORTFOLIO LITE는 호스팅+유지보수 월 $25(데이터베이스는 월 $10 선택 추가), PORTFOLIO PRO는 호스팅+DB+유지보수 월 $55로 운영돼요.",
+    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 기본형은 호스팅+유지보수 월 $25(데이터베이스는 월 $10 선택 추가), 고급형은 호스팅+DB+유지보수 월 $55로 운영돼요.",
   },
   {
     q: "직접 수정하고 관리할 수 있나요?",
@@ -819,11 +819,11 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "사업자가 아닌 개인도 의뢰할 수 있나요?",
-    a: "물론입니다. PORTFOLIO LITE는 학생·아티스트 등 개인 포트폴리오를 위한 패키지로, 호스팅 비용이 월 이용료에 포함돼요 (데이터베이스는 선택 추가 항목이에요). 작가·강사·프리랜서·개인 브랜드 사이트도 다수 진행하고 있습니다.",
+    a: "물론입니다. 기본형은 학생·아티스트 등 개인 포트폴리오를 위한 패키지로, 호스팅 비용이 월 이용료에 포함돼요 (데이터베이스는 선택 추가 항목이에요). 작가·강사·프리랜서·개인 브랜드 사이트도 다수 진행하고 있습니다.",
   },
   {
     q: "오픈 후 운영도 맡길 수 있나요?",
-    a: "네, 월 유지보수 비용에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO·GEO 관리까지 포함되어 있습니다. 여기에 서버 호스팅 비용이 더해져 PORTFOLIO LITE는 서버 이용료 $10이 추가된 월 $25, PORTFOLIO PRO는 데이터베이스 이용료 $20까지 포함되어 월 $55로 운영돼요. 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
+    a: "네, 월 유지보수 비용에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO·GEO 관리까지 포함되어 있습니다. 여기에 서버 호스팅 비용이 더해져 기본형은 서버 이용료 $10이 추가된 월 $25, 고급형은 데이터베이스 이용료 $20까지 포함되어 월 $55로 운영돼요. 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
   },
   {
     q: "GEO가 뭔가요? 저희도 대응되나요?",

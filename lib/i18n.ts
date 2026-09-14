@@ -71,37 +71,13 @@ type Dict = {
     eyebrow: string;
     title: { line1: string; line2: string };
     description: { line1: string; line2: string };
-    yearTotal: string;
-    yearAfter: string;
     pageTitle: string;
     pageDescription: string;
     checkoutCta: string;
     checkoutSubmitting: string;
     checkoutError: string;
-    customizeTitle: string;
-    customizeMonthlyLabel: string;
-    customizeMonthlyHint: string;
-    customizeHostingLabel: string;
-    customizeHostingHint: string;
-    customizeDatabaseLabel: string;
-    customizeDatabaseHint: string;
-    customizeDomainLabel: string;
-    customizeDomainHint: string;
-    customizeEmailLabel: string;
-    customizeEmailHint: string;
-    customizeEmailMailboxesLabel: string;
-    customizeEmailPerMailbox: (amount: string) => string;
-    customizeExtraPageLabel: string;
-    customizeExtraPageHint: string;
-    customizeExtraPagePagesLabel: string;
-    customizeExtraPagePerPage: (amount: string) => string;
-    customizeBookingLabel: string;
-    customizeBookingHint: string;
-    customizeShowOptions: string;
-    customizeHideOptions: string;
-    todayLabel: string;
-    monthlyAfterLabel: (amount: string) => string;
     monthlyFeeNote: (amount: string) => string;
+    annualFeeNote: (amount: string) => string;
     subscribeCta: (amount: string) => string;
     payOnceCta: (amount: string) => string;
     quoteCta: string;
@@ -360,38 +336,14 @@ const en: Dict = {
   pricing: {
     eyebrow: "Pricing",
     title: { line1: "One-time and monthly costs,", line2: "first-year total on one screen" },
-    description: { line1: "Every package includes domain, hosting, basic SEO, SSL, and mobile-responsive design.", line2: "Every add-on and monthly cost is itemized below so there are no surprises." },
-    yearTotal: "📊 First-year total",
-    yearAfter: "📈 Year 2 onward (annual)",
+    description: { line1: "Every package includes domain, hosting, basic SEO, SSL, and mobile-responsive design.", line2: "See the full breakdown of one-time and monthly costs in the comparison table below." },
     pageTitle: "Pricing",
     pageDescription: "Portfolio Lite, Portfolio Pro — MAKEPAGE's transparent packages with one-time and monthly costs in plain view.",
     checkoutCta: "Subscribe & launch",
     checkoutSubmitting: "Redirecting to checkout...",
     checkoutError: "Checkout failed. Please try again or contact us.",
-    customizeTitle: "Customize what you pay",
-    customizeMonthlyLabel: "Monthly maintenance",
-    customizeMonthlyHint: "Skip if you'll handle updates yourself.",
-    customizeHostingLabel: "Hosting",
-    customizeHostingHint: "Server hosting for your live site.",
-    customizeDatabaseLabel: "Database",
-    customizeDatabaseHint: "Managed DB for forms, login, and dynamic content.",
-    customizeDomainLabel: "Domain",
-    customizeDomainHint: "Skip if you already own a domain.",
-    customizeEmailLabel: "Email",
-    customizeEmailHint: "5GB storage + domain email (you@yourdomain.com).",
-    customizeEmailMailboxesLabel: "Mailboxes",
-    customizeEmailPerMailbox: (amount) => `${amount} per mailbox`,
-    customizeExtraPageLabel: "Extra pages",
-    customizeExtraPageHint: "Beyond the pages included in your package.",
-    customizeExtraPagePagesLabel: "Pages",
-    customizeExtraPagePerPage: (amount) => `${amount} per page`,
-    customizeBookingLabel: "Booking integration",
-    customizeBookingHint: "Calendar, booking form, and automated reminders.",
-    customizeShowOptions: "Show options",
-    customizeHideOptions: "Hide options",
-    todayLabel: "Pay today",
-    monthlyAfterLabel: (amount) => `then ${amount}/mo from next month`,
     monthlyFeeNote: (amount) => `+ ${amount}/mo management fee`,
+    annualFeeNote: (amount) => `+ ${amount}/yr domain fee`,
     subscribeCta: (amount) => `Subscribe — ${amount} today`,
     payOnceCta: (amount) => `Pay ${amount}`,
     quoteCta: "Request a consultation",
@@ -683,22 +635,22 @@ const ko: Dict = {
   },
   langSwitch: { label: "언어", en: "English", ko: "한국어" },
   hero: {
-    titleA: "사장님은 ",
-    titleHighlight: "사업만",
-    titleB: " 하세요.\n",
+    titleA: "미주 한인 사장님을 위한 ",
+    titleHighlight: "홈페이지 제작",
+    titleB: ",\n",
     titleBrandWord: "2주",
-    titleC: " 안에, 이런 홈페이지가 완성됩니다.",
-    body: "기획·디자인·개발·운영을 한 팀에서 책임집니다.\n무료 상담은 언제나 환영입니다.",
+    titleC: " 안에 완성해드립니다.",
+    body: "사장님은 사업에만 집중하세요. 기획·디자인·개발·운영을 한 팀에서 책임집니다.\n무료 상담은 언제나 환영입니다.",
   },
   whyUs: {
     eyebrow: "왜 메이크페이지인가요?",
     title: "웹사이트 때문에\n몇 달씩 기다리지 마세요",
-    description: "빠르고 투명하게 진행하니, 사장님은 사업에만 집중하시면 됩니다.",
+    description: "미국 전역 한인 사업자에게 최적화된 빠르고 투명한 홈페이지 제작으로, 사장님은 사업에만 집중하시면 됩니다.",
     items: [
       { title: "7일", desc: "평균 첫 시안까지 걸리는 시간" },
       { title: "2회", desc: "완성 후 무료 수정 2회 제공" },
       { title: "올인원", desc: "도메인·호스팅·모바일까지 한 번에" },
-      { title: "한국어 상담", desc: "언제든 편하게 문의하세요" },
+      { title: "한국어 상담", desc: "미주 전역 한인 사업자 전담 상담" },
     ],
   },
   process: {
@@ -734,37 +686,13 @@ const ko: Dict = {
       line1: "모든 패키지는 도메인·호스팅·기본 SEO·SSL·모바일 반응형을 포함합니다.",
       line2: "모든 항목별 비용을 아래에서 투명하게 확인하실 수 있어요.",
     },
-    yearTotal: "📊 1년 총 예상비용",
-    yearAfter: "📈 2년차부터 매년 예상비용",
     pageTitle: "가격안내",
-    pageDescription: "Portfolio Lite, Portfolio Pro, Business Starter — 메이크페이지의 투명한 번들. 일회성 비용과 월 구독 모두 한눈에.",
+    pageDescription: "기본형, 고급형, Business Starter — 메이크페이지의 투명한 번들. 일회성 비용과 월 구독 모두 한눈에.",
     checkoutCta: "지금 결제하고 시작하기",
     checkoutSubmitting: "결제창으로 이동 중...",
     checkoutError: "결제 시작에 실패했습니다. 잠시 후 다시 시도해주세요.",
-    customizeTitle: "결제 항목 선택",
-    customizeMonthlyLabel: "월 유지보수",
-    customizeMonthlyHint: "직접 운영하실 거면 체크 해제하세요.",
-    customizeHostingLabel: "호스팅",
-    customizeHostingHint: "운영 중인 사이트의 서버 호스팅 비용.",
-    customizeDatabaseLabel: "데이터베이스",
-    customizeDatabaseHint: "폼·로그인·동적 콘텐츠용 관리형 DB.",
-    customizeDomainLabel: "도메인",
-    customizeDomainHint: "이미 도메인이 있으시면 체크 해제하세요.",
-    customizeEmailLabel: "Email",
-    customizeEmailHint: "5GB 저장공간 + 도메인 이메일 (you@yourdomain.com).",
-    customizeEmailMailboxesLabel: "메일박스 수",
-    customizeEmailPerMailbox: (amount) => `메일박스당 ${amount}`,
-    customizeExtraPageLabel: "추가 페이지",
-    customizeExtraPageHint: "패키지 기본 페이지 외 추가 제작.",
-    customizeExtraPagePagesLabel: "페이지 수",
-    customizeExtraPagePerPage: (amount) => `페이지당 ${amount}`,
-    customizeBookingLabel: "예약 시스템 연동",
-    customizeBookingHint: "캘린더 · 예약 폼 · 자동 리마인더.",
-    customizeShowOptions: "옵션 펼치기",
-    customizeHideOptions: "옵션 접기",
-    todayLabel: "오늘 결제",
-    monthlyAfterLabel: (amount) => `다음 달부터 매월 ${amount}`,
     monthlyFeeNote: (amount) => `+ 월 ${amount} 관리비용`,
+    annualFeeNote: (amount) => `+ 연 ${amount} 도메인 비용`,
     subscribeCta: (amount) => `${amount} 결제하고 구독 시작`,
     payOnceCta: (amount) => `${amount} 결제하기`,
     quoteCta: "상담 요청하기",
@@ -776,7 +704,7 @@ const ko: Dict = {
     compare: {
       title: "패키지 한눈에 비교하기",
       eyebrow: "상세 비교",
-      headers: { item: "항목", lite: "PORTFOLIO LITE", pro: "PORTFOLIO PRO" },
+      headers: { item: "항목", lite: "기본형", pro: "고급형" },
       rows: [
         { item: "추천 대상", lite: "사업 홍보 목적의 홈페이지가 필요하신 분", pro: "홍보와 함께 회원·게시물·예약 등 고객관리 기능이 필요하신 분" },
         { item: "홈페이지 제작비용 (일회성)", lite: "$399", pro: "$649" },
@@ -1029,16 +957,17 @@ const ko: Dict = {
   backToPortfolio: { long: "메이크페이지 포트폴리오로 돌아가기", short: "돌아가기" },
   notFoundTemplate: "포트폴리오 템플릿",
   rootMetadata: {
-    siteTitle: "사업의 첫인상, 메이크페이지가 만듭니다.",
+    siteTitle: "미주 한인 홈페이지 제작 전문 스튜디오",
     description:
-      "기획부터 디자인, 개발, 운영까지. 사장님의 사업이 빛나도록 홈페이지를 만들어드립니다.",
+      "미국 전역 한인 사업자를 위한 홈페이지 제작 전문 스튜디오. 기획부터 디자인, 개발, 운영까지 한 팀이 책임지고 2주 안에 완성해드립니다.",
     keywords: [
+      "한인 홈페이지 제작",
+      "미주 한인 홈페이지 제작",
       "홈페이지 제작",
+      "미국 한인 웹사이트 제작",
       "홈페이지 제작 회사",
       "반응형 웹 디자인",
       "쇼핑몰 제작",
-      "랜딩페이지 제작",
-      "웹사이트 제작",
       "메이크페이지",
     ],
     locale: "ko_KR",
