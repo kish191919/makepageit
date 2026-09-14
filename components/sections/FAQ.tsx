@@ -7,7 +7,7 @@ import { getFaqs } from "@/lib/data";
 import { getDict, localePath, type Lang } from "@/lib/i18n";
 
 export default function FAQ({ lang }: { lang: Lang }) {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
   const dict = getDict(lang);
   const faqs = getFaqs(lang);
 

@@ -66,6 +66,7 @@ export default function Pricing({
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showCanceled, setShowCanceled] = useState(false);
+  const [featuresOpen, setFeaturesOpen] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -96,7 +97,7 @@ export default function Pricing({
         el.style.minHeight = `${maxCard}px`;
       });
     }
-  }, [lang, plans.length]);
+  }, [lang, plans.length, featuresOpen]);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -236,8 +237,8 @@ export default function Pricing({
               )}
               <div className="relative z-10 flex flex-1 flex-col p-7 sm:p-9">
               <h3
-                className={`pr-24 text-lg font-bold uppercase tracking-[0.2em] sm:pr-28 sm:text-xl ${
-                  p.best ? "text-white" : "text-brand-700"
+                className={`pr-24 text-2xl font-extrabold uppercase tracking-[0.15em] sm:pr-28 sm:text-3xl ${
+                  p.best ? "text-accent-400" : "text-brand-700"
                 }`}
               >
                 {p.name}
@@ -293,34 +294,54 @@ export default function Pricing({
                 </p>
               </div>
 
-              <ul className="mt-6 flex-1 space-y-4 text-sm">
-                {p.features.map((f) => {
-                  const isDetailed = typeof f !== "string";
-                  const label = isDetailed ? f.text : f;
-                  const sub = isDetailed ? f.sub : undefined;
-                  return (
-                    <li key={label} className={`flex items-start gap-2.5 leading-relaxed ${p.best ? "" : "text-ink-700"}`}>
-                      <span
-                        className={`mt-1 inline-flex h-4 w-4 flex-none items-center justify-center rounded-full ${
-                          p.best ? "bg-white text-brand-600" : "bg-brand-600 text-white"
-                        }`}
-                      >
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                          <path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
-                      <span>
-                        <span className="block">{label}</span>
-                        {sub && (
-                          <span className={`mt-0.5 block text-xs font-normal ${p.best ? "text-white/60" : "text-ink-400"}`}>
-                            {sub}
+              <div className="mt-6 flex-1">
+                <button
+                  type="button"
+                  onClick={() => setFeaturesOpen((prev) => !prev)}
+                  className={`flex w-full items-center justify-between gap-2 rounded-xl py-2 text-sm font-semibold transition ${
+                    p.best ? "text-white" : "text-brand-700"
+                  }`}
+                >
+                  {dict.pricing.featuresToggle}
+                  <span
+                    className={`flex-none text-lg leading-none transition ${
+                      featuresOpen ? "rotate-45" : ""
+                    }`}
+                  >
+                    +
+                  </span>
+                </button>
+                {featuresOpen && (
+                  <ul className="mt-3 space-y-4 text-sm">
+                    {p.features.map((f) => {
+                      const isDetailed = typeof f !== "string";
+                      const label = isDetailed ? f.text : f;
+                      const sub = isDetailed ? f.sub : undefined;
+                      return (
+                        <li key={label} className={`flex items-start gap-2.5 leading-relaxed ${p.best ? "" : "text-ink-700"}`}>
+                          <span
+                            className={`mt-1 inline-flex h-4 w-4 flex-none items-center justify-center rounded-full ${
+                              p.best ? "bg-white text-brand-600" : "bg-brand-600 text-white"
+                            }`}
+                          >
+                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                              <path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
                           </span>
-                        )}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
+                          <span>
+                            <span className="block">{label}</span>
+                            {sub && (
+                              <span className={`mt-0.5 block text-xs font-normal ${p.best ? "text-white/60" : "text-ink-400"}`}>
+                                {sub}
+                              </span>
+                            )}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </div>
 
               <Link
                 href={localePath(lang, "/contact")}

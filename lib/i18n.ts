@@ -87,6 +87,7 @@ type Dict = {
     subscribeCta: (amount: string) => string;
     payOnceCta: (amount: string) => string;
     quoteCta: string;
+    featuresToggle: string;
     successTitle: string;
     successBody: string;
     successHomeCta: string;
@@ -359,6 +360,7 @@ const en: Dict = {
     subscribeCta: (amount) => `Subscribe — ${amount} today`,
     payOnceCta: (amount) => `Pay ${amount}`,
     quoteCta: "Request a consultation",
+    featuresToggle: "See what's included",
     successTitle: "Payment received — welcome to MAKEPAGE.",
     successBody: "Your subscription is active. Your account manager will reach out within one business day to kick off your build.",
     successHomeCta: "Back to home",
@@ -699,7 +701,7 @@ const ko: Dict = {
       line2: "모든 항목별 비용을 아래에서 투명하게 확인하실 수 있어요.",
     },
     pageTitle: "가격안내",
-    pageDescription: "기본형, 고급형, Business Starter — 메이크페이지의 투명한 번들. 일회성 비용과 월 구독 모두 한눈에.",
+    pageDescription: "베이직, 프리미엄, Business Starter — 메이크페이지의 투명한 번들. 일회성 비용과 월 구독 모두 한눈에.",
     checkoutCta: "지금 결제하고 시작하기",
     checkoutSubmitting: "결제창으로 이동 중...",
     checkoutError: "결제 시작에 실패했습니다. 잠시 후 다시 시도해주세요.",
@@ -714,6 +716,7 @@ const ko: Dict = {
     subscribeCta: (amount) => `${amount} 결제하고 구독 시작`,
     payOnceCta: (amount) => `${amount} 결제하기`,
     quoteCta: "상담 요청하기",
+    featuresToggle: "포함 내역 보기",
     successTitle: "결제가 완료되었습니다.",
     successBody: "구독이 활성화되었습니다. 영업일 기준 24시간 이내 담당 매니저가 제작 시작을 위해 연락드립니다.",
     successHomeCta: "홈으로 돌아가기",
@@ -722,7 +725,7 @@ const ko: Dict = {
     compare: {
       title: "패키지 한눈에 비교하기",
       eyebrow: "상세 비교",
-      headers: { item: "항목", lite: "기본형", pro: "고급형" },
+      headers: { item: "항목", lite: "베이직", pro: "프리미엄" },
       rows: [
         { item: "추천 대상", lite: "사업 홍보 목적의 홈페이지가 필요하신 분", pro: "홍보와 함께 회원·게시물·예약 등 고객관리 기능이 필요하신 분" },
         { item: "홈페이지 제작비용 (일회성)", lite: "$399", pro: "$649" },

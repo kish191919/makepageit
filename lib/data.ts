@@ -158,7 +158,7 @@ const portfoliosEn: Portfolio[] = [
 {
     id: "sbm-nationwide",
     client: "SBM Nationwide",
-    category: "Brand site",
+    category: "Real client",
     description: "Nationwide commercial cleaning, staffing, and supply sourcing brand turned into a site built to win enterprise RFPs.",
     image: "/images/portfolio/sbm-nationwide.png",
     tags: ["B2B services", "Facilities", "Nationwide"],
@@ -168,7 +168,7 @@ const portfoliosEn: Portfolio[] = [
 {
     id: "yttm-mission",
     client: "양영자 탁구선교회",
-    category: "Brand site",
+    category: "Real client",
     description: "Table-tennis missionary organization founded by a 1988 Seoul Olympics gold medalist, rebuilt into a site to share their story and rally prayer and donor support.",
     image: "/images/portfolio/yttm-mission.png",
     tags: ["Nonprofit", "Faith-based", "Sports ministry"],
@@ -178,7 +178,7 @@ const portfoliosEn: Portfolio[] = [
 {
     id: "daniel-math",
     client: "Daniel Math Academy",
-    category: "Brand site",
+    category: "Real client",
     description: "Small-group, mastery-based math academy in Fairfax, VA rebuilt into a warm, trust-building brand site for Korean-American families.",
     image: "/images/portfolio/daniel-math.png",
     tags: ["Education", "Academy", "Local business"],
@@ -188,7 +188,7 @@ const portfoliosEn: Portfolio[] = [
 {
     id: "cloudmaster-it",
     client: "CloudMaster",
-    category: "Brand site",
+    category: "Real client",
     description: "AWS, Azure, and GCP certification practice-exam platform rebuilt into a clean, conversion-focused product site for IT professionals.",
     image: "/images/portfolio/cloudmaster.png",
     tags: ["EdTech", "SaaS", "Certification"],
@@ -372,7 +372,7 @@ const portfoliosKo: Portfolio[] = [
 {
     id: "sbm-nationwide",
     client: "SBM Nationwide",
-    category: "브랜딩 사이트",
+    category: "실제 고객사",
     description: "미국 전역 상업 청소·인력파견·자재소싱 브랜드를 대기업 입찰(RFP)까지 대응 가능한 사이트로 재구축.",
     image: "/images/portfolio/sbm-nationwide.png",
     tags: ["B2B 서비스", "시설관리", "전국 서비스"],
@@ -382,7 +382,7 @@ const portfoliosKo: Portfolio[] = [
 {
     id: "yttm-mission",
     client: "양영자 탁구선교회",
-    category: "브랜딩 사이트",
+    category: "실제 고객사",
     description: "1988 서울올림픽 탁구 금메달리스트가 설립한 탁구 선교 단체를 위한 사이트로, 사역 스토리 전달과 기도·후원 모금을 돕도록 제작.",
     image: "/images/portfolio/yttm-mission.png",
     tags: ["비영리", "선교", "스포츠 선교"],
@@ -392,7 +392,7 @@ const portfoliosKo: Portfolio[] = [
 {
     id: "daniel-math",
     client: "Daniel Math Academy",
-    category: "브랜딩 사이트",
+    category: "실제 고객사",
     description: "버지니아 페어팩스의 소수정예 무학년 수학 아카데미를 한인 가정의 신뢰를 얻는 브랜딩 사이트로 제작.",
     image: "/images/portfolio/daniel-math.png",
     tags: ["교육", "학원", "로컬 비즈니스"],
@@ -402,12 +402,12 @@ const portfoliosKo: Portfolio[] = [
 {
     id: "cloudmaster-it",
     client: "CloudMaster",
-    category: "브랜딩 사이트",
+    category: "실제 고객사",
     description: "AWS·Azure·GCP 자격증 모의고사 플랫폼을 IT 전문가 대상 전환에 최적화된 프로덕트 사이트로 재구축.",
     image: "/images/portfolio/cloudmaster.png",
     tags: ["에듀테크", "SaaS", "자격증"],
     year: "2026",
-    url: "https://cloudmasterit.com/",
+    url: "https://cloudmasterit.com/ko/",
   },
 {
     id: "denver-hanin",
@@ -635,7 +635,7 @@ const plansEn: Plan[] = [
 const plansKo: Plan[] = [
   {
     id: "portfolio-lite",
-    name: "기본형",
+    name: "베이직",
     best: true,
     badge: "추천",
     audience: "깔끔하고 신뢰도 높은 홈페이지가 필요한 분",
@@ -659,7 +659,7 @@ const plansKo: Plan[] = [
   },
   {
     id: "portfolio-pro",
-    name: "고급형",
+    name: "프리미엄",
     audience: "고객 문의·예약 기능까지 필요한 비즈니스",
     pricing: {
       oneTime: "$649",
@@ -804,7 +804,7 @@ const faqsEn: FAQ[] = [
 const faqsKo: FAQ[] = [
   {
     q: "제작 기간은 얼마나 걸리나요?",
-    a: "평균 2주 안에 오픈을 목표로 진행해드립니다. 기본형(3페이지)은 약 2주, 고급형(5페이지)은 약 3~4주 정도이며, 추가 페이지나 예약 연동을 추가하시면 일정이 늘어날 수 있어요. 첫 시안은 의뢰 후 평균 1주 안에 보여드립니다.",
+    a: "평균 2주 안에 오픈을 목표로 진행해드립니다. 베이직(3페이지)은 약 2주, 프리미엄(5페이지)은 약 3~4주 정도이며, 추가 페이지나 예약 연동을 추가하시면 일정이 늘어날 수 있어요. 첫 시안은 의뢰 후 평균 1주 안에 보여드립니다.",
   },
   {
     q: "미주에서 한인 사업자를 위한 홈페이지 제작도 가능한가요?",
@@ -812,7 +812,7 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "도메인과 호스팅도 맡아주시나요?",
-    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 기본형은 호스팅+유지보수 월 $25(데이터베이스는 월 $10 선택 추가), 고급형은 호스팅+DB+유지보수 월 $55로 운영돼요.",
+    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 베이직은 호스팅+유지보수 월 $25(데이터베이스는 월 $10 선택 추가), 프리미엄은 호스팅+DB+유지보수 월 $55로 운영돼요.",
   },
   {
     q: "직접 수정하고 관리할 수 있나요?",
@@ -824,11 +824,11 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "사업자가 아닌 개인도 의뢰할 수 있나요?",
-    a: "물론입니다. 기본형은 학생·아티스트 등 개인 포트폴리오를 위한 패키지로, 호스팅 비용이 월 이용료에 포함돼요 (데이터베이스는 선택 추가 항목이에요). 작가·강사·프리랜서·개인 브랜드 사이트도 다수 진행하고 있습니다.",
+    a: "물론입니다. 베이직은 학생·아티스트 등 개인 포트폴리오를 위한 패키지로, 호스팅 비용이 월 이용료에 포함돼요 (데이터베이스는 선택 추가 항목이에요). 작가·강사·프리랜서·개인 브랜드 사이트도 다수 진행하고 있습니다.",
   },
   {
     q: "오픈 후 운영도 맡길 수 있나요?",
-    a: "네, 월 유지보수 비용에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO·GEO 관리까지 포함되어 있습니다. 여기에 서버 호스팅 비용이 더해져 기본형은 서버 이용료 $10이 추가된 월 $25, 고급형은 데이터베이스 이용료 $20까지 포함되어 월 $55로 운영돼요. 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
+    a: "네, 월 유지보수 비용에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO·GEO 관리까지 포함되어 있습니다. 여기에 서버 호스팅 비용이 더해져 베이직은 서버 이용료 $10이 추가된 월 $25, 프리미엄은 데이터베이스 이용료 $20까지 포함되어 월 $55로 운영돼요. 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
   },
   {
     q: "GEO가 뭔가요? 저희도 대응되나요?",

@@ -4,7 +4,6 @@ import Process from "@/components/sections/Process";
 import Portfolio from "@/components/sections/Portfolio";
 import Reviews from "@/components/sections/Reviews";
 import Pricing from "@/components/sections/Pricing";
-import AdditionalOptions from "@/components/sections/AdditionalOptions";
 import FAQ from "@/components/sections/FAQ";
 import CTA from "@/components/sections/CTA";
 import { getFaqs, getPlans } from "@/lib/data";
@@ -25,7 +24,6 @@ export default function HomeView({ lang }: { lang: Lang }) {
       <Reviews lang={lang} />
       <Process lang={lang} />
       <Pricing lang={lang} eyebrowOnly />
-      <AdditionalOptions lang={lang} />
       <FAQ lang={lang} />
       <CTA lang={lang} />
     </>

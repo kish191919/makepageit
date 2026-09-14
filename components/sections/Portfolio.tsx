@@ -49,24 +49,7 @@ export default function Portfolio({ lang, limit = 6 }: { lang: Lang; limit?: num
                   </div>
                 </div>
                 <div className="p-5 sm:p-6">
-                  <div className="flex items-center justify-between">
-                    <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
-                      {p.category}
-                    </span>
-                    <span className="text-xs text-ink-400">{p.year}</span>
-                  </div>
-                  <h3 className="mt-4 text-lg font-bold text-ink-900">{p.client}</h3>
-                  <p className="mt-1 text-sm text-ink-500">{p.description}</p>
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {p.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md border border-ink-200 px-2 py-0.5 text-xs text-ink-500"
-                      >
-                        #{t}
-                      </span>
-                    ))}
-                  </div>
+                  <h3 className="text-lg font-bold text-ink-900">{p.client}</h3>
                 </div>
               </CardTag>
             );

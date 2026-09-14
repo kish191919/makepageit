@@ -1,5 +1,6 @@
 import PageHeader from "@/components/PageHeader";
 import Pricing from "@/components/sections/Pricing";
+import AdditionalOptions from "@/components/sections/AdditionalOptions";
 import { getDict, type Lang } from "@/lib/i18n";
 
 export default function PricingView({ lang }: { lang: Lang }) {
@@ -145,6 +146,8 @@ export default function PricingView({ lang }: { lang: Lang }) {
           })()}
         </div>
       </section>
+
+      <AdditionalOptions lang={lang} />
     </>
   );
 }
