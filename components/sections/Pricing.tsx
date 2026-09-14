@@ -150,7 +150,7 @@ export default function Pricing({ lang, hideHeading = false }: { lang: Lang; hid
               <p className={`mt-1.5 text-sm font-semibold ${p.best ? "text-white/90" : "text-brand-700"}`}>
                 {dict.pricing.monthlyFeeNote(p.pricing.monthly)}
               </p>
-              <p className={`mt-0.5 text-xs ${p.best ? "text-white/70" : "text-ink-400"}`}>
+              <p className={`mt-1.5 text-sm font-semibold ${p.best ? "text-white/90" : "text-brand-700"}`}>
                 {dict.pricing.annualFeeNote(p.pricing.annual)}
               </p>
 

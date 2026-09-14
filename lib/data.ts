@@ -633,6 +633,8 @@ const plansKo: Plan[] = [
   {
     id: "portfolio-lite",
     name: "기본형",
+    best: true,
+    badge: "추천",
     audience: "홈페이지만 깔끔하게 있으면 되는 분",
     pricing: {
       oneTime: "$399",
@@ -654,8 +656,6 @@ const plansKo: Plan[] = [
   {
     id: "portfolio-pro",
     name: "고급형",
-    best: true,
-    badge: "추천",
     audience: "예약·문의까지 실제 비즈니스를 운영하는 분",
     pricing: {
       oneTime: "$649",
