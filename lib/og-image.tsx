@@ -67,7 +67,7 @@ export type OgTitleLine = OgTitleSegment[];
 
 export async function buildOgImage(opts: {
   title: OgTitleLine[];
-  body: string;
+  body?: string;
   ctaPrimary: string;
   ctaSecondary: string;
   footerRight: string;
@@ -157,10 +157,12 @@ export async function buildOgImage(opts: {
                 </div>
               ))}
             </div>
-            <div style={{ display: "flex", fontSize: 19, fontWeight: 500, opacity: 0.75, lineHeight: 1.4 }}>
-              {opts.body}
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            {opts.body && (
+              <div style={{ display: "flex", fontSize: 19, fontWeight: 500, opacity: 0.75, lineHeight: 1.4 }}>
+                {opts.body}
+              </div>
+            )}
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: opts.body ? 0 : 6 }}>
               <div
                 style={{
                   display: "flex",

@@ -13,7 +13,6 @@ export default function OpengraphImage() {
       [{ text: "2주", underline: true }],
       [{ text: "안에 완성해드립니다." }],
     ],
-    body: "사장님은 사업에만 집중하세요. 기획·디자인·개발·운영을 한 팀에서 책임집니다. 무료 상담은 언제나 환영입니다.",
     ctaPrimary: "무료 견적받기",
     ctaSecondary: "포트폴리오 보기",
     footerRight: "고객 만족도 4.9 / 5 · 재의뢰율 98%",
