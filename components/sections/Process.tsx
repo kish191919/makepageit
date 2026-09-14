@@ -6,7 +6,7 @@ export default function Process({ lang }: { lang: Lang }) {
   const steps = dict.process.steps;
 
   return (
-    <section className="section bg-ink-100">
+    <section className="section hidden bg-ink-100 md:block">
       <div className="container-custom">
         <SectionHeading
           align="center"

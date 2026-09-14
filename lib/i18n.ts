@@ -78,7 +78,7 @@ type Dict = {
     checkoutError: string;
     promoBadge: string;
     promoHeadline: { pre: string; highlight: string };
-    promoSub: string;
+    promoSub: { pre: string; post: string };
     promoDeadline: string;
     promoAutoApply: string;
     saveLabel: (amount: string) => string;
@@ -350,7 +350,7 @@ const en: Dict = {
     checkoutError: "Checkout failed. Please try again or contact us.",
     promoBadge: "Limited-time launch offer",
     promoHeadline: { pre: "Website builds,", highlight: "up to 24% off" },
-    promoSub: "Special launch pricing to help your business grow online.",
+    promoSub: { pre: "Special launch pricing", post: "to help your business grow online." },
     promoDeadline: "Ends December 31, 2026",
     promoAutoApply: "Discount applied automatically",
     saveLabel: (amount) => `Save ${amount}`,
@@ -705,7 +705,7 @@ const ko: Dict = {
     checkoutError: "결제 시작에 실패했습니다. 잠시 후 다시 시도해주세요.",
     promoBadge: "한인 비즈니스 특별 프로모션",
     promoHeadline: { pre: "웹사이트 제작비", highlight: "최대 24% 할인" },
-    promoSub: "한인 비즈니스를 위한 온라인 성장 지원 프로그램",
+    promoSub: { pre: "한인 비즈니스를 위한", post: "온라인 성장 지원 프로그램" },
     promoDeadline: "2026년 12월 31일까지",
     promoAutoApply: "자동 할인 적용",
     saveLabel: (amount) => `${amount} 절약`,

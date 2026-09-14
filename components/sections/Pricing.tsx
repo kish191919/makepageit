@@ -178,11 +178,16 @@ export default function Pricing({
                   {dict.pricing.promoBadge}
                 </span>
                 <p className="mt-4 break-keep text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-                  {dict.pricing.promoHeadline.pre}{" "}
+                  {dict.pricing.promoHeadline.pre}
+                  <br className="sm:hidden" />
+                  <span className="hidden sm:inline"> </span>
                   <span className="text-accent-400">{dict.pricing.promoHeadline.highlight}</span>
                 </p>
                 <p className="mt-3 break-keep text-base text-white/70 sm:text-lg">
-                  {dict.pricing.promoSub}
+                  {dict.pricing.promoSub.pre}
+                  <br className="sm:hidden" />
+                  <span className="hidden sm:inline"> </span>
+                  {dict.pricing.promoSub.post}
                 </p>
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-white/70 ring-1 ring-inset ring-white/10 sm:text-sm">
@@ -239,7 +244,7 @@ export default function Pricing({
               </h3>
 
               <p
-                className={`pr-24 text-base font-semibold sm:pr-28 ${
+                className={`text-base font-semibold ${
                   p.pricing.originalOneTime ? "mt-8 sm:mt-6" : "mt-2"
                 } ${p.best ? "text-white" : "text-ink-900"}`}
               >
