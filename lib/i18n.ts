@@ -654,7 +654,7 @@ const ko: Dict = {
     titleB: ",\n",
     titleBrandWord: "2주",
     titleC: " 안에 완성해드립니다.",
-    body: "사장님은 사업에만 집중하세요. 기획·디자인·개발·운영을 한 팀에서 책임집니다.\n무료 상담은 언제나 환영입니다.",
+    body: "",
   },
   whyUs: {
     eyebrow: "왜 메이크페이지인가요?",
