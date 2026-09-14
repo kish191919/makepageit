@@ -24,6 +24,20 @@ const nextConfig = {
       { source: "/ko/reviews", destination: "/ko", permanent: true },
       { source: "/ko/blog", destination: "/ko", permanent: true },
       { source: "/ko/blog/:slug*", destination: "/ko", permanent: true },
+
+      { source: "/portfolio/kitt-works/:path*", destination: "/portfolio", permanent: true },
+      { source: "/portfolio/bloom-cosmetics/:path*", destination: "/portfolio", permanent: true },
+      { source: "/portfolio/dr-slim-clinic/:path*", destination: "/portfolio", permanent: true },
+      { source: "/portfolio/halo-fitness/:path*", destination: "/portfolio", permanent: true },
+      { source: "/portfolio/ironclad-industrial/:path*", destination: "/portfolio", permanent: true },
+      { source: "/portfolio/muni-hair/:path*", destination: "/portfolio", permanent: true },
+
+      { source: "/ko/portfolio/kitt-works/:path*", destination: "/ko/portfolio", permanent: true },
+      { source: "/ko/portfolio/bloom-cosmetics/:path*", destination: "/ko/portfolio", permanent: true },
+      { source: "/ko/portfolio/dr-slim-clinic/:path*", destination: "/ko/portfolio", permanent: true },
+      { source: "/ko/portfolio/halo-fitness/:path*", destination: "/ko/portfolio", permanent: true },
+      { source: "/ko/portfolio/ironclad-industrial/:path*", destination: "/ko/portfolio", permanent: true },
+      { source: "/ko/portfolio/muni-hair/:path*", destination: "/ko/portfolio", permanent: true },
     ];
   },
   async headers() {

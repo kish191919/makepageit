@@ -11,13 +11,15 @@ const ACCENTS = [
 
 function StatCard({ item, index }: { item: { title: string; desc: string }; index: number }) {
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-ink-100 bg-white p-6 shadow-[0_2px_4px_rgba(15,23,42,0.04),0_14px_32px_-12px_rgba(15,23,42,0.08)]">
+    <div className="relative overflow-hidden rounded-2xl border border-ink-100 bg-white p-4 shadow-[0_2px_4px_rgba(15,23,42,0.04),0_14px_32px_-12px_rgba(15,23,42,0.08)] sm:rounded-3xl sm:p-6">
       <div
         className={`absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gradient-to-br ${ACCENTS[index % ACCENTS.length]} blur-2xl`}
         aria-hidden
       />
-      <div className="relative text-2xl font-extrabold text-brand-600 sm:text-3xl">{item.title}</div>
-      <p className="relative mt-2 text-sm leading-relaxed text-ink-500">{item.desc}</p>
+      <div className="relative text-xl font-extrabold text-brand-600 sm:text-3xl">{item.title}</div>
+      <p className="relative mt-1 text-xs leading-snug text-ink-500 sm:mt-2 sm:text-sm sm:leading-relaxed">
+        {item.desc}
+      </p>
     </div>
   );
 }
@@ -30,41 +32,28 @@ export default function WhyUs({ lang }: { lang: Lang }) {
   return (
     <section className="section border-t border-ink-100 bg-white">
       <div className="container-custom">
-        <div className="flex flex-wrap items-center justify-center gap-3">
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           {trust.map((s) => (
             <div
               key={s.label}
-              className="flex items-baseline gap-2 rounded-full border border-ink-100 bg-ink-50/70 px-4 py-2"
+              className="flex items-baseline gap-1.5 rounded-full border border-ink-100 bg-ink-50/70 px-3 py-1.5 sm:gap-2 sm:px-4 sm:py-2"
             >
-              <span className="text-2xl font-extrabold text-brand-600 sm:text-3xl">{s.value}</span>
-              <span className="text-sm font-medium text-ink-500">{s.label}</span>
+              <span className="text-lg font-extrabold text-brand-600 sm:text-3xl">{s.value}</span>
+              <span className="text-xs font-medium text-ink-500 sm:text-sm">{s.label}</span>
             </div>
           ))}
         </div>
 
         <div className="mt-6">
-          <SectionHeading
-            align="center"
-            eyebrow={dict.whyUs.eyebrow}
-            title={dict.whyUs.title}
-            description={dict.whyUs.description}
-          />
+          <SectionHeading align="center" eyebrow={dict.whyUs.eyebrow} title={dict.whyUs.title} />
+          <p className="lead mx-auto mt-3 hidden max-w-3xl break-keep whitespace-pre-line text-center sm:mt-5 sm:block">
+            {dict.whyUs.description}
+          </p>
         </div>
 
-        <div className="mx-auto mt-12 hidden max-w-5xl gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 sm:mt-12 sm:gap-4 lg:grid-cols-4">
           {items.map((item, index) => (
             <StatCard key={item.title} item={item} index={index} />
-          ))}
-        </div>
-
-        <div
-          className="-mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 sm:hidden [&::-webkit-scrollbar]:hidden"
-          style={{ scrollbarWidth: "none" }}
-        >
-          {items.map((item, index) => (
-            <div key={item.title} className="shrink-0 basis-[80%] snap-center">
-              <StatCard item={item} index={index} />
-            </div>
           ))}
         </div>
       </div>

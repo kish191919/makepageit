@@ -6,6 +6,7 @@ type Props = {
   description?: ReactNode;
   align?: "left" | "center";
   theme?: "light" | "dark";
+  hideEyebrowOnMobile?: boolean;
 };
 
 export default function SectionHeading({
@@ -14,12 +15,13 @@ export default function SectionHeading({
   description,
   align = "left",
   theme = "light",
+  hideEyebrowOnMobile = false,
 }: Props) {
   const alignment = align === "center" ? "text-center mx-auto" : "text-left";
   const eyebrowClass =
-    theme === "dark"
+    (theme === "dark"
       ? "text-sm font-semibold uppercase tracking-[0.2em] text-brand-400"
-      : "eyebrow";
+      : "eyebrow") + (hideEyebrowOnMobile ? " hidden sm:block" : "");
   const titleClass =
     theme === "dark"
       ? "mt-3 text-3xl font-bold leading-tight tracking-tight text-white break-keep whitespace-pre-line sm:text-4xl lg:text-5xl"

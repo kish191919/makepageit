@@ -76,6 +76,12 @@ type Dict = {
     checkoutCta: string;
     checkoutSubmitting: string;
     checkoutError: string;
+    promoBadge: string;
+    promoHeadline: { pre: string; highlight: string };
+    promoSub: string;
+    promoDeadline: string;
+    promoAutoApply: string;
+    saveLabel: (amount: string) => string;
     monthlyFeeNote: (amount: string) => string;
     annualFeeNote: (amount: string) => string;
     subscribeCta: (amount: string) => string;
@@ -301,10 +307,10 @@ const en: Dict = {
     title: "Stop waiting months\nfor a website",
     description: "Fast, transparent, and built so you can get back to running your business.",
     items: [
-      { title: "7 days", desc: "Average time to your first draft" },
-      { title: "2 rounds", desc: "Free revisions after launch" },
-      { title: "All-in-one", desc: "Domain, hosting, and mobile — handled for you" },
-      { title: "Korean support", desc: "Talk to a real person, in Korean" },
+      { title: "7 days", desc: "To your first draft" },
+      { title: "2 rounds", desc: "Free revisions included" },
+      { title: "All-in-one", desc: "Domain & hosting included" },
+      { title: "Korean support", desc: "Real person, in Korean" },
     ],
   },
   process: {
@@ -312,10 +318,10 @@ const en: Dict = {
     title: "Four clear steps.\nYou always know what's next.",
     description: "We tell you exactly what we'll show you at each meeting and when each payment is due.\nNo surprises.",
     steps: [
-      { n: "01", title: "Free consult", subtitle: "30-minute call", body: "We learn your goals and budget, then recommend the right package.", meta: ["30 min", "Free"] },
-      { n: "02", title: "Design", subtitle: "Approve as we go", body: "Sitemap, wireframes, and visual designs reviewed step by step.", meta: ["Step-by-step", "You sign off"] },
-      { n: "03", title: "Launch", subtitle: "Test → Live", body: "Domain, SSL, and search engine setup are handled end to end.", meta: ["Domain + SSL", "SEO ready"] },
-      { n: "04", title: "Ongoing care", subtitle: "Dedicated manager", body: "Content updates, new features, and performance checks every month.", meta: ["Monthly report", "Same-day fixes"] },
+      { n: "01", title: "Free consult", subtitle: "30-minute call", body: "We learn your goals and budget, then recommend the right package.", meta: ["30-min consult", "Custom quote"] },
+      { n: "02", title: "Design", subtitle: "Approve as we go", body: "Sitemap, wireframes, and visual designs reviewed step by step.", meta: ["Design review", "Revisions included"] },
+      { n: "03", title: "Launch", subtitle: "Test → Live", body: "Domain, SSL, and search engine setup are handled end to end.", meta: ["Domain + SSL", "Search engine setup"] },
+      { n: "04", title: "Ongoing care", subtitle: "Dedicated manager", body: "Content updates, new features, and performance checks every month.", meta: ["Monthly care", "Ongoing support"] },
     ],
   },
   portfolio: {
@@ -342,6 +348,12 @@ const en: Dict = {
     checkoutCta: "Subscribe & launch",
     checkoutSubmitting: "Redirecting to checkout...",
     checkoutError: "Checkout failed. Please try again or contact us.",
+    promoBadge: "Limited-time launch offer",
+    promoHeadline: { pre: "Website builds,", highlight: "up to 24% off" },
+    promoSub: "Special launch pricing to help your business grow online.",
+    promoDeadline: "Ends December 31, 2026",
+    promoAutoApply: "Discount applied automatically",
+    saveLabel: (amount) => `Save ${amount}`,
     monthlyFeeNote: (amount) => `+ ${amount}/mo management fee`,
     annualFeeNote: (amount) => `+ ${amount}/yr domain fee`,
     subscribeCta: (amount) => `Subscribe — ${amount} today`,
@@ -645,29 +657,29 @@ const ko: Dict = {
   whyUs: {
     eyebrow: "왜 메이크페이지인가요?",
     title: "웹사이트 때문에\n몇 달씩 기다리지 마세요",
-    description: "미국 전역 한인 사업자에게 최적화된 빠르고 투명한 홈페이지 제작으로, 사장님은 사업에만 집중하시면 됩니다.",
+    description: "빠르고 투명하게. 사장님은 사업에만 집중하세요.",
     items: [
-      { title: "7일", desc: "평균 첫 시안까지 걸리는 시간" },
-      { title: "2회", desc: "완성 후 무료 수정 2회 제공" },
-      { title: "올인원", desc: "도메인·호스팅·모바일까지 한 번에" },
-      { title: "한국어 상담", desc: "미주 전역 한인 사업자 전담 상담" },
+      { title: "7일", desc: "첫 시안 완성" },
+      { title: "2회", desc: "무료 수정 제공" },
+      { title: "올인원", desc: "도메인·호스팅 포함" },
+      { title: "한국어 상담", desc: "미주 전역 전담 상담" },
     ],
   },
   process: {
     eyebrow: "프로세스",
-    title: "투명한 4단계,\n어디까지 진행됐는지 항상 보입니다",
-    description: "다음 회의 때 무엇을 보여드릴지, 다음 결제는 언제인지 —\n모든 일정이 명확합니다.",
+    title: "투명한 4단계 프로세스\n진행 상황을 언제든 확인하세요",
+    description: "무엇을, 언제 하는지 — 모든 일정이 명확합니다.",
     steps: [
-      { n: "01", title: "무료 상담 · 견적", subtitle: "30분 무료 통화", body: "목적·타겟·예산 파악 후 패키지 추천", meta: ["30분", "무료"] },
-      { n: "02", title: "기획 · 디자인", subtitle: "단계별 컨펌", body: "사이트맵·와이어프레임·시안 순차 확인", meta: ["단계별 컨펌", "사장님 결정"] },
-      { n: "03", title: "검수 · 오픈", subtitle: "테스트 → 정식 오픈", body: "도메인·SSL·검색엔진 등록까지 일괄", meta: ["도메인+SSL", "검색등록"] },
-      { n: "04", title: "운영 · 유지보수", subtitle: "전담 매니저 케어", body: "콘텐츠·기능 추가·성능 점검 지원", meta: ["월간 리포트", "당일 대응"] },
+      { n: "01", title: "무료 상담 · 견적", subtitle: "30분 무료 통화", body: "목적·타겟·예산 파악 후 패키지 추천", meta: ["30분 상담", "맞춤 견적"] },
+      { n: "02", title: "기획 · 디자인", subtitle: "단계별 컨펌", body: "사이트맵·와이어프레임·시안 순차 확인", meta: ["시안 확인", "수정 반영"] },
+      { n: "03", title: "검수 · 오픈", subtitle: "테스트 → 정식 오픈", body: "도메인·SSL·검색엔진 등록까지 일괄", meta: ["도메인 + SSL", "검색엔진 등록"] },
+      { n: "04", title: "운영 · 유지보수", subtitle: "전담 매니저 케어", body: "콘텐츠·기능 추가·성능 점검 지원", meta: ["월간 관리", "지속 지원"] },
     ],
   },
   portfolio: {
     eyebrow: "포트폴리오",
     title: "원하시는 스타일, 그대로 만들어 드립니다.",
-    description: "아래 홈페이지 중 마음에 드는 스타일이 있다면 말씀해 주세요. 비즈니스에 꼭 맞는 디자인과 기능으로 새롭게 구현해 드립니다.",
+    description: "마음에 드는 스타일이 있다면 말씀해주세요.",
     seeAll: "전체 포트폴리오",
     viewTemplate: "템플릿 보기 →",
     visitSite: "실제 사이트 방문 →",
@@ -691,6 +703,12 @@ const ko: Dict = {
     checkoutCta: "지금 결제하고 시작하기",
     checkoutSubmitting: "결제창으로 이동 중...",
     checkoutError: "결제 시작에 실패했습니다. 잠시 후 다시 시도해주세요.",
+    promoBadge: "한인 비즈니스 특별 프로모션",
+    promoHeadline: { pre: "웹사이트 제작비", highlight: "최대 24% 할인" },
+    promoSub: "한인 비즈니스를 위한 온라인 성장 지원 프로그램",
+    promoDeadline: "2026년 12월 31일까지",
+    promoAutoApply: "자동 할인 적용",
+    saveLabel: (amount) => `${amount} 절약`,
     monthlyFeeNote: (amount) => `+ 월 ${amount} 관리비용`,
     annualFeeNote: (amount) => `+ 연 ${amount} 도메인 비용`,
     subscribeCta: (amount) => `${amount} 결제하고 구독 시작`,
@@ -726,7 +744,7 @@ const ko: Dict = {
   additionalOptions: {
     eyebrow: "추가 옵션",
     title: "필요한 만큼만 더하세요",
-    description: "기본 패키지로 부족하다면, 사업에 꼭 필요한 기능만 골라 추가할 수 있어요.",
+    description: "꼭 필요한 기능만, 골라서 추가하세요.",
     badge: "맞춤 옵션",
     note: "정확한 견적은 무료 상담 후 안내해드려요.",
     options: [
@@ -737,7 +755,7 @@ const ko: Dict = {
   faq: {
     eyebrow: "자주 묻는 질문",
     title: "궁금하신 점, 미리 답해드릴게요",
-    description: "가장 많이 받은 질문을 모았어요. 더 자세한 내용은 무료 상담에서 알려드려요.",
+    description: "가장 많이 묻는 질문만 모았어요.",
     moreQuestions: {
       title: "더 궁금한 점이 있나요?",
       body: "30분 무료 상담으로 부담 없이 물어보세요.",
@@ -758,7 +776,7 @@ const ko: Dict = {
   reviews: {
     eyebrow: "제작 후기",
     title: "결과로 증명합니다",
-    description: "설문 평균 4.9 / 5. 사장님들이 직접 들려주신 이야기.",
+    description: "평균 4.9 / 5. 사장님들의 진짜 후기.",
     seeAll: "모든 후기 보기",
     pageTitle: "제작 후기",
     pageDescription: "메이크페이지와 함께한 사장님들의 진짜 이야기. 매출·문의·운영시간이 어떻게 달라졌는지 확인해보세요.",

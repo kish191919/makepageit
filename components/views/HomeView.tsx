@@ -24,7 +24,7 @@ export default function HomeView({ lang }: { lang: Lang }) {
       <Portfolio lang={lang} limit={6} />
       <Reviews lang={lang} />
       <Process lang={lang} />
-      <Pricing lang={lang} />
+      <Pricing lang={lang} eyebrowOnly />
       <AdditionalOptions lang={lang} />
       <FAQ lang={lang} />
       <CTA lang={lang} />

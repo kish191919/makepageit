@@ -1,36 +1,32 @@
-"use client";
-
-import { useState } from "react";
 import SectionHeading from "@/components/SectionHeading";
 import { getDict, type Lang } from "@/lib/i18n";
 
 export default function Process({ lang }: { lang: Lang }) {
-  const [allOpen, setAllOpen] = useState(false);
   const dict = getDict(lang);
   const steps = dict.process.steps;
 
   return (
-    <section className="section bg-white">
+    <section className="section bg-ink-100">
       <div className="container-custom">
         <SectionHeading
           align="center"
           eyebrow={dict.process.eyebrow}
           title={dict.process.title}
           description={dict.process.description}
+          hideEyebrowOnMobile
         />
 
         <div className="relative mt-12">
           <ConnectorLine />
 
-          <div className="relative -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-[7.5vw] pb-4 scrollbar-hide sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 md:snap-none lg:grid-cols-4">
+          <div className="relative grid grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => {
               return (
                 <article
                   key={s.n}
-                  onClick={() => setAllOpen((prev) => !prev)}
-                  className="group relative flex w-[85vw] shrink-0 cursor-pointer snap-center flex-col overflow-hidden rounded-3xl border border-blue-500/60 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-[0_2px_4px_rgba(15,23,42,0.06),0_14px_32px_-12px_rgba(37,99,235,0.35)] transition duration-300 hover:-translate-y-1.5 hover:border-blue-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(37,99,235,0.50)] sm:w-[60%] sm:snap-start md:w-auto md:cursor-default"
+                  className="group relative flex flex-col overflow-hidden rounded-3xl border border-blue-500/60 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 text-white shadow-[0_2px_4px_rgba(15,23,42,0.06),0_14px_32px_-12px_rgba(37,99,235,0.22)] transition duration-300 hover:-translate-y-1 hover:border-blue-300 hover:shadow-[0_4px_8px_rgba(15,23,42,0.06),0_24px_48px_-16px_rgba(37,99,235,0.32)]"
                 >
-                  <span aria-hidden="true" className="pointer-events-none absolute bottom-0 right-2 select-none text-[140px] font-black leading-none tracking-tighter text-white/[0.07] translate-y-4">
+                  <span aria-hidden="true" className="pointer-events-none absolute bottom-0 right-2 select-none text-[92px] font-black leading-none tracking-tighter text-white/5 translate-y-4 sm:text-[120px] lg:text-[140px]">
                     {s.n}
                   </span>
 
@@ -40,49 +36,32 @@ export default function Process({ lang }: { lang: Lang }) {
                     </div>
 
                     <div className="mt-6 flex items-center gap-3">
-                      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-bold text-blue-900 shadow-md shadow-blue-950/40">
-                        {s.n}
-                      </span>
                       <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
                         STEP
                       </span>
-                    </div>
-
-                    <div className="mt-4 flex items-start justify-between gap-3">
-                      <h3 className="text-lg font-bold text-white sm:text-xl">
-                        {s.title}
-                      </h3>
-                      <span
-                        aria-hidden="true"
-                        className={`md:hidden flex-none text-2xl leading-none text-white/90 transition-transform duration-200 ${allOpen ? "rotate-45" : ""}`}
-                      >
-                        +
+                      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white text-xs font-bold text-blue-900 shadow-md shadow-blue-950/40">
+                        {s.n}
                       </span>
                     </div>
 
-                    <div className={allOpen ? "flex flex-1 flex-col" : "hidden md:flex md:flex-1 md:flex-col"}>
+                    <h3 className="mt-4 text-lg font-bold tracking-tight text-white sm:text-xl">
+                      {s.title}
+                    </h3>
+
+                    <div className="flex flex-1 flex-col">
                       <p className="mt-1 text-sm font-semibold text-white">
                         {s.subtitle}
                       </p>
-                      <p className="mt-3 text-sm leading-relaxed text-white/80">
+                      <p className="mt-3 text-sm font-medium leading-relaxed text-white/90">
                         {s.body}
                       </p>
 
-                      <div className="mt-auto flex flex-wrap gap-2 pt-4 border-t border-white/20">
-                        {s.meta.map((m, idx) => (
+                      <div className="mt-auto flex flex-wrap gap-2 pt-4 border-t border-white/15">
+                        {s.meta.map((m) => (
                           <span
                             key={m}
-                            className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium ${
-                              idx === 0
-                                ? "bg-white/15 text-white"
-                                : "bg-white/10 text-white/70"
-                            }`}
+                            className="inline-flex items-center rounded-full border border-white/10 bg-white/10 px-2.5 py-1 text-xs font-medium text-white/85"
                           >
-                            <span
-                              className={`h-1.5 w-1.5 rounded-full ${
-                                idx === 0 ? "bg-white" : "bg-white/50"
-                              }`}
-                            />
                             {m}
                           </span>
                         ))}
@@ -116,8 +95,9 @@ function ConnectorLine() {
           x2="1160"
           y2="6"
           stroke="currentColor"
-          strokeWidth="1.5"
-          strokeDasharray="2 6"
+          strokeWidth="1"
+          strokeOpacity="0.5"
+          strokeDasharray="2 8"
           className="text-blue-300"
         />
       </svg>

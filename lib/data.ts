@@ -27,6 +27,7 @@ export type Plan = {
   audience: string;
   pricing: {
     oneTime: string;
+    originalOneTime?: string;
     oneTimeNote: string;
     monthly: string;
     monthlyNote: string;
@@ -45,7 +46,7 @@ export type Plan = {
     booking: number;
   };
   description: string;
-  features: string[];
+  features: (string | { text: string; sub: string })[];
   cta: string;
 };
 
@@ -165,6 +166,16 @@ const portfoliosEn: Portfolio[] = [
     url: "https://www.sbmnationwide.com/",
   },
 {
+    id: "yttm-mission",
+    client: "양영자 탁구선교회",
+    category: "Brand site",
+    description: "Table-tennis missionary organization founded by a 1988 Seoul Olympics gold medalist, rebuilt into a site to share their story and rally prayer and donor support.",
+    image: "/images/portfolio/yttm-mission.png",
+    tags: ["Nonprofit", "Faith-based", "Sports ministry"],
+    year: "2026",
+    url: "https://www.yttmission.org/",
+  },
+{
     id: "daniel-math",
     client: "Daniel Math Academy",
     category: "Brand site",
@@ -183,16 +194,6 @@ const portfoliosEn: Portfolio[] = [
     tags: ["EdTech", "SaaS", "Certification"],
     year: "2026",
     url: "https://cloudmasterit.com/",
-  },
-{
-    id: "yttm-mission",
-    client: "양영자 탁구선교회",
-    category: "Brand site",
-    description: "Table-tennis missionary organization founded by a 1988 Seoul Olympics gold medalist, rebuilt into a site to share their story and rally prayer and donor support.",
-    image: "https://www.yttmission.org/images/vision-prayer.jpg",
-    tags: ["Nonprofit", "Faith-based", "Sports ministry"],
-    year: "2026",
-    url: "https://www.yttmission.org/",
   },
 {
     id: "denver-hanin",
@@ -379,6 +380,16 @@ const portfoliosKo: Portfolio[] = [
     url: "https://www.sbmnationwide.com/",
   },
 {
+    id: "yttm-mission",
+    client: "양영자 탁구선교회",
+    category: "브랜딩 사이트",
+    description: "1988 서울올림픽 탁구 금메달리스트가 설립한 탁구 선교 단체를 위한 사이트로, 사역 스토리 전달과 기도·후원 모금을 돕도록 제작.",
+    image: "/images/portfolio/yttm-mission.png",
+    tags: ["비영리", "선교", "스포츠 선교"],
+    year: "2026",
+    url: "https://www.yttmission.org/",
+  },
+{
     id: "daniel-math",
     client: "Daniel Math Academy",
     category: "브랜딩 사이트",
@@ -397,16 +408,6 @@ const portfoliosKo: Portfolio[] = [
     tags: ["에듀테크", "SaaS", "자격증"],
     year: "2026",
     url: "https://cloudmasterit.com/",
-  },
-{
-    id: "yttm-mission",
-    client: "양영자 탁구선교회",
-    category: "브랜딩 사이트",
-    description: "1988 서울올림픽 탁구 금메달리스트가 설립한 탁구 선교 단체를 위한 사이트로, 사역 스토리 전달과 기도·후원 모금을 돕도록 제작.",
-    image: "https://www.yttmission.org/images/vision-prayer.jpg",
-    tags: ["비영리", "선교", "스포츠 선교"],
-    year: "2026",
-    url: "https://www.yttmission.org/",
   },
 {
     id: "denver-hanin",
@@ -588,6 +589,7 @@ const plansEn: Plan[] = [
     audience: "Personal portfolios · students · creatives",
     pricing: {
       oneTime: "$399",
+      originalOneTime: "$499",
       oneTimeNote: "one-time (3 pages)",
       monthly: "$25",
       monthlyNote: "hosting + monthly maintenance",
@@ -611,6 +613,7 @@ const plansEn: Plan[] = [
     audience: "Freelancers · consultants · solopreneurs",
     pricing: {
       oneTime: "$649",
+      originalOneTime: "$849",
       oneTimeNote: "one-time (5 pages)",
       monthly: "$55",
       monthlyNote: "hosting + DB + monthly maintenance",
@@ -635,9 +638,10 @@ const plansKo: Plan[] = [
     name: "기본형",
     best: true,
     badge: "추천",
-    audience: "홈페이지만 깔끔하게 있으면 되는 분",
+    audience: "깔끔하고 신뢰도 높은 홈페이지가 필요한 분",
     pricing: {
       oneTime: "$399",
+      originalOneTime: "$499",
       oneTimeNote: "일회성 (3페이지)",
       monthly: "$25",
       monthlyNote: "호스팅 + 월 유지보수",
@@ -656,9 +660,10 @@ const plansKo: Plan[] = [
   {
     id: "portfolio-pro",
     name: "고급형",
-    audience: "예약·문의까지 실제 비즈니스를 운영하는 분",
+    audience: "고객 문의·예약 기능까지 필요한 비즈니스",
     pricing: {
       oneTime: "$649",
+      originalOneTime: "$849",
       oneTimeNote: "일회성 (5페이지)",
       monthly: "$55",
       monthlyNote: "호스팅 + DB + 월 유지보수",
@@ -671,7 +676,7 @@ const plansKo: Plan[] = [
       "5페이지 기본 구성",
       "템플릿 디자인 + 모바일 반응형",
       "기본 SEO + AI 검색(GEO) 세팅",
-      "로그인 · 게시판 · 사진첩 중 2개 무료 추가",
+      { text: "비즈니스 고급 기능 2종 포함", sub: "로그인 / 게시판 / 사진첩 중 선택" },
     ],
     cta: "견적 문의하기",
   },
