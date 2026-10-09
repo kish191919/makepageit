@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "아우터 | Atelier 22",
   description:
-    "리넨 랩 코트, 울 헤링본 코트, 퀼팅 필드 재킷 — 메이크페이지가 제작한 Atelier Shop 홈페이지 템플릿의 아우터 페이지입니다.",
+    "리넨 랩 코트, 울 헤링본 코트, 퀼팅 필드 재킷 — 메이크페이지잇이 제작한 Atelier Shop 홈페이지 템플릿의 아우터 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/atelier-shop/outerwear",

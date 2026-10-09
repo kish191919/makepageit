@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "상담 문의 | 메리디안 자산관리",
-  description: "메리디안 자산관리와 30분 무료 상담을 예약하세요 — 메이크페이지가 제작한 자산관리 홈페이지 템플릿의 상담 문의 페이지입니다.",
+  description: "메리디안 자산관리와 30분 무료 상담을 예약하세요 — 메이크페이지잇이 제작한 자산관리 홈페이지 템플릿의 상담 문의 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/meridian-wealth/contact",

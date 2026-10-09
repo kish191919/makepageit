@@ -15,6 +15,22 @@ export function detectLangFromPath(pathname: string | null | undefined): Lang {
   return pathname === "/ko" || pathname.startsWith("/ko/") ? "ko" : "en";
 }
 
+export function stripLocale(pathname: string): string {
+  if (pathname === "/ko") return "/";
+  return pathname.startsWith("/ko/") ? pathname.slice(3) : pathname;
+}
+
+export function pageAlternates(lang: Lang, path = "/") {
+  return {
+    canonical: localePath(lang, path),
+    languages: {
+      en: localePath("en", path),
+      ko: localePath("ko", path),
+      "x-default": localePath("en", path),
+    },
+  };
+}
+
 type Dict = {
   nav: {
     home: string;
@@ -33,6 +49,7 @@ type Dict = {
   };
   langSwitch: { label: string; en: string; ko: string };
   hero: {
+    eyebrow: string;
     titleA: string;
     titleHighlight: string;
     titleB: string;
@@ -58,6 +75,7 @@ type Dict = {
     description: string;
     seeAll: string;
     viewTemplate: string;
+    imageAlt: (client: string) => string;
     visitSite: string;
     liveClientBadge: string;
     templateBadge: string;
@@ -272,6 +290,7 @@ type Dict = {
   notFoundTemplate: string;
   rootMetadata: {
     siteTitle: string;
+    titleSuffix: string;
     description: string;
     keywords: string[];
     locale: string;
@@ -296,15 +315,16 @@ const en: Dict = {
   },
   langSwitch: { label: "Language", en: "English", ko: "한국어" },
   hero: {
+    eyebrow: "Small business web design studio",
     titleA: "You run the business.",
     titleHighlight: "We build",
     titleB: "the website—",
     titleBrandWord: "live in 2 weeks.",
     titleC: "",
-    body: "Strategy, design, development, and ongoing care from one team.\nFree 30-minute consult, no pressure.",
+    body: "Web design, development, and ongoing care for small businesses — all from one team.\nFree 30-minute consult, no pressure.",
   },
   whyUs: {
-    eyebrow: "Why MAKEPAGE",
+    eyebrow: "Why MAKEPAGEIT",
     title: "Stop waiting months\nfor a website",
     description: "Fast, transparent, and built so you can get back to running your business.",
     items: [
@@ -326,26 +346,27 @@ const en: Dict = {
     ],
   },
   portfolio: {
-    eyebrow: "Our work",
+    eyebrow: "Web design portfolio",
     title: "Find a style you love. We'll build it for you.",
     description: "Browse the work below.\nTell us what catches your eye and we'll tailor the design and features to your business.",
     seeAll: "View all work",
     viewTemplate: "Preview design",
+    imageAlt: (client) => `${client} website design by MAKEPAGEIT`,
     visitSite: "Visit live site",
     liveClientBadge: "Live client",
     templateBadge: "Template preview",
     filterAll: "All",
     filterCategories: ["All", "Brand site", "E-commerce", "Landing page", "Booking", "Portfolio"],
     nondisclosed: "* Only selected projects are shown. NDA work is shared during private consults.",
-    pageTitle: "Our Work",
-    pageDescription: "Brand sites, online stores, landing pages, booking systems, and portfolios — real projects built by MAKEPAGE, rated 4.9 / 5 by clients.",
+    pageTitle: "Web Design Portfolio & Website Examples",
+    pageDescription: "MAKEPAGEIT's web design portfolio — small business websites, ecommerce stores, landing pages, booking sites, and portfolio websites. Browse live client sites and design previews.",
   },
   pricing: {
     eyebrow: "Pricing",
     title: { line1: "One-time and monthly costs,", line2: "first-year total on one screen" },
     description: { line1: "Every package includes domain, hosting, basic SEO, SSL, and mobile-responsive design.", line2: "See the full breakdown of one-time and monthly costs in the comparison table below." },
-    pageTitle: "Pricing",
-    pageDescription: "Portfolio Lite, Portfolio Pro — MAKEPAGE's transparent packages with one-time and monthly costs in plain view.",
+    pageTitle: "Small Business Website Pricing & Packages",
+    pageDescription: "Transparent web design pricing for small business and portfolio websites — one-time, monthly, and first-year costs on one page. Domain, hosting, SSL, and basic SEO included.",
     checkoutCta: "Subscribe & launch",
     checkoutSubmitting: "Redirecting to checkout...",
     checkoutError: "Checkout failed. Please try again or contact us.",
@@ -361,7 +382,7 @@ const en: Dict = {
     payOnceCta: (amount) => `Pay ${amount}`,
     quoteCta: "Request a consultation",
     featuresToggle: "See what's included",
-    successTitle: "Payment received — welcome to MAKEPAGE.",
+    successTitle: "Payment received — welcome to MAKEPAGEIT.",
     successBody: "Your subscription is active. Your account manager will reach out within one business day to kick off your build.",
     successHomeCta: "Back to home",
     successDownloadReceiptCta: "Download receipt",
@@ -416,7 +437,7 @@ const en: Dict = {
     description: "4.9 / 5 average rating. Owners told us how their business changed.",
     seeAll: "Read all reviews",
     pageTitle: "Reviews",
-    pageDescription: "Real stories from MAKEPAGE clients — see how their sales, leads, and operating hours changed.",
+    pageDescription: "Real stories from MAKEPAGEIT clients — see how their sales, leads, and operating hours changed.",
     pageHeadingTitle: "Real results, in their words.",
     pageHeadingDescription: "4.9 / 5 satisfaction. 98% repeat or referral. Stories straight from owners.",
   },
@@ -426,7 +447,7 @@ const en: Dict = {
     description: "From a quick landing page to a full e-commerce site — we'll recommend the most efficient build based on what's worked for our clients, rated 4.9 / 5 on average.",
     seeAll: "View all services",
     pageTitle: "Services",
-    pageDescription: "Brand sites, e-commerce, landing pages, booking & memberships, redesigns, and ongoing operations — six core MAKEPAGE services.",
+    pageDescription: "Brand sites, e-commerce, landing pages, booking & memberships, redesigns, and ongoing operations — six core MAKEPAGEIT services.",
     pageHeadingTitle: "The right site for every stage of your business.",
     pageHeadingDescription: "From early ideas to a growing customer base — we offer the right tool at the right time.",
     serviceCta: "Inquire about this service",
@@ -434,10 +455,10 @@ const en: Dict = {
   logos: { eyebrow: "Trusted by businesses like yours" },
   about: {
     pageTitle: "About",
-    pageDescription: "MAKEPAGE is a US-friendly web studio that builds sites that grow small businesses — design, code, and care under one roof.",
+    pageDescription: "MAKEPAGEIT is a US-friendly web studio that builds sites that grow small businesses — design, code, and care under one roof.",
     headerEyebrow: "About us",
     headerTitle: "Websites that grow your business — not just look pretty.",
-    headerDescription: "MAKEPAGE is part design studio, part marketing partner. We help small business owners launch their first digital storefront — and keep it growing.",
+    headerDescription: "MAKEPAGEIT is part design studio, part marketing partner. We help small business owners launch their first digital storefront — and keep it growing.",
     promiseEyebrow: "Our promise",
     promiseTitle: "We respect your time. It's the most expensive thing you have.",
     promiseBody: "You know your business better than anyone. Our job is to translate that into something digital — measured by results, not by deck after deck of mockups.",
@@ -462,7 +483,7 @@ const en: Dict = {
     timelineEyebrow: "Timeline",
     timelineTitle: "How we got here",
     milestones: [
-      { y: "2022", t: "MAKEPAGE founded. First five clients." },
+      { y: "2022", t: "MAKEPAGEIT founded. First five clients." },
       { y: "2023", t: "Crossed 100 sites delivered." },
       { y: "2024", t: "Launched in-house e-commerce and booking solutions." },
       { y: "2025", t: "4.9 / 5 average satisfaction · 98% repeat and referral rate." },
@@ -470,8 +491,8 @@ const en: Dict = {
     ],
   },
   contact: {
-    pageTitle: "Contact",
-    pageDescription: "Request a free quote from MAKEPAGE. Your account manager will respond within one business day.",
+    pageTitle: "Get a Free Website Quote",
+    pageDescription: "Request a free web design quote from MAKEPAGEIT. Tell us about your small business website and your account manager will respond within one business day.",
     headerEyebrow: "Contact",
     headerTitle: "30 minutes is all we need.",
     headerDescription: "You don't need to know exactly what you want.\nTell us about your business and we'll figure it out together.",
@@ -516,7 +537,7 @@ const en: Dict = {
         "Open / let's discuss",
       ],
       consent:
-        "I consent to MAKEPAGE collecting and using the information above (name, phone, email) to respond to my inquiry. Records are kept for up to 1 year after the engagement closes.",
+        "I consent to MAKEPAGEIT collecting and using the information above (name, phone, email) to respond to my inquiry. Records are kept for up to 1 year after the engagement closes.",
     },
   },
   footer: {
@@ -525,9 +546,9 @@ const en: Dict = {
     privacy: "Privacy",
     terms: "Terms",
     phoneLabel: "",
-    description: "Strategy, design, development, and care — all in one place. We build websites that help small businesses grow.",
+    description: "Web design, development, and care — all in one place. We build small business websites that help you grow.",
     businessHours: "Mon–Fri, 9:00 AM – 6:00 PM EST",
-    operatedBy: "MAKEPAGE is a service operated by CloudMasterIT LLC. Charges appear as “CLOUDMASTERIT LLC” on your statement.",
+    operatedBy: "MAKEPAGEIT is a service operated by CloudMasterIT LLC. Charges appear as “CLOUDMASTERIT LLC” on your statement.",
   },
   pricingPlans: {
     eyebrow: "Pricing",
@@ -539,16 +560,16 @@ const en: Dict = {
     privacy: {
       eyebrow: "Legal",
       title: "Privacy Policy",
-      description: "How MAKEPAGE handles your information",
+      description: "How MAKEPAGEIT handles your information",
       pageTitle: "Privacy Policy",
-      pageDescription: "MAKEPAGE (operated by CloudMasterIT LLC) Privacy Policy.",
+      pageDescription: "MAKEPAGEIT (operated by CloudMasterIT LLC) Privacy Policy.",
     },
     terms: {
       eyebrow: "Legal",
       title: "Terms of Service",
-      description: "Terms governing use of MAKEPAGE",
+      description: "Terms governing use of MAKEPAGEIT",
       pageTitle: "Terms of Service",
-      pageDescription: "MAKEPAGE (operated by CloudMasterIT LLC) Terms of Service.",
+      pageDescription: "MAKEPAGEIT (operated by CloudMasterIT LLC) Terms of Service.",
     },
   },
   manage: {
@@ -568,13 +589,13 @@ const en: Dict = {
     linkSentBody:
       "If we have an account on file with that email, a secure link is on its way. The link expires in 15 minutes.",
     requestError: "We couldn't process that request. Please try again in a moment.",
-    emailSubject: "Manage your MAKEPAGE subscription",
+    emailSubject: "Manage your MAKEPAGEIT subscription",
     emailHeading: "Manage your subscription",
     emailIntro:
       "Use the secure link below to open your billing portal. From there you can cancel your monthly maintenance, update your card, or download invoices.",
     emailCta: "Open billing portal",
     emailExpiryNote: "This link expires in 15 minutes. If you didn't request it, you can ignore this email.",
-    emailFooter: "MAKEPAGE — websites that win customers.",
+    emailFooter: "MAKEPAGEIT — websites that win customers.",
     dashboardEyebrow: "Account",
     dashboardTitle: "Manage your subscription",
     dashboardBody: (email) => `Signed in as ${email}. Choose what you'd like to do.`,
@@ -596,7 +617,7 @@ const en: Dict = {
     invalidTokenTitle: "This link is invalid or has expired",
     invalidTokenBody: "Secure links are only valid for 15 minutes. Request a new one to continue.",
     invalidTokenCta: "Request a new link",
-    customerEmailSubject: "Your MAKEPAGE order is confirmed",
+    customerEmailSubject: "Your MAKEPAGEIT order is confirmed",
     customerEmailHeading: "Thanks — your order is confirmed",
     customerEmailIntro:
       "Your account manager will reach out within one business day to kick off your build. Below is a copy of your receipt for your records.",
@@ -605,19 +626,20 @@ const en: Dict = {
     customerEmailManageCta: "Manage my subscription",
     customerEmailFooter:
       "If you didn't make this purchase, please contact us right away at admin@makepageit.com.",
-    cancelEmailSubject: "Your MAKEPAGE subscription has been canceled",
+    cancelEmailSubject: "Your MAKEPAGEIT subscription has been canceled",
     cancelEmailHeading: "Your subscription has been canceled",
     cancelEmailBody:
       "Your monthly maintenance subscription has been canceled. You won't be billed again. If this was a mistake, just reply to this email and we'll get you sorted.",
-    domainRequestEmailSubject: (email) => `[MAKEPAGE] Domain non-renewal request — ${email}`,
+    domainRequestEmailSubject: (email) => `[MAKEPAGEIT] Domain non-renewal request — ${email}`,
     domainRequestEmailHeading: "Domain non-renewal request",
   },
-  backToPortfolio: { long: "Back to MAKEPAGE work", short: "Back" },
+  backToPortfolio: { long: "Back to MAKEPAGEIT work", short: "Back" },
   notFoundTemplate: "Template preview",
   rootMetadata: {
-    siteTitle: "Websites that win customers",
+    siteTitle: "Small Business Website & Web Design Studio | MAKEPAGEIT",
+    titleSuffix: "MAKEPAGEIT",
     description:
-      "MAKEPAGE builds high-performance websites for small businesses and creators. Strategy, design, development, and ongoing care from one US-friendly team.",
+      "MAKEPAGEIT is a web design studio for small business websites — responsive web design, ecommerce, landing pages, and portfolio sites. Live in 2 weeks. Free quote.",
     keywords: [
       "small business website",
       "web design",
@@ -625,7 +647,7 @@ const en: Dict = {
       "ecommerce website",
       "landing page design",
       "portfolio website",
-      "MAKEPAGE",
+      "MAKEPAGEIT",
     ],
     locale: "en_US",
   },
@@ -649,6 +671,7 @@ const ko: Dict = {
   },
   langSwitch: { label: "언어", en: "English", ko: "한국어" },
   hero: {
+    eyebrow: "미주 한인 홈페이지 제작 전문 · 메이크페이지잇",
     titleA: "미주 한인 사장님을 위한 ",
     titleHighlight: "홈페이지 제작",
     titleB: ",\n",
@@ -657,7 +680,7 @@ const ko: Dict = {
     body: "",
   },
   whyUs: {
-    eyebrow: "왜 메이크페이지인가요?",
+    eyebrow: "왜 메이크페이지잇인가요?",
     title: "웹사이트 때문에\n몇 달씩 기다리지 마세요",
     description: "빠르고 투명하게. 사장님은 사업에만 집중하세요.",
     items: [
@@ -679,19 +702,20 @@ const ko: Dict = {
     ],
   },
   portfolio: {
-    eyebrow: "포트폴리오",
+    eyebrow: "홈페이지 제작 포트폴리오",
     title: "원하시는 스타일, 그대로 만들어 드립니다.",
     description: "마음에 드는 스타일이 있다면 말씀해주세요.",
     seeAll: "전체 포트폴리오",
     viewTemplate: "템플릿 보기 →",
+    imageAlt: (client) => `${client} 홈페이지 제작 사례`,
     visitSite: "실제 사이트 방문 →",
     liveClientBadge: "실제 고객사",
     templateBadge: "템플릿 미리보기",
     filterAll: "전체",
     filterCategories: ["전체", "브랜딩 사이트", "쇼핑몰", "랜딩페이지", "예약 시스템", "포트폴리오"],
     nondisclosed: "* 이 페이지에는 일부 홈페이지만 노출되며, 비공개 NDA 프로젝트는 별도 상담 시 안내해드립니다.",
-    pageTitle: "포트폴리오",
-    pageDescription: "메이크페이지가 제작한 브랜드 사이트, 쇼핑몰, 랜딩페이지, 예약 시스템 등 만족도 4.9 / 5의 실제 사례.",
+    pageTitle: "홈페이지 제작 포트폴리오 · 제작 사례",
+    pageDescription: "메이크페이지잇 홈페이지 제작 포트폴리오. 브랜딩 사이트, 쇼핑몰 제작, 랜딩페이지, 예약 시스템까지 실제 고객사 사이트와 디자인 템플릿을 확인하세요.",
   },
   pricing: {
     eyebrow: "가격 안내",
@@ -700,8 +724,8 @@ const ko: Dict = {
       line1: "모든 패키지는 도메인·호스팅·기본 SEO·SSL·모바일 반응형을 포함합니다.",
       line2: "모든 항목별 비용을 아래에서 투명하게 확인하실 수 있어요.",
     },
-    pageTitle: "가격안내",
-    pageDescription: "베이직, 프리미엄, Business Starter — 메이크페이지의 투명한 번들. 일회성 비용과 월 구독 모두 한눈에.",
+    pageTitle: "홈페이지 제작 비용 · 가격 안내",
+    pageDescription: "미주 한인 홈페이지 제작 비용을 투명하게 공개합니다. 베이직·프리미엄 패키지의 일회성 비용과 월 구독료, 1년 총비용을 한눈에 비교하세요. 도메인·호스팅·SSL·기본 SEO 포함.",
     checkoutCta: "지금 결제하고 시작하기",
     checkoutSubmitting: "결제창으로 이동 중...",
     checkoutError: "결제 시작에 실패했습니다. 잠시 후 다시 시도해주세요.",
@@ -782,7 +806,7 @@ const ko: Dict = {
     description: "평균 4.9 / 5. 사장님들의 진짜 후기.",
     seeAll: "모든 후기 보기",
     pageTitle: "제작 후기",
-    pageDescription: "메이크페이지와 함께한 사장님들의 진짜 이야기. 매출·문의·운영시간이 어떻게 달라졌는지 확인해보세요.",
+    pageDescription: "메이크페이지잇과 함께한 사장님들의 진짜 이야기. 매출·문의·운영시간이 어떻게 달라졌는지 확인해보세요.",
     pageHeadingTitle: "결과로 증명합니다.",
     pageHeadingDescription: "만족도 4.9 / 5, 재의뢰율 98%. 사장님들이 직접 들려주신 이야기.",
   },
@@ -792,18 +816,18 @@ const ko: Dict = {
     description: "작은 랜딩페이지부터 쇼핑몰까지. 사장님들의 재의뢰율 98%로 검증된 경험으로 가장 효율적인 구조를 제안합니다.",
     seeAll: "전체 서비스 보기",
     pageTitle: "서비스",
-    pageDescription: "브랜딩 사이트, 쇼핑몰, 랜딩페이지, 예약·멤버십, 리뉴얼·유지보수, 마케팅 운영까지 — 메이크페이지의 6가지 핵심 서비스.",
+    pageDescription: "브랜딩 사이트, 쇼핑몰, 랜딩페이지, 예약·멤버십, 리뉴얼·유지보수, 마케팅 운영까지 — 메이크페이지잇의 6가지 핵심 서비스.",
     pageHeadingTitle: "사장님 사업의 단계마다, 필요한 사이트를 만듭니다.",
     pageHeadingDescription: "아이디어만 있는 단계부터, 매출이 자라고 있는 단계까지. 그때그때 가장 적합한 도구를 제공합니다.",
     serviceCta: "이 서비스 문의하기",
   },
-  logos: { eyebrow: "이런 사장님들이 메이크페이지를 선택했습니다" },
+  logos: { eyebrow: "이런 사장님들이 메이크페이지잇을 선택했습니다" },
   about: {
     pageTitle: "회사소개",
-    pageDescription: "메이크페이지는 사장님의 사업이 빛나는 홈페이지를 만드는 한국형 웹 에이전시입니다.",
+    pageDescription: "메이크페이지잇은 사장님의 사업이 빛나는 홈페이지를 만드는 한국형 웹 에이전시입니다.",
     headerEyebrow: "회사 소개",
     headerTitle: "홈페이지가 사업을 키우는 도구가 되도록.",
-    headerDescription: "메이크페이지는 디자인 회사이자 마케팅 파트너입니다. 사장님의 첫 디지털 매장이 계속 성장하도록 함께합니다.",
+    headerDescription: "메이크페이지잇은 디자인 회사이자 마케팅 파트너입니다. 사장님의 첫 디지털 매장이 계속 성장하도록 함께합니다.",
     promiseEyebrow: "우리의 약속",
     promiseTitle: "사장님의 시간이 가장 비싸다는 걸 압니다",
     promiseBody:
@@ -830,7 +854,7 @@ const ko: Dict = {
     timelineEyebrow: "발자취",
     timelineTitle: "우리가 걸어온 길",
     milestones: [
-      { y: "2022", t: "메이크페이지 설립, 첫 고객 5팀" },
+      { y: "2022", t: "메이크페이지잇 설립, 첫 고객 5팀" },
       { y: "2023", t: "누적 100개 사이트 제작 돌파" },
       { y: "2024", t: "쇼핑몰·예약 시스템 자체 솔루션 런칭" },
       { y: "2025", t: "만족도 4.9 / 5 · 재의뢰·추천율 98% 달성" },
@@ -838,8 +862,8 @@ const ko: Dict = {
     ],
   },
   contact: {
-    pageTitle: "문의하기",
-    pageDescription: "메이크페이지에 무료 견적을 요청하세요. 영업일 기준 24시간 이내 담당 매니저가 답변드립니다.",
+    pageTitle: "홈페이지 제작 문의 · 무료 견적",
+    pageDescription: "메이크페이지잇에 홈페이지 제작 무료 견적을 요청하세요. 미국 전역 한인 사업자 대상 한국어 상담, 영업일 기준 24시간 이내 담당 매니저가 답변드립니다.",
     headerEyebrow: "문의하기",
     headerTitle: "30분 통화면 충분합니다.",
     headerDescription: "아직 무엇을 만들지 정해지지 않으셔도 괜찮습니다.\n사장님 사업 이야기를 들려주시면 함께 정리해드립니다.",
@@ -870,7 +894,7 @@ const ko: Dict = {
         message: "문의내용",
       },
       placeholders: {
-        name: "홍길동 / 메이크페이지",
+        name: "홍길동 / 메이크페이지잇",
         phone: "(205) 555-0123",
         email: "hello@example.com",
         industry: "예: 카페, 학원, 쇼핑몰",
@@ -888,9 +912,9 @@ const ko: Dict = {
     privacy: "개인정보처리방침",
     terms: "이용약관",
     phoneLabel: "대표 ",
-    description: "기획부터 디자인, 개발, 운영까지. 사장님의 사업이 빛나도록 홈페이지를 만들어드립니다.",
+    description: "미주 한인 홈페이지 제작 전문 메이크페이지잇. 기획부터 디자인, 개발, 운영까지 사장님의 사업이 빛나도록 만들어드립니다.",
     businessHours: "평일 10:00 – 19:00 (점심 12:30 – 13:30)",
-    operatedBy: "메이크페이지는 CloudMasterIT LLC가 운영하는 서비스입니다. 카드 명세서에는 “CLOUDMASTERIT LLC”로 표시됩니다.",
+    operatedBy: "메이크페이지잇은 CloudMasterIT LLC가 운영하는 서비스입니다. 카드 명세서에는 “CLOUDMASTERIT LLC”로 표시됩니다.",
   },
   pricingPlans: {
     eyebrow: "가격 안내",
@@ -904,14 +928,14 @@ const ko: Dict = {
       title: "개인정보처리방침",
       description: "Privacy Policy",
       pageTitle: "개인정보처리방침",
-      pageDescription: "메이크페이지(운영: CloudMasterIT LLC) 개인정보처리방침",
+      pageDescription: "메이크페이지잇(운영: CloudMasterIT LLC) 개인정보처리방침",
     },
     terms: {
       eyebrow: "법적 고지",
       title: "이용약관",
       description: "Terms of Service",
       pageTitle: "이용약관",
-      pageDescription: "메이크페이지(운영: CloudMasterIT LLC) 이용약관",
+      pageDescription: "메이크페이지잇(운영: CloudMasterIT LLC) 이용약관",
     },
   },
   manage: {
@@ -931,13 +955,13 @@ const ko: Dict = {
     linkSentBody:
       "해당 이메일로 가입된 결제 내역이 있다면 안전 링크가 발송됩니다. 링크는 15분 후 만료됩니다.",
     requestError: "요청을 처리하지 못했습니다. 잠시 후 다시 시도해주세요.",
-    emailSubject: "메이크페이지 구독 관리",
+    emailSubject: "메이크페이지잇 구독 관리",
     emailHeading: "구독 관리",
     emailIntro:
       "아래 안전 링크를 통해 결제 관리 페이지로 이동하실 수 있습니다. 월 유지보수 취소, 카드 정보 변경, 인보이스 다운로드 모두 가능합니다.",
     emailCta: "결제 관리 페이지 열기",
     emailExpiryNote: "이 링크는 15분 후 만료됩니다. 본인이 요청하지 않으셨다면 무시하셔도 됩니다.",
-    emailFooter: "메이크페이지 — 사장님 사업이 빛나는 홈페이지.",
+    emailFooter: "메이크페이지잇 — 사장님 사업이 빛나는 홈페이지.",
     dashboardEyebrow: "내 계정",
     dashboardTitle: "구독 관리",
     dashboardBody: (email) => `${email} 계정으로 인증되었습니다. 원하시는 작업을 선택해주세요.`,
@@ -959,7 +983,7 @@ const ko: Dict = {
     invalidTokenTitle: "유효하지 않거나 만료된 링크입니다",
     invalidTokenBody: "안전 링크는 15분간만 유효합니다. 새 링크를 받아 다시 시도해주세요.",
     invalidTokenCta: "새 링크 받기",
-    customerEmailSubject: "메이크페이지 결제가 완료되었습니다",
+    customerEmailSubject: "메이크페이지잇 결제가 완료되었습니다",
     customerEmailHeading: "결제가 완료되었습니다",
     customerEmailIntro:
       "영업일 기준 24시간 이내 담당 매니저가 제작 시작을 위해 연락드립니다. 영수증을 아래에 첨부하니 보관용으로 사용해주세요.",
@@ -968,19 +992,20 @@ const ko: Dict = {
     customerEmailManageCta: "내 구독 관리하기",
     customerEmailFooter:
       "본인이 결제하지 않으셨다면 즉시 admin@makepageit.com 으로 연락 주세요.",
-    cancelEmailSubject: "메이크페이지 구독이 취소되었습니다",
+    cancelEmailSubject: "메이크페이지잇 구독이 취소되었습니다",
     cancelEmailHeading: "구독이 취소되었습니다",
     cancelEmailBody:
       "월 유지보수 구독이 취소되었습니다. 더 이상 결제되지 않습니다. 실수로 취소하셨다면 이 메일에 답장해주세요.",
-    domainRequestEmailSubject: (email) => `[MAKEPAGE] 도메인 갱신 거절 요청 — ${email}`,
+    domainRequestEmailSubject: (email) => `[MAKEPAGEIT] 도메인 갱신 거절 요청 — ${email}`,
     domainRequestEmailHeading: "도메인 갱신 거절 요청",
   },
-  backToPortfolio: { long: "메이크페이지 포트폴리오로 돌아가기", short: "돌아가기" },
+  backToPortfolio: { long: "메이크페이지잇 포트폴리오로 돌아가기", short: "돌아가기" },
   notFoundTemplate: "포트폴리오 템플릿",
   rootMetadata: {
-    siteTitle: "미주 한인 홈페이지 제작 전문 스튜디오",
+    siteTitle: "미주 한인 홈페이지 제작 전문 | 메이크페이지잇 MAKEPAGEIT",
+    titleSuffix: "메이크페이지잇",
     description:
-      "미국 전역 한인 사업자를 위한 홈페이지 제작 전문 스튜디오. 기획부터 디자인, 개발, 운영까지 한 팀이 책임지고 2주 안에 완성해드립니다.",
+      "미주 한인 홈페이지 제작 전문 메이크페이지잇. 미국 전역 한인 사업자를 위해 반응형 웹 디자인, 쇼핑몰 제작, 도메인·호스팅까지 한국어 상담으로 2주 안에 완성해드립니다.",
     keywords: [
       "한인 홈페이지 제작",
       "미주 한인 홈페이지 제작",
@@ -989,7 +1014,7 @@ const ko: Dict = {
       "홈페이지 제작 회사",
       "반응형 웹 디자인",
       "쇼핑몰 제작",
-      "메이크페이지",
+      "메이크페이지잇",
     ],
     locale: "ko_KR",
   },

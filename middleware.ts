@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { checkBasicAuth } from "@/lib/admin-auth";
 
-const ADMIN_REALM = 'Basic realm="MAKEPAGE Admin", charset="UTF-8"';
+const ADMIN_REALM = 'Basic realm="MAKEPAGEIT Admin", charset="UTF-8"';
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;

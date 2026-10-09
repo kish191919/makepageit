@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "소믈리에 | Vin Secret",
-  description: "소싱 철학 — 소믈리에가 와인을 고르는 방식. 메이크페이지가 제작한 Vin Secret 와인 클럽 홈페이지 템플릿의 소믈리에 페이지입니다.",
+  description: "소싱 철학 — 소믈리에가 와인을 고르는 방식. 메이크페이지잇이 제작한 Vin Secret 와인 클럽 홈페이지 템플릿의 소믈리에 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/vin-secret/sommelier",

@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "언론 보도 | 빌라 토스카나",
-  description: "2011년 개업 이후 빌라 토스카나에 대한 언론 및 가이드북 보도 — 메이크페이지가 제작한 파인다이닝 홈페이지 템플릿의 언론 보도 페이지입니다.",
+  description: "2011년 개업 이후 빌라 토스카나에 대한 언론 및 가이드북 보도 — 메이크페이지잇이 제작한 파인다이닝 홈페이지 템플릿의 언론 보도 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/villa-toscana/press",

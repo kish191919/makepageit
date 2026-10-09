@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Changelog | Nexus Lab",
   description:
-    "Every Nexus Lab release, in order — a developer-tool homepage template changelog page by MAKEPAGE.",
+    "Every Nexus Lab release, in order — a developer-tool homepage template changelog page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/nexus-lab/changelog",

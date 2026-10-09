@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "의료진 | 루미에르 피부과",
-  description: "루미에르 피부과 전문의를 소개합니다. 메이크페이지가 제작한 예약 시스템 포트폴리오 템플릿입니다.",
+  description: "루미에르 피부과 전문의를 소개합니다. 메이크페이지잇이 제작한 예약 시스템 포트폴리오 템플릿입니다.",
   alternates: {
     languages: {
       en: "/portfolio/lumiere-clinic/doctors",

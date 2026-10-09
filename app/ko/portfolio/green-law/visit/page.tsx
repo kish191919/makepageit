@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "찾아오시는 길 | 그린 법률사무소",
-  description: "그린 법률사무소 상담 신청 — 메이크페이지가 제작한 법률사무소 홈페이지 템플릿의 상담 신청 페이지입니다.",
+  description: "그린 법률사무소 상담 신청 — 메이크페이지잇이 제작한 법률사무소 홈페이지 템플릿의 상담 신청 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/green-law/visit",

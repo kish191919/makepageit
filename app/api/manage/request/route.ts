@@ -6,7 +6,7 @@ import { getDict } from "@/lib/i18n";
 
 export const runtime = "nodejs";
 
-const FROM = "MAKEPAGE <noreply@makepageit.com>";
+const FROM = "MAKEPAGEIT <noreply@makepageit.com>";
 
 export async function POST(request: Request) {
   try {

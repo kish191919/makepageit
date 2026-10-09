@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Selected Work | Jenna Cole Illustration",
   description:
-    "A closer look at recent illustration commissions — book covers, packaging, and editorial art by Jenna Cole. A portfolio homepage template by MAKEPAGE.",
+    "A closer look at recent illustration commissions — book covers, packaging, and editorial art by Jenna Cole. A portfolio homepage template by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/jini-illustration/works",

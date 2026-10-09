@@ -40,7 +40,7 @@ const copy = {
     },
     footer: {
       address: "Denver Hanin Weekly · Aurora, CO",
-      legal: "© 2026 Denver Hanin Weekly. A portfolio template by MAKEPAGE — form is a non-functional demo.",
+      legal: "© 2026 Denver Hanin Weekly. A portfolio template by MAKEPAGEIT — form is a non-functional demo.",
     },
   },
   ko: {
@@ -76,7 +76,7 @@ const copy = {
     },
     footer: {
       address: "Denver Hanin Weekly · 콜로라도 오로라",
-      legal: "© 2026 Denver Hanin Weekly. MAKEPAGE 포트폴리오 템플릿 — 해당 양식은 실제로 전송되지 않는 데모입니다.",
+      legal: "© 2026 Denver Hanin Weekly. MAKEPAGEIT 포트폴리오 템플릿 — 해당 양식은 실제로 전송되지 않는 데모입니다.",
     },
   },
 } as const;

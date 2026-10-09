@@ -5,7 +5,7 @@ import QuotePageInvalidView from "@/components/views/QuotePageInvalidView";
 import { verifyQuoteToken } from "@/lib/quote-token";
 
 export const metadata: Metadata = {
-  title: "견적서 · MAKEPAGE",
+  title: "견적서 · MAKEPAGEIT",
   robots: { index: false, follow: false },
 };
 

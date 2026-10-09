@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Press | Arco Atelier",
-  description: "Awards and press coverage of Arco Atelier since 2009 — an architecture homepage template by MAKEPAGE.",
+  description: "Awards and press coverage of Arco Atelier since 2009 — an architecture homepage template by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/arco-atelier/press",

@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "저널 | Noble Coffee Roasters",
   description:
-    "커핑 노트, 로스팅 커브 실험, 농장 방문기 — 메이크페이지가 제작한 Noble Coffee 홈페이지 템플릿의 저널 페이지입니다.",
+    "커핑 노트, 로스팅 커브 실험, 농장 방문기 — 메이크페이지잇이 제작한 Noble Coffee 홈페이지 템플릿의 저널 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/noble-coffee/journal",

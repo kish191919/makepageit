@@ -1,6 +1,6 @@
 export const site = {
-  name: "MAKEPAGE",
-  nameKo: "메이크페이지",
+  name: "MAKEPAGEIT",
+  nameKo: "메이크페이지잇",
   email: "admin@makepageit.com",
   phone: "205-734-9654",
   phoneIntl: "+12057349654",
@@ -11,11 +11,11 @@ export const site = {
     youtube: "https://youtube.com/@makepage",
   },
   legal: {
-    brand: "MAKEPAGE",
-    brandKo: "메이크페이지",
+    brand: "MAKEPAGEIT",
+    brandKo: "메이크페이지잇",
     operator: "CloudMasterIT LLC",
-    operatorNote: "MAKEPAGE는 CloudMasterIT LLC가 운영하는 서비스입니다.",
-    operatorNoteEn: "MAKEPAGE is a service operated by CloudMasterIT LLC.",
+    operatorNote: "MAKEPAGEIT은 CloudMasterIT LLC가 운영하는 서비스입니다.",
+    operatorNoteEn: "MAKEPAGEIT is a service operated by CloudMasterIT LLC.",
     contactEmail: "admin@makepageit.com",
   },
 };

@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Spa | The Wayfarer Hotel & Resort",
   description:
-    "Mediterranean-style spa treatments at the Wayfarer — a boutique hotel homepage template spa page by MAKEPAGE.",
+    "Mediterranean-style spa treatments at the Wayfarer — a boutique hotel homepage template spa page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/moai-hotel/spa",

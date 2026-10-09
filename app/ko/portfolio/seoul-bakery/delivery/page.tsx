@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "당일배송 | 서울 베이커리",
-  description: "다음 날 아침 배송 과정, 배송 가능 지역, 배송비 안내 — 메이크페이지가 제작한 Seoul Bakery 홈페이지 템플릿의 당일배송 페이지입니다.",
+  description: "다음 날 아침 배송 과정, 배송 가능 지역, 배송비 안내 — 메이크페이지잇이 제작한 Seoul Bakery 홈페이지 템플릿의 당일배송 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/seoul-bakery/delivery",

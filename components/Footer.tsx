@@ -29,7 +29,7 @@ export default function Footer() {
                 M
               </span>
               <span className="text-lg font-extrabold tracking-tight text-ink-900">
-                MAKE<span className="text-brand-600">PAGE</span>
+                MAKE<span className="text-brand-600">PAGE</span>IT
               </span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-500">

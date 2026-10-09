@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Accessories | Atelier 22",
   description:
-    "Hand-stitched totes, silk scarves, and wool berets — the Accessories collection from Atelier 22, an Atelier Shop homepage template page by MAKEPAGE.",
+    "Hand-stitched totes, silk scarves, and wool berets — the Accessories collection from Atelier 22, an Atelier Shop homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/atelier-shop/accessories",

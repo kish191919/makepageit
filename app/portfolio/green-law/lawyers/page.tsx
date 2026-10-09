@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Attorneys | Greene Law Group",
   description:
-    "Meet the attorneys of Greene Law Group — a law firm homepage template team page by MAKEPAGE.",
+    "Meet the attorneys of Greene Law Group — a law firm homepage template team page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/green-law/lawyers",

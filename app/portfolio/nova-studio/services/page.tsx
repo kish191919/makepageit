@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Services & Pricing | Nova Studio",
   description:
-    "Wedding, family, brand, and editorial photography packages with full pricing and process — from Nova Studio, a photographer homepage template page by MAKEPAGE.",
+    "Wedding, family, brand, and editorial photography packages with full pricing and process — from Nova Studio, a photographer homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/nova-studio/services",

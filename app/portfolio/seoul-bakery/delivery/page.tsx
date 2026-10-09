@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Same-Day Delivery | Sunrise Bakery Co.",
   description:
-    "How next-morning delivery works, delivery zones, and pricing — from Sunrise Bakery Co., a Seoul Bakery homepage template page by MAKEPAGE.",
+    "How next-morning delivery works, delivery zones, and pricing — from Sunrise Bakery Co., a Seoul Bakery homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/seoul-bakery/delivery",

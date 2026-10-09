@@ -1,8 +1,9 @@
 import { site } from "@/lib/site";
 import type { Plan, FAQ } from "@/lib/data";
-import type { Lang } from "@/lib/i18n";
+import { getDict, type Lang } from "@/lib/i18n";
 
 const BASE_URL = "https://makepageit.com";
+const LOGO_URL = `${BASE_URL}/apple-icon`;
 
 export function organizationSchema() {
   return {
@@ -11,7 +12,7 @@ export function organizationSchema() {
     name: site.name,
     alternateName: site.nameKo,
     url: BASE_URL,
-    logo: `${BASE_URL}/og-default.png`,
+    logo: LOGO_URL,
     email: site.email,
     telephone: site.phoneIntl,
     sameAs: [site.social.instagram, site.social.youtube, site.social.blog].filter(Boolean),
@@ -32,8 +33,8 @@ export function professionalServiceSchema(lang: Lang) {
   const url = lang === "ko" ? `${BASE_URL}/ko` : BASE_URL;
   const description =
     lang === "ko"
-      ? "MAKEPAGE는 미주 한인 사업자와 소상공인을 위한 홈페이지 제작 스튜디오입니다. 브랜딩, 쇼핑몰, 랜딩페이지, 예약 시스템까지 한 팀이 만들며, SEO와 AI 검색(GEO) 최적화가 기본 적용됩니다."
-      : "MAKEPAGE is a web design studio for small businesses and creators. Brand sites, e-commerce, landing pages, and booking systems built by one team, with SEO and AI search (GEO) optimization built in.";
+      ? "MAKEPAGEIT은 미주 한인 사업자와 소상공인을 위한 홈페이지 제작 스튜디오입니다. 브랜딩, 쇼핑몰, 랜딩페이지, 예약 시스템까지 한 팀이 만들며, SEO와 AI 검색(GEO) 최적화가 기본 적용됩니다."
+      : "MAKEPAGEIT is a web design studio for small businesses and creators. Brand sites, e-commerce, landing pages, and booking systems built by one team, with SEO and AI search (GEO) optimization built in.";
   return {
     "@context": "https://schema.org",
     "@type": ["Organization", "ProfessionalService"],
@@ -41,15 +42,15 @@ export function professionalServiceSchema(lang: Lang) {
     name: site.name,
     alternateName: site.nameKo,
     url,
-    logo: `${BASE_URL}/og-default.png`,
-    image: `${BASE_URL}/og-default.png`,
+    logo: LOGO_URL,
+    image: `${url}/opengraph-image`,
     email: site.email,
     telephone: site.phoneIntl,
     description,
     priceRange: "$$",
     areaServed: ["United States", "South Korea", "Worldwide"],
     serviceType: lang === "ko" ? "홈페이지 제작" : "Web Design & Development",
-    ...(lang === "ko" ? { keywords: "한인 홈페이지 제작, 미주 한인 사업자, 홈페이지 제작" } : {}),
+    keywords: getDict(lang).rootMetadata.keywords.join(", "),
     sameAs: [site.social.instagram, site.social.youtube, site.social.blog].filter(Boolean),
   };
 }

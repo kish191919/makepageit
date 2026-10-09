@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const FROM = "MAKEPAGE <noreply@makepageit.com>";
+const FROM = "MAKEPAGEIT <noreply@makepageit.com>";
 const TO = process.env.CONTACT_TO_EMAIL ?? "admin@makepageit.com";
 
 export async function POST(request: Request) {
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
       </div>
     `;
 
-    const subjectPrefix = isEn ? "[MAKEPAGE inquiry]" : "[MAKEPAGE 문의]";
+    const subjectPrefix = isEn ? "[MAKEPAGEIT inquiry]" : "[MAKEPAGEIT 문의]";
 
     const { error } = await resend.emails.send({
       from: FROM,

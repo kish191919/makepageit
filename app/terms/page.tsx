@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import TermsView from "@/components/views/TermsView";
-import { getDict } from "@/lib/i18n";
+import { getDict, pageAlternates } from "@/lib/i18n";
 
 const dict = getDict("en");
 
 export const metadata: Metadata = {
   title: dict.legal.terms.pageTitle,
   description: dict.legal.terms.pageDescription,
-  alternates: { languages: { en: "/terms", ko: "/ko/terms", "x-default": "/terms" } },
+  alternates: pageAlternates("en", "/terms"),
 };
 
 export default function TermsPage() {

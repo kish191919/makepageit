@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "News | Denver Hanin Weekly",
   description:
-    "Local business, policy, education, and community headlines from Denver's Korean-American community. A portfolio community-portal template by MAKEPAGE.",
+    "Local business, policy, education, and community headlines from Denver's Korean-American community. A portfolio community-portal template by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/denver-hanin/news",

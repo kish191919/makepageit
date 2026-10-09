@@ -128,7 +128,7 @@ const copy = {
       companyLabel: "Company",
       backLabel: "Back to portfolio",
       address: "Denver Hanin Weekly · Aurora, CO",
-      legal: "© 2026 Denver Hanin Weekly. A portfolio template by MAKEPAGE — fictional publication, not a real news outlet.",
+      legal: "© 2026 Denver Hanin Weekly. A portfolio template by MAKEPAGEIT — fictional publication, not a real news outlet.",
     },
   },
   ko: {
@@ -252,7 +252,7 @@ const copy = {
       companyLabel: "회사 정보",
       backLabel: "포트폴리오로 돌아가기",
       address: "Denver Hanin Weekly · 콜로라도 오로라",
-      legal: "© 2026 Denver Hanin Weekly. MAKEPAGE 포트폴리오 템플릿 — 실제 언론사가 아닌 가상의 매체입니다.",
+      legal: "© 2026 Denver Hanin Weekly. MAKEPAGEIT 포트폴리오 템플릿 — 실제 언론사가 아닌 가상의 매체입니다.",
     },
   },
 } as const;

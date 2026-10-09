@@ -45,6 +45,7 @@ export default function FAQ({ lang }: { lang: Lang }) {
                   key={f.q}
                   type="button"
                   onClick={() => setOpen(isOpen ? null : i)}
+                  aria-expanded={isOpen}
                   className="block w-full px-6 py-5 text-left transition hover:bg-ink-50 sm:px-8"
                 >
                   <div className="flex items-center justify-between gap-4">
@@ -59,11 +60,13 @@ export default function FAQ({ lang }: { lang: Lang }) {
                       +
                     </span>
                   </div>
-                  {isOpen && (
-                    <p className="mt-4 text-sm leading-relaxed text-ink-500 sm:text-base">
-                      {f.a}
-                    </p>
-                  )}
+                  <p
+                    className={`mt-4 text-sm leading-relaxed text-ink-500 sm:text-base ${
+                      isOpen ? "" : "hidden"
+                    }`}
+                  >
+                    {f.a}
+                  </p>
                 </button>
               );
             })}

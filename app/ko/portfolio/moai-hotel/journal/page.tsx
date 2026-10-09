@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "저널 | 모아이 호텔 앤 리조트",
-  description: "절벽에서 보내는 기록 — 메이크페이지가 제작한 모아이 부티크 호텔 홈페이지 템플릿의 저널 페이지입니다.",
+  description: "절벽에서 보내는 기록 — 메이크페이지잇이 제작한 모아이 부티크 호텔 홈페이지 템플릿의 저널 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/moai-hotel/journal",

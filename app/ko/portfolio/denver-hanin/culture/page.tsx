@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "문화 & 라이프스타일 | 덴버 한인 위클리",
-  description: "덴버 한인 커뮤니티의 이벤트, 음식, 엔터테인먼트, 사람들의 이야기. 메이크페이지가 제작한 커뮤니티 포털 포트폴리오 템플릿입니다.",
+  description: "덴버 한인 커뮤니티의 이벤트, 음식, 엔터테인먼트, 사람들의 이야기. 메이크페이지잇이 제작한 커뮤니티 포털 포트폴리오 템플릿입니다.",
   alternates: {
     languages: {
       en: "/portfolio/denver-hanin/culture",

@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Journal | Vin Secret",
   description:
-    "Dispatches from the buying trip — vineyard visits and tasting notes from Vin Secret, a wine club homepage template by MAKEPAGE.",
+    "Dispatches from the buying trip — vineyard visits and tasting notes from Vin Secret, a wine club homepage template by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/vin-secret/journal",

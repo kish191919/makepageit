@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "에이전트 | 하버앤베일 부동산",
-  description: "하버앤베일 부동산의 에이전트 소개 — 메이크페이지가 제작한 부동산 홈페이지 템플릿의 팀 페이지입니다.",
+  description: "하버앤베일 부동산의 에이전트 소개 — 메이크페이지잇이 제작한 부동산 홈페이지 템플릿의 팀 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/harbor-realty/agents",

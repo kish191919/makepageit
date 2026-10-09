@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "룩북 | Atelier 22",
   description:
-    "In Bloom — 메이크페이지가 제작한 Atelier Shop 홈페이지 템플릿의 2026 봄·여름 룩북 페이지입니다.",
+    "In Bloom — 메이크페이지잇이 제작한 Atelier Shop 홈페이지 템플릿의 2026 봄·여름 룩북 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/atelier-shop/lookbook",

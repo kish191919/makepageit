@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Studio | Nova Studio",
   description:
-    "A look inside the daylight studio and infinity cyc space where Nova Studio has been shooting for six years — a photographer homepage template page by MAKEPAGE.",
+    "A look inside the daylight studio and infinity cyc space where Nova Studio has been shooting for six years — a photographer homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/nova-studio/studio",

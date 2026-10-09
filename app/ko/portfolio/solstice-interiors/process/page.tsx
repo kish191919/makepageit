@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "프로세스 | 솔스티스 인테리어",
-  description: "솔스티스 인테리어의 프로젝트 진행 과정 — 메이크페이지가 제작한 인테리어 디자인 홈페이지 템플릿의 프로세스 페이지입니다.",
+  description: "솔스티스 인테리어의 프로젝트 진행 과정 — 메이크페이지잇이 제작한 인테리어 디자인 홈페이지 템플릿의 프로세스 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/solstice-interiors/process",

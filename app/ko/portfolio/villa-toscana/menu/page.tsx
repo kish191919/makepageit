@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "테이스팅 메뉴 | 빌라 토스카나",
-  description: "빌라 토스카나의 7코스 테이스팅 메뉴 전체 — 메이크페이지가 제작한 파인다이닝 홈페이지 템플릿의 메뉴 페이지입니다.",
+  description: "빌라 토스카나의 7코스 테이스팅 메뉴 전체 — 메이크페이지잇이 제작한 파인다이닝 홈페이지 템플릿의 메뉴 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/villa-toscana/menu",

@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Admin · MAKEPAGE",
+  title: "Admin · MAKEPAGEIT",
   robots: { index: false, follow: false },
 };
 
@@ -18,7 +18,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className="w-56 bg-slate-900 text-slate-200 flex flex-col">
         <div className="px-5 py-5 border-b border-slate-800">
           <Link href="/admin" className="text-base font-semibold text-white">
-            MAKEPAGE Admin
+            MAKEPAGEIT Admin
           </Link>
         </div>
         <nav className="flex-1 px-3 py-4 space-y-1">

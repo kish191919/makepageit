@@ -5,7 +5,7 @@ import { getDict } from "@/lib/i18n";
 
 export const runtime = "nodejs";
 
-const FROM = "MAKEPAGE <noreply@makepageit.com>";
+const FROM = "MAKEPAGEIT <noreply@makepageit.com>";
 const TO = process.env.ADMIN_TO_EMAIL ?? "admin@makepageit.com";
 
 export async function POST(request: Request) {

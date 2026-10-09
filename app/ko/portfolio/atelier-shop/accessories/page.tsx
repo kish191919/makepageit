@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "액세서리 | Atelier 22",
   description:
-    "핸드 스티치 토트백, 실크 스카프, 울 베레모 — 메이크페이지가 제작한 Atelier Shop 홈페이지 템플릿의 액세서리 페이지입니다.",
+    "핸드 스티치 토트백, 실크 스카프, 울 베레모 — 메이크페이지잇이 제작한 Atelier Shop 홈페이지 템플릿의 액세서리 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/atelier-shop/accessories",

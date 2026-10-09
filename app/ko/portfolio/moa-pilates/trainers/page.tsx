@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "트레이너 | MOA PILATES",
   description:
-    "원장, 리포머 전담, 재활 전문 강사까지 — MOA의 모든 수업을 이끄는 강사진을 소개합니다. 메이크페이지가 제작한 Moa Pilates 홈페이지 템플릿의 트레이너 페이지입니다.",
+    "원장, 리포머 전담, 재활 전문 강사까지 — MOA의 모든 수업을 이끄는 강사진을 소개합니다. 메이크페이지잇이 제작한 Moa Pilates 홈페이지 템플릿의 트레이너 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/moa-pilates/trainers",

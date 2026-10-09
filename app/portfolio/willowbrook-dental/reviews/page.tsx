@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Reviews | Willowbrook Dental Care",
-  description: "Real patient reviews for Willowbrook Dental Care. A portfolio booking-site template by MAKEPAGE.",
+  description: "Real patient reviews for Willowbrook Dental Care. A portfolio booking-site template by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/willowbrook-dental/reviews",

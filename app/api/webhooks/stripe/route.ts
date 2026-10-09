@@ -7,7 +7,7 @@ import type Stripe from "stripe";
 
 export const runtime = "nodejs";
 
-const FROM = "MAKEPAGE <noreply@makepageit.com>";
+const FROM = "MAKEPAGEIT <noreply@makepageit.com>";
 const TO = process.env.ADMIN_TO_EMAIL ?? "admin@makepageit.com";
 
 export async function POST(request: Request) {
@@ -125,7 +125,7 @@ async function notifyAdmin(session: Stripe.Checkout.Session) {
   await resend.emails.send({
     from: FROM,
     to: TO,
-    subject: `[MAKEPAGE] New ${planId} subscription — ${customerName}`,
+    subject: `[MAKEPAGEIT] New ${planId} subscription — ${customerName}`,
     html,
   });
 }
@@ -213,7 +213,7 @@ async function notifySubscriptionCanceled(subscription: Stripe.Subscription) {
     resend.emails.send({
       from: FROM,
       to: TO,
-      subject: `[MAKEPAGE] Subscription canceled — ${customerEmail}`,
+      subject: `[MAKEPAGEIT] Subscription canceled — ${customerEmail}`,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
           <h2 style="color: #111827; border-bottom: 2px solid #ef4444; padding-bottom: 12px;">Subscription canceled</h2>
@@ -240,7 +240,7 @@ async function notifyInvoicePaid(invoice: Stripe.Invoice) {
   await resend.emails.send({
     from: FROM,
     to: TO,
-    subject: `[MAKEPAGE] Invoice paid — ${number} (${amount})`,
+    subject: `[MAKEPAGEIT] Invoice paid — ${number} (${amount})`,
     html: `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
         <h2 style="color: #111827; border-bottom: 2px solid #10b981; padding-bottom: 12px;">Invoice paid</h2>
@@ -267,7 +267,7 @@ async function notifyInvoicePaymentFailed(invoice: Stripe.Invoice) {
   await resend.emails.send({
     from: FROM,
     to: TO,
-    subject: `[MAKEPAGE] Invoice payment failed — ${number}`,
+    subject: `[MAKEPAGEIT] Invoice payment failed — ${number}`,
     html: `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
         <h2 style="color: #111827; border-bottom: 2px solid #ef4444; padding-bottom: 12px;">Invoice payment failed</h2>

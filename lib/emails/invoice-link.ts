@@ -14,7 +14,7 @@ type Strings = {
 
 const strings: Record<Lang, Strings> = {
   en: {
-    subject: "Your MAKEPAGE invoice is ready",
+    subject: "Your MAKEPAGEIT invoice is ready",
     heading: "Complete your subscription",
     intro:
       "Below is the recurring quote we prepared for you. Click the button to start your subscription securely on Stripe — your card won't be charged until you confirm.",
@@ -25,7 +25,7 @@ const strings: Record<Lang, Strings> = {
     cadenceLabels: { month: "Billed monthly", year: "Billed yearly" },
   },
   ko: {
-    subject: "메이크페이지 인보이스가 도착했습니다",
+    subject: "메이크페이지잇 인보이스가 도착했습니다",
     heading: "구독을 시작해 주세요",
     intro:
       "사장님께 준비해 드린 정기 결제 견적입니다. 아래 버튼을 누르시면 Stripe 결제 페이지로 안전하게 이동합니다. 결제를 직접 확인하시기 전까지는 카드에서 출금되지 않습니다.",

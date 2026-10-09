@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "Contact | 아르코 아틀리에",
-  description: "아르코 아틀리에에 문의하세요 — 오피스 정보와 프로젝트 문의 폼. 메이크페이지가 제작한 건축 사무소 홈페이지 템플릿입니다.",
+  description: "아르코 아틀리에에 문의하세요 — 오피스 정보와 프로젝트 문의 폼. 메이크페이지잇이 제작한 건축 사무소 홈페이지 템플릿입니다.",
   alternates: {
     languages: {
       en: "/portfolio/arco-atelier/contact",

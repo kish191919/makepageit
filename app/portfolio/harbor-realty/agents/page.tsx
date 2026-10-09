@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Agents | Harbor & Vale Realty",
   description:
-    "Meet the agents at Harbor & Vale Realty — a real estate homepage template team page by MAKEPAGE.",
+    "Meet the agents at Harbor & Vale Realty — a real estate homepage template team page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/harbor-realty/agents",

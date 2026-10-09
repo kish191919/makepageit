@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Membership | FORM & FLOW PILATES",
   description:
-    "Compare 1:1 Private, Group Reformer, and Morning Mat pricing and pick a plan that fits how often you train. A Moa Pilates homepage template page by MAKEPAGE.",
+    "Compare 1:1 Private, Group Reformer, and Morning Mat pricing and pick a plan that fits how often you train. A Moa Pilates homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/moa-pilates/membership",

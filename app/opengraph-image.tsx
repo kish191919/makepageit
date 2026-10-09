@@ -1,7 +1,7 @@
 import { buildOgImage, OG_IMAGE_SIZE } from "@/lib/og-image";
 
 export const runtime = "nodejs";
-export const alt = "MAKEPAGE — You run the business. We build the website—live in 2 weeks.";
+export const alt = "MAKEPAGEIT — You run the business. We build the website—live in 2 weeks.";
 export const size = OG_IMAGE_SIZE;
 export const contentType = "image/png";
 

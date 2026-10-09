@@ -14,7 +14,7 @@ type Strings = {
 
 const strings: Record<Lang, Strings> = {
   en: {
-    subject: "Your MAKEPAGE quote is ready",
+    subject: "Your MAKEPAGEIT quote is ready",
     heading: "Your quote is ready",
     intro:
       "Below are the items in your quote. Open the link to choose your preferred payment option — one-time, monthly, or yearly.",
@@ -29,7 +29,7 @@ const strings: Record<Lang, Strings> = {
     },
   },
   ko: {
-    subject: "메이크페이지 견적서가 준비되었습니다",
+    subject: "메이크페이지잇 견적서가 준비되었습니다",
     heading: "견적서를 확인해 주세요",
     intro:
       "아래 견적서를 준비해 드렸습니다. 링크를 열어 일회성·매월·매년 중 원하시는 결제 방식을 직접 선택하실 수 있습니다.",

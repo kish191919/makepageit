@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Visit Us | Noble Coffee Roasters",
   description:
-    "Address, hours, and everything you need to know before you visit Noble Coffee Roasters — a Noble Coffee homepage template page by MAKEPAGE.",
+    "Address, hours, and everything you need to know before you visit Noble Coffee Roasters — a Noble Coffee homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/noble-coffee/visit",

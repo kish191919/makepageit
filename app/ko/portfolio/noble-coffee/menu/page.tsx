@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "메뉴 | Noble Coffee Roasters",
   description:
-    "싱글 오리진 필터 커피, 에스프레소 바, 아침 베이커리 — 메이크페이지가 제작한 Noble Coffee 홈페이지 템플릿의 메뉴 페이지입니다.",
+    "싱글 오리진 필터 커피, 에스프레소 바, 아침 베이커리 — 메이크페이지잇이 제작한 Noble Coffee 홈페이지 템플릿의 메뉴 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/noble-coffee/menu",

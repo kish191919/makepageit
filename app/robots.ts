@@ -5,7 +5,7 @@ const BASE_URL = "https://makepageit.com";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/api/", "/_next/"] },
+      { userAgent: "*", allow: "/", disallow: ["/api/"] },
       { userAgent: "Googlebot", allow: "/" },
       { userAgent: "Yeti", allow: "/" },
       { userAgent: "Daum", allow: "/" },

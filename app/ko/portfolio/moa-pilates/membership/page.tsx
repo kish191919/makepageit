@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "멤버십 | MOA PILATES",
   description:
-    "1:1 프라이빗, 그룹 리포머, 모닝 매트 요금을 비교하고 나에게 맞는 멤버십을 선택하세요. 메이크페이지가 제작한 Moa Pilates 홈페이지 템플릿의 멤버십 페이지입니다.",
+    "1:1 프라이빗, 그룹 리포머, 모닝 매트 요금을 비교하고 나에게 맞는 멤버십을 선택하세요. 메이크페이지잇이 제작한 Moa Pilates 홈페이지 템플릿의 멤버십 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/moa-pilates/membership",

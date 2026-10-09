@@ -5,7 +5,7 @@ import QuotePageInvalidView from "@/components/views/QuotePageInvalidView";
 import { verifyQuoteToken } from "@/lib/quote-token";
 
 export const metadata: Metadata = {
-  title: "Quote · MAKEPAGE",
+  title: "Quote · MAKEPAGEIT",
   robots: { index: false, follow: false },
 };
 

@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "About | Solstice Interiors",
   description:
-    "The studio and story behind Solstice Interiors — a residential design homepage template about page by MAKEPAGE.",
+    "The studio and story behind Solstice Interiors — a residential design homepage template about page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/solstice-interiors/about",

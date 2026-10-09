@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Advisors | Meridian Wealth Partners",
   description:
-    "Meet the CFP® and CFA® advisors at Meridian Wealth Partners — a wealth management homepage template advisors page by MAKEPAGE.",
+    "Meet the CFP® and CFA® advisors at Meridian Wealth Partners — a wealth management homepage template advisors page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/meridian-wealth/advisors",

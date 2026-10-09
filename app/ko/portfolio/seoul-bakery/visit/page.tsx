@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "매장 안내 | 서울 베이커리",
-  description: "매장 운영시간, 주소, 오시는 길 안내 — 메이크페이지가 제작한 Seoul Bakery 홈페이지 템플릿의 매장 안내 페이지입니다.",
+  description: "매장 운영시간, 주소, 오시는 길 안내 — 메이크페이지잇이 제작한 Seoul Bakery 홈페이지 템플릿의 매장 안내 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/seoul-bakery/visit",

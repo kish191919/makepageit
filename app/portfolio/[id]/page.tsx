@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import PortfolioTemplateView from "@/components/views/PortfolioTemplateView";
 import { getPortfolios } from "@/lib/data";
-import { getDict } from "@/lib/i18n";
+import { getDict, pageAlternates } from "@/lib/i18n";
 import { breadcrumbSchema, jsonLdScriptProps, portfolioCaseSchema } from "@/lib/jsonld";
 
 type Params = { id: string };
@@ -19,14 +19,8 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   const tagLine = item.tags.length ? ` — ${item.tags.join(", ")}` : "";
   return {
     title: `${item.client} (${item.category}) | Web design case study`,
-    description: `${item.client} ${item.category.toLowerCase()} case study by MAKEPAGE. ${item.description}${tagLine}.`,
-    alternates: {
-      languages: {
-        en: `/portfolio/${item.id}`,
-        ko: `/ko/portfolio/${item.id}`,
-        "x-default": `/portfolio/${item.id}`,
-      },
-    },
+    description: `${item.client} ${item.category.toLowerCase()} case study by MAKEPAGEIT. ${item.description}${tagLine}.`,
+    alternates: pageAlternates("en", `/portfolio/${item.id}`),
     openGraph: {
       title: `${item.client} — ${item.category}`,
       description: item.description,

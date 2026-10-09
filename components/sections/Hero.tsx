@@ -93,6 +93,9 @@ export default function Hero({ lang }: { lang: Lang }) {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="text-center lg:text-left">
             <h1 className="h-display text-3xl text-white sm:text-5xl lg:text-6xl">
+              <span className="mb-4 block text-sm font-semibold uppercase leading-normal tracking-[0.2em] text-brand-400">
+                {dict.hero.eyebrow}
+              </span>
               {lang === "en" ? (
                 <>
                   {dict.hero.titleA}
@@ -149,7 +152,7 @@ export default function Hero({ lang }: { lang: Lang }) {
             <div className="relative z-10 aspect-[4/3] motion-safe:animate-float-soft">
               {sites.map(({ site, shot }, i) => {
                 const offset = (i - active + sites.length) % sites.length;
-                return <WebsiteFrame key={site.id} image={shot} alt={site.client} offset={offset} />;
+                return <WebsiteFrame key={site.id} image={shot} alt={dict.portfolio.imageAlt(site.client)} offset={offset} />;
               })}
             </div>
             {sites.length > 1 && (

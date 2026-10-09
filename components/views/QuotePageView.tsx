@@ -32,7 +32,7 @@ const strings = {
     error: "Couldn't start checkout. Please try again or contact support.",
     footer: "Secure payment via Stripe. We never see your card details.",
     billingEntity:
-      "Billed by CloudMasterIT LLC, the legal operator of MAKEPAGE. Charges will appear as “CLOUDMASTERIT LLC” on your card statement.",
+      "Billed by CloudMasterIT LLC, the legal operator of MAKEPAGEIT. Charges will appear as “CLOUDMASTERIT LLC” on your card statement.",
   },
   ko: {
     eyebrow: "견적서",
@@ -59,7 +59,7 @@ const strings = {
     error: "결제를 시작하지 못했습니다. 잠시 후 다시 시도하거나 문의해 주세요.",
     footer: "Stripe를 통한 안전 결제입니다. 카드 정보는 저장되지 않습니다.",
     billingEntity:
-      "결제는 메이크페이지의 운영 법인인 CloudMasterIT LLC에서 처리됩니다. 카드 명세서에는 “CLOUDMASTERIT LLC”로 표시됩니다.",
+      "결제는 메이크페이지잇의 운영 법인인 CloudMasterIT LLC에서 처리됩니다. 카드 명세서에는 “CLOUDMASTERIT LLC”로 표시됩니다.",
   },
 } as const;
 

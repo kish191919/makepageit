@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "스파 | 모아이 호텔 앤 리조트",
-  description: "모아이 호텔의 지중해식 스파 트리트먼트 — 메이크페이지가 제작한 부티크 호텔 홈페이지 템플릿의 스파 페이지입니다.",
+  description: "모아이 호텔의 지중해식 스파 트리트먼트 — 메이크페이지잇이 제작한 부티크 호텔 홈페이지 템플릿의 스파 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/moai-hotel/spa",

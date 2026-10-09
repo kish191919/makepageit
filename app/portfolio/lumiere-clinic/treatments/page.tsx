@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Treatments | Lumière Skin Clinic",
   description:
-    "Signature dermatology treatments — Hydrating Boost, Laser Toning, Lift & Contour, and Acne Care. A portfolio booking-site template by MAKEPAGE.",
+    "Signature dermatology treatments — Hydrating Boost, Laser Toning, Lift & Contour, and Acne Care. A portfolio booking-site template by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/lumiere-clinic/treatments",

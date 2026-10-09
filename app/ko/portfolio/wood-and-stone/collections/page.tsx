@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "컬렉션 | Wood & Stone",
-  description: "Wood & Stone의 FOREST, QUARRY, CALM 컬렉션 — 메이크페이지가 제작한 가구 홈페이지 템플릿의 컬렉션 페이지입니다.",
+  description: "Wood & Stone의 FOREST, QUARRY, CALM 컬렉션 — 메이크페이지잇이 제작한 가구 홈페이지 템플릿의 컬렉션 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/wood-and-stone/collections",

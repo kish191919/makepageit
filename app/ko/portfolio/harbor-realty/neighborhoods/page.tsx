@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "지역 안내 | 하버앤베일 부동산",
-  description: "하버앤베일 부동산이 담당하는 해안가 지역 가이드 — 메이크페이지가 제작한 부동산 홈페이지 템플릿의 지역 안내 페이지입니다.",
+  description: "하버앤베일 부동산이 담당하는 해안가 지역 가이드 — 메이크페이지잇이 제작한 부동산 홈페이지 템플릿의 지역 안내 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/harbor-realty/neighborhoods",

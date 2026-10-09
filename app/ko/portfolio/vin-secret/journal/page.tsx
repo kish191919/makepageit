@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "저널 | Vin Secret",
-  description: "바잉 트립과 테이스팅 노트 — 메이크페이지가 제작한 Vin Secret 와인 클럽 홈페이지 템플릿의 저널 페이지입니다.",
+  description: "바잉 트립과 테이스팅 노트 — 메이크페이지잇이 제작한 Vin Secret 와인 클럽 홈페이지 템플릿의 저널 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/vin-secret/journal",

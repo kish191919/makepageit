@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "전체 메뉴 | 서울 베이커리",
-  description: "매일 새벽 구워내는 빵과 페이스트리, 케이크 — 메이크페이지가 제작한 Seoul Bakery 홈페이지 템플릿의 전체 메뉴 페이지입니다.",
+  description: "매일 새벽 구워내는 빵과 페이스트리, 케이크 — 메이크페이지잇이 제작한 Seoul Bakery 홈페이지 템플릿의 전체 메뉴 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/seoul-bakery/menu",

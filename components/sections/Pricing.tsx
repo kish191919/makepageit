@@ -171,35 +171,32 @@ export default function Pricing({
 
         {plans.some((p) => p.pricing.originalOneTime) && (
           <div className="mx-auto mb-10 mt-6 max-w-4xl">
-            <div className="relative overflow-hidden rounded-3xl border border-brand-400/30 bg-gradient-to-b from-white/[0.07] to-white/[0.02] px-6 py-8 text-center sm:px-10 sm:py-10">
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-accent-500/10 via-brand-500/10 to-transparent" />
-              <div className="relative">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wide text-accent-400 ring-1 ring-inset ring-accent-500/40 sm:text-sm">
-                  <TagIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                  {dict.pricing.promoBadge}
+            <div className="rounded-3xl border border-white/10 bg-ink-800 px-6 py-8 text-center sm:px-10 sm:py-10">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-500/15 px-3.5 py-1 text-xs font-bold uppercase tracking-wide text-accent-400 ring-1 ring-inset ring-accent-500/30 sm:text-sm">
+                <TagIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                {dict.pricing.promoBadge}
+              </span>
+              <p className="mt-4 break-keep text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+                {dict.pricing.promoHeadline.pre}
+                <br className="sm:hidden" />
+                <span className="hidden sm:inline"> </span>
+                <span className="text-accent-400">{dict.pricing.promoHeadline.highlight}</span>
+              </p>
+              <p className="mt-3 break-keep text-base text-white/60 sm:text-lg">
+                {dict.pricing.promoSub.pre}
+                <br className="sm:hidden" />
+                <span className="hidden sm:inline"> </span>
+                {dict.pricing.promoSub.post}
+              </p>
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-ink-700 px-3 py-1 text-xs font-semibold text-white/80 ring-1 ring-inset ring-white/10 sm:text-sm">
+                  <BoltIcon className="h-3.5 w-3.5 text-accent-400" />
+                  {dict.pricing.promoAutoApply}
                 </span>
-                <p className="mt-4 break-keep text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-                  {dict.pricing.promoHeadline.pre}
-                  <br className="sm:hidden" />
-                  <span className="hidden sm:inline"> </span>
-                  <span className="text-accent-400">{dict.pricing.promoHeadline.highlight}</span>
-                </p>
-                <p className="mt-3 break-keep text-base text-white/70 sm:text-lg">
-                  {dict.pricing.promoSub.pre}
-                  <br className="sm:hidden" />
-                  <span className="hidden sm:inline"> </span>
-                  {dict.pricing.promoSub.post}
-                </p>
-                <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-white/70 ring-1 ring-inset ring-white/10 sm:text-sm">
-                    <BoltIcon className="h-3.5 w-3.5 text-accent-400" />
-                    {dict.pricing.promoAutoApply}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1 text-xs font-semibold text-white/70 ring-1 ring-inset ring-white/10 sm:text-sm">
-                    <ClockIcon className="h-3.5 w-3.5 text-accent-400" />
-                    {dict.pricing.promoDeadline}
-                  </span>
-                </div>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-ink-700 px-3 py-1 text-xs font-semibold text-white/80 ring-1 ring-inset ring-white/10 sm:text-sm">
+                  <ClockIcon className="h-3.5 w-3.5 text-accent-400" />
+                  {dict.pricing.promoDeadline}
+                </span>
               </div>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "인사이트 | 메리디안 자산관리",
-  description: "메리디안 자산관리가 전하는 수수료 기반 플래닝 노트 — 메이크페이지가 제작한 자산관리 홈페이지 템플릿의 인사이트 페이지입니다.",
+  description: "메리디안 자산관리가 전하는 수수료 기반 플래닝 노트 — 메이크페이지잇이 제작한 자산관리 홈페이지 템플릿의 인사이트 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/meridian-wealth/insights",

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import PrivacyView from "@/components/views/PrivacyView";
-import { getDict } from "@/lib/i18n";
+import { getDict, pageAlternates } from "@/lib/i18n";
 
 const dict = getDict("ko");
 
 export const metadata: Metadata = {
   title: dict.legal.privacy.pageTitle,
   description: dict.legal.privacy.pageDescription,
-  alternates: { languages: { en: "/privacy", ko: "/ko/privacy", "x-default": "/privacy" } },
+  alternates: pageAlternates("ko", "/privacy"),
 };
 
 export default function PrivacyPageKo() {

@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Journal | Atelier 22",
   description:
-    "Pattern drafts, fabric sourcing trips, and maker profiles from Atelier 22 — an Atelier Shop homepage template page by MAKEPAGE.",
+    "Pattern drafts, fabric sourcing trips, and maker profiles from Atelier 22 — an Atelier Shop homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/atelier-shop/journal",

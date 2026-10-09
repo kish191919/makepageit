@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Dine | The Wayfarer Hotel & Resort",
   description:
-    "Cellar dining, a chef's counter, and a cliffside terrace at the Wayfarer — a boutique hotel homepage template dine page by MAKEPAGE.",
+    "Cellar dining, a chef's counter, and a cliffside terrace at the Wayfarer — a boutique hotel homepage template dine page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/moai-hotel/dine",

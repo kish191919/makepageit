@@ -13,7 +13,7 @@ import { signQuoteToken, type QuoteCadences } from "@/lib/quote-token";
 
 export const runtime = "nodejs";
 
-const FROM = "MAKEPAGE <noreply@makepageit.com>";
+const FROM = "MAKEPAGEIT <noreply@makepageit.com>";
 const DEFAULT_CURRENCY = "usd";
 
 type SingleBody = {

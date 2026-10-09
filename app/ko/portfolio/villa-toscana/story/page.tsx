@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "우리의 이야기 | 빌라 토스카나",
-  description: "빌라 토스카나의 14년 — 셰프와 연혁, 그리고 철학. 메이크페이지가 제작한 파인다이닝 홈페이지 템플릿의 스토리 페이지입니다.",
+  description: "빌라 토스카나의 14년 — 셰프와 연혁, 그리고 철학. 메이크페이지잇이 제작한 파인다이닝 홈페이지 템플릿의 스토리 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/villa-toscana/story",

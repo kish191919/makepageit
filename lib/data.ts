@@ -176,6 +176,16 @@ const portfoliosEn: Portfolio[] = [
     url: "https://www.yttmission.org/",
   },
 {
+    id: "ktta-dc",
+    client: "KTTA of DC",
+    category: "Real client",
+    description: "Bilingual site for the Korean Table Tennis Association of DC, bringing tournament schedules, event galleries, and a local venue finder together for players across Virginia and Washington, DC.",
+    image: "/images/portfolio/ktta-dc.png",
+    tags: ["Nonprofit", "Sports association", "Community"],
+    year: "2026",
+    url: "https://www.kttaofdc.org/en",
+  },
+{
     id: "daniel-math",
     client: "Daniel Math Academy",
     category: "Real client",
@@ -388,6 +398,16 @@ const portfoliosKo: Portfolio[] = [
     tags: ["비영리", "선교", "스포츠 선교"],
     year: "2026",
     url: "https://www.yttmission.org/",
+  },
+{
+    id: "ktta-dc",
+    client: "워싱턴DC 한인탁구협회",
+    category: "실제 고객사",
+    description: "버지니아·워싱턴DC 지역 한인 탁구인들의 협회 사이트로, 대회 일정·갤러리·탁구장 안내를 한·영 이중언어로 한곳에 정리해 제작.",
+    image: "/images/portfolio/ktta-dc.png",
+    tags: ["비영리", "스포츠 협회", "커뮤니티"],
+    year: "2026",
+    url: "https://www.kttaofdc.org/",
   },
 {
     id: "daniel-math",
@@ -773,7 +793,11 @@ const faqsEn: FAQ[] = [
   },
   {
     q: "Do you build websites for Korean-American business owners?",
-    a: "Yes — MAKEPAGE specializes in building websites for Korean-American business owners and small businesses across the US. You can consult with us in Korean, and we handle US domain, hosting, and payment setup end-to-end.",
+    a: "Yes — MAKEPAGEIT specializes in building websites for Korean-American business owners and small businesses across the US. You can consult with us in Korean, and we handle US domain, hosting, and payment setup end-to-end.",
+  },
+  {
+    q: "What kinds of websites do you design and build?",
+    a: "We design and build small business websites, ecommerce websites, landing pages, booking sites, and portfolio websites. Every project uses responsive web design, so it looks right on phones, tablets, and desktops, and ships with basic SEO setup. Not sure which type fits? We'll recommend one during your free 30-minute consult.",
   },
   {
     q: "Do you handle the domain and hosting?",
@@ -808,7 +832,11 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "미주에서 한인 사업자를 위한 홈페이지 제작도 가능한가요?",
-    a: "네, 메이크페이지는 미국 전역의 한인 사업자와 소상공인을 위한 홈페이지 제작을 전문으로 합니다. 한국어로 편하게 상담하실 수 있고, 미국 도메인·호스팅·결제 시스템까지 한 번에 세팅해드립니다.",
+    a: "네, 메이크페이지잇은 미국 전역의 한인 사업자와 소상공인을 위한 홈페이지 제작을 전문으로 합니다. 한국어로 편하게 상담하실 수 있고, 미국 도메인·호스팅·결제 시스템까지 한 번에 세팅해드립니다.",
+  },
+  {
+    q: "어떤 종류의 홈페이지 제작이 가능한가요?",
+    a: "회사·매장 소개용 브랜딩 사이트부터 쇼핑몰 제작, 랜딩페이지, 예약 시스템, 개인 포트폴리오 사이트까지 제작합니다. 모든 홈페이지는 휴대폰·태블릿·PC 화면에 맞춰지는 반응형 웹 디자인으로 만들고, 기본 SEO 설정까지 포함해요. 어떤 형태가 맞을지 모르시겠다면 30분 무료 상담에서 추천해드립니다.",
   },
   {
     q: "도메인과 호스팅도 맡아주시나요?",

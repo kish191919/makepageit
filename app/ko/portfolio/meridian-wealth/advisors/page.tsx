@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "어드바이저 | 메리디안 자산관리",
-  description: "메리디안 자산관리의 CFP®·CFA® 어드바이저를 소개합니다 — 메이크페이지가 제작한 자산관리 홈페이지 템플릿의 어드바이저 페이지입니다.",
+  description: "메리디안 자산관리의 CFP®·CFA® 어드바이저를 소개합니다 — 메이크페이지잇이 제작한 자산관리 홈페이지 템플릿의 어드바이저 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/meridian-wealth/advisors",

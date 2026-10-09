@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Outerwear | Atelier 22",
   description:
-    "Linen wrap coats, wool herringbone coats, and quilted field jackets — the Outerwear collection from Atelier 22, an Atelier Shop homepage template page by MAKEPAGE.",
+    "Linen wrap coats, wool herringbone coats, and quilted field jackets — the Outerwear collection from Atelier 22, an Atelier Shop homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/atelier-shop/outerwear",

@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "릴리스 기록 | Nexus Lab",
-  description: "Nexus Lab의 모든 릴리스 기록 — 메이크페이지가 제작한 개발자 도구 홈페이지 템플릿의 체인지로그 페이지입니다.",
+  description: "Nexus Lab의 모든 릴리스 기록 — 메이크페이지잇이 제작한 개발자 도구 홈페이지 템플릿의 체인지로그 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/nexus-lab/changelog",

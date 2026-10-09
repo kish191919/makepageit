@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Contact | Meridian Wealth Partners",
   description:
-    "Schedule a free 30-minute consultation with Meridian Wealth Partners — a wealth management homepage template contact page by MAKEPAGE.",
+    "Schedule a free 30-minute consultation with Meridian Wealth Partners — a wealth management homepage template contact page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/meridian-wealth/contact",

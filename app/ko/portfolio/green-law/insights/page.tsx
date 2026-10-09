@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "인사이트 | 그린 법률사무소",
-  description: "그린 법률사무소가 전하는 쉬운 법률 설명 — 메이크페이지가 제작한 법률사무소 홈페이지 템플릿의 인사이트 페이지입니다.",
+  description: "그린 법률사무소가 전하는 쉬운 법률 설명 — 메이크페이지잇이 제작한 법률사무소 홈페이지 템플릿의 인사이트 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/green-law/insights",

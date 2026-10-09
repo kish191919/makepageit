@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "숍 | jini illustration",
-  description: "일러스트레이터 지니의 프린트, 스티커 시트, 엽서 굿즈. 메이크페이지가 제작한 포트폴리오 홈페이지 템플릿입니다.",
+  description: "일러스트레이터 지니의 프린트, 스티커 시트, 엽서 굿즈. 메이크페이지잇이 제작한 포트폴리오 홈페이지 템플릿입니다.",
   alternates: {
     languages: {
       en: "/portfolio/jini-illustration/shop",

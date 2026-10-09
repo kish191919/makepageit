@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "매장 안내 | Noble Coffee Roasters",
   description:
-    "주소, 영업시간, 방문 전 알아두면 좋은 정보 — 메이크페이지가 제작한 Noble Coffee 홈페이지 템플릿의 매장 안내 페이지입니다.",
+    "주소, 영업시간, 방문 전 알아두면 좋은 정보 — 메이크페이지잇이 제작한 Noble Coffee 홈페이지 템플릿의 매장 안내 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/noble-coffee/visit",

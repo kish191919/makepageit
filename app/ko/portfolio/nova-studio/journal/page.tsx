@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "저널 | 노바 스튜디오",
   description:
-    "최근 촬영의 비하인드와 현장 기록 — 메이크페이지가 제작한 Nova Studio 포토그래퍼 홈페이지 템플릿의 저널 페이지입니다.",
+    "최근 촬영의 비하인드와 현장 기록 — 메이크페이지잇이 제작한 Nova Studio 포토그래퍼 홈페이지 템플릿의 저널 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/nova-studio/journal",

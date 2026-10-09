@@ -47,11 +47,11 @@ export default function Header() {
     >
       <div className="container-custom flex h-16 items-center justify-between sm:h-20">
         <Link href={localePath(lang, "/")} className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink-900 text-white">
+          <span className="hidden h-8 w-8 items-center justify-center rounded-lg bg-ink-900 text-white min-[360px]:flex">
             <span className="text-sm font-black">M</span>
           </span>
-          <span className="text-lg font-extrabold tracking-tight text-ink-900">
-            MAKE<span className="text-brand-600">PAGE</span>
+          <span className="text-base font-extrabold tracking-tight text-ink-900 min-[400px]:text-lg">
+            MAKE<span className="text-brand-600">PAGE</span>IT
           </span>
         </Link>
 

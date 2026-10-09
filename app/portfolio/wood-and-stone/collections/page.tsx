@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Collections | Wood & Stone",
   description:
-    "The FOREST, QUARRY, and CALM collections from Wood & Stone — a furniture homepage template collections page by MAKEPAGE.",
+    "The FOREST, QUARRY, and CALM collections from Wood & Stone — a furniture homepage template collections page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/wood-and-stone/collections",

@@ -1,7 +1,7 @@
 import { buildOgImage, OG_IMAGE_SIZE } from "@/lib/og-image";
 
 export const runtime = "nodejs";
-export const alt = "메이크페이지 — 미주 한인 사장님을 위한 홈페이지 제작, 2주 안에 완성해드립니다.";
+export const alt = "메이크페이지잇 — 미주 한인 사장님을 위한 홈페이지 제작, 2주 안에 완성해드립니다.";
 export const size = OG_IMAGE_SIZE;
 export const contentType = "image/png";
 

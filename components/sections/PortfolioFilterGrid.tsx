@@ -59,7 +59,7 @@ export default function PortfolioFilterGrid({ lang, portfolios, categories }: Pr
               <div className="relative aspect-[4/3] overflow-hidden bg-ink-100">
                 <Image
                   src={p.image}
-                  alt={p.client}
+                  alt={dict.portfolio.imageAlt(p.client)}
                   fill
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition duration-500 group-hover:scale-105"

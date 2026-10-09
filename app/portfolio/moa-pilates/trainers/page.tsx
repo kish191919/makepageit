@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Trainers | FORM & FLOW PILATES",
   description:
-    "Meet the founder, reformer lead, and rehab specialist behind every class at FORM & FLOW. A Moa Pilates homepage template page by MAKEPAGE.",
+    "Meet the founder, reformer lead, and rehab specialist behind every class at FORM & FLOW. A Moa Pilates homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/moa-pilates/trainers",

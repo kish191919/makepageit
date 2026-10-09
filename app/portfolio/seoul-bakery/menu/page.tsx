@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Full Menu | Sunrise Bakery Co.",
   description:
-    "Breads, pastries, and cakes baked fresh daily — the full menu from Sunrise Bakery Co., a Seoul Bakery homepage template page by MAKEPAGE.",
+    "Breads, pastries, and cakes baked fresh daily — the full menu from Sunrise Bakery Co., a Seoul Bakery homepage template page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/seoul-bakery/menu",

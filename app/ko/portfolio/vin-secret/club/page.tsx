@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "클럽 | Vin Secret",
-  description: "정기 클럽 가입 — 멤버십 플랜, 이용 방법, FAQ. 메이크페이지가 제작한 Vin Secret 와인 클럽 홈페이지 템플릿의 클럽 페이지입니다.",
+  description: "정기 클럽 가입 — 멤버십 플랜, 이용 방법, FAQ. 메이크페이지잇이 제작한 Vin Secret 와인 클럽 홈페이지 템플릿의 클럽 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/vin-secret/club",

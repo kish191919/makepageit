@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "Tasting Menu | Villa Toscana",
   description:
-    "The complete seven-course tasting menu at Villa Toscana — a fine-dining homepage template menu page by MAKEPAGE.",
+    "The complete seven-course tasting menu at Villa Toscana — a fine-dining homepage template menu page by MAKEPAGEIT.",
   alternates: {
     languages: {
       en: "/portfolio/villa-toscana/menu",

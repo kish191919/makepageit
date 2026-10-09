@@ -5,42 +5,43 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/site";
-import { detectLangFromPath, getDict } from "@/lib/i18n";
+import { detectLangFromPath, getDict, localePath, pageAlternates, stripLocale } from "@/lib/i18n";
 import { jsonLdScriptProps, professionalServiceSchema, websiteSchema } from "@/lib/jsonld";
 
+// Inner pages of portfolio template demos (e.g. /portfolio/noble-coffee/menu) are
+// sample content for fictional businesses — keep them out of the search index.
+const TEMPLATE_SUBPAGE = /^\/(?:ko\/)?portfolio\/[^/]+\/.+/;
+
 export async function generateMetadata(): Promise<Metadata> {
-  const lang = detectLangFromPath(headers().get("x-pathname"));
+  const pathname = headers().get("x-pathname");
+  const lang = detectLangFromPath(pathname);
   const dict = getDict(lang);
+  const path = pathname ? stripLocale(pathname) : "/";
+  const isTemplateSubpage = TEMPLATE_SUBPAGE.test(pathname ?? "");
 
   return {
     metadataBase: new URL("https://makepageit.com"),
     title: {
-      default: `${site.name} — ${dict.rootMetadata.siteTitle}`,
-      template: `%s | ${site.name}`,
+      default: dict.rootMetadata.siteTitle,
+      template: `%s | ${dict.rootMetadata.titleSuffix}`,
     },
     description: dict.rootMetadata.description,
     keywords: dict.rootMetadata.keywords,
-    alternates: {
-      languages: {
-        en: "/",
-        ko: "/ko",
-        "x-default": "/",
-      },
-    },
+    alternates: pathname && !pathname.startsWith("/admin") ? pageAlternates(lang, path) : undefined,
     openGraph: {
-      title: `${site.name} — ${dict.rootMetadata.siteTitle}`,
+      title: dict.rootMetadata.siteTitle,
       description: dict.rootMetadata.description,
-      url: lang === "ko" ? "https://makepageit.com/ko" : "https://makepageit.com",
+      url: localePath(lang, path),
       type: "website",
       locale: dict.rootMetadata.locale,
       siteName: site.name,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${site.name} — ${dict.rootMetadata.siteTitle}`,
+      title: dict.rootMetadata.siteTitle,
       description: dict.rootMetadata.description,
     },
-    robots: { index: true, follow: true },
+    robots: { index: !isTemplateSubpage, follow: true },
     verification: {
       google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "",
       other: {

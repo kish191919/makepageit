@@ -5,7 +5,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 
 export const metadata: Metadata = {
   title: "의료진 | 윌로우브룩 치과",
-  description: "윌로우브룩 치과의 가족·심미치료 전담 의료진을 소개합니다. 메이크페이지가 제작한 예약 시스템 포트폴리오 템플릿입니다.",
+  description: "윌로우브룩 치과의 가족·심미치료 전담 의료진을 소개합니다. 메이크페이지잇이 제작한 예약 시스템 포트폴리오 템플릿입니다.",
   alternates: {
     languages: {
       en: "/portfolio/willowbrook-dental/team",

@@ -6,7 +6,7 @@ import { breadcrumbSchema, jsonLdScriptProps } from "@/lib/jsonld";
 export const metadata: Metadata = {
   title: "브랜드 스토리 | Noble Coffee Roasters",
   description:
-    "농장, 타임라인, 그리고 사람들 — 메이크페이지가 제작한 Noble Coffee 홈페이지 템플릿의 스토리 페이지입니다.",
+    "농장, 타임라인, 그리고 사람들 — 메이크페이지잇이 제작한 Noble Coffee 홈페이지 템플릿의 스토리 페이지입니다.",
   alternates: {
     languages: {
       en: "/portfolio/noble-coffee/story",

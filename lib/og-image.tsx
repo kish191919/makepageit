@@ -107,7 +107,7 @@ export async function buildOgImage(opts: {
             >
               M
             </div>
-            MAKEPAGE
+            MAKEPAGEIT
           </div>
           <div
             style={{
