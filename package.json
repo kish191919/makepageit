@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "capture:portfolio": "node scripts/capture-portfolio-thumbs.mjs",
-    "leads:google": "node --env-file=.env.local scripts/leadgen-google-places.mjs"
+    "leads:google": "node --env-file=.env.local scripts/leadgen-google-places.mjs",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.4",
