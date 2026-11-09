@@ -67,7 +67,8 @@ export default function PromoPricingView({ lang }: { lang: Lang }) {
         title={
           <>
             {t.header.titleLine1}
-            <br className="md:hidden" /> {t.header.titleLine2(lowestMonthly)}
+            <br />
+            {t.header.titleLine2(lowestMonthly)}
           </>
         }
         description={t.header.description}

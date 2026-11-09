@@ -735,7 +735,7 @@ const plansKo: Plan[] = [
  * monthly promo instead of the legacy setup-fee plans above. The legacy plans
  * stay in place so a locale can be switched back by editing this list.
  */
-const promoPricingLangs: Lang[] = ["ko"];
+const promoPricingLangs: Lang[] = ["en", "ko"];
 
 /** Promo end date (ISO, used for JSON-LD). Keep in sync with `promoPricing.promo.deadline` in lib/i18n.ts. */
 export const promoEndsAt = "2026-12-31";
@@ -913,7 +913,7 @@ const reviewsKo: Review[] = [
 const faqsEn: FAQ[] = [
   {
     q: "How long does it take?",
-    a: "Most sites launch in about two weeks. PORTFOLIO LITE (3 pages) is roughly 2 weeks; PORTFOLIO PRO (5 pages) is 3–4 weeks. Adding extra pages or booking integration may extend the timeline. You'll see your first design within a week of kickoff.",
+    a: "Most sites launch in about two weeks. BASIC (3 pages) is roughly 2 weeks; PREMIUM (5 pages) is 3–4 weeks. Adding extra pages or custom features may extend the timeline. You'll see your first design within a week of kickoff.",
   },
   {
     q: "Do you build websites for Korean-American business owners?",
@@ -925,11 +925,15 @@ const faqsEn: FAQ[] = [
   },
   {
     q: "Do you handle the domain and hosting?",
-    a: "Yes — domain registration, hosting setup, and SSL all included. Pricing: domain at $25/year; PORTFOLIO LITE is $25/month for hosting + maintenance (database is an optional $10/month add-on); PORTFOLIO PRO is $55/month for hosting + DB + maintenance.",
+    a: "Yes — domain registration, hosting setup, and SSL all included. Right now all of it is covered by your monthly price (BASIC $70/mo, PREMIUM $120/mo), so there's nothing extra to pay.",
+  },
+  {
+    q: "Is there a contract? Will my price go up after the promotion?",
+    a: "All plans have a minimum 12-month commitment. In return, the build fee is $0 — and if you sign up by December 31, 2026, your rate (BASIC $70/mo, PREMIUM $120/mo) stays the same even after the promotion ends.",
   },
   {
     q: "Can I edit the site myself afterward?",
-    a: "We don't open up design editing on the client side, but we cover up to 2 rounds of post-launch revisions for free. After that, you can subscribe to maintenance and we'll handle copy, image, and content updates quickly on your behalf.",
+    a: "We don't open up design editing on the client side. Instead, maintenance is included in your monthly price — send us copy, image, or content changes and we'll handle them quickly on your behalf.",
   },
   {
     q: "What if I don't like the design?",
@@ -937,11 +941,11 @@ const faqsEn: FAQ[] = [
   },
   {
     q: "Can individuals (not registered businesses) hire you?",
-    a: "Of course. PORTFOLIO LITE is built for personal portfolios — students, artists, etc. — with hosting included in the monthly cost (database is available as an optional add-on). We've also delivered plenty of personal-brand and freelancer sites.",
+    a: "Of course. Personal portfolios — students, artists, and more — can start on BASIC ($70/mo), with the build, domain, hosting, and maintenance all covered. We've also delivered plenty of personal-brand and freelancer sites.",
   },
   {
     q: "Can you also handle ongoing operations?",
-    a: "Yes — monthly maintenance covers content updates, feature checks, performance monitoring, and basic SEO/GEO. Add server hosting on top and it's $25/mo on PORTFOLIO LITE (+$10 for hosting) or $55/mo on PORTFOLIO PRO (+$20 for the database). We don't run paid ads or blog content as part of these plans, but we'll scope that separately during the consult.",
+    a: "Yes — your monthly price covers content updates, feature checks, performance monitoring, and basic SEO/GEO. Hosting and the domain are included too, so it's simply $70/mo on BASIC or $120/mo on PREMIUM with nothing extra. We don't run paid ads or blog content as part of these plans, but we'll scope that separately during the consult.",
   },
   {
     q: "What is GEO, and do you optimize for it?",
