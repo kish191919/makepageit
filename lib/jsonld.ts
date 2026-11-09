@@ -1,5 +1,5 @@
 import { site } from "@/lib/site";
-import type { Plan, FAQ } from "@/lib/data";
+import { promoEndsAt, type Plan, type PromoPlan, type FAQ } from "@/lib/data";
 import { getDict, type Lang } from "@/lib/i18n";
 
 const BASE_URL = "https://makepageit.com";
@@ -72,6 +72,38 @@ export function serviceOfferCatalogSchema(plans: Plan[], lang: Lang) {
         description: p.description,
         price: p.pricing.oneTime.replace(/[^\d.]/g, ""),
         priceCurrency: "USD",
+        category: p.audience,
+        availability: "https://schema.org/InStock",
+        url: lang === "ko" ? `${BASE_URL}/ko/pricing` : `${BASE_URL}/pricing`,
+      })),
+    },
+  };
+}
+
+export function promoOfferCatalogSchema(plans: PromoPlan[], lang: Lang) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: lang === "ko" ? "홈페이지 제작" : "Web Design & Development",
+    provider: { "@id": `${BASE_URL}#organization` },
+    areaServed: ["United States", "South Korea"],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: lang === "ko" ? "홈페이지 제작 · 관리 월 요금제" : "All-inclusive Website Plans",
+      itemListElement: plans.map((p) => ({
+        "@type": "Offer",
+        name: p.name,
+        description: p.description,
+        price: String(p.monthly),
+        priceCurrency: "USD",
+        priceValidUntil: promoEndsAt,
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: p.monthly,
+          priceCurrency: "USD",
+          unitCode: "MON",
+          referenceQuantity: { "@type": "QuantitativeValue", value: 1, unitCode: "MON" },
+        },
         category: p.audience,
         availability: "https://schema.org/InStock",
         url: lang === "ko" ? `${BASE_URL}/ko/pricing` : `${BASE_URL}/pricing`,

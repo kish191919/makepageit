@@ -50,6 +50,34 @@ export type Plan = {
   cta: string;
 };
 
+/** All-inclusive monthly plan (build + domain + hosting + maintenance in one price). */
+export type PromoPlan = {
+  id: string;
+  name: string;
+  tagline: string;
+  best?: boolean;
+  badge?: string;
+  audience: string;
+  /** Promo monthly price in USD. */
+  monthly: number;
+  /** Regular monthly price shown struck through. */
+  regularMonthly: number;
+  /** Regular one-time build fee that the promo waives ($0). */
+  regularSetup: number;
+  /** Minimum commitment. Promo sign-ups keep `monthly` after the promo ends. */
+  contractMonths: number;
+  description: string;
+  features: (string | { text: string; sub: string })[];
+};
+
+export function formatUsd(amount: number) {
+  return `$${amount.toLocaleString("en-US")}`;
+}
+
+export function promoDiscountPercent(plan: PromoPlan) {
+  return Math.round((1 - plan.monthly / plan.regularMonthly) * 100);
+}
+
 export type Review = {
   id: string;
   client: string;
@@ -702,6 +730,102 @@ const plansKo: Plan[] = [
   },
 ];
 
+/**
+ * Locales whose /pricing page and home pricing section show the all-inclusive
+ * monthly promo instead of the legacy setup-fee plans above. The legacy plans
+ * stay in place so a locale can be switched back by editing this list.
+ */
+const promoPricingLangs: Lang[] = ["ko"];
+
+/** Promo end date (ISO, used for JSON-LD). Keep in sync with `promoPricing.promo.deadline` in lib/i18n.ts. */
+export const promoEndsAt = "2026-12-31";
+
+const promoPlansEn: PromoPlan[] = [
+  {
+    id: "promo-basic",
+    name: "BASIC",
+    tagline: "Promo website",
+    audience: "Local businesses that want to get found and get inquiries",
+    monthly: 70,
+    regularMonthly: 149,
+    regularSetup: 499,
+    contractMonths: 12,
+    description: "A promo website with an email contact form — build, hosting, domain, and maintenance included for one monthly price.",
+    features: [
+      "Promo website build (3 pages)",
+      { text: "Contact form → straight to your inbox", sub: "Customer inquiries land in your email automatically" },
+      "Template design + mobile-responsive",
+      "Basic SEO + AI search (GEO) setup",
+      "Domain · hosting · SSL certificate",
+      { text: "Monthly maintenance", sub: "Photo & copy edits, feature checks, performance monitoring" },
+    ],
+  },
+  {
+    id: "promo-premium",
+    name: "PREMIUM",
+    tagline: "Feature-rich website",
+    best: true,
+    badge: "RECOMMENDED",
+    audience: "Businesses that manage photos, members, or bookings",
+    monthly: 120,
+    regularMonthly: 249,
+    regularSetup: 849,
+    contractMonths: 12,
+    description: "A feature-rich website with photo galleries, member management, and Google Calendar integration — build and upkeep included for one monthly price.",
+    features: [
+      { text: "Everything in Basic", sub: "Email inquiries · domain · hosting · maintenance" },
+      "Feature-rich website build (5 pages)",
+      { text: "Photo gallery", sub: "Organize shop, work, or project photos into albums" },
+      { text: "Member management", sub: "Sign-up · login · member info" },
+      { text: "Google Calendar integration", sub: "Bookings and schedules sync to your Google Calendar" },
+      "Database & server operations included",
+    ],
+  },
+];
+
+const promoPlansKo: PromoPlan[] = [
+  {
+    id: "promo-basic",
+    name: "베이직",
+    tagline: "홍보형 웹사이트",
+    best: true,
+    badge: "추천",
+    audience: "가게·사업을 알리고 고객 문의를 받고 싶은 분",
+    monthly: 70,
+    regularMonthly: 149,
+    regularSetup: 499,
+    contractMonths: 12,
+    description: "문의를 이메일로 받는 홍보용 웹사이트. 제작·도메인·호스팅·유지보수까지 하나의 월 요금에 모두 포함.",
+    features: [
+      "홍보용 웹사이트 제작 (3페이지 구성)",
+      { text: "문의 폼 → 이메일로 바로 수신", sub: "고객 문의가 사장님 메일함으로 자동 전달돼요" },
+      "템플릿 디자인 + 모바일 반응형",
+      "기본 SEO + AI 검색(GEO) 세팅",
+      "도메인 · 호스팅 · SSL 보안인증서",
+      { text: "월 유지보수", sub: "사진·글 수정, 기능 점검, 성능 모니터링" },
+    ],
+  },
+  {
+    id: "promo-premium",
+    name: "프리미엄",
+    tagline: "기능형 웹사이트",
+    audience: "사진·회원·예약까지 관리가 필요한 비즈니스",
+    monthly: 120,
+    regularMonthly: 249,
+    regularSetup: 849,
+    contractMonths: 12,
+    description: "사진 갤러리·회원 관리·구글 캘린더 연동까지 갖춘 기능형 웹사이트. 제작부터 관리까지 하나의 월 요금에 모두 포함.",
+    features: [
+      { text: "베이직의 모든 기능 포함", sub: "문의 이메일 수신 · 도메인 · 호스팅 · 유지보수" },
+      "기능형 웹사이트 제작 (5페이지 구성)",
+      { text: "사진 갤러리", sub: "매장·작품·시공 사진을 앨범으로 정리" },
+      { text: "회원 관리", sub: "회원가입 · 로그인 · 회원 정보 관리" },
+      { text: "구글 캘린더 연동", sub: "예약·일정이 사장님 구글 캘린더에 자동 반영" },
+      "데이터베이스 · 서버 운영 포함",
+    ],
+  },
+];
+
 const reviewsEn: Review[] = [
   {
     id: "r4",
@@ -828,7 +952,7 @@ const faqsEn: FAQ[] = [
 const faqsKo: FAQ[] = [
   {
     q: "제작 기간은 얼마나 걸리나요?",
-    a: "평균 2주 안에 오픈을 목표로 진행해드립니다. 베이직(3페이지)은 약 2주, 프리미엄(5페이지)은 약 3~4주 정도이며, 추가 페이지나 예약 연동을 추가하시면 일정이 늘어날 수 있어요. 첫 시안은 의뢰 후 평균 1주 안에 보여드립니다.",
+    a: "평균 2주 안에 오픈을 목표로 진행해드립니다. 베이직(3페이지)은 약 2주, 프리미엄(5페이지)은 약 3~4주 정도이며, 추가 페이지나 맞춤 기능을 더하시면 일정이 늘어날 수 있어요. 첫 시안은 의뢰 후 평균 1주 안에 보여드립니다.",
   },
   {
     q: "미주에서 한인 사업자를 위한 홈페이지 제작도 가능한가요?",
@@ -840,11 +964,15 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "도메인과 호스팅도 맡아주시나요?",
-    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 비용은 도메인 연 $25, 베이직은 호스팅+유지보수 월 $25(데이터베이스는 월 $10 선택 추가), 프리미엄은 호스팅+DB+유지보수 월 $55로 운영돼요.",
+    a: "네, 도메인 구매부터 호스팅 세팅, SSL 인증서까지 한 번에 처리해드립니다. 지금은 이 비용이 모두 월 요금(베이직 월 $70, 프리미엄 월 $120)에 포함되어 있어 따로 내실 비용이 없어요.",
+  },
+  {
+    q: "약정 기간이 있나요? 프로모션이 끝나면 요금이 오르나요?",
+    a: "모든 요금제는 최소 12개월 약정으로 진행돼요. 대신 제작비는 $0이고, 2026년 12월 31일까지 가입하시면 프로모션이 끝난 뒤에도 가입 당시 요금(베이직 월 $70, 프리미엄 월 $120)이 그대로 유지됩니다.",
   },
   {
     q: "직접 수정하고 관리할 수 있나요?",
-    a: "홈페이지 디자인을 고객님께서 직접 수정하시는 것은 어려운 점 양해 부탁드립니다. 다만 제작이 완료된 후 2회까지는 무료로 수정해드리고 있으며, 이후에는 유지보수 서비스를 신청해 주시면 사진·글 등 콘텐츠 수정 요청을 받아 신속하게 반영해드리고 있어요.",
+    a: "홈페이지 디자인을 고객님께서 직접 수정하시는 것은 어려운 점 양해 부탁드립니다. 대신 월 요금에 유지보수가 포함되어 있어, 사진·글 등 콘텐츠 수정 요청을 주시면 신속하게 반영해드리고 있어요.",
   },
   {
     q: "디자인이 마음에 안 들면 환불되나요?",
@@ -852,11 +980,11 @@ const faqsKo: FAQ[] = [
   },
   {
     q: "사업자가 아닌 개인도 의뢰할 수 있나요?",
-    a: "물론입니다. 베이직은 학생·아티스트 등 개인 포트폴리오를 위한 패키지로, 호스팅 비용이 월 이용료에 포함돼요 (데이터베이스는 선택 추가 항목이에요). 작가·강사·프리랜서·개인 브랜드 사이트도 다수 진행하고 있습니다.",
+    a: "물론입니다. 학생·아티스트 등 개인 포트폴리오도 베이직(월 $70)으로 제작부터 도메인·호스팅·유지보수까지 한 번에 시작하실 수 있어요. 작가·강사·프리랜서·개인 브랜드 사이트도 다수 진행하고 있습니다.",
   },
   {
     q: "오픈 후 운영도 맡길 수 있나요?",
-    a: "네, 월 유지보수 비용에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO·GEO 관리까지 포함되어 있습니다. 여기에 서버 호스팅 비용이 더해져 베이직은 서버 이용료 $10이 추가된 월 $25, 프리미엄은 데이터베이스 이용료 $20까지 포함되어 월 $55로 운영돼요. 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
+    a: "네, 월 요금에 콘텐츠 수정·기능 점검·성능 모니터링과 함께 기본적인 SEO·GEO 관리까지 포함되어 있습니다. 서버 호스팅·도메인 비용도 모두 포함이라 베이직 월 $70, 프리미엄 월 $120 외에 따로 드는 비용이 없어요. 별도의 마케팅 운영(블로그 콘텐츠 제작, 광고 집행 등)은 제공하지 않는 점 양해 부탁드리며, 자세한 운영 범위는 무료 상담 시 안내드려요.",
   },
   {
     q: "GEO가 뭔가요? 저희도 대응되나요?",
@@ -906,6 +1034,14 @@ export function getPortfolios(lang: Lang): Portfolio[] {
 
 export function getPlans(lang: Lang): Plan[] {
   return lang === "en" ? plansEn : plansKo;
+}
+
+export function getPromoPlans(lang: Lang): PromoPlan[] {
+  return lang === "en" ? promoPlansEn : promoPlansKo;
+}
+
+export function usesPromoPricing(lang: Lang): boolean {
+  return promoPricingLangs.includes(lang);
 }
 
 export function getReviews(lang: Lang): Review[] {

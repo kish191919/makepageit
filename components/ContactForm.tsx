@@ -2,10 +2,20 @@
 
 import { useState } from "react";
 import { site } from "@/lib/site";
+import { formatUsd, getPromoPlans, usesPromoPricing } from "@/lib/data";
 import { getDict, type Lang } from "@/lib/i18n";
 
 export default function ContactForm({ lang }: { lang: Lang }) {
   const dict = getDict(lang);
+  const form = dict.contact.form;
+  const promo = usesPromoPricing(lang);
+  const budgetLabel = promo ? form.promoBudgetLabel : form.labels.budget;
+  const budgetOptions = promo
+    ? [
+        ...getPromoPlans(lang).map((p) => form.promoBudgetOption(p.name, formatUsd(p.monthly), p.tagline)),
+        ...form.promoBudgetExtras,
+      ]
+    : form.budgets;
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -91,9 +101,9 @@ export default function ContactForm({ lang }: { lang: Lang }) {
       </div>
 
       <Select
-        label={dict.contact.form.labels.budget}
+        label={budgetLabel}
         name="budget"
-        options={dict.contact.form.budgets}
+        options={budgetOptions}
         required
         prompt={dict.contact.form.selectPrompt}
       />

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { usesPromoPricing } from "@/lib/data";
 
 const FROM = "MAKEPAGEIT <noreply@makepageit.com>";
 const TO = process.env.CONTACT_TO_EMAIL ?? "admin@makepageit.com";
@@ -10,6 +11,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, phone, email, industry, budget, message, lang } = body ?? {};
     const isEn = lang !== "ko";
+    const promo = usesPromoPricing(isEn ? "en" : "ko");
 
     if (!name || !phone || !email || !budget || !message) {
       return NextResponse.json(
@@ -25,7 +27,7 @@ export async function POST(request: Request) {
           phone: "Phone",
           email: "Email",
           industry: "Industry",
-          budget: "Budget",
+          budget: promo ? "Plan" : "Budget",
           message: "Project details",
         }
       : {
@@ -34,7 +36,7 @@ export async function POST(request: Request) {
           phone: "연락처",
           email: "이메일",
           industry: "업종",
-          budget: "예상 예산",
+          budget: promo ? "관심 요금제" : "예상 예산",
           message: "문의내용",
         };
 

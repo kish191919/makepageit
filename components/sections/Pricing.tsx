@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import SectionHeading from "@/components/SectionHeading";
+import { BoltIcon, ClockIcon, TagIcon } from "@/components/PricingIcons";
 import { getPlans } from "@/lib/data";
 import { getDict, localePath, type Lang } from "@/lib/i18n";
 
@@ -18,37 +19,6 @@ function savingsAmount(current: string, original: string) {
   const o = Number(original.replace(/[^0-9.]/g, ""));
   if (!o) return "";
   return `$${Math.round(o - c)}`;
-}
-
-function TagIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" className={className}>
-      <path
-        d="M8.4 2H13a1 1 0 0 1 1 1v4.6a1 1 0 0 1-.3.7l-6 6a1 1 0 0 1-1.4 0l-4.6-4.6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 .7-.3Z"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinejoin="round"
-      />
-      <circle cx="10.5" cy="4.5" r="0.9" fill="currentColor" />
-    </svg>
-  );
-}
-
-function BoltIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" className={className}>
-      <path d="M8.8 1.5 3 9.2h3.6L6.2 14.5 13 6.4H9.2L8.8 1.5Z" fill="currentColor" />
-    </svg>
-  );
-}
-
-function ClockIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" className={className}>
-      <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.3" />
-      <path d="M8 4.8V8l2.4 1.4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
 }
 
 export default function Pricing({

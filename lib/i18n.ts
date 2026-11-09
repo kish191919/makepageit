@@ -118,6 +118,59 @@ type Dict = {
       rows: { item: string; lite: string; pro: string; isSub?: boolean }[];
     };
   };
+  /** All-inclusive monthly promo pricing (see `usesPromoPricing` in lib/data.ts). */
+  promoPricing: {
+    pageDescription: string;
+    header: {
+      eyebrow: string;
+      titleLine1: string;
+      titleLine2: (lowestMonthly: string) => string;
+      description: string;
+    };
+    eyebrow: string;
+    promo: {
+      badge: string;
+      headline: { pre: string; highlight: (maxPercent: number) => string };
+      sub: string;
+      setupFree: string;
+      noHiddenFees: string;
+      deadline: string;
+      rateLock: string;
+    };
+    perMonth: string;
+    allInclusive: string;
+    contractNote: (months: number) => string;
+    saveLabel: (perMonth: string, perYear: string) => string;
+    includedTitle: string;
+    setupFee: string;
+    includedItems: string[];
+    includedValue: string;
+    seeDetails: string;
+    allIn: {
+      eyebrow: string;
+      title: string;
+      description: string;
+      items: { icon: string; title: string; desc: string }[];
+    };
+    compare: {
+      eyebrow: string;
+      title: string;
+      itemHeader: string;
+      labels: {
+        audience: string;
+        monthly: string;
+        setup: string;
+        afterPromo: string;
+        contract: string;
+        yearTotal: string;
+      };
+      afterPromoValue: (price: string) => string;
+      contractValue: (months: number) => string;
+      /** `values` follow the order of getPromoPlans(lang). */
+      rows: { item: string; values: string[] }[];
+      notes: string[];
+    };
+  };
   additionalOptions: {
     eyebrow: string;
     title: string;
@@ -213,6 +266,10 @@ type Dict = {
       };
       selectPrompt: string;
       budgets: string[];
+      /** Used instead of `labels.budget` / `budgets` when the locale shows promo pricing. */
+      promoBudgetLabel: string;
+      promoBudgetOption: (plan: string, price: string, tagline: string) => string;
+      promoBudgetExtras: string[];
       consent: string;
     };
   };
@@ -409,6 +466,84 @@ const en: Dict = {
       ],
     },
   },
+  promoPricing: {
+    pageDescription:
+      "All-inclusive website pricing from $70/month — build, domain, hosting, SSL, and maintenance in one monthly price with a $0 build fee. Our biggest discount is on now.",
+    header: {
+      eyebrow: "Pricing",
+      titleLine1: "Everything in one price.",
+      titleLine2: (lowest) => `From ${lowest}/month.`,
+      description:
+        "Build, domain, hosting, SSL, and ongoing maintenance — every cost of running your website, rolled into one monthly price. We're in our biggest discount period right now.",
+    },
+    eyebrow: "Pricing",
+    promo: {
+      badge: "Biggest discount period",
+      headline: { pre: "$0 build fee +", highlight: (pct) => `up to ${pct}% off monthly` },
+      sub: "From build to maintenance —\none monthly price, no extra fees.",
+      setupFree: "$0 build fee",
+      noHiddenFees: "No hidden fees",
+      deadline: "Ends Dec 31, 2026",
+      rateLock: "Rate stays locked after the promo",
+    },
+    perMonth: "/mo",
+    allInclusive: "Build, domain, hosting & maintenance included",
+    contractNote: (months) => `${months}-month minimum`,
+    saveLabel: (m, y) => `Save ${m}/mo · ${y}/yr`,
+    includedTitle: "Included in your monthly price",
+    setupFee: "Website build fee",
+    includedItems: ["Domain · hosting · SSL", "Monthly maintenance"],
+    includedValue: "Included",
+    seeDetails: "See full pricing details →",
+    allIn: {
+      eyebrow: "All-inclusive",
+      title: "One monthly price.\nNothing else to pay.",
+      description:
+        "Most website projects mean paying a build fee upfront, then separate bills for hosting, the domain, and every edit.\nWe roll all of it into one monthly price.",
+      items: [
+        { icon: "🛠️", title: "Website build", desc: "Planning, design, and development — $0 build fee" },
+        { icon: "🌐", title: "Domain", desc: "The yearly domain fee is covered" },
+        { icon: "🔒", title: "Hosting · SSL", desc: "Server operations and security certificate" },
+        { icon: "🧰", title: "Monthly maintenance", desc: "Photo & copy edits, feature checks, monitoring" },
+        { icon: "✉️", title: "Email inquiries", desc: "Contact-form messages go straight to your inbox" },
+        { icon: "🔍", title: "Basic SEO · GEO", desc: "Set up to be found on Google and AI search" },
+      ],
+    },
+    compare: {
+      eyebrow: "Compare",
+      title: "Compare plans at a glance",
+      itemHeader: "Item",
+      labels: {
+        audience: "Best for",
+        monthly: "Monthly price (all-inclusive)",
+        setup: "Website build fee",
+        afterPromo: "Price after the promo ends",
+        contract: "Minimum term",
+        yearTotal: "First-year total",
+      },
+      afterPromoValue: (price) => `${price} — stays the same`,
+      contractValue: (months) => `${months} months`,
+      rows: [
+        { item: "Pages", values: ["3 pages", "5 pages"] },
+        { item: "Domain · hosting · SSL", values: ["Included", "Included"] },
+        { item: "Monthly maintenance", values: ["Included", "Included"] },
+        { item: "Mobile-responsive", values: ["✓", "✓"] },
+        { item: "Basic SEO + AI search (GEO)", values: ["✓", "✓"] },
+        { item: "Contact form → email", values: ["✓", "✓"] },
+        { item: "Photo gallery", values: ["—", "✓"] },
+        { item: "Member management (sign-up · login)", values: ["—", "✓"] },
+        { item: "Google Calendar integration", values: ["—", "✓"] },
+        { item: "Database", values: ["—", "Included"] },
+        { item: "Extra fees", values: ["None", "None"] },
+      ],
+      notes: [
+        "* Promo pricing applies to sign-ups through December 31, 2026, and your rate stays the same after the promo ends.",
+        "* All plans require a minimum 12-month commitment.",
+        "* Extra pages or custom features beyond the plan scope are quoted after a free consult.",
+        "* All prices are in US dollars (USD).",
+      ],
+    },
+  },
   additionalOptions: {
     eyebrow: "Add-ons",
     title: "Add only what you need.",
@@ -536,6 +671,9 @@ const en: Dict = {
         "$2,500+",
         "Open / let's discuss",
       ],
+      promoBudgetLabel: "Plan you're interested in",
+      promoBudgetOption: (plan, price, tagline) => `${plan} · ${price}/mo (${tagline})`,
+      promoBudgetExtras: ["Not sure yet — help me choose", "Larger custom project — need a quote"],
       consent:
         "I consent to MAKEPAGEIT collecting and using the information above (name, phone, email) to respond to my inquiry. Records are kept for up to 1 year after the engagement closes.",
     },
@@ -768,6 +906,84 @@ const ko: Dict = {
       ],
     },
   },
+  promoPricing: {
+    pageDescription:
+      "미주 한인 홈페이지 제작 비용 안내. 제작비 $0에 도메인·호스팅·SSL·유지보수까지 모두 포함된 월 요금 하나로 시작하세요. 베이직 월 $70, 프리미엄 월 $120 — 지금 최대 할인 기간 프로모션 진행 중.",
+    header: {
+      eyebrow: "가격 안내",
+      titleLine1: "모든 비용을 하나로.",
+      titleLine2: (lowest) => `월 ${lowest}부터.`,
+      description:
+        "제작비·도메인·호스팅·유지보수까지, 홈페이지에 드는 모든 비용을 하나의 월 요금에 담았습니다. 지금이 최대 할인 기간이에요.",
+    },
+    eyebrow: "가격 안내",
+    promo: {
+      badge: "지금이 최대 할인 기간",
+      headline: { pre: "제작비 $0 +", highlight: (pct) => `월 요금 최대 ${pct}% 할인` },
+      sub: "제작부터 관리까지,\n추가 비용 없이 하나의 월 요금으로",
+      setupFree: "제작비 $0",
+      noHiddenFees: "숨은 비용 없음",
+      deadline: "2026년 12월 31일까지",
+      rateLock: "종료 후에도 가입 요금 그대로",
+    },
+    perMonth: "/월",
+    allInclusive: "제작비·도메인·호스팅·유지보수 모두 포함",
+    contractNote: (months) => `최소 ${months}개월 약정`,
+    saveLabel: (m, y) => `매월 ${m} · 1년 ${y} 절약`,
+    includedTitle: "월 요금에 모두 포함",
+    setupFee: "홈페이지 제작비",
+    includedItems: ["도메인 · 호스팅 · SSL", "월 유지보수"],
+    includedValue: "포함",
+    seeDetails: "가격 자세히 보기 →",
+    allIn: {
+      eyebrow: "올인원 요금",
+      title: "따로 내던 비용,\n이제 월 요금 하나로",
+      description:
+        "보통은 제작비를 먼저 내고, 호스팅·도메인·수정 비용을 따로따로 내야 하죠.\n메이크페이지잇은 이 모든 비용을 하나의 월 요금에 담았습니다.",
+      items: [
+        { icon: "🛠️", title: "홈페이지 제작", desc: "기획·디자인·개발까지, 제작비 $0" },
+        { icon: "🌐", title: "도메인", desc: "매년 내던 도메인 비용까지 포함" },
+        { icon: "🔒", title: "호스팅 · SSL", desc: "서버 운영과 보안 인증서까지" },
+        { icon: "🧰", title: "월 유지보수", desc: "사진·글 수정, 기능 점검, 성능 모니터링" },
+        { icon: "✉️", title: "문의 이메일 수신", desc: "홈페이지 문의가 메일함으로 바로 도착" },
+        { icon: "🔍", title: "기본 SEO · GEO", desc: "구글·AI 검색 노출을 위한 기본 세팅" },
+      ],
+    },
+    compare: {
+      eyebrow: "상세 비교",
+      title: "패키지 한눈에 비교하기",
+      itemHeader: "항목",
+      labels: {
+        audience: "추천 대상",
+        monthly: "월 요금 (모든 비용 포함)",
+        setup: "홈페이지 제작비",
+        afterPromo: "프로모션 종료 후 요금",
+        contract: "약정 기간",
+        yearTotal: "1년 총 이용료",
+      },
+      afterPromoValue: (price) => `${price} 그대로 유지`,
+      contractValue: (months) => `최소 ${months}개월`,
+      rows: [
+        { item: "페이지 구성", values: ["3페이지", "5페이지"] },
+        { item: "도메인 · 호스팅 · SSL", values: ["포함", "포함"] },
+        { item: "월 유지보수", values: ["포함", "포함"] },
+        { item: "모바일 반응형", values: ["✓", "✓"] },
+        { item: "기본 SEO + AI 검색(GEO)", values: ["✓", "✓"] },
+        { item: "문의 폼 → 이메일 수신", values: ["✓", "✓"] },
+        { item: "사진 갤러리", values: ["—", "✓"] },
+        { item: "회원 관리 (가입·로그인)", values: ["—", "✓"] },
+        { item: "구글 캘린더 연동", values: ["—", "✓"] },
+        { item: "데이터베이스", values: ["—", "포함"] },
+        { item: "추가 비용", values: ["없음", "없음"] },
+      ],
+      notes: [
+        "* 프로모션 요금은 2026년 12월 31일까지 신청하신 고객께 적용되며, 프로모션 종료 후에도 가입 당시 요금이 그대로 유지됩니다.",
+        "* 모든 요금제는 최소 12개월 약정 기준입니다.",
+        "* 기본 구성 범위를 넘는 추가 페이지·맞춤 기능은 무료 상담 후 별도 안내해드려요.",
+        "* 모든 금액은 미국 달러(USD) 기준입니다.",
+      ],
+    },
+  },
   additionalOptions: {
     eyebrow: "추가 옵션",
     title: "필요한 만큼만 더하세요",
@@ -902,6 +1118,9 @@ const ko: Dict = {
       },
       selectPrompt: "선택해주세요",
       budgets: ["$450 미만", "$450 – $1,000", "$1,000 – $2,500", "$2,500 이상", "협의 가능"],
+      promoBudgetLabel: "관심 있는 요금제",
+      promoBudgetOption: (plan, price, tagline) => `${plan} · 월 ${price} (${tagline})`,
+      promoBudgetExtras: ["아직 모르겠어요 · 상담 후 결정", "더 큰 맞춤 프로젝트 · 별도 견적 필요"],
       consent:
         "개인정보 수집·이용에 동의합니다. (수집 항목: 이름, 연락처, 이메일 / 보유기간: 상담 종료 후 1년)",
     },
