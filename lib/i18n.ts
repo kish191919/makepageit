@@ -714,7 +714,7 @@ const en: Dict = {
     nav: "Manage subscription",
     pageTitle: "Manage your subscription",
     pageDescription:
-      "Cancel your monthly maintenance, update your payment method, view invoices, or request a domain non-renewal.",
+      "Update your payment method, view invoices, and manage your monthly plan or domain renewal. Monthly plans have a minimum 12-month commitment.",
     requestEyebrow: "Account",
     requestTitle: "Manage your subscription",
     requestBody:
@@ -730,21 +730,21 @@ const en: Dict = {
     emailSubject: "Manage your MAKEPAGEIT subscription",
     emailHeading: "Manage your subscription",
     emailIntro:
-      "Use the secure link below to open your billing portal. From there you can cancel your monthly maintenance, update your card, or download invoices.",
+      "Use the secure link below to open your billing portal. From there you can update your card or download invoices. Monthly plans have a minimum 12-month commitment and can be canceled once the commitment period ends.",
     emailCta: "Open billing portal",
     emailExpiryNote: "This link expires in 15 minutes. If you didn't request it, you can ignore this email.",
     emailFooter: "MAKEPAGEIT — websites that win customers.",
     dashboardEyebrow: "Account",
     dashboardTitle: "Manage your subscription",
     dashboardBody: (email) => `Signed in as ${email}. Choose what you'd like to do.`,
-    subscriptionCardTitle: "Monthly maintenance",
+    subscriptionCardTitle: "Monthly plan",
     subscriptionCardBody:
-      "Open the secure Stripe billing portal to cancel your monthly subscription, update your payment method, or download invoices.",
+      "Open the secure Stripe billing portal to update your payment method or download invoices. Monthly plans have a minimum 12-month commitment and can be canceled once the commitment period ends.",
     subscriptionCardCta: "Open billing portal",
     subscriptionCardLoading: "Opening portal...",
     domainCardTitle: "Domain renewal",
     domainCardBody:
-      "Domain charges are billed once per year and aren't part of your monthly subscription. Submit a non-renewal request and we'll confirm by email and let your domain expire at the end of the current term.",
+      "Your domain is included in your monthly plan. If you don't want it renewed after your commitment ends, submit a non-renewal request — we'll confirm by email and let the domain expire at the end of its current term.",
     domainNotePlaceholder: "Optional note (which domain, why, etc.)",
     domainCardCta: "Request domain non-renewal",
     domainSubmitting: "Submitting...",
@@ -760,14 +760,14 @@ const en: Dict = {
     customerEmailIntro:
       "Your account manager will reach out within one business day to kick off your build. Below is a copy of your receipt for your records.",
     customerEmailManageNote:
-      "Need to cancel monthly maintenance, update your card, or stop your domain renewal? You can do all of that anytime from your account page.",
+      "Need to update your card, download invoices, or stop your domain renewal? You can do that anytime from your account page. Monthly plans have a minimum 12-month commitment and can be canceled once the commitment period ends.",
     customerEmailManageCta: "Manage my subscription",
     customerEmailFooter:
       "If you didn't make this purchase, please contact us right away at admin@makepageit.com.",
     cancelEmailSubject: "Your MAKEPAGEIT subscription has been canceled",
     cancelEmailHeading: "Your subscription has been canceled",
     cancelEmailBody:
-      "Your monthly maintenance subscription has been canceled. You won't be billed again. If this was a mistake, just reply to this email and we'll get you sorted.",
+      "Your monthly plan has been canceled. You won't be billed again. If this was a mistake, just reply to this email and we'll get you sorted.",
     domainRequestEmailSubject: (email) => `[MAKEPAGEIT] Domain non-renewal request — ${email}`,
     domainRequestEmailHeading: "Domain non-renewal request",
   },
@@ -1161,7 +1161,7 @@ const ko: Dict = {
     nav: "구독 관리",
     pageTitle: "구독 관리",
     pageDescription:
-      "월 유지보수 취소, 결제 수단 변경, 인보이스 조회, 도메인 갱신 거절 요청을 한 곳에서.",
+      "결제 수단 변경, 인보이스 조회, 월 요금제·도메인 갱신 관리를 한 곳에서. 월 요금제는 최소 12개월 약정입니다.",
     requestEyebrow: "내 계정",
     requestTitle: "내 구독 관리하기",
     requestBody:
@@ -1177,21 +1177,21 @@ const ko: Dict = {
     emailSubject: "메이크페이지잇 구독 관리",
     emailHeading: "구독 관리",
     emailIntro:
-      "아래 안전 링크를 통해 결제 관리 페이지로 이동하실 수 있습니다. 월 유지보수 취소, 카드 정보 변경, 인보이스 다운로드 모두 가능합니다.",
+      "아래 안전 링크를 통해 결제 관리 페이지로 이동하실 수 있습니다. 카드 정보 변경과 인보이스 다운로드가 가능하며, 월 요금제는 최소 12개월 약정으로 약정 기간이 끝난 후 해지하실 수 있습니다.",
     emailCta: "결제 관리 페이지 열기",
     emailExpiryNote: "이 링크는 15분 후 만료됩니다. 본인이 요청하지 않으셨다면 무시하셔도 됩니다.",
     emailFooter: "메이크페이지잇 — 사장님 사업이 빛나는 홈페이지.",
     dashboardEyebrow: "내 계정",
     dashboardTitle: "구독 관리",
     dashboardBody: (email) => `${email} 계정으로 인증되었습니다. 원하시는 작업을 선택해주세요.`,
-    subscriptionCardTitle: "월 유지보수",
+    subscriptionCardTitle: "월 요금제",
     subscriptionCardBody:
-      "Stripe 결제 관리 페이지에서 월 구독을 취소하거나, 결제 수단을 변경하거나, 인보이스를 다운로드할 수 있습니다.",
+      "Stripe 결제 관리 페이지에서 결제 수단을 변경하거나 인보이스를 다운로드할 수 있습니다. 월 요금제는 최소 12개월 약정이며, 약정 기간이 끝난 후 해지하실 수 있습니다.",
     subscriptionCardCta: "결제 관리 페이지 열기",
     subscriptionCardLoading: "이동 중...",
     domainCardTitle: "도메인 갱신",
     domainCardBody:
-      "도메인은 1년에 한 번 결제되는 항목으로 월 구독에 포함되지 않습니다. 갱신을 원치 않으시면 아래로 요청해주세요. 영업일 1일 이내에 메일로 확인드리고, 현재 기간 종료 시 도메인을 만료시켜드립니다.",
+      "도메인 비용은 월 요금제에 포함되어 있습니다. 약정 종료 후 도메인 갱신을 원치 않으시면 아래로 요청해주세요. 영업일 1일 이내에 메일로 확인드리고, 현재 기간 종료 시 도메인을 만료시켜드립니다.",
     domainNotePlaceholder: "메모 (어떤 도메인인지, 사유 등 — 선택)",
     domainCardCta: "도메인 갱신 거절 요청",
     domainSubmitting: "전송 중...",
@@ -1207,14 +1207,14 @@ const ko: Dict = {
     customerEmailIntro:
       "영업일 기준 24시간 이내 담당 매니저가 제작 시작을 위해 연락드립니다. 영수증을 아래에 첨부하니 보관용으로 사용해주세요.",
     customerEmailManageNote:
-      "월 유지보수 취소, 결제 수단 변경, 도메인 갱신 거절이 필요하실 때는 언제든 내 계정 페이지에서 처리하실 수 있습니다.",
+      "결제 수단 변경, 인보이스 조회, 도메인 갱신 거절은 언제든 내 계정 페이지에서 처리하실 수 있습니다. 월 요금제는 최소 12개월 약정이며, 약정 기간이 끝난 후 해지하실 수 있습니다.",
     customerEmailManageCta: "내 구독 관리하기",
     customerEmailFooter:
       "본인이 결제하지 않으셨다면 즉시 admin@makepageit.com 으로 연락 주세요.",
     cancelEmailSubject: "메이크페이지잇 구독이 취소되었습니다",
     cancelEmailHeading: "구독이 취소되었습니다",
     cancelEmailBody:
-      "월 유지보수 구독이 취소되었습니다. 더 이상 결제되지 않습니다. 실수로 취소하셨다면 이 메일에 답장해주세요.",
+      "월 요금제 구독이 해지되었습니다. 더 이상 결제되지 않습니다. 실수로 취소하셨다면 이 메일에 답장해주세요.",
     domainRequestEmailSubject: (email) => `[MAKEPAGEIT] 도메인 갱신 거절 요청 — ${email}`,
     domainRequestEmailHeading: "도메인 갱신 거절 요청",
   },

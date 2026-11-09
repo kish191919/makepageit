@@ -20,7 +20,7 @@ const strings = {
     },
     cadenceDescriptions: {
       one_time: "Pay once and you're done.",
-      monthly: "Billed every month, cancel anytime.",
+      monthly: "Billed every month · minimum 12-month commitment.",
       yearly: "Billed once a year — best for stable budgets.",
     },
     cadenceCtas: {
@@ -47,7 +47,7 @@ const strings = {
     },
     cadenceDescriptions: {
       one_time: "한 번 결제하시면 끝입니다.",
-      monthly: "매달 자동 청구되며 언제든 해지 가능합니다.",
+      monthly: "매달 자동 청구되며, 최소 12개월 약정입니다.",
       yearly: "1년에 한 번 결제 — 안정적인 예산 운영에 적합합니다.",
     },
     cadenceCtas: {
